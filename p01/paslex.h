@@ -48,5 +48,8 @@ public:
   // void StoreTokenCode(int T);    //Store the token code.
   char* FetchSpelling(void);     //Return the spelling of the most recent
   //                                //token
+
+  int getLine(void);
+  int getCol(void);
 };
 #endif

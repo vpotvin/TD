@@ -1,1 +1,35 @@
-Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1Token:Code=1 Name1
+Token:Code=45 Name COMMENT line=1 col=79 Spelling={----------------------------------------------------------------------------}
+Token:Code=45 Name COMMENT line=2 col=79 Spelling={Author:     Dr. Sweet T.                                                    }
+Token:Code=45 Name COMMENT line=3 col=79 Spelling={Student ID: *00000000                                                       }
+Token:Code=45 Name COMMENT line=4 col=79 Spelling={Course:     CMSC 1513 Beginning Programming (Pascal)                        }
+Token:Code=45 Name COMMENT line=5 col=79 Spelling={CRN:        10849                                                           }
+Token:Code=45 Name COMMENT line=6 col=79 Spelling={Project:    p03                                                             }
+Token:Code=45 Name COMMENT line=7 col=79 Spelling={Due:        September 27, 2002                                              }
+Token:Code=45 Name COMMENT line=8 col=79 Spelling={Account:    tt000                                                           }
+Token:Code=45 Name COMMENT line=9 col=79 Spelling={----------------------------------------------------------------------------}
+Token:Code=42 Name INTLIT line=10 col=3 Spelling=03
+Token:Code=45 Name COMMENT line=12 col=54 Spelling={Principal                                          }
+Token:Code=45 Name COMMENT line=13 col=54 Spelling={Annual Percentage Rate                             }
+Token:Code=45 Name COMMENT line=14 col=54 Spelling={Future Value (Sum)                                 }
+Token:Code=45 Name COMMENT line=15 col=54 Spelling={Periodic Interest Rate                             }
+Token:Code=45 Name COMMENT line=16 col=6 Spelling={p03}
+Token:Code=6 Name PERIOD line=17 col=2 Spelling=.
+Token:Code=6 Name PERIOD line=19 col=2 Spelling=.
+Token:Code=5 Name ASSIGN line=22 col=3 Spelling=:=
+Token:Code=4 Name SLASH line=22 col=4 Spelling=/
+Token:Code=42 Name INTLIT line=22 col=7 Spelling=100
+Token:Code=5 Name ASSIGN line=23 col=3 Spelling=:=
+Token:Code=3 Name STAR line=23 col=4 Spelling=*
+Token:Code=42 Name INTLIT line=23 col=5 Spelling=1
+Token:Code=1 Name PLUS line=23 col=6 Spelling=+
+Token:Code=42 Name INTLIT line=24 col=2 Spelling=1
+Token:Code=42 Name INTLIT line=24 col=3 Spelling=2
+Token:Code=6 Name PERIOD line=25 col=2 Spelling=.
+Token:Code=42 Name INTLIT line=26 col=2 Spelling=5
+Token:Code=1 Name PLUS line=26 col=3 Spelling=+
+Token:Code=42 Name INTLIT line=26 col=4 Spelling=5
+Token:Code=42 Name INTLIT line=27 col=2 Spelling=1
+Token:Code=2 Name MINUS line=27 col=3 Spelling=-
+Token:Code=42 Name INTLIT line=27 col=4 Spelling=2
+Token:Code=45 Name COMMENT line=28 col=6 Spelling={p03}
+Token:Code=6 Name PERIOD line=28 col=7 Spelling=.

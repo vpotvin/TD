@@ -23,4 +23,6 @@ begin{p03}
   S:=P*(1+i);
   write (S:1:2);
   writeln('.')
+  5+5
+  1-2
 end{p03}.

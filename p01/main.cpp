@@ -44,20 +44,41 @@ struct CommandLineException {
 //Function LexMgr processes the input file, calls yylex, the scanner, and
 //produces the output file.
 void LexMgr(FILE* i,ostream& o) {
-// {   static const char* TokenName[]=
-//         {"EOF"      ,"BEGIN"    ,"END"      ,"READ"     ,"WRITE"
-//         ,"INTLIT"   ,"ID"       ,"ASSIGN"   ,"SEMICOLON","COMMA"
-//         ,"LPAREN"   , "RPAREN"  ,"PLUS"     ,"MINUS"    ,"ERROR"
-//         };
+  static const char* TokenName[]=
+           {"PLACEHOLDER" ,"PLUS"     ,"MINUS"    ,"STAR"       ,"SLASH"
+            ,"ASSIGN"     ,"PERIOD"   ,"COMMA"    ,"SEMICOLON"  ,"COLON"
+            ,"EQU"        , "NEQ"     ,"LES"      ,"LEQ"        ,"GRT"     ,"GEQ"
+            ,"LPAREN"     , "RPAREN"  ,"LBRACKET" ,"RBRACKET"   ,"RANGE"   ,"AND"
+            ,"ARRAY"      , "BEGAN"   ,"DIV"      ,"DO"         ,"ELSE"    ,"END"
+            ,"FUNCTION"   , "IF"      ,"MOD"      ,"NOT"        ,"OF"      ,"OR"
+            ,"PROCEDURE"  , "PROGRAM" ,"THEN"     ,"TO"         ,"TYPE"    ,"VAR"
+            ,"WHILE"      , "ID"      ,"INTLIT"   ,"REALIT"     ,"CHRLIT"  ,"COMMENT"
+           };
   Lexer L(i);                 //Redirect yylex to read file i instead of
 //                                 //the command line
 // //    Title(o);
+
+  int col;
+  int line;
+
   for (int t=yylex();t>0;t=yylex()){
+
+    col   = L.getCol();
+    line  = L.getLine();
+
     o << "Token:Code=";
     o << t; 
-    o << " Name";
+    o << " Name ";
+    o << TokenName[t];
+    o << " line=";
+    o << line;
+    o << " col=";
+    o << col;
+    o << " Spelling=";
+    o << L.FetchSpelling();
+    o << endl;
 
-    o << t;
+
 
 //         o << " ";
 //         o << setw(15) << TokenName[t];
