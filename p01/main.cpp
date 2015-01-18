@@ -8,6 +8,7 @@
 using namespace std;
 
 #include "paslex.h"
+#include "y.tab.h"
 
 struct FileException {
   FileException(const char* fn)
@@ -52,9 +53,12 @@ void LexMgr(FILE* i,ostream& o) {
 //                                 //the command line
 // //    Title(o);
   for (int t=yylex();t>0;t=yylex()){
+    o << "Token:Code=";
+    o << t; 
+    o << " Name";
 
-    o << setw(15) << t;
-    cout << t << endl;
+    o << t;
+
 //         o << " ";
 //         o << setw(15) << TokenName[t];
 //         o << " ";

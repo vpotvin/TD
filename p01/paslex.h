@@ -46,7 +46,7 @@ public:
                                  //found by yylex
   // int FetchTokenCode(void);      //Return the code of the most recent token
   // void StoreTokenCode(int T);    //Store the token code.
-  // char* FetchSpelling(void);     //Return the spelling of the most recent
+  char* FetchSpelling(void);     //Return the spelling of the most recent
   //                                //token
 };
 #endif

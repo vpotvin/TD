@@ -22,7 +22,7 @@ main:			${obj}
 #------------------------------------------------------------------
 # File explex.l is the lexical analyzer
 #------------------------------------------------------------------
-paslex.cpp:     paslex.l paslex.h
+paslex.cpp:     paslex.l paslex.h y.tab.h
 				lex paslex.l
 				mv lex.yy.c paslex.cpp
 #------------------------------------------------------------------

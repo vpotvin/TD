@@ -4,6 +4,7 @@
 extern "C" 
 int yylex (void);
 #include "paslex.h"
+#include "y.tab.h"
 ;
 int wordcount;
 int lineNum;
@@ -11,6 +12,8 @@ string TokenMgr();
 %}
 
 %%
+
+"{".+"}" 	return COMMENT;  // DO WE A MULILINE COMMENT
 
 int 		return 1;
 
@@ -31,4 +34,9 @@ string TokenMgr(){
 Lexer::Lexer(FILE* i)
 {   
 	yyin=i;
+}
+
+char* Lexer::FetchSpelling(void)
+{
+    return (char*)yytext;
 }
