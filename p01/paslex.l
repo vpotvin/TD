@@ -26,13 +26,46 @@ int col 	= 1;
 "/"			return TokenMgr(SLASH);
 ":=" 		return TokenMgr(ASSIGN);
 "." 		return TokenMgr(PERIOD);
+","			return TokenMgr(COMMA);
+";"			return TokenMgr(SEMICOLON);
+":" 		return TokenMgr(COLON);
+"="			return TokenMgr(EQU);
+"<>" 		return TokenMgr(NEQ);
+"<" 		return TokenMgr(LES);
+"<=" 		return TokenMgr(LEQ);
+">" 		return TokenMgr(GRT);
+">=" 		return TokenMgr(GEQ);
+"(" 		return TokenMgr(LPAREN);
+")" 		return TokenMgr(RPAREN);
+"[" 		return TokenMgr(LBRACKET);
+"]"			return TokenMgr(RBRACKET);
+".."		return TokenMgr(RANGE);
+"and" 		return TokenMgr(AND);
+"array" 	return TokenMgr(ARRAY);
+"begin" 	return TokenMgr(BEGAN);
+"div" 		return TokenMgr(DIV);
+"do" 		return TokenMgr(DO);
+"else" 		return TokenMgr(ELSE);
+"end" 		return TokenMgr(END);
+"function"	return TokenMgr(FUNCTION);
+"if" 		return TokenMgr(IF);
+"mod" 		return TokenMgr(MOD);
+"not" 		return TokenMgr(NOT);
+"of" 		return TokenMgr(OF);
+"or" 		return TokenMgr(OR);
+"procedure" return TokenMgr(PROCEDURE);
+"program" 	return TokenMgr(PROGRAM);
+"then" 		return TokenMgr(THEN);
+"to" 		return TokenMgr(TO);
+"type" 		return TokenMgr(TYPE);
+"var"		return TokenMgr(VAR);
+"while"		return TokenMgr(WHILE);
+
 
 [0-9]+ 		return TokenMgr(INTLIT);   // INT
 "{".*"}" 	return TokenMgr(COMMENT);  // DO WE A MULILINE COMMENT
 
-int 		return 1;
 
-atest 		return 2;
 
 . 			;
 

@@ -25,4 +25,5 @@ begin{p03}
   writeln('.')
   5+5
   1-2
+  /
 end{p03}.
