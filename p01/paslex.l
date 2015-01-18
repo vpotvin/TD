@@ -20,6 +20,7 @@ int col 	= 1;
 
 [\n]		{line++; col = 1;}
 [\t]+        {col += yyleng;}
+[_a-zA-Z][_a-zA-Z0-9]*                  return TokenMgr(ID);
 "+"			return TokenMgr(PLUS);
 "-"			return TokenMgr(MINUS);
 "*" 		return TokenMgr(STAR);
