@@ -64,6 +64,8 @@ int col 	= 1;
 
 
 [0-9]+ 		return TokenMgr(INTLIT);   // INT
+[0-9]+"."[0-9]+(("e"|"E")("-"|"+")?[0-9]+)? return TokenMgr(REALIT); 
+[0-9]+(("e"|"E")("-"|"+")?[0-9]+)? return TokenMgr(REALIT); 
 "{".*"}" 	return TokenMgr(COMMENT);  // DO WE A MULILINE COMMENT
 
 

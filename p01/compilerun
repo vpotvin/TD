@@ -1,0 +1,16 @@
+#!/bin/bash
+clear
+
+rm out.txt
+
+rm main
+
+rm paslex.cpp
+
+rm main.o
+
+rm paslex.o
+
+make -f makepas
+
+main in.txt out.txt
