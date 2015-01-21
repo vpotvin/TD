@@ -65,20 +65,20 @@ void LexMgr(FILE* i,ostream& o) {
 
   for (int t=yylex();t>0;t=yylex()){
 
-    col   = L.getCol();
-    line  = L.getLine();
+    // col   = L.getCol();
+    // line  = L.getLine();
 
-    o << "Token:Code=";
-    o << t; 
-    o << " Name ";
-    o << TokenName[t];
-    o << " line=";
-    o << line;
-    o << " col=";
-    o << col;
-    o << " Spelling=";
-    o << L.FetchSpelling();
-    o << endl;
+    // o << "Token:Code=";
+    // o << t; 
+    // o << " Name ";
+    // o << TokenName[t];
+    // o << " line=";
+    // o << line;
+    // o << " col=";
+    // o << col;
+    // o << " Spelling=";
+    // o << L.FetchSpelling();
+    // o << endl;
 
 
 
