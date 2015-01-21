@@ -72,9 +72,9 @@ int main(int argc, char* argv[])
          break;
      }
      FILE* i=fopen(ifn,"r"); if (!i) throw FileException(ifn);
-    o.open(ofn); if (!o) throw FileException(ofn);
+     o.open(ofn); if (!o) throw FileException(ofn);
 
-      LexMgr(i,o);
+     LexMgr(i,o);
      
      fclose(i);
      o.close();
