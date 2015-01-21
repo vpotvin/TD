@@ -10,7 +10,9 @@ int yylex (void);
 
 int TokenMgr(int i);
 void ToLower(char* d,char* s);
-int ReserveWord(char* s); 
+int ReserveWord(char* s);
+int cmtMng(int i); 
+void cmtPrinter(int tc);
 
 static map<string,int> RW;              //RW - Reserve Words
 static map<int,string> NAME;            //NAME OF TOKEN
@@ -48,8 +50,8 @@ int col 	= 1;
 "[" 		return TokenMgr(LBRACKET);
 "]"			return TokenMgr(RBRACKET);
 ".."		return TokenMgr(RANGE);
-"{".*|\n*|\t"}" 	return TokenMgr(COMMENT);  // DO WE A MULILINE COMMENT
-(['][a-zA-Z0-9]['])|([']['"][']) return TokenMgr(CHRLIT);
+"{"([^}]*)"}" 	return cmtMng(COMMENT);  // DO WE A MULILINE COMMENT
+ (['][a-zA-Z0-9]['])|([']['"][']) return TokenMgr(CHRLIT);
 
 
 
@@ -64,6 +66,35 @@ int col 	= 1;
 
 
 %%
+
+int cmtMng(int i){
+	cmtPrinter(i);
+	for(int j = 0; j<yyleng; j++){
+		if(yytext[j] == '\n'){
+			line++;
+			col = 1;
+			o << endl;
+			cmtPrinter(i);
+		} else {
+			col++;
+			o << yytext[j];
+		}
+	}
+	o << endl;
+	return 1;
+}
+
+void cmtPrinter(int tc){
+	o << "Token:Code=";
+	o << setw(4) << tc;
+	o << " Name= ";
+	o << setw(10) << NAME[tc];
+	o << " line= ";
+	o << setw(3) << line;
+	o << " col= ";
+	o << setw(3) << col;
+	o << " Spelling=";
+}
 
 
 
