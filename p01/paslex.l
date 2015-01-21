@@ -6,6 +6,7 @@ int yylex (void);
 #include "paslex.h"
 #include "y.tab.h"
 #include <map>
+#include <iomanip>
 
 int TokenMgr(int i);
 void ToLower(char* d,char* s);
@@ -25,7 +26,7 @@ int col 	= 1;
 
 
 [\n]		{line++; col = 1;}
-[\t]+        {col += yyleng;}
+[ \t]+        {col += yyleng;}
 [_a-zA-Z][_a-zA-Z0-9]*                  return TokenMgr(ID);
 "+"			return TokenMgr(PLUS);
 "-"			return TokenMgr(MINUS);
@@ -47,7 +48,8 @@ int col 	= 1;
 "[" 		return TokenMgr(LBRACKET);
 "]"			return TokenMgr(RBRACKET);
 ".."		return TokenMgr(RANGE);
-"{".*|\n*"}" 	return TokenMgr(COMMENT);  // DO WE A MULILINE COMMENT
+"{".*|\n*|\t"}" 	return TokenMgr(COMMENT);  // DO WE A MULILINE COMMENT
+(['][a-zA-Z0-9]['])|([']['"][']) return TokenMgr(CHRLIT);
 
 
 
@@ -59,6 +61,7 @@ int col 	= 1;
 
 
 . 			;
+
 
 %%
 
@@ -75,11 +78,15 @@ int TokenMgr(int i){
 	col += yyleng;
 
 	o << "Token:Code=";
-	o << tc;
+	o << setw(4) << tc;
 	o << " Name= ";
-	o << NAME[tc];
+	o << setw(10) << NAME[tc];
+	o << " line= ";
+	o << setw(3) << line;
+	o << " col= ";
+	o << setw(3) << col - yyleng;
 	o << " Spelling=";
-	o << yytext;
+	o << setw(10) << yytext;
 	o << endl;
 	return i;
 }
@@ -103,72 +110,71 @@ Lexer::Lexer(FILE* i)
 {   
 	yyin=i;
 
-	RW["begin"]=AND;
-    RW["end"  ]=ARRAY;
-    RW["read" ]=BEGAN;
-    RW["div"]=DIV;
-    RW["do"]=DO;
-    RW["else"]=ELSE;
-    RW["end"]=END;
-    RW["function"]=FUNCTION;
-    RW["if"]=IF;
-    RW["mod"]=MOD;
-    RW["not"]=NOT;
-    RW["of"]=OF;
-    RW["or"]=OR;
-    RW["procedure"]=PROCEDURE;
-    RW["program"]=PROGRAM;
-    RW["then"]=THEN;
-    RW["to"]=TO;
-    RW["type"]=TYPE;
-    RW["var"]=VAR;
-    RW["while"]=WHILE;
+	RW["begin"]		=BEGAN;
+    RW["end"  ]		=END;
+    RW["div"]		=DIV;
+    RW["do"]		=DO;
+    RW["else"]		=ELSE;
+    RW["end"]		=END;
+    RW["function"]	=FUNCTION;
+    RW["if"]		=IF;
+    RW["mod"]		=MOD;
+    RW["not"]		=NOT;
+    RW["of"]		=OF;
+    RW["or"]		=OR;
+    RW["procedure"]	=PROCEDURE;
+    RW["program"]	=PROGRAM;
+    RW["then"]		=THEN;
+    RW["to"]		=TO;
+    RW["type"]		=TYPE;
+    RW["var"]		=VAR;
+    RW["while"]		=WHILE;
 
-    NAME[PLUS] = "PLUS";
-    NAME[MINUS] = "MINUS";
-    NAME[STAR] = "STAR";
-    NAME[SLASH] = "SLASH";
-    NAME[ASSIGN] = "ASSIGN";
-    NAME[PERIOD] = "PERIOD";
-    NAME[COMMA] = "COMMA";
-    NAME[SEMICOLON] = "SEMICOLON";
-    NAME[COLON] = "COLON";
-    NAME[EQU] = "EQU";
-    NAME[NEQ] = "NEQ";
-    NAME[LES] = "LES";
-    NAME[LEQ] = "LEQ";
-    NAME[GRT] = "GRT";
-    NAME[GEQ] = "GEQ";
-    NAME[LPAREN] = "LPAREN";
-    NAME[RPAREN] = "RPAREN";
-    NAME[LBRACKET] = "LBRACKET";
-    NAME[RBRACKET] = "RBRACKET";
-    NAME[RANGE] = "RANGE";
-    NAME[AND] = "AND";
-    NAME[ARRAY] = "ARRAY";
-    NAME[BEGAN] = "BEGIN";
-    NAME[DIV] = "DIV";
-    NAME[DO] = "DO";
-	NAME[ELSE] = "ELSE"; 
-	NAME[END] = "END"; 
-	NAME[FUNCTION] = "FUNCTION"; 
-	NAME[IF] = "IF";
-	NAME[MOD] = "MOD"; 
-	NAME[NOT] = "NOT"; 
-	NAME[OF] = "OF"; 
-	NAME[OR] = "OR"; 
-	NAME[PROCEDURE] = "PROCEDURE"; 
-	NAME[PROGRAM] = "PROGRAM";
-	NAME[THEN] = "THEN";
-	NAME[TO] = "TO";
-	NAME[TYPE] = "TYPE"; 
-	NAME[VAR] = "VAR"; 
-	NAME[WHILE] = "PLUS"; 
-	NAME[ID] = "ID"; 
-	NAME[INTLIT] = "INTLIT"; 
-	NAME[REALIT] = "REALIT";
-	NAME[CHRLIT] = "CHRLIT";
-	NAME[COMMENT] = "COMMENT";
+    NAME[PLUS] 			= "PLUS";
+    NAME[MINUS] 		= "MINUS";
+    NAME[STAR] 			= "STAR";
+    NAME[SLASH] 		= "SLASH";
+    NAME[ASSIGN] 		= "ASSIGN";
+    NAME[PERIOD] 		= "PERIOD";
+    NAME[COMMA] 		= "COMMA";
+    NAME[SEMICOLON] 	= "SEMICOLON";
+    NAME[COLON] 		= "COLON";
+    NAME[EQU] 			= "EQU";
+    NAME[NEQ] 			= "NEQ";
+    NAME[LES] 			= "LES";
+    NAME[LEQ] 			= "LEQ";
+    NAME[GRT] 			= "GRT";
+    NAME[GEQ] 			= "GEQ";
+    NAME[LPAREN] 		= "LPAREN";
+    NAME[RPAREN] 		= "RPAREN";
+    NAME[LBRACKET] 		= "LBRACKET";
+    NAME[RBRACKET] 		= "RBRACKET";
+    NAME[RANGE] 		= "RANGE";
+    NAME[AND] 			= "AND";
+    NAME[ARRAY] 		= "ARRAY";
+    NAME[BEGAN] 		= "BEGIN";
+    NAME[DIV] 			= "DIV";
+    NAME[DO] 			= "DO";
+	NAME[ELSE] 			= "ELSE"; 
+	NAME[END] 			= "END"; 
+	NAME[FUNCTION] 		= "FUNCTION"; 
+	NAME[IF] 			= "IF";
+	NAME[MOD] 			= "MOD"; 
+	NAME[NOT] 			= "NOT"; 
+	NAME[OF] 			= "OF"; 
+	NAME[OR] 			= "OR"; 
+	NAME[PROCEDURE] 	= "PROCEDURE"; 
+	NAME[PROGRAM] 		= "PROGRAM";
+	NAME[THEN] 			= "THEN";
+	NAME[TO] 			= "TO";
+	NAME[TYPE] 			= "TYPE"; 
+	NAME[VAR] 			= "VAR"; 
+	NAME[WHILE] 		= "PLUS"; 
+	NAME[ID] 			= "ID"; 
+	NAME[INTLIT] 		= "INTLIT"; 
+	NAME[REALIT] 		= "REALIT";
+	NAME[CHRLIT] 		= "CHRLIT";
+	NAME[COMMENT] 		= "COMMENT";
 }
 
 char* Lexer::FetchSpelling(void)

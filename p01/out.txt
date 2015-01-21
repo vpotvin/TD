@@ -1,119 +1,161 @@
-Token:Code=45 Name= COMMENT Spelling={----------------------------------------------------------------------------}
-Token:Code=45 Name= COMMENT Spelling={Author:     Dr. Sweet T.                                                    }
-Token:Code=45 Name= COMMENT Spelling={Student ID: *00000000                                                       }
-Token:Code=45 Name= COMMENT Spelling={Course:     CMSC 1513 Beginning Programming (Pascal)                        }
-Token:Code=45 Name= COMMENT Spelling={CRN:        10849                                                           }
-Token:Code=45 Name= COMMENT Spelling={Project:    p03                                                             }
-Token:Code=45 Name= COMMENT Spelling={Due:        September 27, 2002                                              }
-Token:Code=45 Name= COMMENT Spelling={Account:    tt000                                                           }
-Token:Code=45 Name= COMMENT Spelling={----------------------------------------------------------------------------}
-Token:Code=35 Name= PROGRAM Spelling=program
-Token:Code=41 Name= ID Spelling=p03
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=39 Name= VAR Spelling=var
-Token:Code=41 Name= ID Spelling=P
-Token:Code=9 Name= COLON Spelling=:
-Token:Code=41 Name= ID Spelling=real
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=45 Name= COMMENT Spelling={Principal                                          }
-Token:Code=41 Name= ID Spelling=APR
-Token:Code=9 Name= COLON Spelling=:
-Token:Code=41 Name= ID Spelling=real
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=45 Name= COMMENT Spelling={Annual Percentage Rate                             }
-Token:Code=41 Name= ID Spelling=S
-Token:Code=9 Name= COLON Spelling=:
-Token:Code=41 Name= ID Spelling=real
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=45 Name= COMMENT Spelling={Future Value (Sum)                                 }
-Token:Code=41 Name= ID Spelling=i
-Token:Code=9 Name= COLON Spelling=:
-Token:Code=41 Name= ID Spelling=real
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=45 Name= COMMENT Spelling={Periodic Interest Rate                             }
-Token:Code=21 Name= AND Spelling=begin
-Token:Code=45 Name= COMMENT Spelling={p03}
-Token:Code=41 Name= ID Spelling=write
-Token:Code=16 Name= LPAREN Spelling=(
-Token:Code=41 Name= ID Spelling=Enter
-Token:Code=41 Name= ID Spelling=your
-Token:Code=41 Name= ID Spelling=current
-Token:Code=41 Name= ID Spelling=balance
-Token:Code=6 Name= PERIOD Spelling=.
-Token:Code=17 Name= RPAREN Spelling=)
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=41 Name= ID Spelling=readln
-Token:Code=16 Name= LPAREN Spelling=(
-Token:Code=41 Name= ID Spelling=P
-Token:Code=17 Name= RPAREN Spelling=)
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=41 Name= ID Spelling=write
-Token:Code=16 Name= LPAREN Spelling=(
-Token:Code=41 Name= ID Spelling=Enter
-Token:Code=41 Name= ID Spelling=the
-Token:Code=41 Name= ID Spelling=annual
-Token:Code=41 Name= ID Spelling=percentage
-Token:Code=41 Name= ID Spelling=rate
-Token:Code=16 Name= LPAREN Spelling=(
-Token:Code=41 Name= ID Spelling=APR
-Token:Code=17 Name= RPAREN Spelling=)
-Token:Code=41 Name= ID Spelling=on
-Token:Code=41 Name= ID Spelling=your
-Token:Code=41 Name= ID Spelling=account
-Token:Code=6 Name= PERIOD Spelling=.
-Token:Code=17 Name= RPAREN Spelling=)
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=41 Name= ID Spelling=readln
-Token:Code=16 Name= LPAREN Spelling=(
-Token:Code=41 Name= ID Spelling=APR
-Token:Code=17 Name= RPAREN Spelling=)
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=41 Name= ID Spelling=write
-Token:Code=16 Name= LPAREN Spelling=(
-Token:Code=41 Name= ID Spelling=After
-Token:Code=41 Name= ID Spelling=one
-Token:Code=41 Name= ID Spelling=year
-Token:Code=41 Name= ID Spelling=your
-Token:Code=41 Name= ID Spelling=balance
-Token:Code=41 Name= ID Spelling=will
-Token:Code=41 Name= ID Spelling=be
-Token:Code=17 Name= RPAREN Spelling=)
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=41 Name= ID Spelling=i
-Token:Code=5 Name= ASSIGN Spelling=:=
-Token:Code=41 Name= ID Spelling=APR
-Token:Code=4 Name= SLASH Spelling=/
-Token:Code=42 Name= INTLIT Spelling=100
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=41 Name= ID Spelling=S
-Token:Code=5 Name= ASSIGN Spelling=:=
-Token:Code=41 Name= ID Spelling=P
-Token:Code=3 Name= STAR Spelling=*
-Token:Code=16 Name= LPAREN Spelling=(
-Token:Code=42 Name= INTLIT Spelling=1
-Token:Code=1 Name= PLUS Spelling=+
-Token:Code=41 Name= ID Spelling=i
-Token:Code=17 Name= RPAREN Spelling=)
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=41 Name= ID Spelling=write
-Token:Code=16 Name= LPAREN Spelling=(
-Token:Code=41 Name= ID Spelling=S
-Token:Code=9 Name= COLON Spelling=:
-Token:Code=42 Name= INTLIT Spelling=1
-Token:Code=9 Name= COLON Spelling=:
-Token:Code=42 Name= INTLIT Spelling=2
-Token:Code=17 Name= RPAREN Spelling=)
-Token:Code=8 Name= SEMICOLON Spelling=;
-Token:Code=41 Name= ID Spelling=writeln
-Token:Code=16 Name= LPAREN Spelling=(
-Token:Code=6 Name= PERIOD Spelling=.
-Token:Code=17 Name= RPAREN Spelling=)
-Token:Code=42 Name= INTLIT Spelling=5
-Token:Code=1 Name= PLUS Spelling=+
-Token:Code=42 Name= INTLIT Spelling=5
-Token:Code=42 Name= INTLIT Spelling=1
-Token:Code=2 Name= MINUS Spelling=-
-Token:Code=42 Name= INTLIT Spelling=2
-Token:Code=4 Name= SLASH Spelling=/
-Token:Code=27 Name= END Spelling=end
-Token:Code=45 Name= COMMENT Spelling={p03}.
+Token:Code=  45 Name=    COMMENT line=   1 col=   1 Spelling={----------------------------------------------------------------------------}
+Token:Code=  45 Name=    COMMENT line=   2 col=   1 Spelling={Author:     Dr. Sweet T.                                                    }
+Token:Code=  45 Name=    COMMENT line=   3 col=   1 Spelling={Student ID: *00000000                                                       }
+Token:Code=  45 Name=    COMMENT line=   4 col=   1 Spelling={Course:     CMSC 1513 Beginning Programming (Pascal)                        }
+Token:Code=  45 Name=    COMMENT line=   5 col=   1 Spelling={CRN:        10849                                                           }
+Token:Code=  45 Name=    COMMENT line=   6 col=   1 Spelling={Project:    p03                                                             }
+Token:Code=  45 Name=    COMMENT line=   7 col=   1 Spelling={Due:        September 27, 2002                                              }
+Token:Code=  45 Name=    COMMENT line=   8 col=   1 Spelling={Account:    tt000                                                           }
+Token:Code=  45 Name=    COMMENT line=   9 col=   1 Spelling={----------------------------------------------------------------------------}
+Token:Code=  35 Name=    PROGRAM line=  10 col=   1 Spelling=   program
+Token:Code=  41 Name=         ID line=  10 col=   9 Spelling=       p03
+Token:Code=   8 Name=  SEMICOLON line=  10 col=  12 Spelling=         ;
+Token:Code=  39 Name=        VAR line=  11 col=   3 Spelling=       var
+Token:Code=  41 Name=         ID line=  12 col=   5 Spelling=         P
+Token:Code=   9 Name=      COLON line=  12 col=   6 Spelling=         :
+Token:Code=  41 Name=         ID line=  12 col=   7 Spelling=      real
+Token:Code=   8 Name=  SEMICOLON line=  12 col=  11 Spelling=         ;
+Token:Code=  45 Name=    COMMENT line=  12 col=  26 Spelling={Principal                                          }
+Token:Code=  41 Name=         ID line=  13 col=   5 Spelling=       APR
+Token:Code=   9 Name=      COLON line=  13 col=   8 Spelling=         :
+Token:Code=  41 Name=         ID line=  13 col=   9 Spelling=      real
+Token:Code=   8 Name=  SEMICOLON line=  13 col=  13 Spelling=         ;
+Token:Code=  45 Name=    COMMENT line=  13 col=  26 Spelling={Annual Percentage Rate                             }
+Token:Code=  41 Name=         ID line=  14 col=   5 Spelling=         S
+Token:Code=   9 Name=      COLON line=  14 col=   6 Spelling=         :
+Token:Code=  41 Name=         ID line=  14 col=   7 Spelling=      real
+Token:Code=   8 Name=  SEMICOLON line=  14 col=  11 Spelling=         ;
+Token:Code=  45 Name=    COMMENT line=  14 col=  26 Spelling={Future Value (Sum)                                 }
+Token:Code=  41 Name=         ID line=  15 col=   5 Spelling=         i
+Token:Code=   9 Name=      COLON line=  15 col=   6 Spelling=         :
+Token:Code=  41 Name=         ID line=  15 col=   7 Spelling=      real
+Token:Code=   8 Name=  SEMICOLON line=  15 col=  11 Spelling=         ;
+Token:Code=  45 Name=    COMMENT line=  15 col=  26 Spelling={Periodic Interest Rate                             }
+Token:Code=  23 Name=      BEGIN line=  16 col=   1 Spelling=     begin
+Token:Code=  45 Name=    COMMENT line=  16 col=   6 Spelling=     {p03}
+Token:Code=  41 Name=         ID line=  17 col=   3 Spelling=     write
+Token:Code=  16 Name=     LPAREN line=  17 col=   9 Spelling=         (
+Token:Code=  41 Name=         ID line=  17 col=  10 Spelling=     Enter
+Token:Code=  41 Name=         ID line=  17 col=  16 Spelling=      your
+Token:Code=  41 Name=         ID line=  17 col=  21 Spelling=   current
+Token:Code=  41 Name=         ID line=  17 col=  29 Spelling=   balance
+Token:Code=   6 Name=     PERIOD line=  17 col=  36 Spelling=         .
+Token:Code=  17 Name=     RPAREN line=  17 col=  38 Spelling=         )
+Token:Code=   8 Name=  SEMICOLON line=  17 col=  39 Spelling=         ;
+Token:Code=  41 Name=         ID line=  18 col=   3 Spelling=    readln
+Token:Code=  16 Name=     LPAREN line=  18 col=   9 Spelling=         (
+Token:Code=  41 Name=         ID line=  18 col=  10 Spelling=         P
+Token:Code=  17 Name=     RPAREN line=  18 col=  11 Spelling=         )
+Token:Code=   8 Name=  SEMICOLON line=  18 col=  12 Spelling=         ;
+Token:Code=  41 Name=         ID line=  19 col=   3 Spelling=     write
+Token:Code=  16 Name=     LPAREN line=  19 col=   9 Spelling=         (
+Token:Code=  41 Name=         ID line=  19 col=  10 Spelling=     Enter
+Token:Code=  41 Name=         ID line=  19 col=  16 Spelling=       the
+Token:Code=  41 Name=         ID line=  19 col=  20 Spelling=    annual
+Token:Code=  41 Name=         ID line=  19 col=  27 Spelling=percentage
+Token:Code=  41 Name=         ID line=  19 col=  38 Spelling=      rate
+Token:Code=  16 Name=     LPAREN line=  19 col=  43 Spelling=         (
+Token:Code=  41 Name=         ID line=  19 col=  44 Spelling=       APR
+Token:Code=  17 Name=     RPAREN line=  19 col=  47 Spelling=         )
+Token:Code=  41 Name=         ID line=  19 col=  49 Spelling=        on
+Token:Code=  41 Name=         ID line=  19 col=  52 Spelling=      your
+Token:Code=  41 Name=         ID line=  19 col=  57 Spelling=   account
+Token:Code=   6 Name=     PERIOD line=  19 col=  64 Spelling=         .
+Token:Code=  17 Name=     RPAREN line=  19 col=  66 Spelling=         )
+Token:Code=   8 Name=  SEMICOLON line=  19 col=  67 Spelling=         ;
+Token:Code=  41 Name=         ID line=  20 col=   3 Spelling=    readln
+Token:Code=  16 Name=     LPAREN line=  20 col=   9 Spelling=         (
+Token:Code=  41 Name=         ID line=  20 col=  10 Spelling=       APR
+Token:Code=  17 Name=     RPAREN line=  20 col=  13 Spelling=         )
+Token:Code=   8 Name=  SEMICOLON line=  20 col=  14 Spelling=         ;
+Token:Code=  41 Name=         ID line=  21 col=   3 Spelling=     write
+Token:Code=  16 Name=     LPAREN line=  21 col=   9 Spelling=         (
+Token:Code=  41 Name=         ID line=  21 col=  10 Spelling=     After
+Token:Code=  41 Name=         ID line=  21 col=  16 Spelling=       one
+Token:Code=  41 Name=         ID line=  21 col=  20 Spelling=      year
+Token:Code=  41 Name=         ID line=  21 col=  25 Spelling=      your
+Token:Code=  41 Name=         ID line=  21 col=  30 Spelling=   balance
+Token:Code=  41 Name=         ID line=  21 col=  38 Spelling=      will
+Token:Code=  41 Name=         ID line=  21 col=  43 Spelling=        be
+Token:Code=  17 Name=     RPAREN line=  21 col=  46 Spelling=         )
+Token:Code=   8 Name=  SEMICOLON line=  21 col=  47 Spelling=         ;
+Token:Code=  41 Name=         ID line=  22 col=   3 Spelling=         i
+Token:Code=   5 Name=     ASSIGN line=  22 col=   4 Spelling=        :=
+Token:Code=  41 Name=         ID line=  22 col=   6 Spelling=       APR
+Token:Code=   4 Name=      SLASH line=  22 col=   9 Spelling=         /
+Token:Code=  42 Name=     INTLIT line=  22 col=  10 Spelling=       100
+Token:Code=   8 Name=  SEMICOLON line=  22 col=  13 Spelling=         ;
+Token:Code=  41 Name=         ID line=  23 col=   3 Spelling=         S
+Token:Code=   5 Name=     ASSIGN line=  23 col=   4 Spelling=        :=
+Token:Code=  41 Name=         ID line=  23 col=   6 Spelling=         P
+Token:Code=   3 Name=       STAR line=  23 col=   7 Spelling=         *
+Token:Code=  16 Name=     LPAREN line=  23 col=   8 Spelling=         (
+Token:Code=  42 Name=     INTLIT line=  23 col=   9 Spelling=         1
+Token:Code=   1 Name=       PLUS line=  23 col=  10 Spelling=         +
+Token:Code=  41 Name=         ID line=  23 col=  11 Spelling=         i
+Token:Code=  17 Name=     RPAREN line=  23 col=  12 Spelling=         )
+Token:Code=   8 Name=  SEMICOLON line=  23 col=  13 Spelling=         ;
+Token:Code=  41 Name=         ID line=  24 col=   3 Spelling=     write
+Token:Code=  16 Name=     LPAREN line=  24 col=   9 Spelling=         (
+Token:Code=  41 Name=         ID line=  24 col=  10 Spelling=         S
+Token:Code=   9 Name=      COLON line=  24 col=  11 Spelling=         :
+Token:Code=  42 Name=     INTLIT line=  24 col=  12 Spelling=         1
+Token:Code=   9 Name=      COLON line=  24 col=  13 Spelling=         :
+Token:Code=  42 Name=     INTLIT line=  24 col=  14 Spelling=         2
+Token:Code=  17 Name=     RPAREN line=  24 col=  15 Spelling=         )
+Token:Code=   8 Name=  SEMICOLON line=  24 col=  16 Spelling=         ;
+Token:Code=  41 Name=         ID line=  25 col=   3 Spelling=   writeln
+Token:Code=  16 Name=     LPAREN line=  25 col=  10 Spelling=         (
+Token:Code=   6 Name=     PERIOD line=  25 col=  11 Spelling=         .
+Token:Code=  17 Name=     RPAREN line=  25 col=  12 Spelling=         )
+Token:Code=  42 Name=     INTLIT line=  26 col=   3 Spelling=         5
+Token:Code=   1 Name=       PLUS line=  26 col=   4 Spelling=         +
+Token:Code=  42 Name=     INTLIT line=  26 col=   5 Spelling=         5
+Token:Code=  42 Name=     INTLIT line=  27 col=   3 Spelling=         1
+Token:Code=   2 Name=      MINUS line=  27 col=   4 Spelling=         -
+Token:Code=  42 Name=     INTLIT line=  27 col=   5 Spelling=         2
+Token:Code=   4 Name=      SLASH line=  28 col=   3 Spelling=         /
+Token:Code=  23 Name=      BEGIN line=  29 col=   3 Spelling=     begin
+Token:Code=  41 Name=         ID line=  29 col=   9 Spelling=      read
+Token:Code=  16 Name=     LPAREN line=  29 col=  13 Spelling=         (
+Token:Code=  41 Name=         ID line=  29 col=  14 Spelling=         x
+Token:Code=  17 Name=     RPAREN line=  29 col=  15 Spelling=         )
+Token:Code=   8 Name=  SEMICOLON line=  29 col=  16 Spelling=         ;
+Token:Code=  41 Name=         ID line=  30 col=   3 Spelling=         x
+Token:Code=   5 Name=     ASSIGN line=  30 col=   4 Spelling=        :=
+Token:Code=  41 Name=         ID line=  30 col=   6 Spelling=         x
+Token:Code=   1 Name=       PLUS line=  30 col=   7 Spelling=         +
+Token:Code=  42 Name=     INTLIT line=  30 col=   8 Spelling=         2
+Token:Code=   8 Name=  SEMICOLON line=  30 col=   9 Spelling=         ;
+Token:Code=  45 Name=    COMMENT line=  30 col=  11 Spelling={ This is a one line comment}
+Token:Code=  45 Name=    COMMENT line=  31 col=   3 Spelling={This is a comment that begins in column 31}
+Token:Code=  45 Name=    COMMENT line=  31 col=  47 Spelling=       
+
+
+
+Token:Code=  41 Name=         ID line=  31 col=  50 Spelling=         y
+Token:Code=   5 Name=     ASSIGN line=  31 col=  51 Spelling=        :=
+Token:Code=  41 Name=         ID line=  31 col=  53 Spelling=         x
+Token:Code=   2 Name=      MINUS line=  31 col=  54 Spelling=         -
+Token:Code=  42 Name=     INTLIT line=  31 col=  55 Spelling=         3
+Token:Code=   8 Name=  SEMICOLON line=  31 col=  56 Spelling=         ;
+Token:Code=  41 Name=         ID line=  31 col=  58 Spelling=     write
+Token:Code=  16 Name=     LPAREN line=  31 col=  63 Spelling=         (
+Token:Code=  41 Name=         ID line=  31 col=  64 Spelling=         x
+Token:Code=   7 Name=      COMMA line=  31 col=  65 Spelling=         ,
+Token:Code=  41 Name=         ID line=  31 col=  66 Spelling=         y
+Token:Code=  17 Name=     RPAREN line=  31 col=  67 Spelling=         )
+Token:Code=   8 Name=  SEMICOLON line=  31 col=  68 Spelling=         ;
+Token:Code=  45 Name=    COMMENT line=  31 col=  70 Spelling=  {This is
+Token:Code=  41 Name=         ID line=  32 col=  22 Spelling=         a
+Token:Code=  41 Name=         ID line=  32 col=  24 Spelling=     multi
+Token:Code=   2 Name=      MINUS line=  32 col=  29 Spelling=         -
+Token:Code=  41 Name=         ID line=  32 col=  30 Spelling=      line
+Token:Code=  41 Name=         ID line=  33 col=  22 Spelling=   comment
+Token:Code=  27 Name=        END line=  34 col=  22 Spelling=       end
+Token:Code=  45 Name=    COMMENT line=  34 col=  25 Spelling=       
+
+
+
+Token:Code=  27 Name=        END line=  34 col=  28 Spelling=       end
+Token:Code=  45 Name=    COMMENT line=  34 col=  31 Spelling=    {p03}.
