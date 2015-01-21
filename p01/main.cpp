@@ -10,6 +10,8 @@ using namespace std;
 #include "paslex.h"
 #include "y.tab.h"
 
+ofstream o;  
+
 struct FileException {
   FileException(const char* fn)
   {  cout << endl;
@@ -114,7 +116,7 @@ int main(int argc, char* argv[])
          break;
      }
      FILE* i=fopen(ifn,"r"); if (!i) throw FileException(ifn);
-     ofstream o(ofn); if (!o) throw FileException(ofn);
+    o.open(ofn); if (!o) throw FileException(ofn);
 
       LexMgr(i,o);
      

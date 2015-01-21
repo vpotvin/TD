@@ -5,10 +5,16 @@ extern "C"
 int yylex (void);
 #include "paslex.h"
 #include "y.tab.h"
+#include <map>
 
 int TokenMgr(int i);
-int getCol();
-int getLine();
+void ToLower(char* d,char* s);
+int ReserveWord(char* s); 
+
+static map<string,int> RW;              //RW - Reserve Words
+static map<int,string> NAME;            //NAME OF TOKEN
+
+extern ofstream o; 
 
 
 int line 	= 1;
@@ -41,26 +47,7 @@ int col 	= 1;
 "[" 		return TokenMgr(LBRACKET);
 "]"			return TokenMgr(RBRACKET);
 ".."		return TokenMgr(RANGE);
-"and" 		return TokenMgr(AND);
-"array" 	return TokenMgr(ARRAY);
-"begin" 	return TokenMgr(BEGAN);
-"div" 		return TokenMgr(DIV);
-"do" 		return TokenMgr(DO);
-"else" 		return TokenMgr(ELSE);
-"end" 		return TokenMgr(END);
-"function"	return TokenMgr(FUNCTION);
-"if" 		return TokenMgr(IF);
-"mod" 		return TokenMgr(MOD);
-"not" 		return TokenMgr(NOT);
-"of" 		return TokenMgr(OF);
-"or" 		return TokenMgr(OR);
-"procedure" return TokenMgr(PROCEDURE);
-"program" 	return TokenMgr(PROGRAM);
-"then" 		return TokenMgr(THEN);
-"to" 		return TokenMgr(TO);
-"type" 		return TokenMgr(TYPE);
-"var"		return TokenMgr(VAR);
-"while"		return TokenMgr(WHILE);
+
 
 
 [0-9]+ 		return TokenMgr(INTLIT);   // INT
@@ -78,16 +65,28 @@ int col 	= 1;
 
 
 int TokenMgr(int i){
+	int tc = i;
+
+	o << "Token:Code=";
+
+	if (i == ID){
+		char* s=new char[yyleng];     
+  		ToLower(s,yytext);
+  		tc = ReserveWord(s);
+	}
 	col += yyleng;
 	return i;
 }
 
-int getCol(){
-	return col;
+int ReserveWord(char* s)
+{
+    int t=RW[(string)s];
+    if (t>0) return t; else return ID;
 }
 
-int getLine(){
-	return line;
+void ToLower(char* d,char* s)
+{   strcpy(d,s);
+    for (int a=0;a<strlen(d);a++) d[a]=tolower(d[a]);
 }
 
 
