@@ -487,7 +487,7 @@ char *yytext;
 extern "C" 
 int yylex (void);
 #include "paslex.h"
-#include "y.tab.h"
+#include "pastkn.h"
 #include <map>
 #include <iomanip>
 

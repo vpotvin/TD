@@ -1,45 +1,17 @@
+#!/bin/bash
+# My first script
 
-#------------------------------------------------------------------
-# File makeexp contains instructions for creating file SOMETHING!!!!!!!!!,
-#------------------------------------------------------------------
-# Author: Lynn Barnett
-# E-Mail: barnettlynn@gmail.com
-# Date:   January, 2015
-#------------------------------------------------------------------
+rm *.trc
 
-#------------------------------------------------------------------
-# Object files
-#------------------------------------------------------------------
-obj     =       paslex.o main.o
-#------------------------------------------------------------------
-main:			${obj}
-				g++ -o main ${obj} -ly -lm
-#------------------------------------------------------------------
-# File exppar.cpp processes command line arguments
-#------------------------------------------------------------------
-#exp.o:          exp.cpp explex.h exppar.h
-#				g++ -c -g exp.cpp
-#------------------------------------------------------------------
-# File explex.l is the lexical analyzer
-#------------------------------------------------------------------
-paslex.cpp:     paslex.l paslex.h y.tab.h
-				lex paslex.l
-				mv lex.yy.c paslex.cpp
-#------------------------------------------------------------------
-# File explex.cpp is created by lex in the previous step
-#------------------------------------------------------------------
-#explex.o:       explex.cpp explex.h
-#				g++ -c -g explex.cpp
-#------------------------------------------------------------------
-# File exppar.cpp is the C++ parser created by yacc
-#------------------------------------------------------------------
-#exppar.o:       exppar.cpp exppar.h
-#				g++ -c -g exppar.cpp
-#------------------------------------------------------------------
-# File exppar.y contains the specification of the Subset Pascal
-# Parser in a format acceptable to yacc
-#------------------------------------------------------------------
-#y.tab.h\
-main.o:     		main.cpp paslex.h
-					g++ -c -g main.cpp
-#------------------------------------------------------------------
+rm pas
+
+rm paslex.cpp
+
+make -f makepascal
+
+rm pas.o
+rm paslex.o
+
+./main in.pas
+
+./main BadInputFile.wro
