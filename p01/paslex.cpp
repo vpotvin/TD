@@ -375,10 +375,10 @@ struct yy_trans_info
 static yyconst flex_int16_t yy_accept[48] =
     {   0,
         0,    0,   31,   29,    2,    1,   29,   19,   20,    6,
-        4,   10,    5,    9,    7,   26,   12,   11,   15,   13,
+        4,   10,    5,    9,    7,   25,   12,   11,   15,   13,
        17,    3,   21,   22,   29,    2,    0,    0,   23,    0,
-       26,    0,    8,   16,   14,   18,    3,    0,   24,   25,
-       27,    0,   28,    0,    0,   27,    0
+       25,    0,    8,   16,   14,   18,    3,    0,   24,   28,
+       26,    0,   27,    0,    0,   26,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -483,29 +483,42 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "paslex.l"
-#line 4 "paslex.l"
+/* UNKNOWN OPTION TO MAKE COMPILE -------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+#line 5 "paslex.l"
+/* ? ------------------------------------------------------------------------*/
 extern "C" 
 int yylex (void);
+/*--------------------------------------------------------------------------*/
+
+/* INCLUDES -----------------------------------------------------------------*/
 #include "paslex.h"
 #include "pastkn.h"
 #include <map>
 #include <iomanip>
+/*---------------------------------------------------------------------------*/
 
+/* FUNCTION DECLARATIONS ----------------------------------------------------*/
 int TokenMgr(int i);
 void ToLower(char* d,char* s);
 int ReserveWord(char* s);
 int cmtMng(int i); 
 void cmtPrinter(int tc);
+void nameMapInit(void);
+void reserveWordMapInit(void);
+/*---------------------------------------------------------------------------*/
 
-static map<string,int> RW;              //RW - Reserve Words
-static map<int,string> NAME;            //NAME OF TOKEN
+/* GLOBALS ------------------------------------------------------------------*/
+static map<string,int> RW;              //MAP FROM TOKEN SPELLING TO TOKE CODE
+static map<int,string> NAME;            //MAP FROM TOKEN INT TO TOKEN SPELLING
+int line 	= 1;						// KEEPS TRACK OF LINE #
+int col 	= 1;						// KEEPS TRACK OF COLLUMN #
+/*---------------------------------------------------------------------------*/
 
-extern ofstream o; 
-
-
-int line 	= 1;
-int col 	= 1;
-#line 509 "lex.yy.c"
+/* EXTERNAL VARIABLES--------------------------------------------------------*/
+extern ofstream o; 						// WRITES TO FILES
+/*---------------------------------------------------------------------------*/
+#line 522 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -687,11 +700,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 27 "paslex.l"
+#line 39 "paslex.l"
 
-
-
-#line 695 "lex.yy.c"
+#line 706 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -777,156 +788,156 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 30 "paslex.l"
+#line 40 "paslex.l"
 {line++; col = 1;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 31 "paslex.l"
+#line 41 "paslex.l"
 {col += yyleng;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 32 "paslex.l"
+#line 42 "paslex.l"
 return TokenMgr(ID);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 33 "paslex.l"
+#line 43 "paslex.l"
 return TokenMgr(PLUS);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 34 "paslex.l"
+#line 44 "paslex.l"
 return TokenMgr(MINUS);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 35 "paslex.l"
+#line 45 "paslex.l"
 return TokenMgr(STAR);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 36 "paslex.l"
+#line 46 "paslex.l"
 return TokenMgr(SLASH);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 37 "paslex.l"
+#line 47 "paslex.l"
 return TokenMgr(ASSIGN);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 38 "paslex.l"
+#line 48 "paslex.l"
 return TokenMgr(PERIOD);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 39 "paslex.l"
+#line 49 "paslex.l"
 return TokenMgr(COMMA);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 40 "paslex.l"
+#line 50 "paslex.l"
 return TokenMgr(SEMICOLON);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 41 "paslex.l"
+#line 51 "paslex.l"
 return TokenMgr(COLON);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 42 "paslex.l"
+#line 52 "paslex.l"
 return TokenMgr(EQU);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 43 "paslex.l"
+#line 53 "paslex.l"
 return TokenMgr(NEQ);
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 44 "paslex.l"
+#line 54 "paslex.l"
 return TokenMgr(LES);
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 45 "paslex.l"
+#line 55 "paslex.l"
 return TokenMgr(LEQ);
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 46 "paslex.l"
+#line 56 "paslex.l"
 return TokenMgr(GRT);
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 47 "paslex.l"
+#line 57 "paslex.l"
 return TokenMgr(GEQ);
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 48 "paslex.l"
+#line 58 "paslex.l"
 return TokenMgr(LPAREN);
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 49 "paslex.l"
+#line 59 "paslex.l"
 return TokenMgr(RPAREN);
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 50 "paslex.l"
+#line 60 "paslex.l"
 return TokenMgr(LBRACKET);
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 51 "paslex.l"
+#line 61 "paslex.l"
 return TokenMgr(RBRACKET);
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 52 "paslex.l"
+#line 62 "paslex.l"
 return TokenMgr(RANGE);
 	YY_BREAK
 case 24:
 /* rule 24 can match eol */
 YY_RULE_SETUP
-#line 53 "paslex.l"
-return cmtMng(COMMENT);  // DO WE A MULILINE COMMENT
+#line 63 "paslex.l"
+return cmtMng(COMMENT);
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 54 "paslex.l"
-return TokenMgr(CHRLIT);
+#line 64 "paslex.l"
+return TokenMgr(INTLIT);
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 58 "paslex.l"
-return TokenMgr(INTLIT);   // INT
+#line 65 "paslex.l"
+return TokenMgr(REALIT); 
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 59 "paslex.l"
+#line 66 "paslex.l"
 return TokenMgr(REALIT); 
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 60 "paslex.l"
-return TokenMgr(REALIT); 
+#line 67 "paslex.l"
+return TokenMgr(CHRLIT);
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 65 "paslex.l"
-;
+#line 68 "paslex.l"
+; /* TEST FOR UNCAUGHT CATCHES */
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 68 "paslex.l"
+#line 69 "paslex.l"
 ECHO;
 	YY_BREAK
-#line 930 "lex.yy.c"
+#line 941 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1923,10 +1934,13 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 68 "paslex.l"
+#line 69 "paslex.l"
 
 
 
+/* ----------------------------------------------------------------------------
+	FUNCTION FOR HANDLING COMMENTS
+-----------------------------------------------------------------------------*/
 int cmtMng(int i){
 	cmtPrinter(i);
 	for(int j = 0; j<yyleng; j++){
@@ -1943,7 +1957,11 @@ int cmtMng(int i){
 	o << endl;
 	return 1;
 }
+//-----------------------------------------------------------------------------
 
+/* ----------------------------------------------------------------------------
+	FUNCTION USED BY COMMENT MANAGER FOR PRINTING EACH LINE
+-----------------------------------------------------------------------------*/
 void cmtPrinter(int tc){
 	o << "Token:Code=";
 	o << setw(4) << tc;
@@ -1955,9 +1973,9 @@ void cmtPrinter(int tc){
 	o << setw(3) << col;
 	o << " Spelling=";
 }
+/*---------------------------------------------------------------------------*/
 
-
-
+/* FUNCTION USED FOR ALL OTHER TOKENS ---------------------------------------*/
 int TokenMgr(int i){
 	int tc = i;
 
@@ -1981,26 +1999,27 @@ int TokenMgr(int i){
 	o << endl;
 	return i;
 }
+/*---------------------------------------------------------------------------*/
 
+/* CHECK IF AN ID IS A RESERVER WORK ----------------------------------------*/
 int ReserveWord(char* s)
 {
     int t=RW[(string)s];
     if (t>0) return t; else return ID;
 }
+/*---------------------------------------------------------------------------*/
 
+/* FORCE TO LOWER CASE, SO ID AND RESERVE WORDS ARE CASE INSENSITIVE --------*/
 void ToLower(char* d,char* s)
 {   strcpy(d,s);
     for (int a=0;a<strlen(d);a++) d[a]=tolower(d[a]);
 }
+/*---------------------------------------------------------------------------*/
 
-
-
-
-
-Lexer::Lexer(FILE* i)
-{   
-	yyin=i;
-
+/* ----------------------------------------------------------------------------
+	MAKES MAP THE TAKES STRING TYPE OF TOKEN AND RETURNS IT'S INTETEGER VALUE
+-----------------------------------------------------------------------------*/
+void reserveWordMapInit(void){
 	RW["begin"]		=BEGAN;
     RW["end"  ]		=END;
     RW["div"]		=DIV;
@@ -2020,8 +2039,15 @@ Lexer::Lexer(FILE* i)
     RW["type"]		=TYPE;
     RW["var"]		=VAR;
     RW["while"]		=WHILE;
+}
+/*---------------------------------------------------------------------------*/
 
-    NAME[PLUS] 			= "PLUS";
+/* ----------------------------------------------------------------------------
+	MAKES MAP THE TAKES INTEGER VALUE OF TOKEN AND RETURNS IT'S STRING,
+	SPELLING VALUE.
+-----------------------------------------------------------------------------*/
+void nameMapInit(void){
+	NAME[PLUS] 			= "PLUS";
     NAME[MINUS] 		= "MINUS";
     NAME[STAR] 			= "STAR";
     NAME[SLASH] 		= "SLASH";
@@ -2067,18 +2093,23 @@ Lexer::Lexer(FILE* i)
 	NAME[CHRLIT] 		= "CHRLIT";
 	NAME[COMMENT] 		= "COMMENT";
 }
+/*----------------------------------------------------------------------------*/
 
+/* ----------------------------------------------------------------------------
+	CHANGES STANDARD INPUT AND POPULATES THE RESERVE WORK MAP AND THE NAMING
+	MAP
+-----------------------------------------------------------------------------*/
+Lexer::Lexer(FILE* i)
+{   
+	yyin=i;
+	reserveWordMapInit();
+	nameMapInit();
+}
+/*---------------------------------------------------------------------------*/
+
+/* FETCH SPELLING FOR USE IN PAS.CPP ----------------------------------------*/
 char* Lexer::FetchSpelling(void)
 {
     return (char*)yytext;
 }
-
-int Lexer::getLine(void)
-{
-    return line;
-}
-
-int Lexer::getCol(void)
-{
-    return col;
-}
+/*---------------------------------------------------------------------------*/

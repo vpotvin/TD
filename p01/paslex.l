@@ -1,72 +1,76 @@
-
+/* UNKNOWN OPTION TO MAKE COMPILE -------------------------------------------*/
 %option noyywrap
+/*---------------------------------------------------------------------------*/
 %{
+/* ? ------------------------------------------------------------------------*/
 extern "C" 
 int yylex (void);
+/*--------------------------------------------------------------------------*/
+
+/* INCLUDES -----------------------------------------------------------------*/
 #include "paslex.h"
 #include "pastkn.h"
 #include <map>
 #include <iomanip>
+/*---------------------------------------------------------------------------*/
 
+/* FUNCTION DECLARATIONS ----------------------------------------------------*/
 int TokenMgr(int i);
 void ToLower(char* d,char* s);
 int ReserveWord(char* s);
 int cmtMng(int i); 
 void cmtPrinter(int tc);
+void nameMapInit(void);
+void reserveWordMapInit(void);
+/*---------------------------------------------------------------------------*/
 
-static map<string,int> RW;              //RW - Reserve Words
-static map<int,string> NAME;            //NAME OF TOKEN
+/* GLOBALS ------------------------------------------------------------------*/
+static map<string,int> RW;              //MAP FROM TOKEN SPELLING TO TOKE CODE
+static map<int,string> NAME;            //MAP FROM TOKEN INT TO TOKEN SPELLING
+int line 	= 1;						// KEEPS TRACK OF LINE #
+int col 	= 1;						// KEEPS TRACK OF COLLUMN #
+/*---------------------------------------------------------------------------*/
 
-extern ofstream o; 
-
-
-int line 	= 1;
-int col 	= 1;
+/* EXTERNAL VARIABLES--------------------------------------------------------*/
+extern ofstream o; 						// WRITES TO FILES
+/*---------------------------------------------------------------------------*/
 %}
 
 %%
-
-
-[\n]		{line++; col = 1;}
-[ \t]+        {col += yyleng;}
-[_a-zA-Z][_a-zA-Z0-9]*                  return TokenMgr(ID);
-"+"			return TokenMgr(PLUS);
-"-"			return TokenMgr(MINUS);
-"*" 		return TokenMgr(STAR);
-"/"			return TokenMgr(SLASH);
-":=" 		return TokenMgr(ASSIGN);
-"." 		return TokenMgr(PERIOD);
-","			return TokenMgr(COMMA);
-";"			return TokenMgr(SEMICOLON);
-":" 		return TokenMgr(COLON);
-"="			return TokenMgr(EQU);
-"<>" 		return TokenMgr(NEQ);
-"<" 		return TokenMgr(LES);
-"<=" 		return TokenMgr(LEQ);
-">" 		return TokenMgr(GRT);
-">=" 		return TokenMgr(GEQ);
-"(" 		return TokenMgr(LPAREN);
-")" 		return TokenMgr(RPAREN);
-"[" 		return TokenMgr(LBRACKET);
-"]"			return TokenMgr(RBRACKET);
-".."		return TokenMgr(RANGE);
-"{"([^}]*)"}" 	return cmtMng(COMMENT);  // DO WE A MULILINE COMMENT
- (['][a-zA-Z0-9]['])|([']['"][']) return TokenMgr(CHRLIT);
-
-
-
-[0-9]+ 		return TokenMgr(INTLIT);   // INT
+[\n]										{line++; col = 1;}
+[ \t]+        								{col += yyleng;}
+[_a-zA-Z][_a-zA-Z0-9]*						return TokenMgr(ID);
+"+"											return TokenMgr(PLUS);
+"-"											return TokenMgr(MINUS);
+"*" 										return TokenMgr(STAR);
+"/"											return TokenMgr(SLASH);
+":=" 										return TokenMgr(ASSIGN);
+"." 										return TokenMgr(PERIOD);
+","											return TokenMgr(COMMA);
+";"											return TokenMgr(SEMICOLON);
+":" 										return TokenMgr(COLON);
+"="											return TokenMgr(EQU);
+"<>" 										return TokenMgr(NEQ);
+"<" 										return TokenMgr(LES);
+"<=" 										return TokenMgr(LEQ);
+">" 										return TokenMgr(GRT);
+">=" 										return TokenMgr(GEQ);
+"(" 										return TokenMgr(LPAREN);
+")" 										return TokenMgr(RPAREN);
+"[" 										return TokenMgr(LBRACKET);
+"]"											return TokenMgr(RBRACKET);
+".."										return TokenMgr(RANGE);
+"{"([^}]*)"}" 								return cmtMng(COMMENT);
+[0-9]+ 										return TokenMgr(INTLIT);
 [0-9]+"."[0-9]+(("e"|"E")("-"|"+")?[0-9]+)? return TokenMgr(REALIT); 
-[0-9]+(("e"|"E")("-"|"+")?[0-9]+)? return TokenMgr(REALIT); 
-
-
-
-
-. 			;
-
-
+[0-9]+(("e"|"E")("-"|"+")?[0-9]+)? 			return TokenMgr(REALIT); 
+ (['][a-zA-Z0-9]['])|([']['"][']) 			return TokenMgr(CHRLIT);
+. 											; /* TEST FOR UNCAUGHT CATCHES */
 %%
 
+/* ----------------------------------------------------------------------------
+	FUNCTION FOR HANDLING COMMENTS
+-----------------------------------------------------------------------------*/
 int cmtMng(int i){
 	cmtPrinter(i);
 	for(int j = 0; j<yyleng; j++){
@@ -83,7 +87,11 @@ int cmtMng(int i){
 	o << endl;
 	return 1;
 }
+//-----------------------------------------------------------------------------
 
+/* ----------------------------------------------------------------------------
+	FUNCTION USED BY COMMENT MANAGER FOR PRINTING EACH LINE
+-----------------------------------------------------------------------------*/
 void cmtPrinter(int tc){
 	o << "Token:Code=";
 	o << setw(4) << tc;
@@ -95,9 +103,9 @@ void cmtPrinter(int tc){
 	o << setw(3) << col;
 	o << " Spelling=";
 }
+/*---------------------------------------------------------------------------*/
 
-
-
+/* FUNCTION USED FOR ALL OTHER TOKENS ---------------------------------------*/
 int TokenMgr(int i){
 	int tc = i;
 
@@ -121,26 +129,27 @@ int TokenMgr(int i){
 	o << endl;
 	return i;
 }
+/*---------------------------------------------------------------------------*/
 
+/* CHECK IF AN ID IS A RESERVER WORK ----------------------------------------*/
 int ReserveWord(char* s)
 {
     int t=RW[(string)s];
     if (t>0) return t; else return ID;
 }
+/*---------------------------------------------------------------------------*/
 
+/* FORCE TO LOWER CASE, SO ID AND RESERVE WORDS ARE CASE INSENSITIVE --------*/
 void ToLower(char* d,char* s)
 {   strcpy(d,s);
     for (int a=0;a<strlen(d);a++) d[a]=tolower(d[a]);
 }
+/*---------------------------------------------------------------------------*/
 
-
-
-
-
-Lexer::Lexer(FILE* i)
-{   
-	yyin=i;
-
+/* ----------------------------------------------------------------------------
+	MAKES MAP THE TAKES STRING TYPE OF TOKEN AND RETURNS IT'S INTETEGER VALUE
+-----------------------------------------------------------------------------*/
+void reserveWordMapInit(void){
 	RW["begin"]		=BEGAN;
     RW["end"  ]		=END;
     RW["div"]		=DIV;
@@ -160,8 +169,15 @@ Lexer::Lexer(FILE* i)
     RW["type"]		=TYPE;
     RW["var"]		=VAR;
     RW["while"]		=WHILE;
+}
+/*---------------------------------------------------------------------------*/
 
-    NAME[PLUS] 			= "PLUS";
+/* ----------------------------------------------------------------------------
+	MAKES MAP THE TAKES INTEGER VALUE OF TOKEN AND RETURNS IT'S STRING,
+	SPELLING VALUE.
+-----------------------------------------------------------------------------*/
+void nameMapInit(void){
+	NAME[PLUS] 			= "PLUS";
     NAME[MINUS] 		= "MINUS";
     NAME[STAR] 			= "STAR";
     NAME[SLASH] 		= "SLASH";
@@ -207,18 +223,23 @@ Lexer::Lexer(FILE* i)
 	NAME[CHRLIT] 		= "CHRLIT";
 	NAME[COMMENT] 		= "COMMENT";
 }
+/*----------------------------------------------------------------------------*/
 
+/* ----------------------------------------------------------------------------
+	CHANGES STANDARD INPUT AND POPULATES THE RESERVE WORK MAP AND THE NAMING
+	MAP
+-----------------------------------------------------------------------------*/
+Lexer::Lexer(FILE* i)
+{   
+	yyin=i;
+	reserveWordMapInit();
+	nameMapInit();
+}
+/*---------------------------------------------------------------------------*/
+
+/* FETCH SPELLING FOR USE IN PAS.CPP ----------------------------------------*/
 char* Lexer::FetchSpelling(void)
 {
     return (char*)yytext;
 }
-
-int Lexer::getLine(void)
-{
-    return line;
-}
-
-int Lexer::getCol(void)
-{
-    return col;
-}
+/*---------------------------------------------------------------------------*/
