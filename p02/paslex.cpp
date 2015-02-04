@@ -332,9 +332,6 @@ void yyfree (void *  );
 
 /* Begin user sect3 */
 
-#define yywrap(n) 1
-#define YY_SKIP_YYWRAP
-
 typedef unsigned char YY_CHAR;
 
 FILE *yyin = (FILE *) 0, *yyout = (FILE *) 0;
@@ -363,8 +360,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 31
-#define YY_END_OF_BUFFER 32
+#define YY_NUM_RULES 32
+#define YY_END_OF_BUFFER 33
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -372,13 +369,14 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static yyconst flex_int16_t yy_accept[49] =
+static yyconst flex_int16_t yy_accept[53] =
     {   0,
-        0,    0,   32,   30,    2,    1,    2,   30,   20,   21,
-        7,    5,   11,    6,   10,    8,   26,   13,   12,   16,
-       14,   18,    4,   22,   23,   30,    2,    0,    0,   24,
-        0,   26,    0,    9,   17,   15,   19,    4,    0,   25,
-       29,   27,    0,   28,    0,    0,   27,    0
+        0,    0,   25,   25,   33,   31,    1,    2,   24,   19,
+       20,    6,    4,   10,    5,    9,    7,   29,   12,   11,
+       15,   13,   17,    3,   21,   22,   31,   25,   32,   26,
+       26,    1,   23,    0,   29,    0,    8,   16,   14,   18,
+        3,    0,   30,   25,    0,   28,    0,   27,    0,    0,
+       28,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -386,17 +384,17 @@ static yyconst flex_int32_t yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    4,    1,    5,    1,    1,    1,    1,    6,    7,
-        8,    9,   10,   11,   12,   13,   14,   15,   15,   15,
-       15,   15,   15,   15,   15,   15,   15,   16,   17,   18,
-       19,   20,    1,    1,   21,   21,   21,   21,   22,   21,
-       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
-       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
-       23,   24,   25,    1,   21,    1,   21,   21,   21,   21,
+        1,    2,    1,    4,    1,    1,    1,    1,    5,    6,
+        7,    8,    9,   10,   11,   12,   13,   14,   14,   14,
+       14,   14,   14,   14,   14,   14,   14,   15,   16,   17,
+       18,   19,    1,    1,   20,   20,   20,   20,   21,   20,
+       20,   20,   20,   20,   20,   20,   20,   20,   20,   20,
+       20,   20,   20,   20,   20,   20,   20,   20,   20,   20,
+       22,    1,   23,    1,   20,    1,   20,   20,   20,   20,
 
-       26,   21,   21,   21,   21,   21,   21,   21,   21,   21,
-       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
-       21,   21,   27,    1,   28,    1,    1,    1,    1,    1,
+       21,   20,   20,   20,   20,   20,   20,   20,   20,   20,
+       20,   20,   20,   20,   20,   20,   20,   20,   20,   20,
+       20,   20,   24,   25,   26,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -413,61 +411,63 @@ static yyconst flex_int32_t yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst flex_int32_t yy_meta[29] =
+static yyconst flex_int32_t yy_meta[27] =
     {   0,
-        1,    1,    1,    1,    2,    2,    1,    1,    1,    1,
-        1,    2,    1,    1,    2,    1,    1,    1,    1,    1,
-        2,    2,    1,    2,    1,    2,    1,    1
+        1,    1,    2,    2,    1,    1,    1,    1,    3,    1,
+        3,    1,    1,    3,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    3,    1
     } ;
 
-static yyconst flex_int16_t yy_base[51] =
+static yyconst flex_int16_t yy_base[58] =
     {   0,
-        0,    0,   79,   80,   27,   80,   28,   28,   80,   80,
-       80,   80,   80,   80,   65,   80,   22,   58,   80,   19,
-       80,   57,   21,   80,   80,   47,   47,   65,   64,   80,
-       51,   37,   43,   80,   80,   80,   80,   39,   34,   80,
-       80,   42,   41,   31,   57,   30,   26,   80,   38,   72
+        0,    0,   24,   27,   77,   78,   74,   78,   78,   78,
+       78,   78,   78,   78,   78,   63,   78,   21,   56,   78,
+       18,   78,   55,   20,   78,   78,   46,   66,   78,   78,
+       65,   67,   78,   54,   31,   53,   78,   78,   78,   78,
+       30,   40,   78,   60,   59,   25,   49,   48,   46,   35,
+       34,   78,   52,   55,   58,   44,   35
     } ;
 
-static yyconst flex_int16_t yy_def[51] =
+static yyconst flex_int16_t yy_def[58] =
     {   0,
-       48,    1,   48,   48,   48,   48,   48,   49,   48,   48,
-       48,   48,   48,   48,   48,   48,   48,   48,   48,   48,
-       48,   48,   48,   48,   48,   50,   48,   48,   48,   48,
-       48,   48,   48,   48,   48,   48,   48,   48,   50,   48,
-       48,   48,   48,   48,   48,   48,   48,    0,   48,   48
+       52,    1,   53,   53,   52,   52,   52,   52,   52,   52,
+       52,   52,   52,   52,   52,   52,   52,   52,   52,   52,
+       52,   52,   52,   52,   52,   52,   54,   55,   52,   52,
+       52,   52,   52,   52,   52,   56,   52,   52,   52,   52,
+       52,   54,   52,   55,   52,   52,   52,   52,   57,   52,
+       52,    0,   52,   52,   52,   52,   52
     } ;
 
-static yyconst flex_int16_t yy_nxt[109] =
+static yyconst flex_int16_t yy_nxt[105] =
     {   0,
-        4,    5,    6,    7,    4,    8,    9,   10,   11,   12,
-       13,   14,   15,   16,   17,   18,   19,   20,   21,   22,
-       23,   23,   24,    4,   25,   23,   26,    4,   27,   27,
-       27,   27,   28,   28,   31,   38,   32,   35,   36,   29,
-       47,   38,   38,   33,   47,   44,   38,   33,   27,   31,
-       27,   32,   43,   38,   43,   44,   42,   44,   33,   38,
-       38,   40,   33,   45,   38,   42,   46,   45,   46,   41,
-       41,   47,   39,   39,   40,   37,   34,   30,   48,    3,
-       48,   48,   48,   48,   48,   48,   48,   48,   48,   48,
-       48,   48,   48,   48,   48,   48,   48,   48,   48,   48,
+        6,    7,    8,    9,    9,   10,   11,   12,   13,   14,
+       15,   16,   17,   18,   19,   20,   21,   22,   23,   24,
+       24,   25,   26,   27,    6,    6,   29,   30,   31,   29,
+       30,   31,   34,   41,   35,   38,   39,   50,   46,   41,
+       41,   36,   34,   41,   35,   49,   47,   51,   51,   41,
+       41,   36,   28,   28,   28,   42,   42,   42,   44,   51,
+       44,   48,   48,   44,   45,   43,   48,   46,   32,   44,
+       45,   43,   40,   37,   33,   32,   52,    5,   52,   52,
+       52,   52,   52,   52,   52,   52,   52,   52,   52,   52,
+       52,   52,   52,   52,   52,   52,   52,   52,   52,   52,
 
-       48,   48,   48,   48,   48,   48,   48,   48
+       52,   52,   52,   52
     } ;
 
-static yyconst flex_int16_t yy_chk[109] =
+static yyconst flex_int16_t yy_chk[105] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    5,    7,
-        5,    7,    8,    8,   17,   23,   17,   20,   20,   49,
-       47,   23,   23,   17,   46,   44,   23,   17,   27,   32,
-       27,   32,   33,   38,   33,   43,   42,   33,   32,   38,
-       38,   39,   32,   42,   38,   31,   45,   42,   45,   29,
-       28,   45,   50,   50,   26,   22,   18,   15,    3,   48,
-       48,   48,   48,   48,   48,   48,   48,   48,   48,   48,
-       48,   48,   48,   48,   48,   48,   48,   48,   48,   48,
+        1,    1,    1,    1,    1,    1,    3,    3,    3,    4,
+        4,    4,   18,   24,   18,   21,   21,   57,   46,   24,
+       24,   18,   35,   41,   35,   46,   56,   51,   50,   41,
+       41,   35,   53,   53,   53,   54,   54,   54,   55,   49,
+       55,   48,   47,   45,   44,   42,   36,   34,   32,   31,
+       28,   27,   23,   19,   16,    7,    5,   52,   52,   52,
+       52,   52,   52,   52,   52,   52,   52,   52,   52,   52,
+       52,   52,   52,   52,   52,   52,   52,   52,   52,   52,
 
-       48,   48,   48,   48,   48,   48,   48,   48
+       52,   52,   52,   52
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -484,45 +484,37 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "paslex.l"
-/* UNKNOWN OPTION TO MAKE COMPILE -------------------------------------------*/
-/*---------------------------------------------------------------------------*/
-#line 5 "paslex.l"
-/* ? ------------------------------------------------------------------------*/
-extern "C" 
-int yylex (void);
-/*--------------------------------------------------------------------------*/
-
-/* INCLUDES -----------------------------------------------------------------*/
+#line 1 "basic.l"
+#line 2 "basic.l"
+#include "y.tab.h"
 #include "paslex.h"
-#include "pastkn.h"
-#include <map>
+#include <iostream>
 #include <iomanip>
-/*---------------------------------------------------------------------------*/
+#include <fstream>
+#include <map>
+using namespace std;
 
-/* FUNCTION DECLARATIONS ----------------------------------------------------*/
-int TokenMgr(int i);
-void ToLower(char* d,char* s);
-int ReserveWord(char* s);
-int cmtMng(int i); 
-void cmtPrinter(int tc);
-void nameMapInit(void);
-void reserveWordMapInit(void);
-/*---------------------------------------------------------------------------*/
+int line 	= 1;
+int col 	= 1;
+static map<string,int> RW;
+static map<int,string> NAME;  
 
-/* GLOBALS ------------------------------------------------------------------*/
-static map<string,int> RW;              //MAP FROM TOKEN SPELLING TO TOKE CODE
-static map<int,string> NAME;            //MAP FROM TOKEN INT TO TOKEN SPELLING
-int line 	= 1;						// KEEPS TRACK OF LINE #
-int col 	= 1;						// KEEPS TRACK OF COLLUMN #
-/*---------------------------------------------------------------------------*/
+int yyparse ( void );
+int TokenMgr(int t);
+void ToLower(char* o,char* i,int l);
+void nameInit(void);
+void reserveWordInit(void);
+void printTc(int t);
+void commentMgr(void);
 
 /* EXTERNAL VARIABLES--------------------------------------------------------*/
 extern ofstream o; 						// WRITES TO FILES
 /*---------------------------------------------------------------------------*/
-#line 524 "lex.yy.c"
+
+#line 515 "lex.yy.c"
 
 #define INITIAL 0
+#define CHARBEGIN 1
 
 #ifndef YY_NO_UNISTD_H
 /* Special case for "unistd.h", since it is non-ANSI. We include it way
@@ -702,9 +694,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 39 "paslex.l"
+#line 30 "basic.l"
 
-#line 708 "lex.yy.c"
+
+#line 701 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -757,13 +750,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 49 )
+				if ( yy_current_state >= 53 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 80 );
+		while ( yy_base[yy_current_state] != 78 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -788,165 +781,170 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-/* rule 1 can match eol */
 YY_RULE_SETUP
-#line 40 "paslex.l"
-{line++; col = 1;}
+#line 32 "basic.l"
+{	col+= yyleng;				}
 	YY_BREAK
 case 2:
+/* rule 2 can match eol */
 YY_RULE_SETUP
-#line 41 "paslex.l"
-{col += yyleng;}
+#line 33 "basic.l"
+{	line++; col=1;				}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 42 "paslex.l"
-;	
+#line 34 "basic.l"
+{ 	return TokenMgr(ID);		}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 43 "paslex.l"
-return TokenMgr(ID);
+#line 35 "basic.l"
+{	return TokenMgr(PLUS);		}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 44 "paslex.l"
-return TokenMgr(PLUS);
+#line 36 "basic.l"
+{	return TokenMgr(MINUS);		}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 45 "paslex.l"
-return TokenMgr(MINUS);
+#line 37 "basic.l"
+{	return TokenMgr(STAR);		}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 46 "paslex.l"
-return TokenMgr(STAR);
+#line 38 "basic.l"
+{	return TokenMgr(SLASH);		}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 47 "paslex.l"
-return TokenMgr(SLASH);
+#line 39 "basic.l"
+{	return TokenMgr(ASSIGN);   	}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 48 "paslex.l"
-return TokenMgr(ASSIGN);
+#line 40 "basic.l"
+{	return TokenMgr(PERIOD);   	}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 49 "paslex.l"
-return TokenMgr(PERIOD);
+#line 41 "basic.l"
+{	return TokenMgr(COMMA);    	}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 50 "paslex.l"
-return TokenMgr(COMMA);
+#line 42 "basic.l"
+{	return TokenMgr(SEMICOLON);	}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 51 "paslex.l"
-return TokenMgr(SEMICOLON);
+#line 43 "basic.l"
+{	return TokenMgr(COLON);		}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 52 "paslex.l"
-return TokenMgr(COLON);
+#line 44 "basic.l"
+{	return TokenMgr(EQU);		}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 53 "paslex.l"
-return TokenMgr(EQU);
+#line 45 "basic.l"
+{	return TokenMgr(NEQ);		}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 54 "paslex.l"
-return TokenMgr(NEQ);
+#line 46 "basic.l"
+{	return TokenMgr(LES);		}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 55 "paslex.l"
-return TokenMgr(LES);
+#line 47 "basic.l"
+{	return TokenMgr(LEQ);		}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 56 "paslex.l"
-return TokenMgr(LEQ);
+#line 48 "basic.l"
+{	return TokenMgr(GRT);		}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 57 "paslex.l"
-return TokenMgr(GRT);
+#line 49 "basic.l"
+{	return TokenMgr(GEQ);		}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 58 "paslex.l"
-return TokenMgr(GEQ);
+#line 50 "basic.l"
+{	return TokenMgr(LPAREN);	}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 59 "paslex.l"
-return TokenMgr(LPAREN);
+#line 51 "basic.l"
+{	return TokenMgr(RPAREN);	}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 60 "paslex.l"
-return TokenMgr(RPAREN);
+#line 52 "basic.l"
+{	return TokenMgr(LBRACKET); 	}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 61 "paslex.l"
-return TokenMgr(LBRACKET);
+#line 53 "basic.l"
+{	return TokenMgr(RBRACKET);	}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 62 "paslex.l"
-return TokenMgr(RBRACKET);
+#line 54 "basic.l"
+{	return TokenMgr(RANGE);		}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 63 "paslex.l"
-return TokenMgr(RANGE);
+#line 55 "basic.l"
+{	BEGIN(CHARBEGIN);			}
 	YY_BREAK
 case 25:
-/* rule 25 can match eol */
 YY_RULE_SETUP
-#line 64 "paslex.l"
-return cmtMng(COMMENT);
+#line 56 "basic.l"
+{ 	return TokenMgr(CHRLIT);    }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 65 "paslex.l"
-return TokenMgr(INTLIT);
+#line 57 "basic.l"
+{ 	BEGIN INITIAL;              }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 66 "paslex.l"
-return TokenMgr(REALIT); 
+#line 58 "basic.l"
+{	return TokenMgr(REALIT);	}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 67 "paslex.l"
-return TokenMgr(REALIT); 
+#line 59 "basic.l"
+{ 	return TokenMgr(REALIT);  	}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 68 "paslex.l"
-return TokenMgr(CHRLIT);
+#line 60 "basic.l"
+{ 	return TokenMgr(INTLIT);    }  
 	YY_BREAK
 case 30:
+/* rule 30 can match eol */
 YY_RULE_SETUP
-#line 69 "paslex.l"
-{cout << yytext;
-												cout << " line" << line << " col" << col << endl;} /* TEST FOR UNCAUGHT CATCHES */
+#line 61 "basic.l"
+{	commentMgr();				}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 71 "paslex.l"
+#line 64 "basic.l"
+; // DO NOTHING WITH EVERYTHING ELSE FOR NOW
+	YY_BREAK
+case 32:
+YY_RULE_SETUP
+#line 65 "basic.l"
 ECHO;
 	YY_BREAK
-#line 949 "lex.yy.c"
+#line 946 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
+case YY_STATE_EOF(CHARBEGIN):
 	yyterminate();
 
 	case YY_END_OF_BUFFER:
@@ -1237,7 +1235,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 49 )
+			if ( yy_current_state >= 53 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -1265,11 +1263,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 49 )
+		if ( yy_current_state >= 53 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 48);
+	yy_is_jam = (yy_current_state == 52);
 
 	return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1942,98 +1940,58 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 71 "paslex.l"
+#line 65 "basic.l"
 
 
 
-/* ----------------------------------------------------------------------------
-	FUNCTION FOR HANDLING COMMENTS
------------------------------------------------------------------------------*/
-int cmtMng(int i){
-	cmtPrinter(i);
+int yywrap (void){ return 1;}
+
+int TokenMgr(int t){
+	int tc = t;
+	if (t==ID) {
+    	char s[1024];
+        ToLower(s,yytext,yyleng);
+        tc=RW[s];
+        if (tc==0){ 
+       		tc=t;
+       	}
+    }
+
+    col += yyleng;
+
+    printTc(tc);
+    return tc;
+}
+
+void printTc(int tc){
+	o << "Token:Code="	<< setw(3) 	<< tc 
+			<< " Name= " 		<< setw(8) 	<< NAME[tc] 
+			<< " Line= "  		<< setw(3)	<< line 
+			<< " Col= "   		<< setw(3)	<< col - yyleng
+			<< " Spelling= " 	<< setw(1)	<< "\"" << yytext << "\""
+			<< endl;
+}
+
+void commentMgr(void){
 	for(int j = 0; j<yyleng; j++){
 		if(yytext[j] == '\n'){
 			line++;
 			col = 1;
-			o << endl;
-			cmtPrinter(i);
 		} else {
 			col++;
-			o << yytext[j];
 		}
 	}
-	o << endl;
-	return 1;
 }
-//-----------------------------------------------------------------------------
 
-/* ----------------------------------------------------------------------------
-	FUNCTION USED BY COMMENT MANAGER FOR PRINTING EACH LINE
------------------------------------------------------------------------------*/
-void cmtPrinter(int tc){
-	o << "Token:Code=";
-	o << setw(4) << tc;
-	o << " Name= ";
-	o << setw(10) << NAME[tc];
-	o << " line= ";
-	o << setw(3) << line;
-	o << " col= ";
-	o << setw(3) << col;
-	o << " Spelling=";
-}
-/*---------------------------------------------------------------------------*/
 
-/* FUNCTION USED FOR ALL OTHER TOKENS ---------------------------------------*/
-int TokenMgr(int i){
-	int tc = i;
-
-	if (i == ID){
-		char* s=new char[yyleng];     
-  		ToLower(s,yytext);
-  		tc = ReserveWord(s);
-	}
-	col += yyleng;
-
-	o << "Token:Code=";
-	o << setw(4) << tc;
-	o << " Name= ";
-	o << setw(10) << NAME[tc];
-	o << " line= ";
-	o << setw(3) << line;
-	o << " col= ";
-	o << setw(3) << col - yyleng;
-	o << " Spelling=";
-	o << setw(10) << yytext;
-	o << endl;
-	return i;
-}
-/*---------------------------------------------------------------------------*/
-
-/* CHECK IF AN ID IS A RESERVER WORK ----------------------------------------*/
-int ReserveWord(char* s)
-{
-    int t=RW[(string)s];
-    if (t>0) return t; else return ID;
-}
-/*---------------------------------------------------------------------------*/
-
-/* FORCE TO LOWER CASE, SO ID AND RESERVE WORDS ARE CASE INSENSITIVE --------*/
-void ToLower(char* d,char* s)
-{   strcpy(d,s);
-    for (int a=0;a<strlen(d);a++) d[a]=tolower(d[a]);
-}
-/*---------------------------------------------------------------------------*/
-
-/* ----------------------------------------------------------------------------
-	MAKES MAP THE TAKES STRING TYPE OF TOKEN AND RETURNS IT'S INTETEGER VALUE
------------------------------------------------------------------------------*/
-void reserveWordMapInit(void){
+void reserveWordInit(void){
 	RW["begin"]		=BEGAN;
     RW["end"  ]		=END;
+    RW["and"]		=AND;
+    RW["array"]		=ARRAY;
     RW["div"]		=DIV;
     RW["do"]		=DO;
     RW["else"]		=ELSE;
-    RW["end"]		=END;
     RW["function"]	=FUNCTION;
     RW["if"]		=IF;
     RW["mod"]		=MOD;
@@ -2048,23 +2006,18 @@ void reserveWordMapInit(void){
     RW["var"]		=VAR;
     RW["while"]		=WHILE;
 }
-/*---------------------------------------------------------------------------*/
 
-/* ----------------------------------------------------------------------------
-	MAKES MAP THE TAKES INTEGER VALUE OF TOKEN AND RETURNS IT'S STRING,
-	SPELLING VALUE.
------------------------------------------------------------------------------*/
-void nameMapInit(void){
+void nameInit(void){
 	NAME[PLUS] 			= "PLUS";
-    NAME[MINUS] 		= "MINUS";
-    NAME[STAR] 			= "STAR";
-    NAME[SLASH] 		= "SLASH";
-    NAME[ASSIGN] 		= "ASSIGN";
-    NAME[PERIOD] 		= "PERIOD";
-    NAME[COMMA] 		= "COMMA";
-    NAME[SEMICOLON] 	= "SEMICOLON";
-    NAME[COLON] 		= "COLON";
-    NAME[EQU] 			= "EQU";
+ 	NAME[MINUS] 		= "MINUS";
+ 	NAME[STAR] 			= "STAR";
+ 	NAME[SLASH] 		= "SLASH";
+ 	NAME[ASSIGN] 		= "ASSIGN";
+ 	NAME[PERIOD] 		= "PERIOD";
+ 	NAME[COMMA] 		= "COMMA";
+ 	NAME[SEMICOLON] 	= "SEMICOLON";
+ 	NAME[COLON] 		= "COLON";
+ 	NAME[EQU] 			= "EQU";
     NAME[NEQ] 			= "NEQ";
     NAME[LES] 			= "LES";
     NAME[LEQ] 			= "LEQ";
@@ -2078,8 +2031,8 @@ void nameMapInit(void){
     NAME[AND] 			= "AND";
     NAME[ARRAY] 		= "ARRAY";
     NAME[BEGAN] 		= "BEGIN";
-    NAME[DIV] 			= "DIV";
-    NAME[DO] 			= "DO";
+ 	NAME[DIV] 			= "DIV";
+ 	NAME[DO] 			= "DO";
 	NAME[ELSE] 			= "ELSE"; 
 	NAME[END] 			= "END"; 
 	NAME[FUNCTION] 		= "FUNCTION"; 
@@ -2101,23 +2054,22 @@ void nameMapInit(void){
 	NAME[CHRLIT] 		= "CHRLIT";
 	NAME[COMMENT] 		= "COMMENT";
 }
-/*----------------------------------------------------------------------------*/
 
-/* ----------------------------------------------------------------------------
-	CHANGES STANDARD INPUT AND POPULATES THE RESERVE WORK MAP AND THE NAMING
-	MAP
------------------------------------------------------------------------------*/
-Lexer::Lexer(FILE* i)
-{   
+void ToLower(char* k,char* i,int l)
+{       for (int a=0;a<l&&a<1024;a++) k[a]=tolower(i[a]); //To lower case
+        k[l]=0; //Null termination
+
+}
+
+Lexer::Lexer(FILE* i){
 	yyin=i;
-	reserveWordMapInit();
-	nameMapInit();
+	nameInit();
+	reserveWordInit();
 }
-/*---------------------------------------------------------------------------*/
 
-/* FETCH SPELLING FOR USE IN PAS.CPP ----------------------------------------*/
-char* Lexer::FetchSpelling(void)
-{
-    return (char*)yytext;
+int Lexer::Lex(void){
+	int tokencode=yylex();
+    return tokencode;
 }
-/*---------------------------------------------------------------------------*/
+
+

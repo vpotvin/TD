@@ -99,6 +99,7 @@ char* makeOutput(char* s){
   outputFile[i++] = 't';
   outputFile[i++] = 'r';
   outputFile[i++] = 'c';
+  outputFile[i++] = '\0';
 
   return outputFile;
 }

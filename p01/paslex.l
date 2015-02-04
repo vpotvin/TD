@@ -39,6 +39,7 @@ extern ofstream o; 						// WRITES TO FILES
 %%
 [\n]										{line++; col = 1;}
 [ \t]+        								{col += yyleng;}
+" "											;	
 [_a-zA-Z][_a-zA-Z0-9]*						return TokenMgr(ID);
 "+"											return TokenMgr(PLUS);
 "-"											return TokenMgr(MINUS);
@@ -64,8 +65,9 @@ extern ofstream o; 						// WRITES TO FILES
 [0-9]+ 										return TokenMgr(INTLIT);
 [0-9]+"."[0-9]+(("e"|"E")("-"|"+")?[0-9]+)? return TokenMgr(REALIT); 
 [0-9]+(("e"|"E")("-"|"+")?[0-9]+)? 			return TokenMgr(REALIT); 
- (['][a-zA-Z0-9]['])|([']['"][']) 			return TokenMgr(CHRLIT);
-. 											; /* TEST FOR UNCAUGHT CATCHES */
+ (['][a-zA-Z0-9_\\-]['])|([']['"][']) 			return TokenMgr(CHRLIT);
+. 											{cout << yytext;
+												cout << " line" << line << " col" << col << endl;} /* TEST FOR UNCAUGHT CATCHES */
 %%
 
 /* ----------------------------------------------------------------------------

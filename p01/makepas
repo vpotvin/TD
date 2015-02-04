@@ -23,6 +23,15 @@ rm paslex.o
 #------------------------------------------------------------------------------
 
 #CALL FOR TESTING -------------------------------------------------------------
-./pas in.pas
-./pas BadInputFile.wro
+echo T01
+./pas t01.pas
+echo T02
+./pas t02.pas
+echo T03
+./pas t03.pas
+echo T04
+./pas t04.pas
+echo T05
+./pas t05.pas
+#./pas BadInputFile.wro
 #------------------------------------------------------------------------------

@@ -23,18 +23,4 @@ begin{p03}
   S:=P*(1+i);
   write (S:1:2);
   writeln('.')
-  5+5
-  1-2
-  /
-  begin read(x);
-  x:=x+2; { This is a one line comment}
-  {This is a comment that begins in column 31}
-
-
-y:=x-3; write(x,y); {This is
-                     a multi-line
-                     comment
-                    } end
-
-
 end{p03}.
