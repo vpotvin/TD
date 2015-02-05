@@ -5,15 +5,15 @@ obj     =       paspar.o \
                 pas.o
 #----------------------------------------------------------------------
 
-basic:          ${obj}
-				g++ -o basic ${obj} -lm -ll
+pas:			${obj}
+				g++ -o pas ${obj} -lm -ll
 
 #----------------------------------------------------------------------
 pas.o:			pas.cpp paspar.h paslex.h
 				g++ -c -g pas.cpp
 #----------------------------------------------------------------
-paslex.cpp:		basic.l paslex.h
-				lex basic.l
+paslex.cpp:		paslex.l paslex.h
+				lex paslex.l
 				mv lex.yy.c paslex.cpp
 #---------------------------------------------------------------------
 #----------------------------------------------------------------------
@@ -22,8 +22,8 @@ paslex.o:       paslex.cpp paslex.h
 #----------------------------------------------------------------
 # Create files mcrpar.cpp and mcrtkn.h from file mcrpar.y
 #----------------------------------------------------------------
-paspar.cpp:     basic.y
-				yacc -d -v basic.y
+paspar.cpp:     paspar.y
+				yacc -d -v paspar.y
 				mv y.tab.c paspar.cpp
 #----------------------------------------------------------------
 paspar.o:		paspar.cpp paspar.h

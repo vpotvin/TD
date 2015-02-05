@@ -6,7 +6,7 @@ rm *.o
 rm *.trc
 rm y.tab.h
 
-make -f basicMakeFile
+make -f pasMakeFile
 
-./basic p070_000.pas
+./pas ../../../lab/lex/basic/p070_000.pas
 #nano p070_000.trc
