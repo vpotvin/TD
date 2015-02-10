@@ -8,5 +8,8 @@ rm y.tab.h
 
 make -f pasMakeFile
 
-./pas ../../../lab/lex/basic/p070_000.pas
-#nano p070_000.trc
+./pas p007_000.pas 
+./pas p070_000.pas
+./pas p008_000.pas
+./pas p014_000.pas 
+nano  p007_000.trc

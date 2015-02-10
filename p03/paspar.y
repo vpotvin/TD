@@ -3,7 +3,11 @@
 #include "paslex.h"
 #include "paspar.h"
 #include <fstream>
+#include <string>
+#include "List.h"
 using namespace std;
+
+typedef string st;
 
 void yyerror(const char* msg) {}
 int yylex(void); 				// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT IS NECCESARY;
@@ -14,69 +18,73 @@ int yywrap(){					// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
 extern int yylex (); 			// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
 extern void yyerror ( char *); 	// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
 
+
+
 extern ofstream o; 						// WRITES TO FILES
-
-
-#ifdef __cplusplus 
-extern "C" 						// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
-#endif
-
-
 
 
 %}
 
-%token BEGAN
-%token END
-%token ID
-%token PLUS
-%token MINUS
-%token STAR
-%token SLASH
-%token ASSIGN
-%token PERIOD
-%token COMMA
-%token SEMICOLON
-%token COLON
-%token EQU
-%token NEQ
-%token LES
-%token LEQ
-%token GRT
-%token GEQ
-%token LPAREN
-%token RPAREN
-%token LBRACKET
-%token RBRACKET
-%token RANGE
-%token AND
-%token ARRAY
-%token DIV
-%token DO
-%token ELSE
-%token FUNCTION
-%token IF
-%token MOD
-%token NOT
-%token OF
-%token OR
-%token PROCEDURE
-%token PROGRAM
-%token THEN
-%token TO 
-%token TYPE
-%token VAR
-%token COMMENT
-%token CHRLIT
-%token REALIT
-%token INTLIT
-%token WHILE
+
+
+%union {
+  string* token;
+  List* slist;
+}
+
+%token <token> BEGAN
+%token <token> END
+%token <token> ID
+%token <token> PLUS
+%token <token> MINUS
+%token <token> STAR
+%token <token> SLASH
+%token <token> ASSIGN
+%token <token> PERIOD
+%token <token> COMMA
+%token <token> SEMICOLON
+%token <token> COLON
+%token <token> EQU
+%token <token> NEQ
+%token <token> LES
+%token <token> LEQ
+%token <token> GRT
+%token <token> GEQ
+%token <token> LPAREN
+%token <token> RPAREN
+%token <token> LBRACKET
+%token <token> RBRACKET
+%token <token> RANGE
+%token <token> AND
+%token <token> ARRAY
+%token <token> DIV
+%token <token> DO
+%token <token> ELSE
+%token <token> FUNCTION
+%token <token> IF
+%token <token> MOD
+%token <token> NOT
+%token <token> OF
+%token <token> OR
+%token <token> PROCEDURE
+%token <token> PROGRAM
+%token <token> THEN
+%token <token> TO 
+%token <token> TYPE
+%token <token> VAR
+%token <token> COMMENT
+%token <token> CHRLIT
+%token <token> REALIT
+%token <token> INTLIT
+%token <token> WHILE
+
+%type  <slist> identifier_list
 
 
 %%
 program: program_head program_declarations program_body
 {
-	o << "#001 Program->program_head program_declarations program_body" << endl; 
+	o << "#001 Program->program_head program_declarations program_body" << endl;
 }
 
 program_head: PROGRAM ID program_parameters SEMICOLON
@@ -106,17 +114,21 @@ program_parameters: LPAREN program_parameter_list RPAREN
 
 program_parameter_list: identifier_list
 {
-	o << "#007 program_parameter_list->identifier_list" << endl;
+	o << "#007 program_parameter_list -> identifier_list(" << (*$1) << ")" << endl;
 }
 
 identifier_list: ID
 {
-	o << "#008 identifier_list->ID" << endl;
+	o << "#008 identifier_list->ID(" << (*$1) << ")" << endl;
+	$$=new List;
+   	$$->Insert(*$1);
 } 
 
 identifier_list: identifier_list COMMA ID
 {
-	o << "#009 identifier_list->identifier_list, id" << endl;
+	o << "#009 identifier_list -> (" << (*$1) << ", ID(" << (*$3) << ")" << endl;
+	$1->Insert(*$3);
+   	$$=$1;
 }
 
 declarations:
@@ -126,7 +138,8 @@ declarations:
 
 declarations: declarations VAR identifier_list COLON type SEMICOLON
 {
-	o << "#011 declarations->declarations VAR identifier_list : type ;" << endl;
+	o << "#011 declarations->declarations VAR identifier_list"
+		<< (*$3) << ": type ;" << endl;
 }
 
 type: standard_type
@@ -141,7 +154,7 @@ type: ARRAY LBRACKET INTLIT RANGE INTLIT RBRACKET OF standard_type
 
 standard_type: ID
 {
-	o << "#014 standard_type->ID" << endl;
+	o << "#014 standard_type -> ID(" << (*$1) << ")" << endl;
 }
 
 subprogram_declarations:
@@ -161,12 +174,12 @@ subprogram_declaration: subprogram_head declarations compound_statement
 
 subprogram_head: FUNCTION ID subprogram_parameters COLON standard_type
 {
-	o << "#018 subprogram_head->FUNCTION ID subprogram_parameters : standard_type" << endl;
+	o << "#018 subprogram_head->FUNCTION ID(" << (*$2) <<")  subprogram_parameters : standard_type" << endl;
 }
 
 subprogram_head: PROCEDURE ID subprogram_parameters SEMICOLON
 {
-	o << "#019 subprogram_head->PROCEDURE ID subprogram_parameters ;" << endl;
+	o << "#019 subprogram_head->PROCEDURE ID(" << (*$2) << ") subprogram_parameters ;" << endl;
 }
 
 subprogram_parameters:
@@ -181,12 +194,12 @@ subprogram_parameters: LPAREN parameter_list RPAREN
 
 parameter_list: identifier_list COLON type
 {
-	o << "#022 parameter_list->identifier_list : type" << endl;
+	o << "#022 parameter_list->identifier_list" << (*$1) << " : type" << endl;
 }
 
 parameter_list: parameter_list SEMICOLON identifier_list COLON type
 {
-	o << "#023 parameter_list-> parameter_list ; identifier_list : type" << endl;
+	o << "#023 parameter_list-> parameter_list ; identifier_list" << (*$3) << " : type" << endl;
 }
 
 compound_statement: BEGAN optional_statements END
@@ -241,22 +254,22 @@ statement: WHILE expression DO statement
 
 variable: ID
 {
-	o << "#034 VARIABLE->ID" << endl; 
+	o << "#034 VARIABLE->ID(" << (*$1) << ")" << endl; 
 }
 
 variable: ID LBRACKET expression RBRACKET
 {
-	o << "#035 VARIABLE->ID[ expression ]" << endl; 
+	o << "#035 VARIABLE->ID(" << (*$1) << ")[ expression ]" << endl; 
 }
 
 procedure_statement: ID
 {
-	o << "#036 procedure_statement->ID" << endl; 
+	o << "#036 procedure_statement->ID(" << (*$1) << ")" << endl; 
 }
 
 procedure_statement: ID LPAREN expression_list RPAREN
 {
-	o << "#037 procedure_statement->ID ( expression_list )" << endl; 
+	o << "#037 procedure_statement->ID(" << (*$1) <<")( expression_list )" << endl; 
 }
 
 expression_list: expression
@@ -386,17 +399,17 @@ mulop: AND
 
 factor: ID 
 {
-	o << "#063 factor -> ID" << endl;
+	o << "#063 factor -> ID(" << (*$1) << ")" << endl;
 }
 
 factor: ID LBRACKET expression RBRACKET
 {
-	o << "#064 factor -> ID [ expression ]" << endl;
+	o << "#064 factor -> ID(" << (*$1) << ") [ expression ]" << endl;
 }
 
 factor: ID LPAREN expression_list RPAREN
 {
-	o << "#065 factor -> ID ( expression_list )" << endl;
+	o << "#065 factor -> ID(" << (*$1) << ") ( expression_list )" << endl;
 }
 
 factor: LPAREN expression RPAREN
@@ -411,17 +424,17 @@ factor: NOT factor
 
 factor: INTLIT
 {
-	o << "#068 factor -> INTLIT" << endl;
+	o << "#068 factor -> INTLIT(" << (*$1) << ")" << endl;
 }
 
 factor: REALIT
 {
-	o << "#069 factor -> REALIT" << endl;
+	o << "#069 factor -> REALIT(" << (*$1) << ")" << endl;
 }
 
 factor: CHRLIT
 {
-	o << "#070 factor -> CHRLIT" << endl;
+	o << "#070 factor -> CHRLIT(" << (*$1) << ")" << endl;
 }
 
 %%

@@ -170,7 +170,11 @@
 #include "paslex.h"
 #include "paspar.h"
 #include <fstream>
+#include <string>
+#include "List.h"
 using namespace std;
+
+typedef string st;
 
 void yyerror(const char* msg) {}
 int yylex(void); 				// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT IS NECCESARY;
@@ -181,14 +185,9 @@ int yywrap(){					// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
 extern int yylex (); 			// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
 extern void yyerror ( char *); 	// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
 
+
+
 extern ofstream o; 						// WRITES TO FILES
-
-
-#ifdef __cplusplus 
-extern "C" 						// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
-#endif
-
-
 
 
 
@@ -212,7 +211,15 @@ extern "C" 						// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
 #endif
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+#line 30 "paspar.y"
+{
+  string* token;
+  List* slist;
+}
+/* Line 193 of yacc.c.  */
+#line 222 "y.tab.c"
+	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 # define YYSTYPE_IS_TRIVIAL 1
@@ -224,7 +231,7 @@ typedef int YYSTYPE;
 
 
 /* Line 216 of yacc.c.  */
-#line 228 "y.tab.c"
+#line 235 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -538,14 +545,14 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    77,    77,    82,    87,    92,    98,   102,   107,   112,
-     117,   123,   127,   132,   137,   142,   148,   152,   157,   162,
-     167,   173,   177,   182,   187,   192,   198,   202,   207,   212,
-     217,   222,   227,   232,   237,   242,   247,   252,   257,   262,
-     267,   272,   277,   282,   287,   292,   297,   302,   307,   312,
-     317,   322,   327,   332,   337,   342,   347,   352,   357,   362,
-     367,   372,   377,   382,   387,   392,   397,   402,   407,   412,
-     417,   422
+       0,    85,    85,    90,    95,   100,   106,   110,   115,   120,
+     127,   135,   139,   145,   150,   155,   161,   165,   170,   175,
+     180,   186,   190,   195,   200,   205,   211,   215,   220,   225,
+     230,   235,   240,   245,   250,   255,   260,   265,   270,   275,
+     280,   285,   290,   295,   300,   305,   310,   315,   320,   325,
+     330,   335,   340,   345,   350,   355,   360,   365,   370,   375,
+     380,   385,   390,   395,   400,   405,   410,   415,   420,   425,
+     430,   435
 };
 #endif
 
@@ -1541,498 +1548,503 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 78 "paspar.y"
+#line 86 "paspar.y"
     {
-	o << "#001 Program->program_head program_declarations program_body" << endl; 
+	o << "#001 Program->program_head program_declarations program_body" << endl;
 }
     break;
 
   case 3:
-#line 83 "paspar.y"
+#line 91 "paspar.y"
     {
 	o << "#002 program_head->PROGRAM ID program_parameters" << endl;
 }
     break;
 
   case 4:
-#line 88 "paspar.y"
+#line 96 "paspar.y"
     {
 	o << "#003 program_declarations->declarations subprogram_declarations" << endl;
 }
     break;
 
   case 5:
-#line 93 "paspar.y"
+#line 101 "paspar.y"
     {
 	o <<"#004 program_body->compound_statement ." << endl; 
 }
     break;
 
   case 6:
-#line 98 "paspar.y"
+#line 106 "paspar.y"
     {
 	o <<"#005 program_parameters -> Empty" << endl;
 }
     break;
 
   case 7:
-#line 103 "paspar.y"
+#line 111 "paspar.y"
     {
 	o << "#006 program_parameters->( program_parameter_list )" << endl;
 }
     break;
 
   case 8:
-#line 108 "paspar.y"
+#line 116 "paspar.y"
     {
-	o << "#007 program_parameter_list->identifier_list" << endl;
+	o << "#007 program_parameter_list -> identifier_list(" << (*(yyvsp[(1) - (1)].slist)) << ")" << endl;
 }
     break;
 
   case 9:
-#line 113 "paspar.y"
+#line 121 "paspar.y"
     {
-	o << "#008 identifier_list->ID" << endl;
+	o << "#008 identifier_list->ID(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
+	(yyval.slist)=new List;
+   	(yyval.slist)->Insert(*(yyvsp[(1) - (1)].token));
 }
     break;
 
   case 10:
-#line 118 "paspar.y"
+#line 128 "paspar.y"
     {
-	o << "#009 identifier_list->identifier_list, id" << endl;
+	o << "#009 identifier_list -> (" << (*(yyvsp[(1) - (3)].slist)) << ", ID(" << (*(yyvsp[(3) - (3)].token)) << ")" << endl;
+	(yyvsp[(1) - (3)].slist)->Insert(*(yyvsp[(3) - (3)].token));
+   	(yyval.slist)=(yyvsp[(1) - (3)].slist);
 }
     break;
 
   case 11:
-#line 123 "paspar.y"
+#line 135 "paspar.y"
     {
 	o << "#010 declarations->Empty" << endl;
 }
     break;
 
   case 12:
-#line 128 "paspar.y"
+#line 140 "paspar.y"
     {
-	o << "#011 declarations->declarations VAR identifier_list : type ;" << endl;
+	o << "#011 declarations->declarations VAR identifier_list"
+		<< (*(yyvsp[(3) - (6)].slist)) << ": type ;" << endl;
 }
     break;
 
   case 13:
-#line 133 "paspar.y"
+#line 146 "paspar.y"
     {
 	o << "#012 type->standard_type" << endl;
 }
     break;
 
   case 14:
-#line 138 "paspar.y"
+#line 151 "paspar.y"
     {
 	o << "#013 type->ARRAY[INTLIT ... INTLIT] of standard_type" << endl;
 }
     break;
 
   case 15:
-#line 143 "paspar.y"
+#line 156 "paspar.y"
     {
-	o << "#014 standard_type->ID" << endl;
+	o << "#014 standard_type -> ID(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
 }
     break;
 
   case 16:
-#line 148 "paspar.y"
+#line 161 "paspar.y"
     {
 	o << "#015 subprogram_declarations->Empty" << endl;
 }
     break;
 
   case 17:
-#line 153 "paspar.y"
+#line 166 "paspar.y"
     {
 	o << "#016 subprogram_declarations->subprogram_declarations subprogram_declarations;" << endl;
 }
     break;
 
   case 18:
-#line 158 "paspar.y"
+#line 171 "paspar.y"
     {
 	o << "#017 subprogram_declarations->subprogram_head declarations compound_statement" << endl;
 }
     break;
 
   case 19:
-#line 163 "paspar.y"
+#line 176 "paspar.y"
     {
-	o << "#018 subprogram_head->FUNCTION ID subprogram_parameters : standard_type" << endl;
+	o << "#018 subprogram_head->FUNCTION ID(" << (*(yyvsp[(2) - (5)].token)) <<")  subprogram_parameters : standard_type" << endl;
 }
     break;
 
   case 20:
-#line 168 "paspar.y"
+#line 181 "paspar.y"
     {
-	o << "#019 subprogram_head->PROCEDURE ID subprogram_parameters ;" << endl;
+	o << "#019 subprogram_head->PROCEDURE ID(" << (*(yyvsp[(2) - (4)].token)) << ") subprogram_parameters ;" << endl;
 }
     break;
 
   case 21:
-#line 173 "paspar.y"
+#line 186 "paspar.y"
     {
 	o << "#020 subprogram_parameters->Empty" << endl;
 }
     break;
 
   case 22:
-#line 178 "paspar.y"
+#line 191 "paspar.y"
     {
 	o << "#021 subprogram_parameters->( parameter_list )" << endl;
 }
     break;
 
   case 23:
-#line 183 "paspar.y"
+#line 196 "paspar.y"
     {
-	o << "#022 parameter_list->identifier_list : type" << endl;
+	o << "#022 parameter_list->identifier_list" << (*(yyvsp[(1) - (3)].slist)) << " : type" << endl;
 }
     break;
 
   case 24:
-#line 188 "paspar.y"
+#line 201 "paspar.y"
     {
-	o << "#023 parameter_list-> parameter_list ; identifier_list : type" << endl;
+	o << "#023 parameter_list-> parameter_list ; identifier_list" << (*(yyvsp[(3) - (5)].slist)) << " : type" << endl;
 }
     break;
 
   case 25:
-#line 193 "paspar.y"
+#line 206 "paspar.y"
     {
 	o << "#024 compound_statement->BEGIN optional_statements END" << endl;
 }
     break;
 
   case 26:
-#line 198 "paspar.y"
+#line 211 "paspar.y"
     {
 	o << "#025 optional_statements->Empty" << endl;
 }
     break;
 
   case 27:
-#line 203 "paspar.y"
+#line 216 "paspar.y"
     {
 	o << "#026 optional_statements->statement_list" << endl;
 }
     break;
 
   case 28:
-#line 208 "paspar.y"
+#line 221 "paspar.y"
     {
 	o << "#027 statement_list->statement" << endl;
 }
     break;
 
   case 29:
-#line 213 "paspar.y"
+#line 226 "paspar.y"
     {
 	o << "#028 statement_list->statement_list ; statement" << endl;
 }
     break;
 
   case 30:
-#line 218 "paspar.y"
+#line 231 "paspar.y"
     {
 	o << "#029 statement->variable := expression" << endl;
 }
     break;
 
   case 31:
-#line 223 "paspar.y"
+#line 236 "paspar.y"
     {
 	o << "#030 statement->procedure_statement" << endl;
 }
     break;
 
   case 32:
-#line 228 "paspar.y"
+#line 241 "paspar.y"
     {
 	o << "#031 statement->compound_statement" << endl; 
 }
     break;
 
   case 33:
-#line 233 "paspar.y"
+#line 246 "paspar.y"
     {
 	o << "#032 statement->IF expression THEN statement ELSE statement" << endl; 
 }
     break;
 
   case 34:
-#line 238 "paspar.y"
+#line 251 "paspar.y"
     {
 	o << "#033 statement->WHILE expression DO statement" << endl; 
 }
     break;
 
   case 35:
-#line 243 "paspar.y"
+#line 256 "paspar.y"
     {
-	o << "#034 VARIABLE->ID" << endl; 
+	o << "#034 VARIABLE->ID(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl; 
 }
     break;
 
   case 36:
-#line 248 "paspar.y"
+#line 261 "paspar.y"
     {
-	o << "#035 VARIABLE->ID[ expression ]" << endl; 
+	o << "#035 VARIABLE->ID(" << (*(yyvsp[(1) - (4)].token)) << ")[ expression ]" << endl; 
 }
     break;
 
   case 37:
-#line 253 "paspar.y"
+#line 266 "paspar.y"
     {
-	o << "#036 procedure_statement->ID" << endl; 
+	o << "#036 procedure_statement->ID(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl; 
 }
     break;
 
   case 38:
-#line 258 "paspar.y"
+#line 271 "paspar.y"
     {
-	o << "#037 procedure_statement->ID ( expression_list )" << endl; 
+	o << "#037 procedure_statement->ID(" << (*(yyvsp[(1) - (4)].token)) <<")( expression_list )" << endl; 
 }
     break;
 
   case 39:
-#line 263 "paspar.y"
+#line 276 "paspar.y"
     {
 	o << "#038 expression_list->expression" << endl; 
 }
     break;
 
   case 40:
-#line 268 "paspar.y"
+#line 281 "paspar.y"
     {
 	o << "#039 expression_list->expression_list , expression" << endl; 
 }
     break;
 
   case 41:
-#line 273 "paspar.y"
+#line 286 "paspar.y"
     {
 	o << "#040 expression -> simple_expression" << endl; 
 }
     break;
 
   case 42:
-#line 278 "paspar.y"
+#line 291 "paspar.y"
     {
 	o << "#041 expression -> simple_expression relop simple_expression" << endl; 
 }
     break;
 
   case 43:
-#line 283 "paspar.y"
+#line 296 "paspar.y"
     {
 	o << "#042 relop -> =" << endl; 
 }
     break;
 
   case 44:
-#line 288 "paspar.y"
+#line 301 "paspar.y"
     {
 	o << "#043 relop -> <>" << endl; 
 }
     break;
 
   case 45:
-#line 293 "paspar.y"
+#line 306 "paspar.y"
     {
 	o << "#044 relop -> <" << endl; 
 }
     break;
 
   case 46:
-#line 298 "paspar.y"
+#line 311 "paspar.y"
     {
 	o << "#045 relop -> <=" << endl;
 }
     break;
 
   case 47:
-#line 303 "paspar.y"
+#line 316 "paspar.y"
     {
 	o << "#046 relop -> >" << endl;
 }
     break;
 
   case 48:
-#line 308 "paspar.y"
+#line 321 "paspar.y"
     {
 	o << "#047 relop -> >=" << endl;
 }
     break;
 
   case 49:
-#line 313 "paspar.y"
+#line 326 "paspar.y"
     {
 	o << "#048 simple_expression -> term" << endl;
 }
     break;
 
   case 50:
-#line 318 "paspar.y"
+#line 331 "paspar.y"
     {
 	o << "#049 simple_expression -> sign term" << endl;
 }
     break;
 
   case 51:
-#line 323 "paspar.y"
+#line 336 "paspar.y"
     {
 	o << "#050 simple_expression -> simple_expression addop term" << endl;
 }
     break;
 
   case 52:
-#line 328 "paspar.y"
+#line 341 "paspar.y"
     {
 	o << "#051 sign -> +" << endl;
 }
     break;
 
   case 53:
-#line 333 "paspar.y"
+#line 346 "paspar.y"
     {
 	o << "#052 sign -> -" << endl;
 }
     break;
 
   case 54:
-#line 338 "paspar.y"
+#line 351 "paspar.y"
     {
 	o << "#053 addop -> +" << endl;
 }
     break;
 
   case 55:
-#line 343 "paspar.y"
+#line 356 "paspar.y"
     {
 	o << "#054 addop -> -" << endl;
 }
     break;
 
   case 56:
-#line 348 "paspar.y"
+#line 361 "paspar.y"
     {
 	o << "#055 addop -> or" << endl;
 }
     break;
 
   case 57:
-#line 353 "paspar.y"
+#line 366 "paspar.y"
     {
 	o << "#056 term -> factor" << endl;
 }
     break;
 
   case 58:
-#line 358 "paspar.y"
+#line 371 "paspar.y"
     {
 	o << "#057 term -> term mulop factor" << endl;
 }
     break;
 
   case 59:
-#line 363 "paspar.y"
+#line 376 "paspar.y"
     {
 	o << "#058 mulup -> *" << endl;
 }
     break;
 
   case 60:
-#line 368 "paspar.y"
+#line 381 "paspar.y"
     {
 	o << "#059 mulup -> /" << endl;
 }
     break;
 
   case 61:
-#line 373 "paspar.y"
+#line 386 "paspar.y"
     {
 	o << "#060 mulup -> /" << endl;
 }
     break;
 
   case 62:
-#line 378 "paspar.y"
+#line 391 "paspar.y"
     {
 	o << "#061 mulup -> MOD" << endl;
 }
     break;
 
   case 63:
-#line 383 "paspar.y"
+#line 396 "paspar.y"
     {
 	o << "#062 mulup -> AND" << endl;
 }
     break;
 
   case 64:
-#line 388 "paspar.y"
+#line 401 "paspar.y"
     {
-	o << "#063 factor -> ID" << endl;
+	o << "#063 factor -> ID(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
 }
     break;
 
   case 65:
-#line 393 "paspar.y"
+#line 406 "paspar.y"
     {
-	o << "#064 factor -> ID [ expression ]" << endl;
+	o << "#064 factor -> ID(" << (*(yyvsp[(1) - (4)].token)) << ") [ expression ]" << endl;
 }
     break;
 
   case 66:
-#line 398 "paspar.y"
+#line 411 "paspar.y"
     {
-	o << "#065 factor -> ID ( expression_list )" << endl;
+	o << "#065 factor -> ID(" << (*(yyvsp[(1) - (4)].token)) << ") ( expression_list )" << endl;
 }
     break;
 
   case 67:
-#line 403 "paspar.y"
+#line 416 "paspar.y"
     {
 	o << "#066 factor -> ( expression )" << endl;
 }
     break;
 
   case 68:
-#line 408 "paspar.y"
+#line 421 "paspar.y"
     {
 	o << "#067 factor -> NOT factor" << endl;
 }
     break;
 
   case 69:
-#line 413 "paspar.y"
+#line 426 "paspar.y"
     {
-	o << "#068 factor -> INTLIT" << endl;
+	o << "#068 factor -> INTLIT(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
 }
     break;
 
   case 70:
-#line 418 "paspar.y"
+#line 431 "paspar.y"
     {
-	o << "#069 factor -> REALIT" << endl;
+	o << "#069 factor -> REALIT(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
 }
     break;
 
   case 71:
-#line 423 "paspar.y"
+#line 436 "paspar.y"
     {
-	o << "#070 factor -> CHRLIT" << endl;
+	o << "#070 factor -> CHRLIT(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
 }
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 2036 "y.tab.c"
+#line 2048 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2246,7 +2258,7 @@ yyreturn:
 }
 
 
-#line 427 "paspar.y"
+#line 440 "paspar.y"
 
 
 Parser::Parser(FILE* i):Lexer(i){}

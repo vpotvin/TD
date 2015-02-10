@@ -1,10 +1,13 @@
 %{
+#include <string>
+#include "List.h"
 #include "y.tab.h"
 #include "paslex.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <map>
+
 using namespace std;
 
 int line 	= 1;
@@ -78,6 +81,8 @@ int TokenMgr(int t){
     }
 
     col += yyleng;
+
+    yylval.token = new string(yytext);
 
     printTc(tc);
     return tc;
