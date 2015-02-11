@@ -10,17 +10,17 @@ using namespace std;
 typedef string st;
 
 void yyerror(const char* msg) {}
-int yylex(void); 				// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT IS NECCESARY;
-int yywrap(){					// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
+int yylex(void);
+int yywrap(){
 	return 1;
 }
 
-extern int yylex (); 			// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
-extern void yyerror ( char *); 	// I CAN COMPILE WITHOUT THIS FIND OUT WHY IT SI NECCESARY;
+extern int yylex ();
+extern void yyerror ( char *);
 
 
 
-extern ofstream o; 						// WRITES TO FILES
+extern ofstream o;
 
 
 %}
