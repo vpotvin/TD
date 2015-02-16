@@ -21,7 +21,6 @@ using namespace std;
 #include "Typ.h"
 #include "Sym.h"
 #include "Label.h"
-#include "yyerror.h"
 //-----------------------------------------------------------------------------
 //External Variables
 //-----------------------------------------------------------------------------
@@ -50,8 +49,6 @@ string Sym::SymkindSymbol(symkind sk)
     }
 }
 //-----------------------------------------------------------------------------
-symkind Sym::Symkind(void){return sk;}
-//-----------------------------------------------------------------------------
 void Sym::Print(ostream& o,int indent)
 {   o << endl;
     for (int a=0;a<indent;a++) o << "  ";
@@ -65,13 +62,9 @@ string Sym::Id(void){return id;}
 //-----------------------------------------------------------------------------
 Typ* Sym::Type(void){return t;}
 //-----------------------------------------------------------------------------
-bool Sym::IsStandardFunctionSymbol(void){return sk==sk_standardfunction;}
-bool Sym::IsStandardProcedureSymbol(void){return sk==sk_standardprocedure;}
 bool Sym::IsVariableSymbol(void){return sk==sk_variable;}
 bool Sym::IsProgramSymbol(void){return sk==sk_program;}
-bool Sym::IsProcedureSymbol(void){return sk==sk_procedure;}
 bool Sym::IsTypeSymbol(void){return sk==sk_type;}
-bool Sym::IsFunctionSymbol(void){return sk==sk_function;}
 //-----------------------------------------------------------------------------
 //class TypeSymbol
 //-----------------------------------------------------------------------------
@@ -95,9 +88,6 @@ void ConstantSymbol::Print(ostream& o,int indent)
 {   Sym::Print(o,indent);
     constant->Print(o,indent+1);
 }
-string ConstantSymbol::ConstantValue(void)
-{   return constant->ConstantValue();
-}
 //-----------------------------------------------------------------------------
 //class StandardSubprogramSymbol
 //-----------------------------------------------------------------------------
@@ -109,7 +99,6 @@ void StandardSubprogramSymbol::Print(ostream& o,int indent)
     for (int a=0;a<indent+1;a++) o << "  ";
     o << "cspid(" << cspid << ")";
 }
-string StandardSubprogramSymbol::CSPID(void){return cspid;}
 //-----------------------------------------------------------------------------
 //class StandardProcedureSymbol
 //-----------------------------------------------------------------------------
@@ -153,66 +142,38 @@ void VariableSymbol::Print(ostream& o,int indent)
 }
 void VariableSymbol::setLexicalLevel(int ll){lexicallevel=ll;}
 void VariableSymbol::setAddress(int a){address=a;}
-int VariableSymbol::LexicalLevel(void){return lexicallevel;}
-int VariableSymbol::Address(void){return address;}
 //-----------------------------------------------------------------------------
 //class SubprogramSymbol
 //-----------------------------------------------------------------------------
-SubprogramSymbol::SubprogramSymbol(symkind sk,string id,Typ* t,int ll)
-    :Sym(sk,id,t),lexicallevel(ll){elabel=L.New();splabel=L.New();eplabel=L.New();}
+SubprogramSymbol::SubprogramSymbol(symkind sk,string id,Typ* t)
+    :Sym(sk,id,t){elabel=L.New();splabel=L.New();eplabel=L.New();}
 void SubprogramSymbol::Print(ostream& o,int indent)
 {   Sym::Print(o,indent);
     o << endl;
     for (int a=0;a<indent+1;a++) o << "  ";
-    o << "lexicallevel(" << lexicallevel << ")";
-    o << " ";
     o << "elabel(" << elabel << ")";
     o << " ";
     o << "splabel(" << splabel << ")";
     o << " ";
     o << "eplabel(" << eplabel << ")";
 }
-int SubprogramSymbol::LexicalLevel(void){return lexicallevel;}
-string SubprogramSymbol::ELabel(void){return elabel;}
-string SubprogramSymbol::SPLabel(void){return splabel;}
-string SubprogramSymbol::EPLabel(void){return eplabel;}
-int SubprogramSymbol::ParameterCount(void)
-{    Typ* T=Sym::Type();
-     Subprogram* ST=0;
-     if (T->IsSubprogram()) {
-         ST=(Subprogram*)T; 
-         return ST->ParameterCount();
-     } else {
-         yyerror("Semantic error: no return type."); 
-     }
-}
-Typ* SubprogramSymbol::ReturnType(void)
-{    Typ* T=Sym::Type();
-     Subprogram* ST=0;
-     if (T->IsSubprogram()) {
-         ST=(Subprogram*)T; 
-         return ST->ReturnType();
-     } else {
-         yyerror("Semantic error: no return type."); 
-     }
-}
 //-----------------------------------------------------------------------------
 //class ProcedureSymbol
 //-----------------------------------------------------------------------------
-ProcedureSymbol::ProcedureSymbol(const char* id,Typ* t,int ll)
-    :SubprogramSymbol(sk_procedure,id,t,ll){}
-ProcedureSymbol::ProcedureSymbol(string id,Typ* t,int ll)
-    :SubprogramSymbol(sk_procedure,id,t,ll){}
+ProcedureSymbol::ProcedureSymbol(const char* id,Typ* t)
+    :SubprogramSymbol(sk_procedure,id,t){}
+ProcedureSymbol::ProcedureSymbol(string id,Typ* t)
+    :SubprogramSymbol(sk_procedure,id,t){}
 void ProcedureSymbol::Print(ostream& o,int indent)
 {   SubprogramSymbol::Print(o,indent);
 }
 //-----------------------------------------------------------------------------
 //class FunctionSymbol
 //-----------------------------------------------------------------------------
-FunctionSymbol::FunctionSymbol(const char* id,Typ* t,int ll)
-    :SubprogramSymbol(sk_function,id,t,ll){}
-FunctionSymbol::FunctionSymbol(string id,Typ* t,int ll)
-    :SubprogramSymbol(sk_function,id,t,ll){}
+FunctionSymbol::FunctionSymbol(const char* id,Typ* t)
+    :SubprogramSymbol(sk_function,id,t){}
+FunctionSymbol::FunctionSymbol(string id,Typ* t)
+    :SubprogramSymbol(sk_function,id,t){}
 void FunctionSymbol::Print(ostream& o,int indent)
 {   SubprogramSymbol::Print(o,indent);
 }
@@ -220,9 +181,9 @@ void FunctionSymbol::Print(ostream& o,int indent)
 //class ProgramSymbol
 //-----------------------------------------------------------------------------
 ProgramSymbol::ProgramSymbol(const char* id)
-    :SubprogramSymbol(sk_program,id,tvoid,0){}
+    :SubprogramSymbol(sk_program,id,tvoid){}
 ProgramSymbol::ProgramSymbol(string id)
-    :SubprogramSymbol(sk_program,id,tvoid,0){}
+    :SubprogramSymbol(sk_program,id,tvoid){}
 void ProgramSymbol::Print(ostream& o,int indent)
 {   SubprogramSymbol::Print(o,indent);
 }
