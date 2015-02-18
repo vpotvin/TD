@@ -139,15 +139,17 @@ typedef union YYSTYPE
 {
 
 /* Line 2068 of yacc.c  */
-#line 30 "paspar.y"
+#line 58 "paspar.y"
 
   string* token;
-  List* slist;
+  List<string>* slist;
+  Typ* typ;
+  List<VariableSymbol*>* varlist;
 
 
 
 /* Line 2068 of yacc.c  */
-#line 151 "y.tab.h"
+#line 153 "y.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

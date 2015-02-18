@@ -1,37 +1,70 @@
 %{
+//c++ includes
 #include <iostream>
-#include "paslex.h"
-#include "paspar.h"
+#include <cstdlib>
+#include <cstring>
 #include <fstream>
 #include <string>
-#include "List.h"
+#include <iomanip>
 using namespace std;
+//app inlude file
+#include "paslex.h"
+#include "paspar.h"
+//symbol table
+#include "List.h"
+#include "Typ.h"
+#include "Sym.h"
+#include "Label.h"
+#include "Namespace.h"
+#include "Locality.h"
+#include "LocalityStack.h"
+#include "SymbolTable.h"
+//semantic include files
+#include "program.h"
+#include "program_head.h"
+#include "subprogram_head.h"
+#include "subprogram_declaration.h"
+#include "standard_type.h"
+#include "subprogram_parameters.h"
+#include "variable_declarations.h"
+#include "type.h"
+#include "parameter_list.h"
+#include "identifier_list.h"
+
+
 
 typedef string st;
 
+
+
+//functions
 void yyerror(const char* msg) {}
 int yylex(void);
 int yywrap(){
 	return 1;
 }
-
+//externals
 extern int yylex ();
 extern void yyerror ( char *);
-
-
-
+extern int line;
+extern int col;
+extern Label L;
 extern ofstream o;
 
+//global varibles defined in paspar.y
+SymbolTable ST;  //The SymbolTable
 
 %}
-
-
-
 %union {
   string* token;
-  List* slist;
+  List<string>* slist;
+  Typ* typ;
+  List<VariableSymbol*>* varlist;
 }
-
+%type  <varlist> parameter_list
+%type  <varlist> subprogram_parameters
+%type  <typ>     type
+%type  <typ>     standard_type
 %token <token> BEGAN
 %token <token> END
 %token <token> ID
@@ -114,21 +147,23 @@ program_parameters: LPAREN program_parameter_list RPAREN
 
 program_parameter_list: identifier_list
 {
-	o << "#007 program_parameter_list -> identifier_list(" << (*$1) << ")" << endl;
+	o << "#007 program_parameter_list -> identifier_list" << endl; //(" << (*$1) << ")
 }
 
 identifier_list: ID
 {
 	o << "#008 identifier_list->ID(" << (*$1) << ")" << endl;
-	$$=new List;
-   	$$->Insert(*$1);
+	$$=identifier_list($1);
+	//$$=new List<string>;
+   	//$$->Insert(*$1);
 } 
 
 identifier_list: identifier_list COMMA ID
 {
-	o << "#009 identifier_list -> (" << (*$1) << ", ID(" << (*$3) << ")" << endl;
-	$1->Insert(*$3);
-   	$$=$1;
+	o << "#009 identifier_list -> identifier_list , ID(" << (*$3) << ")" << endl;
+	$$=identifier_list($1,$3);
+	//$1->Insert(*$3);
+   	//$$=$1;
 }
 
 declarations:
@@ -138,8 +173,7 @@ declarations:
 
 declarations: declarations VAR identifier_list COLON type SEMICOLON
 {
-	o << "#011 declarations->declarations VAR identifier_list"
-		<< (*$3) << ": type ;" << endl;
+	o << "#011 declarations->declarations VAR identifier_list: type ;" << endl; //"<< (*$3) << "
 }
 
 type: standard_type
@@ -194,12 +228,12 @@ subprogram_parameters: LPAREN parameter_list RPAREN
 
 parameter_list: identifier_list COLON type
 {
-	o << "#022 parameter_list->identifier_list" << (*$1) << " : type" << endl;
+	o << "#022 parameter_list->identifier_list: type" << endl; //" << (*$1) << " 
 }
 
 parameter_list: parameter_list SEMICOLON identifier_list COLON type
 {
-	o << "#023 parameter_list-> parameter_list ; identifier_list" << (*$3) << " : type" << endl;
+	o << "#023 parameter_list-> parameter_list ; identifier_list : type" << endl; //" << (*$3) << "
 }
 
 compound_statement: BEGAN optional_statements END

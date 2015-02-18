@@ -1,7 +1,7 @@
 %{
 #include <string>
 #include "List.h"
-#include "y.tab.h"
+#include "pastkn.h"
 #include "paslex.h"
 #include <iostream>
 #include <iomanip>
