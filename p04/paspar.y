@@ -179,16 +179,19 @@ declarations: declarations VAR identifier_list COLON type SEMICOLON
 type: standard_type
 {
 	o << "#012 type->standard_type" << endl;
+        $$=type($1);
 }
 
 type: ARRAY LBRACKET INTLIT RANGE INTLIT RBRACKET OF standard_type
 {
-	o << "#013 type->ARRAY[INTLIT ... INTLIT] of standard_type" << endl;
+	o << "#013 type->ARRAY[INTLIT .. INTLIT] of standard_type" << endl;
+        $$=type(*$3,*$5,$8);
 }
 
 standard_type: ID
 {
 	o << "#014 standard_type -> ID(" << (*$1) << ")" << endl;
+        $$=standard_type(*$1);
 }
 
 subprogram_declarations:

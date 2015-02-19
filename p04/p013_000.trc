@@ -1,0 +1,49 @@
+Token:Code=293 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
+Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p013_000"
+Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
+#005 program_parameters -> Empty
+#002 program_head->PROGRAM ID program_parameters
+#010 declarations->Empty
+Token:Code=297 Name=      VAR Line=  13 Col=   3 Spelling= "var"
+Token:Code=260 Name=       ID Line=  13 Col=   7 Spelling= "a"
+#008 identifier_list->ID(a)
+ identifier_list={a}Token:Code=269 Name=    COLON Line=  13 Col=   8 Spelling= ":"
+Token:Code=282 Name=    ARRAY Line=  13 Col=   9 Spelling= "array"
+Token:Code=278 Name= LBRACKET Line=  13 Col=  14 Spelling= "["
+Token:Code=301 Name=   INTLIT Line=  13 Col=  15 Spelling= "1"
+Token:Code=280 Name=    RANGE Line=  13 Col=  16 Spelling= ".."
+Token:Code=301 Name=   INTLIT Line=  13 Col=  18 Spelling= "10"
+Token:Code=279 Name= RBRACKET Line=  13 Col=  20 Spelling= "]"
+Token:Code=290 Name=       OF Line=  13 Col=  22 Spelling= "of"
+Token:Code=260 Name=       ID Line=  13 Col=  25 Spelling= "integer"
+#014 standard_type -> ID(integer)
+
+Symbol(Type Symbol) id(integer)
+  type(Integer)
+    size(1) alignment(1)
+#013 type->ARRAY[INTLIT .. INTLIT] of standard_type
+
+type(Array)
+  Size(10)
+  Index Type
+    type(Range)
+      Constant value(1)
+        type(Integer)
+          size(1) alignment(1)
+      Constant value(10)
+        type(Integer)
+          size(1) alignment(1)
+  Element Type
+    type(Integer)
+      size(1) alignment(1)Token:Code=268 Name= SEMICOLON Line=  13 Col=  32 Spelling= ";"
+#011 declarations->declarations VAR identifier_list: type ;
+Token:Code=258 Name=    BEGIN Line=  14 Col=   1 Spelling= "begin"
+#015 subprogram_declarations->Empty
+#003 program_declarations->declarations subprogram_declarations
+Token:Code=259 Name=      END Line=  15 Col=   1 Spelling= "end"
+#025 optional_statements->Empty
+#024 compound_statement->BEGIN optional_statements END
+Token:Code=266 Name=   PERIOD Line=  15 Col=  14 Spelling= "."
+#004 program_body->compound_statement .
+#001 Program->program_head program_declarations program_body
+

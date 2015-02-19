@@ -1,0 +1,53 @@
+Token:Code=293 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
+Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p070_000"
+Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
+#005 program_parameters -> Empty
+#002 program_head->PROGRAM ID program_parameters
+#010 declarations->Empty
+Token:Code=297 Name=      VAR Line=  13 Col=   3 Spelling= "var"
+Token:Code=260 Name=       ID Line=  13 Col=   7 Spelling= "s"
+#008 identifier_list->ID(s)
+ identifier_list={s}Token:Code=269 Name=    COLON Line=  13 Col=   8 Spelling= ":"
+Token:Code=282 Name=    ARRAY Line=  13 Col=   9 Spelling= "array"
+Token:Code=278 Name= LBRACKET Line=  13 Col=  14 Spelling= "["
+Token:Code=301 Name=   INTLIT Line=  13 Col=  15 Spelling= "1"
+Token:Code=280 Name=    RANGE Line=  13 Col=  16 Spelling= ".."
+Token:Code=301 Name=   INTLIT Line=  13 Col=  18 Spelling= "5"
+Token:Code=279 Name= RBRACKET Line=  13 Col=  19 Spelling= "]"
+Token:Code=290 Name=       OF Line=  13 Col=  21 Spelling= "of"
+Token:Code=260 Name=       ID Line=  13 Col=  24 Spelling= "char"
+#014 standard_type -> ID(char)
+#013 type->ARRAY[INTLIT ... INTLIT] of standard_type
+Token:Code=268 Name= SEMICOLON Line=  13 Col=  28 Spelling= ";"
+#011 declarations->declarations VAR identifier_list: type ;
+Token:Code=258 Name=    BEGIN Line=  14 Col=   1 Spelling= "begin"
+#015 subprogram_declarations->Empty
+#003 program_declarations->declarations subprogram_declarations
+Token:Code=260 Name=       ID Line=  15 Col=   3 Spelling= "s"
+Token:Code=265 Name=   ASSIGN Line=  15 Col=   4 Spelling= ":="
+#034 VARIABLE->ID(s)
+Token:Code=299 Name=   CHRLIT Line=  15 Col=   6 Spelling= "hello"
+#070 factor -> CHRLIT(hello)
+#056 term -> factor
+Token:Code=268 Name= SEMICOLON Line=  15 Col=  11 Spelling= ";"
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#029 statement->variable := expression
+#027 statement_list->statement
+Token:Code=260 Name=       ID Line=  17 Col=   3 Spelling= "t"
+Token:Code=265 Name=   ASSIGN Line=  17 Col=   4 Spelling= ":="
+#034 VARIABLE->ID(t)
+Token:Code=301 Name=   INTLIT Line=  17 Col=   6 Spelling= "17"
+#068 factor -> INTLIT(17)
+#056 term -> factor
+Token:Code=259 Name=      END Line=  18 Col=   1 Spelling= "end"
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#029 statement->variable := expression
+#028 statement_list->statement_list ; statement
+#026 optional_statements->statement_list
+#024 compound_statement->BEGIN optional_statements END
+Token:Code=266 Name=   PERIOD Line=  18 Col=  14 Spelling= "."
+#004 program_body->compound_statement .
+#001 Program->program_head program_declarations program_body
+

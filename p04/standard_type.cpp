@@ -72,5 +72,6 @@ Typ* standard_type(string id)
     Sym* s=ST.Find(id);
     if (!s->IsTypeSymbol()) throw TypeException(s);
     s->Print(o,0);
+    o << endl;
     return s->Type();
 }
