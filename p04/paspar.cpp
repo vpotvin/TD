@@ -1628,6 +1628,7 @@ yyreduce:
 #line 119 "paspar.y"
     {
 	o << "#001 Program->program_head program_declarations program_body" << endl;
+	program();  
 }
     break;
 
@@ -1637,6 +1638,7 @@ yyreduce:
 #line 124 "paspar.y"
     {
 	o << "#002 program_head->PROGRAM ID program_parameters" << endl;
+	program_head(*(yyvsp[(2) - (4)].token));
 }
     break;
 
@@ -1724,6 +1726,7 @@ yyreduce:
 #line 175 "paspar.y"
     {
 	o << "#011 declarations->declarations VAR identifier_list: type ;" << endl; //"<< (*$3) << "
+	variable_declarations((yyvsp[(3) - (6)].strlist),(yyvsp[(5) - (6)].typ));
 }
     break;
 
@@ -1781,6 +1784,7 @@ yyreduce:
 #line 208 "paspar.y"
     {
 	o << "#017 subprogram_declarations->subprogram_head declarations compound_statement" << endl;
+	subprogram_declaration();
 }
     break;
 
@@ -1790,6 +1794,7 @@ yyreduce:
 #line 213 "paspar.y"
     {
 	o << "#018 subprogram_head->FUNCTION ID(" << (*(yyvsp[(2) - (5)].token)) <<")  subprogram_parameters : standard_type" << endl;
+	subprogram_head(*(yyvsp[(2) - (6)].token),(yyvsp[(3) - (6)].varlist),(yyvsp[(5) - (6)].typ));
 }
     break;
 
@@ -1799,6 +1804,7 @@ yyreduce:
 #line 218 "paspar.y"
     {
 	o << "#019 subprogram_head->PROCEDURE ID(" << (*(yyvsp[(2) - (4)].token)) << ") subprogram_parameters ;" << endl;
+	subprogram_head(*(yyvsp[(2) - (4)].token),(yyvsp[(3) - (4)].varlist));
 }
     break;
 
@@ -1808,6 +1814,7 @@ yyreduce:
 #line 223 "paspar.y"
     {
 	o << "#020 subprogram_parameters->Empty" << endl;
+	(yyval.varlist)=subprogram_parameters();
 }
     break;
 
@@ -1817,6 +1824,7 @@ yyreduce:
 #line 228 "paspar.y"
     {
 	o << "#021 subprogram_parameters->( parameter_list )" << endl;
+	(yyval.varlist)=subprogram_parameters((yyvsp[(2) - (3)].varlist));
 }
     break;
 
@@ -1826,6 +1834,7 @@ yyreduce:
 #line 233 "paspar.y"
     {
 	o << "#022 parameter_list->identifier_list: type" << endl; //" << (*$1) << " 
+	(yyval.varlist)=parameter_list((yyvsp[(1) - (3)].strlist),(yyvsp[(3) - (3)].typ));
 }
     break;
 
@@ -1835,6 +1844,7 @@ yyreduce:
 #line 238 "paspar.y"
     {
 	o << "#023 parameter_list-> parameter_list ; identifier_list : type" << endl; //" << (*$3) << "
+	(yyval.varlist)=parameter_list((yyvsp[(1) - (5)].varlist),(yyvsp[(3) - (5)].strlist),(yyvsp[(5) - (5)].typ));
 }
     break;
 
