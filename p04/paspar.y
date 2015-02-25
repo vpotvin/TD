@@ -174,6 +174,7 @@ declarations:
 declarations: declarations VAR identifier_list COLON type SEMICOLON
 {
 	o << "#011 declarations->declarations VAR identifier_list: type ;" << endl; //"<< (*$3) << "
+	variable_declarations($3,$5);
 }
 
 type: standard_type
