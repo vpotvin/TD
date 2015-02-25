@@ -57,6 +57,6 @@ extern SymbolTable ST;        //The SymbolTable
 void program(void)
 {
    ST.Print(o);             //Print Locality 1
-   ST.PopLocality();
+   //ST.PopLocality();
    ST.Print(o);             //Print Locality 0
 }

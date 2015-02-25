@@ -1,4 +1,4 @@
-Terminals unused in grammar
+Terminals which are not used
 
    TO
    TYPE
@@ -13,7 +13,7 @@ Grammar
 
     2 program_head: PROGRAM ID program_parameters SEMICOLON
 
-    3 program_declarations: declarations subprogram_declarations
+    3 program_declarations: variable_declarations subprogram_declarations
 
     4 program_body: compound_statement PERIOD
 
@@ -25,8 +25,8 @@ Grammar
     8 identifier_list: ID
     9                | identifier_list COMMA ID
 
-   10 declarations: /* empty */
-   11             | declarations VAR identifier_list COLON type SEMICOLON
+   10 variable_declarations: /* empty */
+   11                      | variable_declarations VAR identifier_list COLON type SEMICOLON
 
    12 type: standard_type
    13     | ARRAY LBRACKET INTLIT RANGE INTLIT RBRACKET OF standard_type
@@ -36,7 +36,7 @@ Grammar
    15 subprogram_declarations: /* empty */
    16                        | subprogram_declarations subprogram_declaration SEMICOLON
 
-   17 subprogram_declaration: subprogram_head declarations compound_statement
+   17 subprogram_declaration: subprogram_head variable_declarations compound_statement
 
    18 subprogram_head: FUNCTION ID subprogram_parameters COLON standard_type
    19                | PROCEDURE ID subprogram_parameters SEMICOLON
@@ -179,7 +179,7 @@ program_parameter_list (54)
     on left: 7, on right: 6
 identifier_list (55)
     on left: 8 9, on right: 7 9 11 22 23
-declarations (56)
+variable_declarations (56)
     on left: 10 11, on right: 3 11 17
 type (57)
     on left: 12 13, on right: 11 22 23
@@ -255,10 +255,10 @@ state 3
 
     1 program: program_head . program_declarations program_body
 
-    $default  reduce using rule 10 (declarations)
+    $default  reduce using rule 10 (variable_declarations)
 
-    program_declarations  go to state 6
-    declarations          go to state 7
+    program_declarations   go to state 6
+    variable_declarations  go to state 7
 
 
 state 4
@@ -291,8 +291,8 @@ state 6
 
 state 7
 
-    3 program_declarations: declarations . subprogram_declarations
-   11 declarations: declarations . VAR identifier_list COLON type SEMICOLON
+    3 program_declarations: variable_declarations . subprogram_declarations
+   11 variable_declarations: variable_declarations . VAR identifier_list COLON type SEMICOLON
 
     VAR  shift, and go to state 13
 
@@ -353,7 +353,7 @@ state 12
 
 state 13
 
-   11 declarations: declarations VAR . identifier_list COLON type SEMICOLON
+   11 variable_declarations: variable_declarations VAR . identifier_list COLON type SEMICOLON
 
     ID  shift, and go to state 15
 
@@ -362,7 +362,7 @@ state 13
 
 state 14
 
-    3 program_declarations: declarations subprogram_declarations .
+    3 program_declarations: variable_declarations subprogram_declarations .
    16 subprogram_declarations: subprogram_declarations . subprogram_declaration SEMICOLON
 
     FUNCTION   shift, and go to state 30
@@ -514,7 +514,7 @@ state 28
 state 29
 
     9 identifier_list: identifier_list . COMMA ID
-   11 declarations: declarations VAR identifier_list . COLON type SEMICOLON
+   11 variable_declarations: variable_declarations VAR identifier_list . COLON type SEMICOLON
 
     COMMA  shift, and go to state 35
     COLON  shift, and go to state 55
@@ -543,11 +543,11 @@ state 32
 
 state 33
 
-   17 subprogram_declaration: subprogram_head . declarations compound_statement
+   17 subprogram_declaration: subprogram_head . variable_declarations compound_statement
 
-    $default  reduce using rule 10 (declarations)
+    $default  reduce using rule 10 (variable_declarations)
 
-    declarations  go to state 59
+    variable_declarations  go to state 59
 
 
 state 34
@@ -804,7 +804,7 @@ state 54
 
 state 55
 
-   11 declarations: declarations VAR identifier_list COLON . type SEMICOLON
+   11 variable_declarations: variable_declarations VAR identifier_list COLON . type SEMICOLON
 
     ID     shift, and go to state 90
     ARRAY  shift, and go to state 91
@@ -844,8 +844,8 @@ state 58
 
 state 59
 
-   11 declarations: declarations . VAR identifier_list COLON type SEMICOLON
-   17 subprogram_declaration: subprogram_head declarations . compound_statement
+   11 variable_declarations: variable_declarations . VAR identifier_list COLON type SEMICOLON
+   17 subprogram_declaration: subprogram_head variable_declarations . compound_statement
 
     BEGAN  shift, and go to state 10
     VAR    shift, and go to state 13
@@ -1160,7 +1160,7 @@ state 91
 
 state 92
 
-   11 declarations: declarations VAR identifier_list COLON type . SEMICOLON
+   11 variable_declarations: variable_declarations VAR identifier_list COLON type . SEMICOLON
 
     SEMICOLON  shift, and go to state 110
 
@@ -1198,7 +1198,7 @@ state 96
 
 state 97
 
-   17 subprogram_declaration: subprogram_head declarations compound_statement .
+   17 subprogram_declaration: subprogram_head variable_declarations compound_statement .
 
     $default  reduce using rule 17 (subprogram_declaration)
 
@@ -1320,9 +1320,9 @@ state 109
 
 state 110
 
-   11 declarations: declarations VAR identifier_list COLON type SEMICOLON .
+   11 variable_declarations: variable_declarations VAR identifier_list COLON type SEMICOLON .
 
-    $default  reduce using rule 11 (declarations)
+    $default  reduce using rule 11 (variable_declarations)
 
 
 state 111

@@ -75,7 +75,8 @@ Sym* Namespace::Find(string& key){return Find(Root,key);}
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void Namespace::Print(Node* N, ostream& o,int level)
-{   if (!N) return;
+{   
+    if (!N) return;
     Print(N->LNode,o,level);
     N->Print(o,level);
     Print(N->RNode,o,level);
@@ -89,4 +90,8 @@ void Namespace::Print(ostream& o,int level)
 }
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-void Namespace::Print(ostream& o){Print(o,0);}
+void Namespace::Print(ostream& o){
+
+    Print(o,0);
+
+}

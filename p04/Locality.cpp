@@ -57,7 +57,8 @@ int Locality::Offset(int size,int alignment)
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void Locality::Print(ostream& o)
-{   o << endl;
+{   
+    o << endl;
     o << "Locality: lexical level " << lexicallevel;
     Namespace::Print(o);
 }

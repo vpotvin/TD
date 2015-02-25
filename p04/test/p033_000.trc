@@ -1,83 +1,83 @@
-
-Token:Code=294 Name=   PROGRAM line= 12 col=  1 Spelling="program"
-Token:Code=301 Name=        ID line= 12 col=  9 Spelling="p033_000"
-Token:Code=266 Name= SEMICOLON line= 12 col= 17 Spelling=";"
+Token:Code=293 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
+Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p033_000"
+Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
 #005 program_parameters -> empty
 #002 program_head -> PROGRAM ID(p033_000) program_parameters ;
 #010 variable_declarations -> empty
-Token:Code=298 Name=       VAR line= 13 col=  3 Spelling="var"
-Token:Code=301 Name=        ID line= 13 col=  7 Spelling="count"
-#008 identifier_list -> ID(count) identifier_list={count}
-Token:Code=267 Name=     COLON line= 13 col= 12 Spelling=":"
-Token:Code=301 Name=        ID line= 13 col= 13 Spelling="integer"
+Token:Code=297 Name=      VAR Line=  13 Col=   3 Spelling= "var"
+Token:Code=260 Name=       ID Line=  13 Col=   7 Spelling= "count"
+#008 identifier_list -> ID(count)
+ identifier_list={count}Token:Code=269 Name=    COLON Line=  13 Col=  12 Spelling= ":"
+Token:Code=260 Name=       ID Line=  13 Col=  13 Spelling= "integer"
 #014 standard_type -> ID(integer)
+
 Symbol(Type Symbol) id(integer)
   type(Integer)
     size(1) alignment(1)
 #012 type -> standard_type
-Token:Code=266 Name= SEMICOLON line= 13 col= 20 Spelling=";"
+Token:Code=268 Name= SEMICOLON Line=  13 Col=  20 Spelling= ";"
 #011 variable_declarations -> variable_declarations VAR identifier_list:type;
-Token:Code=282 Name=     BEGIN line= 14 col=  1 Spelling="begin"
+Token:Code=258 Name=    BEGIN Line=  14 Col=   1 Spelling= "begin"
 #015 subprogram_declarations -> empty
 #003 program_declarations -> variable_declarations subprogram_declarations
-Token:Code=301 Name=        ID line= 15 col=  3 Spelling="count"
-Token:Code=263 Name=    ASSIGN line= 15 col=  8 Spelling=":="
+Token:Code=260 Name=       ID Line=  15 Col=   3 Spelling= "count"
+Token:Code=265 Name=   ASSIGN Line=  15 Col=   8 Spelling= ":="
 #034 variable -> ID(count)
-Token:Code=302 Name=    INTLIT line= 15 col= 10 Spelling="10"
+Token:Code=301 Name=   INTLIT Line=  15 Col=  10 Spelling= "10"
 #068 factor -> INTLIT(10)
 #056 term -> factor
-Token:Code=266 Name= SEMICOLON line= 15 col= 12 Spelling=";"
+Token:Code=268 Name= SEMICOLON Line=  15 Col=  12 Spelling= ";"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
 #027 statement_list -> statement
-Token:Code=299 Name=     WHILE line= 16 col=  3 Spelling="while"
-Token:Code=301 Name=        ID line= 16 col=  9 Spelling="count"
-Token:Code=272 Name=       GEQ line= 16 col= 14 Spelling=">="
+Token:Code=302 Name=     PLUS Line=  16 Col=   3 Spelling= "while"
+Token:Code=260 Name=       ID Line=  16 Col=   9 Spelling= "count"
+Token:Code=275 Name=      GEQ Line=  16 Col=  14 Spelling= ">="
 #063 factor -> ID(count)
 #056 term -> factor
 #048 simple_expression -> term
 #047 relop -> >=
-Token:Code=302 Name=    INTLIT line= 16 col= 16 Spelling="0"
+Token:Code=301 Name=   INTLIT Line=  16 Col=  16 Spelling= "0"
 #068 factor -> INTLIT(0)
 #056 term -> factor
-Token:Code=284 Name=        DO line= 16 col= 18 Spelling="do"
+Token:Code=284 Name=       DO Line=  16 Col=  18 Spelling= "do"
 #048 simple_expression -> term
 #041 expression -> simple_expression relop simple_expression
-Token:Code=282 Name=     BEGIN line= 17 col=  3 Spelling="begin"
-Token:Code=301 Name=        ID line= 18 col=  5 Spelling="write"
-Token:Code=274 Name=    LPAREN line= 18 col= 10 Spelling="("
-Token:Code=301 Name=        ID line= 18 col= 11 Spelling="count"
-Token:Code=265 Name=     COMMA line= 18 col= 16 Spelling=","
+Token:Code=258 Name=    BEGIN Line=  17 Col=   3 Spelling= "begin"
+Token:Code=260 Name=       ID Line=  18 Col=   5 Spelling= "write"
+Token:Code=276 Name=   LPAREN Line=  18 Col=  10 Spelling= "("
+Token:Code=260 Name=       ID Line=  18 Col=  11 Spelling= "count"
+Token:Code=267 Name=    COMMA Line=  18 Col=  16 Spelling= ","
 #063 factor -> ID(count)
 #056 term -> factor
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #038 expression_list -> expression
-Token:Code=304 Name=    CHRLIT line= 18 col= 17 Spelling="', '"
-#070 factor -> CHRLIT(', ')
+Token:Code=299 Name=   CHRLIT Line=  18 Col=  17 Spelling= ", "
+#070 factor -> CHRLIT(, )
 #056 term -> factor
-Token:Code=275 Name=    RPAREN line= 18 col= 21 Spelling=")"
+Token:Code=277 Name=   RPAREN Line=  18 Col=  19 Spelling= ")"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #039 expression_list -> expression_list , expression
 #037 procedure_statement -> ID(write) ( expression_list )
 #030 statement -> procedure_statement
 #027 statement_list -> statement
-Token:Code=266 Name= SEMICOLON line= 18 col= 22 Spelling=";"
-Token:Code=301 Name=        ID line= 19 col=  5 Spelling="count"
-Token:Code=263 Name=    ASSIGN line= 19 col= 10 Spelling=":="
+Token:Code=268 Name= SEMICOLON Line=  18 Col=  20 Spelling= ";"
+Token:Code=260 Name=       ID Line=  19 Col=   5 Spelling= "count"
+Token:Code=265 Name=   ASSIGN Line=  19 Col=  10 Spelling= ":="
 #034 variable -> ID(count)
-Token:Code=301 Name=        ID line= 19 col= 12 Spelling="count"
-Token:Code=260 Name=     MINUS line= 19 col= 17 Spelling="-"
+Token:Code=260 Name=       ID Line=  19 Col=  12 Spelling= "count"
+Token:Code=262 Name=    MINUS Line=  19 Col=  17 Spelling= "-"
 #063 factor -> ID(count)
 #056 term -> factor
 #048 simple_expression -> term
 #054 addop -> -
-Token:Code=302 Name=    INTLIT line= 19 col= 18 Spelling="1"
+Token:Code=301 Name=   INTLIT Line=  19 Col=  18 Spelling= "1"
 #068 factor -> INTLIT(1)
 #056 term -> factor
-Token:Code=286 Name=       END line= 20 col=  3 Spelling="end"
+Token:Code=259 Name=      END Line=  20 Col=   3 Spelling= "end"
 #050 simple_expression -> simple_expression addop term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
@@ -85,27 +85,29 @@ Token:Code=286 Name=       END line= 20 col=  3 Spelling="end"
 #026 optional_statements -> statement_list
 #024 compound_statement -> BEGIN optional_statement END
 #031 statement -> compound_statement
+
 #033 statement -> WHILE expression DO statement 
 #028 statement_list -> statement_list ; statement
-Token:Code=266 Name= SEMICOLON line= 20 col= 13 Spelling=";"
-Token:Code=301 Name=        ID line= 21 col=  3 Spelling="writeln"
-Token:Code=274 Name=    LPAREN line= 21 col= 10 Spelling="("
-Token:Code=304 Name=    CHRLIT line= 21 col= 11 Spelling="'Blast off!'"
-#070 factor -> CHRLIT('Blast off!')
+Token:Code=268 Name= SEMICOLON Line=  20 Col=  13 Spelling= ";"
+Token:Code=260 Name=       ID Line=  21 Col=   3 Spelling= "writeln"
+Token:Code=276 Name=   LPAREN Line=  21 Col=  10 Spelling= "("
+Token:Code=299 Name=   CHRLIT Line=  21 Col=  11 Spelling= "Blast off!"
+#070 factor -> CHRLIT(Blast off!)
 #056 term -> factor
-Token:Code=275 Name=    RPAREN line= 21 col= 23 Spelling=")"
+Token:Code=277 Name=   RPAREN Line=  21 Col=  21 Spelling= ")"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #038 expression_list -> expression
 #037 procedure_statement -> ID(writeln) ( expression_list )
 #030 statement -> procedure_statement
 #028 statement_list -> statement_list ; statement
-Token:Code=286 Name=       END line= 22 col=  1 Spelling="end"
+Token:Code=259 Name=      END Line=  22 Col=   1 Spelling= "end"
 #026 optional_statements -> statement_list
 #024 compound_statement -> BEGIN optional_statement END
-Token:Code=264 Name=    PERIOD line= 22 col= 14 Spelling="."
+Token:Code=266 Name=   PERIOD Line=  22 Col=  14 Spelling= "."
 #004 program_body -> compound_statement .
 #001 program -> program_head program_declarations program_body
+
 Locality: lexical level 1
 
   Symbol(Variable Symbol) id(count)
@@ -113,90 +115,10 @@ Locality: lexical level 1
       size(1) alignment(1)
     lexicallevel(1) address(5)
 
-Locality: lexical level 0
+Locality: lexical level 1
 
-  Symbol(Standard Function Symbol) id(abs)
-    type(Void)
-      size(0) alignment(0)
-    cspid(abs)
-  Symbol(Type Symbol) id(boolean)
-    type(Boolean)
-      size(1) alignment(1)
-  Symbol(Type Symbol) id(char)
-    type(Character)
-      size(1) alignment(1)
-  Symbol(Standard Function Symbol) id(chr)
-    type(Void)
-      size(0) alignment(0)
-    cspid(chr)
-  Symbol(Constant Symbol) id(false)
-    type(Boolean)
-      size(1) alignment(1)
-    Constant value(0)
-      type(Boolean)
-        size(1) alignment(1)
-  Symbol(Type Symbol) id(integer)
+  Symbol(Variable Symbol) id(count)
     type(Integer)
       size(1) alignment(1)
-  Symbol(Standard Function Symbol) id(ord)
-    type(Void)
-      size(0) alignment(0)
-    cspid(ord)
-  Symbol(Program Symbol) id(p033_000)
-    type(Void)
-      size(0) alignment(0)
-    elabel(L00001) splabel(L00002) eplabel(L00003)
-  Symbol(Standard Function Symbol) id(pred)
-    type(Void)
-      size(0) alignment(0)
-    cspid(dec)
-  Symbol(Type Symbol) id(real)
-    type(Real)
-      size(1) alignment(1)
-  Symbol(Standard Function Symbol) id(round)
-    type(Void)
-      size(0) alignment(0)
-    cspid(rnd)
-  Symbol(Standard Function Symbol) id(sqrt)
-    type(Void)
-      size(0) alignment(0)
-    cspid(sqt)
-  Symbol(Standard Function Symbol) id(succ)
-    type(Void)
-      size(0) alignment(0)
-    cspid(inc)
-  Symbol(Constant Symbol) id(true)
-    type(Boolean)
-      size(1) alignment(1)
-    Constant value(1)
-      type(Boolean)
-        size(1) alignment(1)
-  Symbol(Standard Function Symbol) id(trunc)
-    type(Void)
-      size(0) alignment(0)
-    cspid(trc)
-  Symbol(Standard Procedure Symbol) id(writeboolean)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wrb)
-  Symbol(Standard Procedure Symbol) id(writechar)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wrc)
-  Symbol(Standard Procedure Symbol) id(writeexponential)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wre)
-  Symbol(Standard Procedure Symbol) id(writefixed)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wrf)
-  Symbol(Standard Procedure Symbol) id(writeinteger)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wri)
-  Symbol(Standard Procedure Symbol) id(writeln)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wln)
+    lexicallevel(1) address(5)
 
