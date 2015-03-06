@@ -12,11 +12,11 @@ using namespace std;
 PCode::PCode(string l,string o,string r1,string r2)
    :label(l),op(o),rand1(r1),rand2(r2){}
 PCode::PCode(string l,string o,string r1,int r2)
-   :label(l),op(o),rand1(r1){rand2=string(r2);}
+   :label(l),op(o),rand1(r1){rand2=r2;}
 PCode::PCode(string l,string o,int r1,int r2)
-   :label(l),op(o){rand1=string(r1);rand2=string(r2);}
+   :label(l),op(o){rand1=r1;rand2=r2;}
 PCode::PCode(string l,string o,int r1,string r2)
-   :label(l),op(o),rand2(r2){rand1=string(r1);}
+   :label(l),op(o),rand2(r2){rand1=r1;}
    
 string PCode::Label(void){return label;}
 string PCode::Op(void){return op;}
