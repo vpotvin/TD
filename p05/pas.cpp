@@ -7,7 +7,8 @@
 
 using namespace std;
 
-ofstream o;											// OUTPUT FILE
+ofstream o;
+ofstream po;											// OUTPUT FILE
 
 // EXCEPTION STRUCTS ----------------------------------------------------------
 struct BadSuffixException {

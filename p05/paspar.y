@@ -30,7 +30,13 @@ using namespace std;
 #include "type.h"
 #include "parameter_list.h"
 #include "identifier_list.h"
-
+#include "factor.h"
+//---------------------------------------------------------------------
+//Semantic helper include files
+//---------------------------------------------------------------------
+#include "String.h"
+#include "PCode.h"
+#include "Exp.h"
 
 
 typedef string st;
@@ -60,11 +66,21 @@ SymbolTable ST;  //The SymbolTable
   List<string>* slist;
   Typ* typ;
   List<VariableSymbol*>* varlist;
+  Exp* exp;
+  List<Exp*>* explist;
 }
 %type  <varlist> parameter_list
 %type  <varlist> subprogram_parameters
 %type  <typ>     type
 %type  <typ>     standard_type
+
+%type  <exp>     factor
+%type  <exp>     term
+%type  <exp>     simple_expression
+%type  <exp>     expression
+
+%type  <explist> expression_list
+
 %token <token> BEGAN
 %token <token> END
 %token <token> ID

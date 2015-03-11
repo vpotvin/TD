@@ -100,12 +100,11 @@ using namespace std;
 #include "parameter_list.h"
 #include "identifier_list.h"
 #include "factor.h"
-
-#include "String.h"
+//---------------------------------------------------------------------
+//Semantic helper include files
+//---------------------------------------------------------------------
 #include "PCode.h"
 #include "Exp.h"
-
-
 
 typedef string st;
 
@@ -266,6 +265,8 @@ typedef union YYSTYPE
   List<string>* slist;
   Typ* typ;
   List<VariableSymbol*>* varlist;
+  Exp* exp;
+  List<Exp*>* explist;
 
 
 
@@ -552,7 +553,7 @@ static const yytype_uint8 yytranslate[] =
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
       35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
-      45,    46,    47
+      45,    46,    47,	   48,    49,    50
 };
 
 #if YYDEBUG
@@ -642,7 +643,8 @@ static const yytype_uint16 yytoknum[] =
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
      285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
-     295,   296,   297,   298,   299,   300,   301,   302
+     295,   296,   297,   298,   299,   300,   301,   302,   303,   304,
+	 305,
 };
 # endif
 
@@ -828,7 +830,8 @@ do								\
   if (yychar == YYEMPTY && yylen == 1)				\
     {								\
       yychar = (Token);						\
-      yylval = (Value);						\
+      yylval = (Value);	
+      yytoken = YYTRANSLATE (yychar);	  \
       YYPOPSTACK (1);						\
       goto yybackup;						\
     }								\
@@ -867,6 +870,21 @@ while (YYID (0))
 	    YYRHSLOC (Rhs, 0).last_column;				\
 	}								\
     while (YYID (0))
+#endif
+
+/* YY_LOCATION_PRINT -- Print the location on the stream.
+   This macro was not mandated originally: define only if we know
+   we won't break user code: when these are the locations we know.  */
+
+#ifndef YY_LOCATION_PRINT
+# if YYLTYPE_IS_TRIVIAL
+#  define YY_LOCATION_PRINT(File, Loc)			\
+     fprintf (File, "%d.%d-%d.%d",			\
+	      (Loc).first_line, (Loc).first_column,	\
+	      (Loc).last_line,  (Loc).last_column)
+# else
+#  define YY_LOCATION_PRINT(File, Loc) ((void) 0)
+# endif
 #endif
 
 

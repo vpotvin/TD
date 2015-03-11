@@ -34,7 +34,7 @@ using namespace std;
 #include "SymbolTable.h"
 
 
-#include "String.h"
+#include "string.h"
 #include "PCode.h"
 #include "Exp.h"
 
