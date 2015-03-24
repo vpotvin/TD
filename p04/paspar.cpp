@@ -99,6 +99,11 @@ using namespace std;
 #include "type.h"
 #include "parameter_list.h"
 #include "identifier_list.h"
+#include "factor.h"
+
+#include "String.h"
+#include "PCode.h"
+#include "Exp.h"
 
 
 

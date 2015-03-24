@@ -1,5 +1,6 @@
-
-# Object files#----------------------------------------------------------------------
+#---------------------------------------------------------------------
+# Object files
+#----------------------------------------------------------------------
 obj	=	paspar.o \
 		paslex.o \
 		pas.o \
@@ -12,6 +13,9 @@ obj	=	paspar.o \
 		variable_declarations.o \
 		type.o \
 		standard_type.o \
+		identifier_list.o \
+		term.o \
+		factor.o \
 		Typ.o \
 		Sym.o \
 		Label.o \
@@ -19,7 +23,9 @@ obj	=	paspar.o \
 		Namespace.o \
 		LocalityStack.o \
 		SymbolTable.o \
-		identifier_list.o
+		String.o \
+		PCode.o \
+		Exp.o
 
 
 #----------------------------------------------------------------------
@@ -65,8 +71,30 @@ subprogram_declaration.o:	subprogram_declaration.cpp subprogram_declaration.h
 subprogram_parameters.o:	subprogram_parameters.cpp subprogram_parameters.h
 			g++ -c -g subprogram_parameters.cpp
 #---------------------------------------------------------------
+# Compile type.cpp
 #----------------------------------------------------------------
+type.o:			type.cpp type.h
+			g++ -c -g type.cpp
 #----------------------------------------------------------------
+# Compile standard_type.cpp
+#----------------------------------------------------------------
+standard_type.o:	standard_type.cpp standard_type.h
+			g++ -c -g standard_type.cpp
+#----------------------------------------------------------------
+# Compile identifier_list.cpp
+#----------------------------------------------------------------
+identifier_list.o:	identifier_list.cpp identifier_list.h
+			g++ -c -g identifier_list.cpp
+#----------------------------------------------------------------
+# Compile parameter_list.cpp
+#----------------------------------------------------------------
+parameter_list.o:	parameter_list.cpp parameter_list.h
+			g++ -c -g parameter_list.cpp
+#----------------------------------------------------------------
+# Compile variable_declarations.cpp
+#----------------------------------------------------------------
+variable_declarations.o:	variable_declarations.cpp variable_declarations.h
+				g++ -c -g variable_declarations.cpp
 #----------------------------------------------------------------
 #Symbol Table
 #-------------------------------------------------------------
@@ -93,5 +121,20 @@ SymbolTable.o:	SymbolTable.cpp SymbolTable.h LocalityStack.h Locality.h Namespac
 #-------------------------------------------------------------
 # Semantic functions
 #-------------------------------------------------------------
-identifier_list.o:	identifier_list.cpp identifier_list.h
-			g++ -c -g identifier_list.cpp
+#-------------------------------------------------------------
+String.o:	String.cpp String.h
+		g++ -c -g String.cpp
+#-------------------------------------------------------------
+#-------------------------------------------------------------
+term.o:		term.cpp term.h
+		g++ -c -g term.cpp
+#-------------------------------------------------------------
+factor.o:	factor.cpp factor.h
+		g++ -c -g factor.cpp
+#-------------------------------------------------------------
+
+Exp.o:			Exp.cpp Exp.h
+			g++ -c -g Exp.cpp
+
+PCode.o:		PCode.cpp PCode.h
+			g++ -c -g PCode.cpp
