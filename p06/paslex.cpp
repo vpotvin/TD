@@ -502,13 +502,16 @@ char *yytext;
 #include <iomanip>
 #include <fstream>
 #include <map>
+#include <cstdio>
 
 using namespace std;
 
 int line 	= 1;
 int col 	= 1;
 static map<string,int> RW;
-static map<int,string> NAME;  
+static map<int,string> NAME; 
+static int tokencode;
+static string* TokenName;  
 
 int yyparse ( void );
 int TokenMgr(int t);
@@ -517,11 +520,31 @@ void nameInit(void);
 void reserveWordInit(void);
 void printTc(int t);
 void commentMgr(void);
+void PrintToken(ostream& o,int tc,int l,int c);   
 
 /* EXTERNAL VARIABLES--------------------------------------------------------*/
 extern ofstream o; 						// WRITES TO FILES
 /*---------------------------------------------------------------------------*/
-
+struct StringTokenException{
+    StringTokenException(char* t,int l,int c)
+    {   cout << endl;
+        cout << "line(" << l << ") col (" << c << ")" ;
+        cout << "Lexical error: ";
+        cout << "Strings cannot span lines";
+        cout << endl;
+        cout << "|" << t << "|";
+        cout << endl;
+    }
+};
+struct BadCharacterException{
+    BadCharacterException(char p,int l,int c)
+    {   cout << endl;
+        cout << "line(" << l << ") col (" << c << ")" ;
+        cout << "Lexical error: ";
+        cout << "Illegal character |" << p << "| ASCII code=" << (int)p;
+        cout << endl;
+    } 
+};
 #line 526 "lex.yy.c"
 
 #define INITIAL 0

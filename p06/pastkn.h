@@ -12,6 +12,10 @@
 #include "Locality.h"
 #include "LocalityStack.h"
 #include "SymbolTable.h"
+
+#include "String.h"
+#include "PCode.h"
+#include "Exp.h"
 /* A Bison parser, made by GNU Bison 2.5.  */
 
 /* Bison interface for Yacc-like parsers in C
