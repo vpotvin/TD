@@ -520,7 +520,3 @@ factor: CHRLIT
 
 %%
 
-Parser::Parser(FILE* i):Lexer(i){}
-int Parser::Parse(){
-	return yyparse();
-}
