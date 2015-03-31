@@ -7,9 +7,11 @@
 #include <string>
 #include <iomanip>
 using namespace std;
+
 //app inlude file
 #include "paslex.h"
 #include "paspar.h"
+
 //symbol table
 #include "List.h"
 #include "Typ.h"
@@ -19,6 +21,7 @@ using namespace std;
 #include "Locality.h"
 #include "LocalityStack.h"
 #include "SymbolTable.h"
+
 //semantic include files
 #include "program.h"
 #include "program_head.h"
@@ -31,6 +34,7 @@ using namespace std;
 #include "parameter_list.h"
 #include "identifier_list.h"
 #include "factor.h"
+#include "term.h"
 //---------------------------------------------------------------------
 //Semantic helper include files
 //---------------------------------------------------------------------
@@ -73,6 +77,7 @@ SymbolTable ST;  //The SymbolTable
 %type  <varlist> subprogram_parameters
 %type  <typ>     type
 %type  <typ>     standard_type
+%type  <slist> identifier_list
 
 %type  <exp>     factor
 %type  <exp>     term
@@ -80,6 +85,8 @@ SymbolTable ST;  //The SymbolTable
 %type  <exp>     expression
 
 %type  <explist> expression_list
+
+%type  <token>   mulop
 
 %token <token> BEGAN
 %token <token> END
@@ -127,18 +134,20 @@ SymbolTable ST;  //The SymbolTable
 %token <token> INTLIT
 %token <token> WHILE
 
-%type  <slist> identifier_list
+//%type  <slist> identifier_list
 
 
 %%
 program: program_head program_declarations program_body
 {
 	o << "#001 Program->program_head program_declarations program_body" << endl;
+	program(); 
 }
 
 program_head: PROGRAM ID program_parameters SEMICOLON
 {
 	o << "#002 program_head->PROGRAM ID program_parameters" << endl;
+	program_head(*$2);
 }
 
 program_declarations: declarations subprogram_declarations
@@ -166,7 +175,8 @@ program_parameter_list: identifier_list
 	o << "#007 program_parameter_list -> identifier_list" << endl; //(" << (*$1) << ")
 }
 
-identifier_list: ID
+identifier_list: 
+	ID
 {
 	o << "#008 identifier_list->ID(" << (*$1) << ")" << endl;
 	$$=identifier_list($1);
@@ -224,36 +234,43 @@ subprogram_declarations: subprogram_declarations subprogram_declaration SEMICOLO
 subprogram_declaration: subprogram_head declarations compound_statement
 {
 	o << "#017 subprogram_declarations->subprogram_head declarations compound_statement" << endl;
+	subprogram_declaration();
 }
 
 subprogram_head: FUNCTION ID subprogram_parameters COLON standard_type
 {
 	o << "#018 subprogram_head->FUNCTION ID(" << (*$2) <<")  subprogram_parameters : standard_type" << endl;
+	subprogram_head(*$2,$3,$5);
 }
 
 subprogram_head: PROCEDURE ID subprogram_parameters SEMICOLON
 {
 	o << "#019 subprogram_head->PROCEDURE ID(" << (*$2) << ") subprogram_parameters ;" << endl;
+	subprogram_head(*$2,$3);
 }
 
 subprogram_parameters:
 {
 	o << "#020 subprogram_parameters->Empty" << endl;
+	$$=subprogram_parameters();
 }
 
 subprogram_parameters: LPAREN parameter_list RPAREN
 {
 	o << "#021 subprogram_parameters->( parameter_list )" << endl;
+	$$=subprogram_parameters($2);
 }
 
 parameter_list: identifier_list COLON type
 {
 	o << "#022 parameter_list->identifier_list: type" << endl; //" << (*$1) << " 
+	$$=parameter_list($1,$3);
 }
 
 parameter_list: parameter_list SEMICOLON identifier_list COLON type
 {
 	o << "#023 parameter_list-> parameter_list ; identifier_list : type" << endl; //" << (*$3) << "
+	$$=parameter_list($1,$3,$5);
 }
 
 compound_statement: BEGAN optional_statements END
@@ -419,11 +436,13 @@ addop: OR
 term: factor
 {
 	o << "#056 term -> factor" << endl;
+	$$=term($1);
 }
 
 term: term mulop factor
 {
 	o << "#057 term -> term mulop factor" << endl;
+	$$=term($1,$2,$3);
 }
 
 mulop: STAR
@@ -454,41 +473,49 @@ mulop: AND
 factor: ID 
 {
 	o << "#063 factor -> ID(" << (*$1) << ")" << endl;
+	$$=factor_1($1);
 }
 
 factor: ID LBRACKET expression RBRACKET
 {
 	o << "#064 factor -> ID(" << (*$1) << ") [ expression ]" << endl;
+	$$=factor_2($1,$3);
 }
 
 factor: ID LPAREN expression_list RPAREN
 {
 	o << "#065 factor -> ID(" << (*$1) << ") ( expression_list )" << endl;
+	$$=factor_3($1,$3);
 }
 
 factor: LPAREN expression RPAREN
 {
 	o << "#066 factor -> ( expression )" << endl;
+	$$=factor_4($2);
 }
 
 factor: NOT factor
 {
 	o << "#067 factor -> NOT factor" << endl;
+	$$=factor_5($2);
 }
 
 factor: INTLIT
 {
 	o << "#068 factor -> INTLIT(" << (*$1) << ")" << endl;
+	$$=factor_6($1);
 }
 
 factor: REALIT
 {
 	o << "#069 factor -> REALIT(" << (*$1) << ")" << endl;
+	$$=factor_7($1);
 }
 
 factor: CHRLIT
 {
 	o << "#070 factor -> CHRLIT(" << (*$1) << ")" << endl;
+	$$=factor_8($1);
 }
 
 %%

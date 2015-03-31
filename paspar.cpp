@@ -100,7 +100,6 @@ using namespace std;
 #include "parameter_list.h"
 #include "identifier_list.h"
 #include "factor.h"
-#include "term.h"
 
 #include "String.h"
 #include "PCode.h"
@@ -203,8 +202,7 @@ SymbolTable ST;  //The SymbolTable
      CHRLIT = 299,
      REALIT = 300,
      INTLIT = 301,
-     WHILE = 302,
-	 REGULAR_EXPRESSIONS = 303
+     WHILE = 302
    };
 #endif
 /* Tokens.  */
@@ -253,7 +251,7 @@ SymbolTable ST;  //The SymbolTable
 #define REALIT 300
 #define INTLIT 301
 #define WHILE 302
-#define REGULAR_EXPRESSIONS 303
+
 
 
 
@@ -268,8 +266,7 @@ typedef union YYSTYPE
   List<string>* slist;
   Typ* typ;
   List<VariableSymbol*>* varlist;
-	 Exp* exp;
-  List<Exp*>* explist;
+
 
 
 /* Line 293 of yacc.c  */
@@ -632,8 +629,7 @@ static const char *const yytname[] =
   "subprogram_parameters", "parameter_list", "compound_statement",
   "optional_statements", "statement_list", "statement", "variable",
   "procedure_statement", "expression_list", "expression", "relop",
-  "simple_expression", "sign", "addop", "term", "mulop", "factor",, "REGULAR_EXPRESSIONS"
-  0
+  "simple_expression", "sign", "addop", "term", "mulop", "factor", 0
 };
 #endif
 
@@ -877,16 +873,8 @@ while (YYID (0))
 /* This macro is provided for backward compatibility. */
 
 #ifndef YY_LOCATION_PRINT
-# if YYLTYPE_IS_TRIVIAL
-#  define YY_LOCATION_PRINT(File, Loc)			\
-     fprintf (File, "%d.%d-%d.%d",			\
-	      (Loc).first_line, (Loc).first_column,	\
-	      (Loc).last_line,  (Loc).last_column)
-# else
-#  define YY_LOCATION_PRINT(File, Loc) ((void) 0)
-# endif
+# define YY_LOCATION_PRINT(File, Loc) ((void) 0)
 #endif
-
 
 
 /* YYLEX -- calling `yylex' with the right arguments.  */
@@ -1645,17 +1633,16 @@ yyreduce:
 #line 119 "paspar.y"
     {
 	o << "#001 Program->program_head program_declarations program_body" << endl;
-	program();
-	}
+}
     break;
 
   case 3:
 
 /* Line 1806 of yacc.c  */
 #line 124 "paspar.y"
-     {o << "#002 program_head -> PROGRAM ID(" << (*(yyvsp[(2) - (4)].token)) << ") program_parameters ;"<< endl ;
-   program_head(*(yyvsp[(2) - (4)].token));
-  }
+    {
+	o << "#002 program_head->PROGRAM ID program_parameters" << endl;
+}
     break;
 
   case 4:
@@ -1800,7 +1787,6 @@ yyreduce:
 #line 209 "paspar.y"
     {
 	o << "#017 subprogram_declarations->subprogram_head declarations compound_statement" << endl;
-	subprogram_declaration();
 }
     break;
 
@@ -1810,7 +1796,6 @@ yyreduce:
 #line 214 "paspar.y"
     {
 	o << "#018 subprogram_head->FUNCTION ID(" << (*(yyvsp[(2) - (5)].token)) <<")  subprogram_parameters : standard_type" << endl;
-	 subprogram_head(*(yyvsp[(2) - (6)].token),(yyvsp[(3) - (6)].varlist),(yyvsp[(5) - (6)].typ));
 }
     break;
 
@@ -1820,7 +1805,6 @@ yyreduce:
 #line 219 "paspar.y"
     {
 	o << "#019 subprogram_head->PROCEDURE ID(" << (*(yyvsp[(2) - (4)].token)) << ") subprogram_parameters ;" << endl;
-	subprogram_head(*(yyvsp[(2) - (4)].token),(yyvsp[(3) - (4)].varlist));
 }
     break;
 
@@ -1830,7 +1814,6 @@ yyreduce:
 #line 224 "paspar.y"
     {
 	o << "#020 subprogram_parameters->Empty" << endl;
-	(yyval.varlist)=subprogram_parameters();
 }
     break;
 
@@ -1840,7 +1823,6 @@ yyreduce:
 #line 229 "paspar.y"
     {
 	o << "#021 subprogram_parameters->( parameter_list )" << endl;
-	(yyval.varlist)=subprogram_parameters((yyvsp[(2) - (3)].varlist));
 }
     break;
 
@@ -1850,7 +1832,6 @@ yyreduce:
 #line 234 "paspar.y"
     {
 	o << "#022 parameter_list->identifier_list: type" << endl; //" << (*$1) << " 
-	(yyval.varlist)=parameter_list((yyvsp[(1) - (3)].slist),(yyvsp[(3) - (3)].typ));
 }
     break;
 
@@ -1860,7 +1841,6 @@ yyreduce:
 #line 239 "paspar.y"
     {
 	o << "#023 parameter_list-> parameter_list ; identifier_list : type" << endl; //" << (*$3) << "
-	(yyval.varlist)=parameter_list((yyvsp[(1) - (5)].varlist),(yyvsp[(3) - (5)].slist),(yyvsp[(5) - (5)].typ));
 }
     break;
 
@@ -2158,7 +2138,6 @@ yyreduce:
 #line 404 "paspar.y"
     {
 	o << "#056 term -> factor" << endl;
-	(yyval.exp)=term((yyvsp[(1) - (1)].exp));
 }
     break;
 
@@ -2168,7 +2147,6 @@ yyreduce:
 #line 409 "paspar.y"
     {
 	o << "#057 term -> term mulop factor" << endl;
-	(yyval.exp)=term((yyvsp[(1) - (3)].exp),(yyvsp[(2) - (3)].token),(yyvsp[(3) - (3)].exp));
 }
     break;
 
@@ -2223,7 +2201,6 @@ yyreduce:
 #line 439 "paspar.y"
     {
 	o << "#063 factor -> ID(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
-	(yyval.exp)=factor_1((yyvsp[(1) - (1)].token));
 }
     break;
 
@@ -2233,7 +2210,6 @@ yyreduce:
 #line 444 "paspar.y"
     {
 	o << "#064 factor -> ID(" << (*(yyvsp[(1) - (4)].token)) << ") [ expression ]" << endl;
-	(yyval.exp)=factor_2((yyvsp[(1) - (4)].token),(yyvsp[(3) - (4)].exp));
 }
     break;
 
@@ -2243,7 +2219,6 @@ yyreduce:
 #line 449 "paspar.y"
     {
 	o << "#065 factor -> ID(" << (*(yyvsp[(1) - (4)].token)) << ") ( expression_list )" << endl;
-	(yyval.exp)=factor_3((yyvsp[(1) - (4)].token),(yyvsp[(3) - (4)].explist));
 }
     break;
 
@@ -2253,7 +2228,6 @@ yyreduce:
 #line 454 "paspar.y"
     {
 	o << "#066 factor -> ( expression )" << endl;
-	(yyval.exp)=factor_4((yyvsp[(2) - (3)].exp));
 }
     break;
 
@@ -2263,7 +2237,6 @@ yyreduce:
 #line 459 "paspar.y"
     {
 	o << "#067 factor -> NOT factor" << endl;
-	(yyval.exp)=factor_5((yyvsp[(2) - (2)].exp));
 }
     break;
 
@@ -2273,7 +2246,6 @@ yyreduce:
 #line 464 "paspar.y"
     {
 	o << "#068 factor -> INTLIT(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
-	(yyval.exp)=factor_6((yyvsp[(1) - (1)].token));
 }
     break;
 
@@ -2283,7 +2255,6 @@ yyreduce:
 #line 469 "paspar.y"
     {
 	o << "#069 factor -> REALIT(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
-	(yyval.exp)=factor_7((yyvsp[(1) - (1)].token));
 }
     break;
 
@@ -2293,7 +2264,6 @@ yyreduce:
 #line 474 "paspar.y"
     {
 	o << "#070 factor -> CHRLIT(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
-	(yyval.exp)=factor_8((yyvsp[(1) - (1)].token));
 }
     break;
 

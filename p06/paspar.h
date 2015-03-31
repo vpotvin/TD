@@ -14,6 +14,6 @@ int yyparse (void);
 
 class Parser : public Lexer {
 public:
-	Parser(FILE* i);
-	int Parse(void);
+	Parser(FILE* i):Lexer(i){}
+  int Parse(void) { return yyparse(); }
 };
