@@ -36,7 +36,6 @@ enum typekind
   ,tk_character               //type character
   ,tk_integer                 //type integer
   ,tk_real                    //type real
-  ,tk_string                  //type string
   ,tk_range                   //type range
   ,tk_array                   //type array
   ,tk_subprogram              //programs, functions, and procedures
@@ -57,8 +56,7 @@ public:
     bool IsBoolean(void);                         //determines if the type is Boolean
     bool IsCharacter(void);                       //determines if the type is character
     bool IsInteger(void);                         //determines if the type is an integer
-    bool IsReal(void);                            //determines if the type is real
-    bool IsString(void);                          //determines if the type is string
+    bool IsReal(void);                            //determines if the type is real                         //determines if the type is string
     bool IsArray(void);                           //determines if the type is an array
     bool IsRange(void);                           //determines if the type is a range type
     bool IsVoid(void);                            //determines if the type is a void type
@@ -174,7 +172,6 @@ class Array: public Typ {
     Range* index;
     Typ* element;
 public:
-    Array(typekind tk,Range* i,Typ* e);
     Array(Range* i,Typ* e);
     void Print(ostream& o,int indent);
     int Size(void);
@@ -182,12 +179,6 @@ public:
     Range* IndexType(void);
     Typ* ElementType(void);
     int Stride(void);
-};
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-class String: public Array {
-public:
-    String(Range* i,Typ* e);
 };
 //-----------------------------------------------------------------------------
 //class Subprogram characterizes both user and standard subprograms
