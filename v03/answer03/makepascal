@@ -1,0 +1,55 @@
+#----------------------------------------------------------------------
+# File makepascal creates a subset Pascal Parser 
+#----------------------------------------------------------------------
+# Author: Thomas R. Turner
+# E-Mail: trturner@ucok.edu
+# Date:   January, 2009
+#----------------------------------------------------------------------
+# Copyright January, 2009 by Thomas R. Turner.
+# Do not reproduce without permission from Thomas R. Turner.
+#----------------------------------------------------------------------
+# Object files
+#----------------------------------------------------------------------
+obj	=	identifier_list.o \
+		paspar.o \
+		paslex.o \
+		pas.o		
+#----------------------------------------------------------------------
+# Bind the subset Pascal Scanneer 
+#----------------------------------------------------------------------
+pas:		${obj}
+		g++ -o pas ${obj} -lm -ll
+#----------------------------------------------------------------------
+# File pas.cpp processes command line arguments
+#----------------------------------------------------------------------
+pas.o:		pas.cpp paslex.h
+		g++ -c -g pas.cpp
+#----------------------------------------------------------------------
+# File paslex.cpp is the lex-generated scanner
+#----------------------------------------------------------------------
+paslex.cpp:	paslex.l paslex.h
+		lex paslex.l
+		mv lex.yy.c paslex.cpp
+#---------------------------------------------------------------------
+#----------------------------------------------------------------------
+paslex.o:	paslex.cpp paslex.h
+		g++ -c -g paslex.cpp
+#----------------------------------------------------------------
+# Create files paspar.cpp and pastkn.h from file paspar.y
+#----------------------------------------------------------------
+pastkn.h	\
+paspar.cpp:	paspar.y
+		yacc -d -v paspar.y
+		mv y.tab.c paspar.cpp 
+		cat pastkn_prolog.h y.tab.h pastkn_epilog.h > pastkn.h
+#----------------------------------------------------------------
+# Compile the parser paspar.y
+#----------------------------------------------------------------
+paspar.o:	paspar.cpp paspar.h
+		g++ -c -g paspar.cpp
+#----------------------------------------------------------------
+# Compiler identifier_list.cpp
+#----------------------------------------------------------------
+identifier_list.o:	identifier_list.cpp identifier_list.h
+			g++ -c -g identifier_list.cpp
+#----------------------------------------------------------------

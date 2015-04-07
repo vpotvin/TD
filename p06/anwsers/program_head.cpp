@@ -55,8 +55,13 @@ extern SymbolTable ST;        //The SymbolTable
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 void program_head(string id)
-{
+{  
+   tfs << endl;
+   tfs << "Before::LexicalLevel=" << ST.LexicalLevel();
    Sym* p=new ProgramSymbol(id);
    ST.Insert(p);
    ST.NewLocality();
+   tfs << " ";
+   tfs << "After::LexicalLevel=" << ST.LexicalLevel();
+   tfs << endl;
 }

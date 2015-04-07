@@ -1,0 +1,142 @@
+Token:Code=293 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
+Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p067_000"
+Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
+#005 program_parameters -> empty
+#002 program_head -> PROGRAM ID(p067_000) program_parameters ;
+#010 variable_declarations -> empty
+Token:Code=297 Name=      VAR Line=  13 Col=   3 Spelling= "var"
+Token:Code=260 Name=       ID Line=  13 Col=   7 Spelling= "a"
+#008 identifier_list -> ID(a)
+ identifier_list={a}Token:Code=267 Name=    COMMA Line=  13 Col=   8 Spelling= ","
+Token:Code=260 Name=       ID Line=  13 Col=   9 Spelling= "b"
+#009 identifier_list -> identifier_list , ID(b)
+ identifier_list={a,b}Token:Code=269 Name=    COLON Line=  13 Col=  10 Spelling= ":"
+Token:Code=260 Name=       ID Line=  13 Col=  11 Spelling= "boolean"
+#014 standard_type -> ID(boolean)
+
+Symbol(Type Symbol) id(boolean)
+  type(Boolean)
+    size(1) alignment(1)
+#012 type -> standard_type
+Token:Code=268 Name= SEMICOLON Line=  13 Col=  18 Spelling= ";"
+#011 variable_declarations -> variable_declarations VAR identifier_list:type;
+Token:Code=258 Name=    BEGIN Line=  14 Col=   1 Spelling= "begin"
+#015 subprogram_declarations -> empty
+#003 program_declarations -> variable_declarations subprogram_declarations
+Token:Code=260 Name=       ID Line=  15 Col=   3 Spelling= "a"
+Token:Code=265 Name=   ASSIGN Line=  15 Col=   4 Spelling= ":="
+#034 variable -> ID(a)
+Token:Code=260 Name=       ID Line=  15 Col=   6 Spelling= "false"
+Token:Code=268 Name= SEMICOLON Line=  15 Col=  11 Spelling= ";"
+#063 factor -> ID(false)
+#056 term -> factor
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#029 statement -> variable := expression
+#027 statement_list -> statement
+Token:Code=260 Name=       ID Line=  15 Col=  12 Spelling= "b"
+Token:Code=265 Name=   ASSIGN Line=  15 Col=  13 Spelling= ":="
+#034 variable -> ID(b)
+Token:Code=260 Name=       ID Line=  15 Col=  15 Spelling= "false"
+Token:Code=268 Name= SEMICOLON Line=  15 Col=  20 Spelling= ";"
+#063 factor -> ID(false)
+#056 term -> factor
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#029 statement -> variable := expression
+#028 statement_list -> statement_list ; statement
+Token:Code=260 Name=       ID Line=  16 Col=   3 Spelling= "write"
+Token:Code=276 Name=   LPAREN Line=  16 Col=   8 Spelling= "("
+Token:Code=289 Name=      NOT Line=  16 Col=   9 Spelling= "not"
+Token:Code=276 Name=   LPAREN Line=  16 Col=  12 Spelling= "("
+Token:Code=260 Name=       ID Line=  16 Col=  13 Spelling= "a"
+Token:Code=281 Name=      AND Line=  16 Col=  15 Spelling= "and"
+#063 factor -> ID(a)
+#056 term -> factor
+#062 mulop -> AND
+Token:Code=260 Name=       ID Line=  16 Col=  19 Spelling= "b"
+Token:Code=277 Name=   RPAREN Line=  16 Col=  20 Spelling= ")"
+#063 factor -> ID(b)
+#057 term -> term mulop factor
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#066 factor -> ( expression )
+#067 factor -> NOT factor
+#056 term -> factor
+Token:Code=277 Name=   RPAREN Line=  16 Col=  21 Spelling= ")"
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#038 expression_list -> expression
+#037 procedure_statement -> ID(write) ( expression_list )
+#030 statement -> procedure_statement
+#028 statement_list -> statement_list ; statement
+Token:Code=268 Name= SEMICOLON Line=  16 Col=  22 Spelling= ";"
+Token:Code=260 Name=       ID Line=  17 Col=   3 Spelling= "write"
+Token:Code=276 Name=   LPAREN Line=  17 Col=   8 Spelling= "("
+Token:Code=299 Name=   CHRLIT Line=  17 Col=   9 Spelling= " = "
+#070 factor -> CHRLIT( = )
+#056 term -> factor
+Token:Code=277 Name=   RPAREN Line=  17 Col=  12 Spelling= ")"
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#038 expression_list -> expression
+#037 procedure_statement -> ID(write) ( expression_list )
+#030 statement -> procedure_statement
+#028 statement_list -> statement_list ; statement
+Token:Code=268 Name= SEMICOLON Line=  17 Col=  13 Spelling= ";"
+Token:Code=260 Name=       ID Line=  18 Col=   3 Spelling= "write"
+Token:Code=276 Name=   LPAREN Line=  18 Col=   8 Spelling= "("
+Token:Code=289 Name=      NOT Line=  18 Col=   9 Spelling= "not"
+Token:Code=260 Name=       ID Line=  18 Col=  13 Spelling= "a"
+Token:Code=291 Name=       OR Line=  18 Col=  15 Spelling= "or"
+#063 factor -> ID(a)
+#067 factor -> NOT factor
+#056 term -> factor
+#048 simple_expression -> term
+#055 addop -> OR
+Token:Code=289 Name=      NOT Line=  18 Col=  18 Spelling= "not"
+Token:Code=260 Name=       ID Line=  18 Col=  22 Spelling= "b"
+Token:Code=277 Name=   RPAREN Line=  18 Col=  23 Spelling= ")"
+#063 factor -> ID(b)
+#067 factor -> NOT factor
+#056 term -> factor
+#050 simple_expression -> simple_expression addop term
+#040 expression -> simple_expression
+#038 expression_list -> expression
+#037 procedure_statement -> ID(write) ( expression_list )
+#030 statement -> procedure_statement
+#028 statement_list -> statement_list ; statement
+Token:Code=268 Name= SEMICOLON Line=  18 Col=  24 Spelling= ";"
+Token:Code=260 Name=       ID Line=  19 Col=   3 Spelling= "writeln"
+Token:Code=259 Name=      END Line=  20 Col=   1 Spelling= "end"
+#036 procedure_statement -> ID(writeln)
+#030 statement -> procedure_statement
+#028 statement_list -> statement_list ; statement
+#026 optional_statements -> statement_list
+#024 compound_statement -> BEGIN optional_statement END
+Token:Code=266 Name=   PERIOD Line=  20 Col=  14 Spelling= "."
+#004 program_body -> compound_statement .
+#001 program -> program_head program_declarations program_body
+
+Locality: lexical level 1
+
+  Symbol(Variable Symbol) id(a)
+    type(Boolean)
+      size(1) alignment(1)
+    lexicallevel(1) address(5)
+  Symbol(Variable Symbol) id(b)
+    type(Boolean)
+      size(1) alignment(1)
+    lexicallevel(1) address(6)
+
+Locality: lexical level 1
+
+  Symbol(Variable Symbol) id(a)
+    type(Boolean)
+      size(1) alignment(1)
+    lexicallevel(1) address(5)
+  Symbol(Variable Symbol) id(b)
+    type(Boolean)
+      size(1) alignment(1)
+    lexicallevel(1) address(6)
+

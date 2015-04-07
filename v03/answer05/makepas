@@ -1,0 +1,5 @@
+rm paslex.cpp
+rm paspar.cpp
+rm *.o
+rm pas
+make -f makepascal

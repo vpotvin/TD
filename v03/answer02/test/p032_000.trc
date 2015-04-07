@@ -1,0 +1,127 @@
+
+Token:Code=294 Name=   PROGRAM line= 12 col=  1 Spelling="program"
+Token:Code=301 Name=        ID line= 12 col=  9 Spelling="p032_000"
+Token:Code=266 Name= SEMICOLON line= 12 col= 17 Spelling=";"
+#005 program_parameters -> empty
+#002 program_head -> PROGRAM ID program_parameters ;
+#010 declarations -> empty
+Token:Code=298 Name=       VAR line= 13 col=  3 Spelling="var"
+Token:Code=301 Name=        ID line= 13 col=  7 Spelling="cash"
+#008 identifier_list -> ID
+Token:Code=267 Name=     COLON line= 13 col= 11 Spelling=":"
+Token:Code=301 Name=        ID line= 13 col= 12 Spelling="real"
+#014 standard_type -> ID
+#012 type -> standard_type
+Token:Code=266 Name= SEMICOLON line= 13 col= 16 Spelling=";"
+#011 declarations -> declarations VAR identifier_list:type;
+Token:Code=282 Name=     BEGIN line= 14 col=  1 Spelling="begin"
+#015 subprogram_declarations -> empty
+#003 program_declarations -> declarations subprogram_declarations
+Token:Code=301 Name=        ID line= 15 col=  3 Spelling="write"
+Token:Code=274 Name=    LPAREN line= 15 col=  8 Spelling="("
+Token:Code=304 Name=    CHRLIT line= 15 col=  9 Spelling="'How much cash do you have? '"
+#070 factor -> CHRLIT
+#056 term -> factor
+Token:Code=275 Name=    RPAREN line= 15 col= 38 Spelling=")"
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#038 expression_list -> expression
+#037 procedure_statement -> ID ( expression_list )
+#030 statement -> procedure_statement
+#027 statement_list -> statement
+Token:Code=266 Name= SEMICOLON line= 15 col= 39 Spelling=";"
+Token:Code=301 Name=        ID line= 16 col=  3 Spelling="readln"
+Token:Code=274 Name=    LPAREN line= 16 col=  9 Spelling="("
+Token:Code=301 Name=        ID line= 16 col= 10 Spelling="cash"
+Token:Code=275 Name=    RPAREN line= 16 col= 14 Spelling=")"
+#063 factor -> ID
+#056 term -> factor
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#038 expression_list -> expression
+#037 procedure_statement -> ID ( expression_list )
+#030 statement -> procedure_statement
+#028 statement_list -> statement_list ; statement
+Token:Code=266 Name= SEMICOLON line= 16 col= 15 Spelling=";"
+Token:Code=288 Name=        IF line= 17 col=  3 Spelling="if"
+Token:Code=301 Name=        ID line= 17 col=  6 Spelling="cash"
+Token:Code=270 Name=       LES line= 17 col= 10 Spelling="<"
+#063 factor -> ID
+#056 term -> factor
+#048 simple_expression -> term
+#044 relop -> <
+Token:Code=303 Name=    REALIT line= 17 col= 11 Spelling="100.0"
+#069 factor -> REALIT
+#056 term -> factor
+Token:Code=295 Name=      THEN line= 17 col= 17 Spelling="then"
+#048 simple_expression -> term
+#041 expression -> simple_expression relop simple_expression
+Token:Code=282 Name=     BEGIN line= 18 col=  5 Spelling="begin"
+Token:Code=301 Name=        ID line= 19 col=  7 Spelling="writeln"
+Token:Code=274 Name=    LPAREN line= 19 col= 14 Spelling="("
+Token:Code=304 Name=    CHRLIT line= 19 col= 15 Spelling="'You wicked and slothful person.'"
+#070 factor -> CHRLIT
+#056 term -> factor
+Token:Code=275 Name=    RPAREN line= 19 col= 48 Spelling=")"
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#038 expression_list -> expression
+#037 procedure_statement -> ID ( expression_list )
+#030 statement -> procedure_statement
+#027 statement_list -> statement
+Token:Code=266 Name= SEMICOLON line= 19 col= 49 Spelling=";"
+Token:Code=301 Name=        ID line= 20 col=  7 Spelling="writeln"
+Token:Code=274 Name=    LPAREN line= 20 col= 14 Spelling="("
+Token:Code=304 Name=    CHRLIT line= 20 col= 15 Spelling="'I''d never go out with you.'"
+#070 factor -> CHRLIT
+#056 term -> factor
+Token:Code=275 Name=    RPAREN line= 20 col= 44 Spelling=")"
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#038 expression_list -> expression
+#037 procedure_statement -> ID ( expression_list )
+#030 statement -> procedure_statement
+#028 statement_list -> statement_list ; statement
+Token:Code=286 Name=       END line= 21 col=  5 Spelling="end"
+#026 optional_statements -> statement_list
+#024 compound_statement -> BEGIN optional_statement END
+#031 statement -> compound_statement
+Token:Code=285 Name=      ELSE line= 22 col=  3 Spelling="else"
+Token:Code=282 Name=     BEGIN line= 23 col=  5 Spelling="begin"
+Token:Code=301 Name=        ID line= 24 col=  7 Spelling="writeln"
+Token:Code=274 Name=    LPAREN line= 24 col= 14 Spelling="("
+Token:Code=304 Name=    CHRLIT line= 24 col= 15 Spelling="'Come on, honey, let''s have a good time tonight!'"
+#070 factor -> CHRLIT
+#056 term -> factor
+Token:Code=275 Name=    RPAREN line= 24 col= 65 Spelling=")"
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#038 expression_list -> expression
+#037 procedure_statement -> ID ( expression_list )
+#030 statement -> procedure_statement
+#027 statement_list -> statement
+Token:Code=286 Name=       END line= 25 col=  5 Spelling="end"
+#026 optional_statements -> statement_list
+#024 compound_statement -> BEGIN optional_statement END
+#031 statement -> compound_statement
+#032 statement -> IF expression THEN statement ELSE statement 
+#028 statement_list -> statement_list ; statement
+Token:Code=266 Name= SEMICOLON line= 25 col=  8 Spelling=";"
+Token:Code=301 Name=        ID line= 26 col=  3 Spelling="writeln"
+Token:Code=274 Name=    LPAREN line= 26 col= 10 Spelling="("
+Token:Code=304 Name=    CHRLIT line= 26 col= 11 Spelling="'See you later!'"
+#070 factor -> CHRLIT
+#056 term -> factor
+Token:Code=275 Name=    RPAREN line= 26 col= 27 Spelling=")"
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#038 expression_list -> expression
+#037 procedure_statement -> ID ( expression_list )
+#030 statement -> procedure_statement
+#028 statement_list -> statement_list ; statement
+Token:Code=286 Name=       END line= 27 col=  1 Spelling="end"
+#026 optional_statements -> statement_list
+#024 compound_statement -> BEGIN optional_statement END
+Token:Code=264 Name=    PERIOD line= 27 col= 14 Spelling="."
+#004 program_body -> compound_statement .
+#001 program -> program_head program_declarations program_body

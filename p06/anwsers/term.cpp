@@ -123,7 +123,6 @@ Exp* term_2(Exp* term, Exp* factor)
         P=new PCode("","mpi","","");
         E=new Exp(term,factor,ST.TReal(),P);
     }
-    E->Print(tfs);
     return E;
 }
 //--------------------------------------------------------------------

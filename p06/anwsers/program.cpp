@@ -55,8 +55,13 @@ extern SymbolTable ST;        //The SymbolTable
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 void program(void)
-{
+{  
+   tfs << endl;
+   tfs << "Before::LexicalLevel=" << ST.LexicalLevel();
    ST.Print(tfs);             //Print Locality 1
    ST.PopLocality();
+   tfs << " ";
+   tfs << "After::LexicalLevel=" << ST.LexicalLevel();
+   tfs << endl;
    ST.Print(tfs);             //Print Locality 0
 }

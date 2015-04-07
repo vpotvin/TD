@@ -1,0 +1,28 @@
+
+Token:Code=294 Name=   PROGRAM line= 12 col=  1 Spelling="program"
+Token:Code=301 Name=        ID line= 12 col=  9 Spelling="p012_000"
+Token:Code=266 Name= SEMICOLON line= 12 col= 17 Spelling=";"
+#005 program_parameters -> empty
+#002 program_head -> PROGRAM ID(p012_000) program_parameters ;
+#010 declarations -> empty
+Token:Code=298 Name=       VAR line= 13 col=  3 Spelling="var"
+Token:Code=301 Name=        ID line= 13 col=  7 Spelling="a"
+#008 identifier_list -> ID(a) identifier_list={a}
+Token:Code=265 Name=     COMMA line= 13 col=  8 Spelling=","
+Token:Code=301 Name=        ID line= 13 col=  9 Spelling="b"
+#009 identifier_list -> identifier_list , ID(b) identifier_list={a,b}
+Token:Code=267 Name=     COLON line= 13 col= 10 Spelling=":"
+Token:Code=301 Name=        ID line= 13 col= 11 Spelling="integer"
+#014 standard_type -> ID(integer)
+#012 type -> standard_type
+Token:Code=266 Name= SEMICOLON line= 13 col= 18 Spelling=";"
+#011 declarations -> declarations VAR identifier_list:type;
+Token:Code=282 Name=     BEGIN line= 14 col=  1 Spelling="begin"
+#015 subprogram_declarations -> empty
+#003 program_declarations -> declarations subprogram_declarations
+Token:Code=286 Name=       END line= 15 col=  1 Spelling="end"
+#025 optional_statements -> empty
+#024 compound_statement -> BEGIN optional_statement END
+Token:Code=264 Name=    PERIOD line= 15 col= 14 Spelling="."
+#004 program_body -> compound_statement .
+#001 program -> program_head program_declarations program_body

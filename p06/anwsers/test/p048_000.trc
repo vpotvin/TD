@@ -4,6 +4,8 @@ Token:Code=301 Name=        ID line= 12 col=  9 Spelling="p048_000"
 Token:Code=266 Name= SEMICOLON line= 12 col= 17 Spelling=";"
 #005 program_parameters -> empty
 #002 program_head -> PROGRAM ID(p048_000) program_parameters ;
+Before::LexicalLevel=0 After::LexicalLevel=1
+
 #010 variable_declarations -> empty
 Token:Code=298 Name=       VAR line= 13 col=  3 Spelling="var"
 Token:Code=301 Name=        ID line= 13 col=  7 Spelling="i"
@@ -256,7 +258,9 @@ Symbol(Variable Symbol) id(d)
 Token:Code=264 Name=PERIOD     line=23  col=14  Spelling="."
 #004 program_body -> compound_statement .
 #001 program -> program_head program_declarations program_body
+Before::LexicalLevel=1
 Locality: lexical level 1
+
 
   Symbol(Variable Symbol) id(b)
     type(Boolean)
@@ -282,91 +286,8 @@ Locality: lexical level 1
     type(Integer)
       size(1) alignment(1)
     lexicallevel(1) address(7)
+ After::LexicalLevel=0
 
 Locality: lexical level 0
 
-  Symbol(Standard Function Symbol) id(abs)
-    type(Void)
-      size(0) alignment(0)
-    cspid(abs)
-  Symbol(Type Symbol) id(boolean)
-    type(Boolean)
-      size(1) alignment(1)
-  Symbol(Type Symbol) id(char)
-    type(Character)
-      size(1) alignment(1)
-  Symbol(Standard Function Symbol) id(chr)
-    type(Void)
-      size(0) alignment(0)
-    cspid(chr)
-  Symbol(Constant Symbol) id(false)
-    type(Boolean)
-      size(1) alignment(1)
-    Constant value(0)
-      type(Boolean)
-        size(1) alignment(1)
-  Symbol(Type Symbol) id(integer)
-    type(Integer)
-      size(1) alignment(1)
-  Symbol(Standard Function Symbol) id(ord)
-    type(Void)
-      size(0) alignment(0)
-    cspid(ord)
-  Symbol(Program Symbol) id(p048_000)
-    type(Void)
-      size(0) alignment(0)
-    lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
-  Symbol(Standard Function Symbol) id(pred)
-    type(Void)
-      size(0) alignment(0)
-    cspid(dec)
-  Symbol(Type Symbol) id(real)
-    type(Real)
-      size(1) alignment(1)
-  Symbol(Standard Function Symbol) id(round)
-    type(Void)
-      size(0) alignment(0)
-    cspid(rnd)
-  Symbol(Standard Function Symbol) id(sqrt)
-    type(Void)
-      size(0) alignment(0)
-    cspid(sqt)
-  Symbol(Standard Function Symbol) id(succ)
-    type(Void)
-      size(0) alignment(0)
-    cspid(inc)
-  Symbol(Constant Symbol) id(true)
-    type(Boolean)
-      size(1) alignment(1)
-    Constant value(1)
-      type(Boolean)
-        size(1) alignment(1)
-  Symbol(Standard Function Symbol) id(trunc)
-    type(Void)
-      size(0) alignment(0)
-    cspid(trc)
-  Symbol(Standard Procedure Symbol) id(writeboolean)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wrb)
-  Symbol(Standard Procedure Symbol) id(writechar)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wrc)
-  Symbol(Standard Procedure Symbol) id(writeexponential)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wre)
-  Symbol(Standard Procedure Symbol) id(writefixed)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wrf)
-  Symbol(Standard Procedure Symbol) id(writeinteger)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wri)
-  Symbol(Standard Procedure Symbol) id(writeln)
-    type(Void)
-      size(0) alignment(0)
-    cspid(wln)
 

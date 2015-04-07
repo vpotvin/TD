@@ -36,7 +36,12 @@ SymbolTable::SymbolTable()
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 SymbolTable::~SymbolTable()
-{   PopLocality();
+{   cout << endl;
+    cout << "Before::SymbolTable::~SymbolTable()::LexicalLevel=" << LexicalLevel();   
+    PopLocality();
+    cout << endl;
+    cout << "After::SymbolTable::~SymbolTable()::LexicalLevel=" << LexicalLevel();   
+    cout << endl;
 }
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -52,6 +57,7 @@ void SymbolTable::StandardTypes(void)
 {       
     tvoid=new Void();
     
+
     taddress=new Address();
     
     tboolean=new Boolean();
@@ -115,13 +121,15 @@ void SymbolTable::StandardFunctions(void)
 //Print the symbols in the Symbol Table stored at the current lexical level
 //-----------------------------------------------------------------------------
 void SymbolTable::Print(ostream& o)
-{   if (L) L->Print(o);
+{   L=Top();  
+    if (L) L->Print(o);
 }
 //-----------------------------------------------------------------------------
 //Function NewLocality creates a new locality and pushes it on the stack.
 //-----------------------------------------------------------------------------
 void SymbolTable::NewLocality(void)
-{   L=new Locality(LexicalLevel()+1);   //Create a new locality 
+{   
+    L=new Locality(LexicalLevel()+1);   //Create a new locality 
     Push(L);                            //Push the locality on the 
                                         //LocalityStack
 }
@@ -133,6 +141,7 @@ void SymbolTable::PopLocality(void)
    L=Pop();                             //Pop the current Locality from
                                         //the LocalityStack
    L=Top();                             //Make L the top of the locality stack
+   
 }
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------

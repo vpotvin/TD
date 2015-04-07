@@ -1,0 +1,37 @@
+Token:Code=293 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
+Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p016_000"
+Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
+#005 program_parameters -> empty
+#002 program_head -> PROGRAM ID(p016_000) program_parameters ;
+#010 variable_declarations -> empty
+Token:Code=286 Name= FUNCTION Line=  13 Col=   3 Spelling= "function"
+#015 subprogram_declarations -> empty
+Token:Code=260 Name=       ID Line=  13 Col=  12 Spelling= "max"
+Token:Code=276 Name=   LPAREN Line=  13 Col=  15 Spelling= "("
+Token:Code=260 Name=       ID Line=  13 Col=  16 Spelling= "a"
+#008 identifier_list -> ID(a)
+ identifier_list={a}Token:Code=267 Name=    COMMA Line=  13 Col=  17 Spelling= ","
+Token:Code=260 Name=       ID Line=  13 Col=  18 Spelling= "b"
+#009 identifier_list -> identifier_list , ID(b)
+ identifier_list={a,b}Token:Code=269 Name=    COLON Line=  13 Col=  19 Spelling= ":"
+Token:Code=260 Name=       ID Line=  13 Col=  20 Spelling= "integer"
+#014 standard_type -> ID(integer)
+
+Symbol(Type Symbol) id(integer)
+  type(Integer)
+    size(1) alignment(1)
+#012 type -> standard_type
+#022 parameter_list -> identifier_list : type
+Token:Code=277 Name=   RPAREN Line=  13 Col=  27 Spelling= ")"
+#021 subprogram_parameters -> ( parameter_list )
+Token:Code=269 Name=    COLON Line=  13 Col=  28 Spelling= ":"
+Token:Code=260 Name=       ID Line=  13 Col=  29 Spelling= "integer"
+#014 standard_type -> ID(integer)
+
+Symbol(Type Symbol) id(integer)
+  type(Integer)
+    size(1) alignment(1)
+#018 subprogram_head -> FUNCTION ID(max) subprogram_parameters : standard_type ;
+#010 variable_declarations -> empty
+Token:Code=268 Name= SEMICOLON Line=  13 Col=  36 Spelling= ";"
+

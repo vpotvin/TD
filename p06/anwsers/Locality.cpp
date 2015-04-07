@@ -34,7 +34,15 @@ struct AlignmentException {
 };
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-Locality::Locality(int ll):lexicallevel(ll),offset(5){}
+Locality::Locality(int ll):lexicallevel(ll),offset(5)
+{
+    cout << endl;
+    cout << "ll=" << ll;
+    cout << " ";
+    cout << "lexicallevel=" << lexicallevel;
+    cout << endl;
+    
+}
 int Locality::Offset(void){return offset;}
 int Locality::Offset(int size,int alignment)
 {    //-------------------------------------------------------------------
@@ -61,6 +69,7 @@ int Locality::Offset(int size,int alignment)
 void Locality::Print(ostream& o)
 {   o << endl;
     o << "Locality: lexical level " << lexicallevel;
+    o << endl;
     Namespace::Print(o);
 }
 //-----------------------------------------------------------------------------
