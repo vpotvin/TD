@@ -1,0 +1,167 @@
+
+//-----------------------------------------------------------------------------
+//File Sym.cpp contains member functions of class Sym and derived classes
+//-----------------------------------------------------------------------------
+//Author: Thomas R. Turner
+//E-Mail: trturner@ucok.edu
+//August, 2007
+//-----------------------------------------------------------------------------
+//Copyright August, 2007 by Thomas R. Turner.
+//Do not reproduce without permission from Thomas R. Turner.
+//-----------------------------------------------------------------------------
+//C++ include files and namespace std
+//-----------------------------------------------------------------------------
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <string>
+#include <cmath>
+#include <stdio.h>
+using namespace std;
+//-----------------------------------------------------------------------------
+//Application include files
+//-----------------------------------------------------------------------------
+#include "Typ.h"
+#include "Sym.h"
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+Sym::Sym(Symkind sk,string id,Typ* t,int ll)
+  :symkind(sk),identifier(id),typ(t),lexicallevel(ll){}
+Typ* Sym::Type(void){return typ;}
+void Sym::Print(ostream& o,int level,char* title)
+{    static string SK[]=
+     {"sk_constant"
+     ,"sk_variable"
+     ,"sk_type"
+     ,"sk_program"
+     ,"sk_procedure"
+     ,"sk_function"
+     ,"sk_standardfunction"
+     };
+     o << endl;
+     for (int a=0;a<level;a++) o << "  ";
+     o << title;
+     o << "id(" << identifier << ") "
+       << "symkind(" << SK[symkind] << ")";
+     o << " lexicallevel(" << lexicallevel << ")";
+}
+int Sym::Size(void){if (typ) return typ->Size(); else return 0;}
+int Sym::Alignment(void){if (typ) return typ->Alignment(); else return 0;}int Sym::LexicalLevel(void){return lexicallevel;}
+string Sym::Id(void){return identifier;}
+Symkind Sym::SymKind(void){return symkind;}
+bool Sym::IsProgramSymbol(void){return Type()->IsProgramType();}
+bool Sym::IsProcedureSymbol(void){return Type()->IsProcedureType();}
+bool Sym::IsFunctionSymbol(void){return Type()->IsFunctionType();}
+bool Sym::IsStandardFunctionSymbol(void)
+{return Type()->IsStandardFunctionType();}
+bool Sym::IsStandardProcedureSymbol(void)
+{return Type()->IsStandardProcedureType();}
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+ConstantSymbol::ConstantSymbol(string id,Typ* t,string v,int ll)
+    :Sym(sk_constant,id,t,ll),value(v){}
+void ConstantSymbol::Print(ostream& o,int level,char* title)
+{   Sym::Print(o,level,title); 
+    o << " value(" << value << ")";
+    if (Type()) Type()->Print(o,level+1,"");
+}
+struct IntegerValueException {
+    IntegerValueException(string value)
+    {   cout << endl;
+        cout << "IntegerValueException: " << value << " has no integer value.";
+        cout << endl;
+    }
+};
+int ConstantSymbol::IntegerValue(void)
+{   int iv=0;
+    const char* v=value.data();
+    if (!Type()) return 0;
+    switch (Type()->Typekind()) {
+        case tk_integer:
+            sscanf(v,"%d",&iv);
+        break;
+        case tk_character:
+            iv=(int)value[0];
+        break;
+        default:
+            throw IntegerValueException(value);
+    }
+    return iv;
+}
+string ConstantSymbol::StringValue(void){return value;}
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+VariableSymbol::VariableSymbol(string id,Typ* t,int a,int ll)
+    :Sym(sk_variable,id,t,ll),address(a){}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+void VariableSymbol::Print(ostream& o,int level,char* title)
+{   Sym::Print(o,level,title);
+    o << " address(" << address << ")";
+    if (Type()) Type()->Print(o,level+1,"");
+}
+int VariableSymbol::Address(void){return address;}
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+TypeSymbol::TypeSymbol(string id,Typ* t,int ll):Sym(sk_type,id,t,ll){}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+void TypeSymbol::Print(ostream& o,int level,char* title)
+{   Sym::Print(o,level,title);
+    if (Type()) Type()->Print(o,level+1,"");
+}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+FunctionSymbol::FunctionSymbol
+        (string id            //Function identifier
+        ,Typ* t               //Function type
+        ,int ll               //Function lexical level
+        )
+    :Sym(sk_function,id,t,ll){}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+string FunctionSymbol::Entry(void){return entry;}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+string FunctionSymbol::SPLabel(void){return splabel;}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+string FunctionSymbol::EPLabel(void){return eplabel;}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+void FunctionSymbol::StoreLabels
+        (Label& L             //Label& L manages labels
+        )
+{  entry=L.New();
+   splabel=L.New();
+   eplabel=L.New();
+}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+void FunctionSymbol::StoreParameters(List<Sym*>* P)
+{   Function* T=(Function*)(Type());
+    T->StoreParameters(P);
+}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+void FunctionSymbol::Print(ostream& o,int level,char* title)
+{   Sym::Print(o,level,title);
+    if (Type()) Type()->Print(o,level+1,"");
+}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+StandardFunctionSymbol::StandardFunctionSymbol
+   (string id                 //Standard Function 
+   ,Typ* t                    //Type
+   ,string sfid               //P-Code CSP id
+   ):Sym(sk_standardfunction,id,t,0),CSPID(sfid){}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+void StandardFunctionSymbol::Print(ostream& o,int level,char* title)
+{  Sym::Print(o,level,title);
+   o << " CSPID(" << CSPID << ")";
+}
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+string StandardFunctionSymbol::SID(void){return CSPID;}
+

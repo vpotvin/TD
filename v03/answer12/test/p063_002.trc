@@ -1,0 +1,178 @@
+
+Token:Code=294 Name=   PROGRAM line= 13 col=  1 Spelling="program"
+Token:Code=301 Name=        ID line= 13 col=  9 Spelling="p063_000"
+Token:Code=266 Name= SEMICOLON line= 13 col= 17 Spelling=";"
+#005 program_parameters -> empty
+#002 program_head -> PROGRAM ID(p063_000) program_parameters ;
+#010 variable_declarations -> empty
+Token:Code=298 Name=       VAR line= 14 col=  3 Spelling="var"
+Token:Code=301 Name=        ID line= 14 col=  7 Spelling="r"
+#008 identifier_list -> ID(r) identifier_list={r}
+Token:Code=267 Name=     COLON line= 14 col=  8 Spelling=":"
+Token:Code=301 Name=        ID line= 14 col=  9 Spelling="real"
+#014 standard_type -> ID(real)
+Symbol(Type Symbol) id(real)
+  type(Real)
+    size(1) alignment(1)
+#012 type -> standard_type
+Token:Code=266 Name= SEMICOLON line= 14 col= 13 Spelling=";"
+#011 variable_declarations -> variable_declarations VAR identifier_list:type;
+Token:Code=287 Name=  FUNCTION line= 15 col=  3 Spelling="function"
+#015 subprogram_declarations -> empty
+Token:Code=301 Name=        ID line= 15 col= 12 Spelling="f"
+Token:Code=267 Name=     COLON line= 15 col= 13 Spelling=":"
+#020 subprogram_parameters -> empty
+Token:Code=301 Name=        ID line= 15 col= 14 Spelling="real"
+#014 standard_type -> ID(real)
+Symbol(Type Symbol) id(real)
+  type(Real)
+    size(1) alignment(1)
+Token:Code=266 Name= SEMICOLON line= 15 col= 18 Spelling=";"
+#018 subprogram_head -> FUNCTION ID(f) subprogram_parameters : standard_type ;
+#010 variable_declarations -> empty
+Token:Code=282 Name=     BEGIN line= 16 col=  3 Spelling="begin"
+Token:Code=301 Name=        ID line= 17 col=  5 Spelling="f"
+Token:Code=263 Name=    ASSIGN line= 17 col=  6 Spelling=":="
+#034 variable -> ID(f)
+Symbol(Function Symbol) id(f)
+  type(Subprogram)
+      Return Type
+        type(Real)
+          size(1) alignment(1)
+      Parameter Types
+  lexicallevel(1) elabel(L00004) splabel(L00005) eplabel(L00006)
+          lda       0         0         
+Token:Code=303 Name=REALIT     line=17  col=8   Spelling="6.022e23"
+#069 factor -> REALIT(6.022e23)
+          ldc       r         6.022e23  
+#056 term -> factor
+Token:Code=286 Name=END        line=18  col=3   Spelling="end"
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#029 statement -> variable := expression
+          lda       0         0         
+          ldc       r         6.022e23  
+          sti       r                   
+#027 statement_list -> statement
+          lda       0         0         
+          ldc       r         6.022e23  
+          sti       r                   
+#026 optional_statements -> statement_list
+          lda       0         0         
+          ldc       r         6.022e23  
+          sti       r                   
+#024 compound_statement -> BEGIN optional_statement END
+          lda       0         0         
+          ldc       r         6.022e23  
+          sti       r                   
+#017 subprogram_declaration -> subprogram_head variable_declarations compound_statement
+prolog
+L00004    ent       sp        L00005    
+          ent       ep        L00006    
+compound_statement
+          lda       0         0         
+          ldc       r         6.022e23  
+          sti       r                   
+          rtn       r                   
+
+#define   L00005    4                   
+
+
+#define   L00006    6                   
+
+epilog
+          rtn       r                   
+#define   L00005    4                   
+#define   L00006    6                   
+Locality: lexical level 2
+
+
+Token:Code=266 Name=SEMICOLON  line=18  col=9   Spelling=";"
+#016 subprogram_declarations -> subprogram_declarations subprogram_declaration ;
+Token:Code=282 Name=BEGIN      line=19  col=1   Spelling="begin"
+#003 program_declarations -> variable_declarations subprogram_declarations
+Token:Code=301 Name=ID         line=20  col=3   Spelling="r"
+Token:Code=263 Name=ASSIGN     line=20  col=4   Spelling=":="
+#034 variable -> ID(r)
+Symbol(Variable Symbol) id(r)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
+Token:Code=301 Name=ID         line=20  col=6   Spelling="f"
+Token:Code=286 Name=END        line=21  col=1   Spelling="end"
+#063 factor -> ID(f)
+Symbol(Function Symbol) id(f)
+  type(Subprogram)
+      Return Type
+        type(Real)
+          size(1) alignment(1)
+      Parameter Types
+  lexicallevel(1) elabel(L00004) splabel(L00005) eplabel(L00006)
+          mst       0                   
+          cup       0         L00004    
+#056 term -> factor
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#029 statement -> variable := expression
+          lda       0         5         
+          mst       0                   
+          cup       0         L00004    
+          sti       r                   
+#027 statement_list -> statement
+          lda       0         5         
+          mst       0                   
+          cup       0         L00004    
+          sti       r                   
+#026 optional_statements -> statement_list
+          lda       0         5         
+          mst       0                   
+          cup       0         L00004    
+          sti       r                   
+#024 compound_statement -> BEGIN optional_statement END
+          lda       0         5         
+          mst       0                   
+          cup       0         L00004    
+          sti       r                   
+Token:Code=264 Name=PERIOD     line=21  col=14  Spelling="."
+#004 program_body -> compound_statement .
+#001 program -> program_head program_declarations program_body
+prolog
+L00001    ent       sp        L00002    
+          ent       ep        L00003    
+compound_statement
+          lda       0         5         
+          mst       0                   
+          cup       0         L00004    
+          sti       r                   
+          rtn       p                   
+
+#define   L00002    5                   
+
+
+#define   L00003    11                  
+
+epilog
+          rtn       p                   
+#define   L00002    5                   
+#define   L00003    11                  
+program epilog
+          mst       0                   
+          cup       0         L00001    
+          stp                           
+Locality: lexical level 1
+
+  Symbol(Function Symbol) id(f)
+    type(Subprogram)
+        Return Type
+          type(Real)
+            size(1) alignment(1)
+        Parameter Types
+    lexicallevel(1) elabel(L00004) splabel(L00005) eplabel(L00006)
+  Symbol(Variable Symbol) id(r)
+    type(Real)
+      size(1) alignment(1)
+    lexicallevel(1) address(5)
+
+Locality: lexical level 0
+

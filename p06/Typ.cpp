@@ -55,10 +55,12 @@ bool Typ::IsBoolean(void){return tk==tk_boolean;}
 bool Typ::IsCharacter(void){return tk==tk_character;}
 bool Typ::IsInteger(void){return tk==tk_integer;}
 bool Typ::IsReal(void){return tk==tk_real;}
+bool Typ::IsString(void){return tk==tk_string;}
 bool Typ::IsArray(void){return tk==tk_array;}
 bool Typ::IsRange(void){return tk==tk_range;}
 bool Typ::IsVoid(void){return tk==tk_void;}
 bool Typ::IsSubprogram(void){return tk==tk_subprogram;}
+/*
 string Typ::TypeChar(void)
 {   static string TC[]=
     {"v","a","b","c","i","r","x"
@@ -66,6 +68,7 @@ string Typ::TypeChar(void)
     };
     return TC[tk];
 }
+*/
 //-----------------------------------------------------------------------------
 //Member functions of class Scalar
 //-----------------------------------------------------------------------------
@@ -188,6 +191,7 @@ string Range::LoBound(void){return lo->ConstantValue();}
 //Member functions of class Array
 //-----------------------------------------------------------------------------
 Array::Array(Range* i,Typ* e):Typ(tk_array),index(i),element(e){}
+Array::Array(typekind tk,Range* i,Typ* e):Typ(tk_array),index(i),element(e){}
 void Array::Print(ostream& o,int indent)
 {   Typ::Print(o,indent);
     o << endl;
@@ -224,6 +228,8 @@ int Array::Alignment(void)
 Range* Array::IndexType(void){return index;}
 Typ* Array::ElementType(void){return element;}
 int Array::Stride(void){return element->Size();}
+
+String::String(Range* i,Typ* e):Array(tk_string,i,e){}
 //-----------------------------------------------------------------------------
 //Member functions of class Subprogram
 //-----------------------------------------------------------------------------
