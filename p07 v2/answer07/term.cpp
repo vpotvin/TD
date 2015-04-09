@@ -50,7 +50,7 @@ using namespace std;
 //---------------------------------------------------------------------
 //Externals
 //---------------------------------------------------------------------
-extern ofstream tfs;
+extern ofstream o;
 extern int line;
 extern int col;
 extern SymbolTable ST;
@@ -72,7 +72,7 @@ Exp* term_2(Exp* term, Exp* factor)
         P=new PCode("","mpi","","");
         E=new Exp(term,factor,ST.TReal(),P);
     }
-    E->Print(tfs);
+    E->Print(o);
     return E;
 }
 //--------------------------------------------------------------------
@@ -89,7 +89,7 @@ Exp* term_3(Exp* term, Exp* factor)
    //---------------------------------------------------------------------
    PCode* P=new PCode("","dvr","","");
    Exp* E=new Exp(term,factor,ST.TReal(),P);
-   E->Print(tfs);
+   E->Print(o);
    return E;
 }
 //--------------------------------------------------------------------
@@ -104,7 +104,7 @@ Exp* term_4(Exp* term, Exp* factor)
     
     PCode* P=new PCode("","dvi","","");
     Exp* E=new Exp(term,factor,ST.TInteger(),P);
-    E->Print(tfs);
+    E->Print(o);
     return E;
 }
 //--------------------------------------------------------------------
@@ -119,7 +119,7 @@ Exp* term_5(Exp* term, Exp* factor)
     
     PCode* P=new PCode("","mod","","");
     Exp* E=new Exp(term,factor,ST.TInteger(),P);
-    E->Print(tfs);
+    E->Print(o);
     return E;
 }
 //--------------------------------------------------------------------
@@ -134,7 +134,7 @@ Exp* term_6(Exp* term, Exp* factor)
     
     PCode* P=new PCode("","and","","");
     Exp* E=new Exp(term,factor,ST.TBoolean(),P);
-    E->Print(tfs);
+    E->Print(o);
     return E;
 }
 //-------------------------------------------------------------------------

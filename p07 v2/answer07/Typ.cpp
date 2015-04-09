@@ -43,7 +43,6 @@ string Typ::TypekindSymbol(typekind tk)
         case tk_character         : return "Character";
         case tk_integer           : return "Integer";
         case tk_real              : return "Real";
-        case tk_string            : return "String";
         case tk_range             : return "Range";
         case tk_array             : return "Array";
         case tk_subprogram        : return "Subprogram";
@@ -61,21 +60,15 @@ bool Typ::IsArray(void){return tk==tk_array;}
 bool Typ::IsRange(void){return tk==tk_range;}
 bool Typ::IsVoid(void){return tk==tk_void;}
 bool Typ::IsSubprogram(void){return tk==tk_subprogram;}
+
 string Typ::TypeChar(void)
-{   switch(tk) {
-        case tk_void              : return "p";
-        case tk_address           : return "a";
-        case tk_boolean           : return "b";
-        case tk_character         : return "c";
-        case tk_integer           : return "i";
-        case tk_real              : return "r";
-        case tk_string            : return "s";
-        case tk_range             : return "u";
-        case tk_array             : return "u";
-        case tk_subprogram        : return "u";
-        default                   : return "u";
-    }
+{   static string TC[]=
+    {"v","a","b","c","i","r","x"
+    ,"i","i","x","x","x","x","x"
+    };
+    return TC[tk];
 }
+
 //-----------------------------------------------------------------------------
 //Member functions of class Scalar
 //-----------------------------------------------------------------------------
@@ -235,9 +228,7 @@ int Array::Alignment(void)
 Range* Array::IndexType(void){return index;}
 Typ* Array::ElementType(void){return element;}
 int Array::Stride(void){return element->Size();}
-//-----------------------------------------------------------------------------
-//Member functions of class String
-//-----------------------------------------------------------------------------
+
 String::String(Range* i,Typ* e):Array(tk_string,i,e){}
 //-----------------------------------------------------------------------------
 //Member functions of class Subprogram

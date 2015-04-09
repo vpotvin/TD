@@ -44,7 +44,7 @@ using namespace std;
 //---------------------------------------------------------------------
 //Externals
 //---------------------------------------------------------------------
-extern ofstream tfs;
+extern ofstream o;
 extern int line;
 extern int col;
 extern Label L;
@@ -56,7 +56,7 @@ extern SymbolTable ST;        //The SymbolTable
 //---------------------------------------------------------------------
 void program(void)
 {
-   ST.Print(tfs);             //Print Locality 1
+   ST.Print(o);             //Print Locality 1
    ST.PopLocality();
-   ST.Print(tfs);             //Print Locality 0
+   ST.Print(o);             //Print Locality 0
 }

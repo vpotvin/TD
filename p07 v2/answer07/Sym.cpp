@@ -53,9 +53,7 @@ string Sym::SymkindSymbol(symkind sk)
 symkind Sym::Symkind(void){return sk;}
 //-----------------------------------------------------------------------------
 void Sym::Print(ostream& o,int indent)
-{   
-    cout << "Sym::Print" << endl;
-    o << endl;
+{   o << endl;
     for (int a=0;a<indent;a++) o << "  ";
     o << "Symbol(" << SymkindSymbol(sk) << ")";
     o << " ";
@@ -68,10 +66,8 @@ string Sym::Id(void){return id;}
 Typ* Sym::Type(void){return t;}
 //-----------------------------------------------------------------------------
 bool Sym::IsStandardFunctionSymbol(void){return sk==sk_standardfunction;}
-bool Sym::IsStandardProcedureSymbol(void){return sk==sk_standardprocedure;}
 bool Sym::IsVariableSymbol(void){return sk==sk_variable;}
 bool Sym::IsProgramSymbol(void){return sk==sk_program;}
-bool Sym::IsProcedureSymbol(void){return sk==sk_procedure;}
 bool Sym::IsTypeSymbol(void){return sk==sk_type;}
 bool Sym::IsFunctionSymbol(void){return sk==sk_function;}
 //-----------------------------------------------------------------------------
@@ -80,9 +76,7 @@ bool Sym::IsFunctionSymbol(void){return sk==sk_function;}
 TypeSymbol::TypeSymbol(const char* id, Typ* t):Sym(sk_type,id,t){}
 TypeSymbol::TypeSymbol(string id, Typ* t):Sym(sk_type,id,t){}
 void TypeSymbol::Print(ostream& o,int indent)
-{   
-    cout << "TypeSymbol::Print" << endl;
-    Sym::Print(o,indent);
+{   Sym::Print(o,indent);
 }
 //-----------------------------------------------------------------------------
 //class ConstantSymbol
@@ -96,9 +90,7 @@ ConstantSymbol::ConstantSymbol(const char* id,Typ* t,string v)
 ConstantSymbol::ConstantSymbol(string id,Typ* t,string v)
     :Sym(sk_constant,id,t){constant=new Constant(t,v);}
 void ConstantSymbol::Print(ostream& o,int indent)
-{   
-    cout << "ConstantSymbol::Print" << endl;
-    Sym::Print(o,indent);
+{   Sym::Print(o,indent);
     constant->Print(o,indent+1);
 }
 string ConstantSymbol::ConstantValue(void)
@@ -108,44 +100,40 @@ string ConstantSymbol::ConstantValue(void)
 //class StandardSubprogramSymbol
 //-----------------------------------------------------------------------------
 StandardSubprogramSymbol::StandardSubprogramSymbol(symkind sk,string id,string cid)
-    :Sym(sk,id,tvoid),cspid(cid)
-{   
-    cout << "StandardSubprogramSymbol::StandardSubprogramSymbol" << endl;
-    cout << "sk=" << SymkindSymbol(sk) << " id=" << id << " cid=" << cid << endl;
-}
+    :Sym(sk,id,tvoid),cspid(cid){}
 void StandardSubprogramSymbol::Print(ostream& o,int indent)
-{   
-    cout << "StandardSubprogramSymbol::Print" << endl;
-    Sym::Print(o,indent);
+{   Sym::Print(o,indent);
     o << endl;
     for (int a=0;a<indent+1;a++) o << "  ";
     o << "cspid(" << cspid << ")";
 }
-string StandardSubprogramSymbol::CSPID(void){return cspid;}
 //-----------------------------------------------------------------------------
 //class StandardProcedureSymbol
 //-----------------------------------------------------------------------------
+StandardProcedureSymbol::StandardProcedureSymbol(const char* id,const char* cid)
+   :StandardSubprogramSymbol(sk_standardprocedure,id,cid){}
+StandardProcedureSymbol::StandardProcedureSymbol(const char* id,string cid)
+   :StandardSubprogramSymbol(sk_standardprocedure,id,cid){}
+StandardProcedureSymbol::StandardProcedureSymbol(string id,const char* cid)
+   :StandardSubprogramSymbol(sk_standardprocedure,id,cid){}
 StandardProcedureSymbol::StandardProcedureSymbol(string id,string cid)
-   :StandardSubprogramSymbol(sk_standardprocedure,id,cid)
-{
-    cout << "StandardProcedureSymbol::StandardProcedureSymbol" << endl;
-    cout << " id=" << id << " cid=" << cid << endl;
-}
+   :StandardSubprogramSymbol(sk_standardprocedure,id,cid){}
 void StandardProcedureSymbol::Print(ostream& o,int indent)
-{   
-
-    cout << "StandardProcedureSymbol::Print" << endl;
-    StandardSubprogramSymbol::Print(o,indent);
+{   StandardSubprogramSymbol::Print(o,indent);
 }
 //-----------------------------------------------------------------------------
 //class StandardFunctionSymbol
 //-----------------------------------------------------------------------------
+StandardFunctionSymbol::StandardFunctionSymbol(const char* id,const char* cid)
+   :StandardSubprogramSymbol(sk_standardfunction,id,cid){}
+StandardFunctionSymbol::StandardFunctionSymbol(const char* id,string cid)
+   :StandardSubprogramSymbol(sk_standardfunction,id,cid){}
+StandardFunctionSymbol::StandardFunctionSymbol(string id,const char* cid)
+   :StandardSubprogramSymbol(sk_standardfunction,id,cid){}
 StandardFunctionSymbol::StandardFunctionSymbol(string id,string cid)
    :StandardSubprogramSymbol(sk_standardfunction,id,cid){}
 void StandardFunctionSymbol::Print(ostream& o,int indent)
-{   
-    cout << "StandardFunctionSymbol::Print" << endl;
-    StandardSubprogramSymbol::Print(o,indent);
+{   StandardSubprogramSymbol::Print(o,indent);
 }
 //-----------------------------------------------------------------------------
 //class VariableSymbol

@@ -51,7 +51,7 @@ using namespace std;
 //---------------------------------------------------------------------
 //Externals
 //---------------------------------------------------------------------
-extern ofstream tfs;
+extern ofstream o;
 extern int line;
 extern int col;
 extern SymbolTable ST;
@@ -90,7 +90,7 @@ Exp* simple_expression(string* sign,Exp* term)
         P=new PCode("","ngr","","");
         E=new Exp(term,0,ST.TReal(),P);
     }
-    E->Print(tfs);
+    E->Print(o);
     return E;
 }
 //--------------------------------------------------------------------
@@ -116,7 +116,7 @@ Exp* add(Exp* l,Exp* r)
         P=new PCode("","adi","","");
         E=new Exp(l,r,ST.TInteger(),P);
     }
-    E->Print(tfs);
+    E->Print(o);
     return E;
 }
 //--------------------------------------------------------------------
@@ -142,7 +142,7 @@ Exp* subtract(Exp* l,Exp* r)
         P=new PCode("","sbi","","");
         E=new Exp(l,r,ST.TInteger(),P);
     }
-    E->Print(tfs);
+    E->Print(o);
     return E;
 }
 //--------------------------------------------------------------------
@@ -160,7 +160,7 @@ Exp* disjunction(Exp* l,Exp* r)
     //---------------------------------------------------------------------
     PCode* P=new PCode("","ior","","");
     Exp* E=new Exp(l,r,ST.TBoolean(),P);
-    E->Print(tfs);
+    E->Print(o);
     return E;
 }
 //--------------------------------------------------------------------

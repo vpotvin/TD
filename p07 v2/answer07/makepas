@@ -1,5 +1,8 @@
 rm paslex.cpp
 rm paspar.cpp
+rm y.output
 rm *.o
-rm pas
-make -f makepascal
+rm *.trc
+rm y.tab.h
+
+make -f pasMakeFile
