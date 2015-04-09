@@ -12,8 +12,6 @@ Token:Code=275 Name=    RPAREN line= 12 col= 30 Spelling=")"
 #006 program_parameters -> (program_parameter_list)
 Token:Code=266 Name= SEMICOLON line= 12 col= 31 Spelling=";"
 #002 program_head -> PROGRAM ID(p007_000) program_parameters ;
-Before::LexicalLevel=0 After::LexicalLevel=1
-
 #010 variable_declarations -> empty
 Token:Code=282 Name=     BEGIN line= 13 col=  1 Spelling="begin"
 #015 subprogram_declarations -> empty
@@ -24,12 +22,37 @@ Token:Code=286 Name=       END line= 14 col=  1 Spelling="end"
 Token:Code=264 Name=    PERIOD line= 14 col= 14 Spelling="."
 #004 program_body -> compound_statement .
 #001 program -> program_head program_declarations program_body
-Before::LexicalLevel=1
 Locality: lexical level 1
 
 
- After::LexicalLevel=0
-
 Locality: lexical level 0
 
+  Symbol(Type Symbol) id(boolean)
+    type(Boolean)
+      size(1) alignment(1)
+  Symbol(Type Symbol) id(char)
+    type(Character)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(false)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(0)
+      type(Boolean)
+        size(1) alignment(1)
+  Symbol(Type Symbol) id(integer)
+    type(Integer)
+      size(1) alignment(1)
+  Symbol(Program Symbol) id(p007_000)
+    type(Void)
+      size(0) alignment(0)
+    lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
+  Symbol(Type Symbol) id(real)
+    type(Real)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(true)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(1)
+      type(Boolean)
+        size(1) alignment(1)
 

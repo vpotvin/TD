@@ -4,8 +4,6 @@ Token:Code=301 Name=        ID line= 12 col=  9 Spelling="p031_000"
 Token:Code=266 Name= SEMICOLON line= 12 col= 17 Spelling=";"
 #005 program_parameters -> empty
 #002 program_head -> PROGRAM ID(p031_000) program_parameters ;
-Before::LexicalLevel=0 After::LexicalLevel=1
-
 #010 variable_declarations -> empty
 Token:Code=298 Name=       VAR line= 13 col=  3 Spelling="var"
 Token:Code=301 Name=        ID line= 13 col=  7 Spelling="cash"
@@ -146,16 +144,41 @@ Token:Code=286 Name=END        line=27  col=1   Spelling="end"
 Token:Code=264 Name=PERIOD     line=27  col=14  Spelling="."
 #004 program_body -> compound_statement .
 #001 program -> program_head program_declarations program_body
-Before::LexicalLevel=1
 Locality: lexical level 1
-
 
   Symbol(Variable Symbol) id(cash)
     type(Real)
       size(1) alignment(1)
     lexicallevel(1) address(5)
- After::LexicalLevel=0
 
 Locality: lexical level 0
 
+  Symbol(Type Symbol) id(boolean)
+    type(Boolean)
+      size(1) alignment(1)
+  Symbol(Type Symbol) id(char)
+    type(Character)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(false)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(0)
+      type(Boolean)
+        size(1) alignment(1)
+  Symbol(Type Symbol) id(integer)
+    type(Integer)
+      size(1) alignment(1)
+  Symbol(Program Symbol) id(p031_000)
+    type(Void)
+      size(0) alignment(0)
+    lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
+  Symbol(Type Symbol) id(real)
+    type(Real)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(true)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(1)
+      type(Boolean)
+        size(1) alignment(1)
 

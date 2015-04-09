@@ -1,6 +1,6 @@
 {------------------------------------------------------------------------------------}
 {program p066_000 exercises production #066                                          }
-{factor -> ( expression )                                                    }
+{factor -> ( expression )                                                            }
 {------------------------------------------------------------------------------------}
 {Author: Thomas R. Turner                                                            }
 {E-Mail: trturner@uco.edu                                                            }

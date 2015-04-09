@@ -18,6 +18,6 @@ begin{p050_000}
   i:=+j;
   i:=-j;
   i:=j+k;
-  i:=j-k;
+  i:=k-i mod j;
   b:=c or d
 end{p050_000}.

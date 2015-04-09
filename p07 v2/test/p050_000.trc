@@ -1,9 +1,9 @@
 
 Token:Code=294 Name=   PROGRAM line= 12 col=  1 Spelling="program"
-Token:Code=301 Name=        ID line= 12 col=  9 Spelling="p052_000"
+Token:Code=301 Name=        ID line= 12 col=  9 Spelling="p050_000"
 Token:Code=266 Name= SEMICOLON line= 12 col= 17 Spelling=";"
 #005 program_parameters -> empty
-#002 program_head -> PROGRAM ID(p052_000) program_parameters ;
+#002 program_head -> PROGRAM ID(p050_000) program_parameters ;
 #010 variable_declarations -> empty
 Token:Code=298 Name=       VAR line= 13 col=  3 Spelling="var"
 Token:Code=301 Name=        ID line= 13 col=  7 Spelling="i"
@@ -205,19 +205,8 @@ Symbol(Variable Symbol) id(k)
 Token:Code=301 Name=ID         line=21  col=3   Spelling="i"
 Token:Code=263 Name=ASSIGN     line=21  col=4   Spelling=":="
 #034 variable -> ID(i)
-Token:Code=301 Name=ID         line=21  col=6   Spelling="j"
+Token:Code=301 Name=ID         line=21  col=6   Spelling="k"
 Token:Code=260 Name=MINUS      line=21  col=7   Spelling="-"
-#063 factor -> ID(j)
-Symbol(Variable Symbol) id(j)
-  type(Integer)
-    size(1) alignment(1)
-  lexicallevel(1) address(6)
-          lvi       0         6         
-#056 term -> factor
-#048 simple_expression -> term
-#054 addop -> -
-Token:Code=301 Name=ID         line=21  col=8   Spelling="k"
-Token:Code=266 Name=SEMICOLON  line=21  col=9   Spelling=";"
 #063 factor -> ID(k)
 Symbol(Variable Symbol) id(k)
   type(Integer)
@@ -225,9 +214,35 @@ Symbol(Variable Symbol) id(k)
   lexicallevel(1) address(7)
           lvi       0         7         
 #056 term -> factor
-#050 simple_expression -> simple_expression addop term
+#048 simple_expression -> term
+#054 addop -> -
+Token:Code=301 Name=ID         line=21  col=8   Spelling="i"
+Token:Code=289 Name=MOD        line=21  col=10  Spelling="mod"
+#063 factor -> ID(i)
+Symbol(Variable Symbol) id(i)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lvi       0         5         
+#056 term -> factor
+#061 mulop -> MOD
+Token:Code=301 Name=ID         line=21  col=14  Spelling="j"
+Token:Code=266 Name=SEMICOLON  line=21  col=15  Spelling=";"
+#063 factor -> ID(j)
+Symbol(Variable Symbol) id(j)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(6)
           lvi       0         6         
+#057 term -> term mulop factor
+          lvi       0         5         
+          lvi       0         6         
+          mod                           
+#050 simple_expression -> simple_expression addop term
           lvi       0         7         
+          lvi       0         5         
+          lvi       0         6         
+          mod                           
           sbi                           
 #040 expression -> simple_expression
 #029 statement -> variable := expression
@@ -311,7 +326,7 @@ Locality: lexical level 0
   Symbol(Type Symbol) id(integer)
     type(Integer)
       size(1) alignment(1)
-  Symbol(Program Symbol) id(p052_000)
+  Symbol(Program Symbol) id(p050_000)
     type(Void)
       size(0) alignment(0)
     lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
