@@ -61,6 +61,7 @@ public:
     bool IsRange(void);                           //determines if the type is a range type
     bool IsVoid(void);                            //determines if the type is a void type
     bool IsSubprogram(void);                      //determines if the type is a subprogram
+    bool IsString(void);
     string TypeChar(void);                        //Returns the P-Code type-character
 
 };

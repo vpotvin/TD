@@ -1,0 +1,50 @@
+Token:Code=293 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
+Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p001_000"
+Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
+#005 program_parameters -> Empty
+#002 program_head->PROGRAM ID program_parameters
+#010 declarations->Empty
+Token:Code=258 Name=    BEGIN Line=  13 Col=   1 Spelling= "begin"
+#015 subprogram_declarations->Empty
+#003 program_declarations->declarations subprogram_declarations
+Token:Code=259 Name=      END Line=  14 Col=   1 Spelling= "end"
+#025 optional_statements->Empty
+#024 compound_statement->BEGIN optional_statements END
+Token:Code=266 Name=   PERIOD Line=  14 Col=  14 Spelling= "."
+#004 program_body->compound_statement .
+#001 Program->program_head program_declarations program_body
+
+Locality: lexical level 1
+
+
+Locality: lexical level 0
+
+  Symbol(Type Symbol) id(boolean)
+    type(Boolean)
+      size(1) alignment(1)
+  Symbol(Type Symbol) id(char)
+    type(Character)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(false)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(0)
+      type(Boolean)
+        size(1) alignment(1)
+  Symbol(Type Symbol) id(integer)
+    type(Integer)
+      size(1) alignment(1)
+  Symbol(Program Symbol) id(p001_000)
+    type(Void)
+      size(0) alignment(0)
+    lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
+  Symbol(Type Symbol) id(real)
+    type(Real)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(true)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(1)
+      type(Boolean)
+        size(1) alignment(1)
+
