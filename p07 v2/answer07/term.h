@@ -5,6 +5,13 @@
 //term -> factor
 //term -> term mulop factor
 //-------------------------------------------------------------------------
+//term_1: term -> factor 
+//term_2: term -> term * factor
+//term_3: term -> term / factor
+//term_4: term -> term DIV factor
+//term_5: term -> term MOD factor
+//term_6: term -> term AND factor
+//-------------------------------------------------------------------------
 //---------------------------------------------------------------------
 //Author:   Thomas R. Turner
 //E-Mail:   trturner@uco.edu

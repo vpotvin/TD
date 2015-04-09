@@ -50,6 +50,7 @@ public:
                               //stack
     int LexicalLevel(void);   //Return the lexical level of the locality on
                               //top of the stack
+    int Offset(void);         //Return the current offset
     void Print(ostream& o);   //Print all the localities currently on the
                               //stack
     void Print                //Print the locality on top of the stack

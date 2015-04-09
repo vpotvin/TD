@@ -1,24 +1,16 @@
 #ifndef PCode_h
 #define PCode_h 1
-//-------------------------------------------------------------------------
-//File PCode_h defines class PCode.   
-//-------------------------------------------------------------------------
-//Author: Thomas R. Turner
-//E-Mail: trturner@uco.edu
-//February, 2012
-//-------------------------------------------------------------------------
-//Copyright: February, 2012 by Thomas R. Turner.
-//Do not reproduce without permission from Thomas R. Turner.
-//-------------------------------------------------------------------------
-//C++ include files
-//-------------------------------------------------------------------------
+//Defines class PCode
+
+//Include Files
 #include <iostream>
 #include <fstream>
 #include <iomanip>
 #include <string>
 using namespace std;
-//-------------------------------------------------------------------------
-//-------------------------------------------------------------------------
+
+
+//Class Definition
 class PCode {
    string label;    //P-Code label
    string op;       //P-Code opcode

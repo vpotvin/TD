@@ -107,7 +107,6 @@ void StandardSubprogramSymbol::Print(ostream& o,int indent)
     for (int a=0;a<indent+1;a++) o << "  ";
     o << "cspid(" << cspid << ")";
 }
-string StandardSubprogramSymbol::CSPID(void){return cspid;}
 //-----------------------------------------------------------------------------
 //class StandardProcedureSymbol
 //-----------------------------------------------------------------------------

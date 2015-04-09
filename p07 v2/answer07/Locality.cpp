@@ -34,7 +34,7 @@ struct AlignmentException {
 };
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-Locality::Locality(int ll):lexicallevel(ll),offset(5){}
+Locality::Locality(int ll):lexicallevel(ll),offset(4){}
 int Locality::Offset(void){return offset;}
 int Locality::Offset(int size,int alignment)
 {    //-------------------------------------------------------------------
@@ -52,9 +52,7 @@ int Locality::Offset(int size,int alignment)
      //storage for the next item
      //-------------------------------------------------------------------
      if (remainder) offset=offset+(alignment-remainder);
-     int o=offset;        //Record and return the current offset
-     offset=offset+size;  //Allocate storage for the given item
-     return o;
+     return offset=offset+size;  //Allocate storage for the given item
 }
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------

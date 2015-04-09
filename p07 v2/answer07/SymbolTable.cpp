@@ -43,8 +43,8 @@ SymbolTable::~SymbolTable()
 void SymbolTable::Standard(void)
 {   StandardTypes();
     StandardConstants();
-    StandardProcedures();
-    StandardFunctions();
+    //StandardProcedures();
+    //StandardFunctions();
 }
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -92,6 +92,18 @@ void SymbolTable::StandardProcedures(void)
    Insert(wrf);
    Sym* wln=new StandardProcedureSymbol("writeln"         ,"wln");
    Insert(wln);
+   Sym* wrs=new StandardProcedureSymbol("writestring"     ,"wrs");
+   Insert(wrs);
+   Sym* rdc=new StandardProcedureSymbol("readchar"        ,"rdc");
+   Insert(rdc);
+   Sym* rdi=new StandardProcedureSymbol("readinteger"     ,"rdi");
+   Insert(rdi);
+   Sym* rdr=new StandardProcedureSymbol("readreal"        ,"rdr");
+   Insert(rdr);
+   Sym* rds=new StandardProcedureSymbol("readstring"      ,"rds");
+   Insert(rds);
+   Sym* rln=new StandardProcedureSymbol("readln"          ,"rln");
+   Insert(rln);
 }
 void SymbolTable::StandardFunctions(void)
 {  Sym* abs=new StandardFunctionSymbol("abs"  ,"abs");

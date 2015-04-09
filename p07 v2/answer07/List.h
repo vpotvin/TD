@@ -73,24 +73,29 @@ public:
         }
     }
     void Print(ostream& o,const char* title)
-    {  o << title << "{";
-       for (int a=0;a<count;a++) {
-          if (a>0) o << ",";
-          o << L[a];
-       }
-       o << "}";
+    {   o << title << "{";
+        for (int a=0;a<count;a++) {
+           if (a>0) o << ",";
+           o << L[a];
+        }
+        o << "}";
     }
-   T operator[](int i)
-   {   if (i<0 || i>=count) throw ListIndexException(i,count);
-       return L[i];
-   }
-   int Count(void){return count;}
-   void First(void){cursor=0;}
-   void Next(void){if (cursor<count) cursor++;}
-   bool IsEol(void){return cursor>=count;}
-   T Member(void)
-   {   if (cursor<0 || cursor>=count) throw ListIndexException(cursor,count);
-       return L[cursor];
-   }
+    void Print(ostream& o)
+    {   for (int a=0;a<count;a++) {
+            L[a]->Print(o);
+        }
+    }
+    T operator[](int i)
+    {   if (i<0 || i>=count) throw ListIndexException(i,count);
+        return L[i];
+    }
+    int Count(void){return count;}
+    void First(void){cursor=0;}
+    void Next(void){if (cursor<count) cursor++;}
+    bool IsEol(void){return cursor>=count;}
+    T Member(void)
+    {   if (cursor<0 || cursor>=count) throw ListIndexException(cursor,count);
+        return L[cursor];
+    }
 };
 #endif

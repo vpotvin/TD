@@ -1,10 +1,8 @@
+/* A Bison parser, made by GNU Bison 2.5.  */
 
-/* A Bison parser, made by GNU Bison 2.4.1.  */
-
-/* Skeleton interface for Bison's Yacc-like parsers in C
+/* Bison interface for Yacc-like parsers in C
    
-      Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
-   Free Software Foundation, Inc.
+      Copyright (C) 1984, 1989-1990, 2000-2011 Free Software Foundation, Inc.
    
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -39,105 +37,99 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     TOKEN_BEGIN = 258,
-     PLUS = 259,
-     MINUS = 260,
-     STAR = 261,
-     SLASH = 262,
-     ASSIGN = 263,
-     PERIOD = 264,
-     COMMA = 265,
-     SEMICOLON = 266,
-     COLON = 267,
-     EQU = 268,
-     NEQ = 269,
-     LES = 270,
-     LEQ = 271,
-     GEQ = 272,
-     GRT = 273,
-     LPAREN = 274,
-     RPAREN = 275,
-     LBRACKET = 276,
-     RBRACKET = 277,
-     RANGE = 278,
-     RESERVE_WORDS = 279,
-     AND = 280,
-     ARRAY = 281,
-     BEGiN = 282,
+     BEGAN = 258,
+     END = 259,
+     ID = 260,
+     PLUS = 261,
+     MINUS = 262,
+     STAR = 263,
+     SLASH = 264,
+     ASSIGN = 265,
+     PERIOD = 266,
+     COMMA = 267,
+     SEMICOLON = 268,
+     COLON = 269,
+     EQU = 270,
+     NEQ = 271,
+     LES = 272,
+     LEQ = 273,
+     GRT = 274,
+     GEQ = 275,
+     LPAREN = 276,
+     RPAREN = 277,
+     LBRACKET = 278,
+     RBRACKET = 279,
+     RANGE = 280,
+     AND = 281,
+     ARRAY = 282,
      DIV = 283,
      DO = 284,
      ELSE = 285,
-     END = 286,
-     FUNCTION = 287,
-     IF = 288,
-     MOD = 289,
-     NOT = 290,
-     OF = 291,
-     OR = 292,
-     PROCEDURE = 293,
-     PROGRAM = 294,
-     THEN = 295,
-     TO = 296,
-     TYPE = 297,
-     VAR = 298,
-     WHILE = 299,
-     REGULAR_EXPRESSIONS = 300,
-     ID = 301,
-     INTLIT = 302,
-     REALIT = 303,
-     CHRLIT = 304,
-     TOKEN_END = 305
+     FUNCTION = 286,
+     IF = 287,
+     MOD = 288,
+     NOT = 289,
+     OF = 290,
+     OR = 291,
+     PROCEDURE = 292,
+     PROGRAM = 293,
+     THEN = 294,
+     TO = 295,
+     TYPE = 296,
+     VAR = 297,
+     COMMENT = 298,
+     CHRLIT = 299,
+     REALIT = 300,
+     INTLIT = 301,
+     WHILE = 302
    };
 #endif
 /* Tokens.  */
-#define TOKEN_BEGIN 258
-#define PLUS 259
-#define MINUS 260
-#define STAR 261
-#define SLASH 262
-#define ASSIGN 263
-#define PERIOD 264
-#define COMMA 265
-#define SEMICOLON 266
-#define COLON 267
-#define EQU 268
-#define NEQ 269
-#define LES 270
-#define LEQ 271
-#define GEQ 272
-#define GRT 273
-#define LPAREN 274
-#define RPAREN 275
-#define LBRACKET 276
-#define RBRACKET 277
-#define RANGE 278
-#define RESERVE_WORDS 279
-#define AND 280
-#define ARRAY 281
-#define BEGiN 282
+#define BEGAN 258
+#define END 259
+#define ID 260
+#define PLUS 261
+#define MINUS 262
+#define STAR 263
+#define SLASH 264
+#define ASSIGN 265
+#define PERIOD 266
+#define COMMA 267
+#define SEMICOLON 268
+#define COLON 269
+#define EQU 270
+#define NEQ 271
+#define LES 272
+#define LEQ 273
+#define GRT 274
+#define GEQ 275
+#define LPAREN 276
+#define RPAREN 277
+#define LBRACKET 278
+#define RBRACKET 279
+#define RANGE 280
+#define AND 281
+#define ARRAY 282
 #define DIV 283
 #define DO 284
 #define ELSE 285
-#define END 286
-#define FUNCTION 287
-#define IF 288
-#define MOD 289
-#define NOT 290
-#define OF 291
-#define OR 292
-#define PROCEDURE 293
-#define PROGRAM 294
-#define THEN 295
-#define TO 296
-#define TYPE 297
-#define VAR 298
-#define WHILE 299
-#define REGULAR_EXPRESSIONS 300
-#define ID 301
-#define INTLIT 302
-#define REALIT 303
-#define CHRLIT 304
-#define TOKEN_END 305
+#define FUNCTION 286
+#define IF 287
+#define MOD 288
+#define NOT 289
+#define OF 290
+#define OR 291
+#define PROCEDURE 292
+#define PROGRAM 293
+#define THEN 294
+#define TO 295
+#define TYPE 296
+#define VAR 297
+#define COMMENT 298
+#define CHRLIT 299
+#define REALIT 300
+#define INTLIT 301
+#define WHILE 302
 
 
 
@@ -146,11 +138,11 @@
 typedef union YYSTYPE
 {
 
-/* Line 1676 of yacc.c  */
-#line 80 "paspar.y"
+/* Line 2068 of yacc.c  */
+#line 70 "paspar.y"
 
   string* token;
-  List<string>* strlist;
+  List<string>* slist;
   Typ* typ;
   List<VariableSymbol*>* varlist;
   Exp* exp;
@@ -158,8 +150,8 @@ typedef union YYSTYPE
 
 
 
-/* Line 1676 of yacc.c  */
-#line 163 "y.tab.h"
+/* Line 2068 of yacc.c  */
+#line 155 "y.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

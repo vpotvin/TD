@@ -38,6 +38,7 @@ class SymbolTable : public LocalityStack {
     Typ* tinteger;            //Points to standard type integer
     Typ* treal;               //Points to standard type real
     Typ* tboolean;            //Points to standard type boolean
+    Typ* tstring;             //Points to standard type string
 public:
     SymbolTable();            //Creates locality 0 and pushes it on the locality
                               //Stack
