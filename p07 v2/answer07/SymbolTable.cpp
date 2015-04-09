@@ -43,8 +43,8 @@ SymbolTable::~SymbolTable()
 void SymbolTable::Standard(void)
 {   StandardTypes();
     StandardConstants();
-    //StandardProcedures();
-    //StandardFunctions();
+    StandardProcedures();
+    StandardFunctions();
 }
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -82,6 +82,7 @@ void SymbolTable::StandardConstants(void)
 void SymbolTable::StandardProcedures(void)
 {  Sym* wrb=new StandardProcedureSymbol("writeboolean"    ,"wrb");
    Insert(wrb);
+   wrb->Print(cout,0);
    Sym* wrc=new StandardProcedureSymbol("writechar"       ,"wrc");
    Insert(wrc);
    Sym* wri=new StandardProcedureSymbol("writeinteger"    ,"wri");

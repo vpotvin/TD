@@ -44,7 +44,7 @@ using namespace std;
 //---------------------------------------------------------------------
 //Externals
 //---------------------------------------------------------------------
-extern ofstream o;
+extern ofstream tfs;
 extern int line;
 extern int col;
 extern Label L;
@@ -71,7 +71,6 @@ Typ* standard_type(string id)
 {
     Sym* s=ST.Find(id);
     if (!s->IsTypeSymbol()) throw TypeException(s);
-    s->Print(o,0);
-    o << endl;
+    s->Print(tfs,0);
     return s->Type();
 }

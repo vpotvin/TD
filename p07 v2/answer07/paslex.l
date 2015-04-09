@@ -1,199 +1,291 @@
 %{
-#include <string>
-#include "List.h"
-#include "pastkn.h"
-#include "paslex.h"
+//--------------------------------------------------------------------
+// File paslex.l defines a prototype scanner for the Subset Pascal language.
+// The scanner definition is a lex specification.                        
+//-------------------------------------------------------------------
+// Author: Thomas R. Turner                                           
+// E-Mail: trturner@uco.edu                                          
+// Date:   January, 2009
+//--------------------------------------------------------------------
+//Copyright January, 2009 by Thomas R. Turner.
+//Do not reproduce without permission from Thomas R. Turner
+//--------------------------------------------------------------------
+//--------------------------------------------------------------------
+// Standard C and C++ Library Include Files                                     
+//--------------------------------------------------------------------
 #include <iostream>
-#include <iomanip>
 #include <fstream>
+#include <iomanip>
+#include <string>                          
+#include <cstdio>
 #include <map>
-
 using namespace std;
-
-int line 	= 1;
-int col 	= 1;
+//--------------------------------------------------------------------
+// Application Includes                                               
+//--------------------------------------------------------------------
+#include "paslex.h"
+#include "pastkn.h"
+//--------------------------------------------------------------------
+//Externals
+//--------------------------------------------------------------------
+extern ofstream tfs;
+//--------------------------------------------------------------------
+//Global Variables                                                    
+//--------------------------------------------------------------------
 static map<string,int> RW;
-static map<int,string> NAME;  
-
-int yyparse ( void );
-int TokenMgr(int t);
-void ToLower(char* o,char* i,int l);
-void nameInit(void);
-void reserveWordInit(void);
-void printTc(int t);
-void commentMgr(void);
-
-/* EXTERNAL VARIABLES--------------------------------------------------------*/
-extern ofstream o; 						// WRITES TO FILES
-/*---------------------------------------------------------------------------*/
+static int tokencode;
+static string* TokenName;
+int line=1;
+int col =1;
+//--------------------------------------------------------------------
+//Functions
+//--------------------------------------------------------------------
+int TokenMgr(int t);                   //Token post processing
+                                       //Print the token and attributes
+void PrintToken(ostream& o,int tc,int l,int c);           
+//--------------------------------------------------------------------
+//Exceptions
+//--------------------------------------------------------------------
+struct StringTokenException{
+    StringTokenException(char* t,int l,int c)
+    {   cout << endl;
+        cout << "line(" << l << ") col (" << c << ")" ;
+        cout << "Lexical error: ";
+        cout << "Strings cannot span lines";
+        cout << endl;
+        cout << "|" << t << "|";
+        cout << endl;
+    }
+};
+struct BadCharacterException{
+    BadCharacterException(char p,int l,int c)
+    {   cout << endl;
+        cout << "line(" << l << ") col (" << c << ")" ;
+        cout << "Lexical error: ";
+        cout << "Illegal character |" << p << "| ASCII code=" << (int)p;
+        cout << endl;
+    } 
+};
 %}
 
-%x CHARBEGIN
-
 %%
+[ \t]+                               {col+=strlen(yytext);}
+[\n]                                 {line++;col=1;}
+[_a-zA-Z][_a-zA-Z0-9]*               return TokenMgr(ID);
+[0-9]+                               return TokenMgr(INTLIT);
+[0-9]+[Ee][+-]?[0-9]+                return TokenMgr(REALIT);
+[0-9]+\.[0-9]+([Ee][+-]?[0-9]+)?     return TokenMgr(REALIT);
+[']([^']|[']['])*[']                 return TokenMgr(CHRLIT);
 
-[ \t]+								{	col+= yyleng;				}
-[\n]								{	line++; col=1;				}
-[a-zA-Z_][a-zA-Z0-9_]*  			{ 	return TokenMgr(ID);		}
-"+"									{	return TokenMgr(PLUS);		}
-"-"									{	return TokenMgr(MINUS);		}
-"*"									{	return TokenMgr(STAR);		}
-"/"									{	return TokenMgr(SLASH);		}
-":=" 								{	return TokenMgr(ASSIGN);   	}
-"." 								{	return TokenMgr(PERIOD);   	}
-","									{	return TokenMgr(COMMA);    	}
-";"									{	return TokenMgr(SEMICOLON);	}
-":" 								{	return TokenMgr(COLON);		}
-"="									{	return TokenMgr(EQU);		}
-"<>" 								{	return TokenMgr(NEQ);		}
-"<" 								{	return TokenMgr(LES);		}
-"<=" 								{	return TokenMgr(LEQ);		}
-">" 								{	return TokenMgr(GRT);		}
-">=" 								{	return TokenMgr(GEQ);		}
-"(" 								{	return TokenMgr(LPAREN);	}
-")" 								{	return TokenMgr(RPAREN);	}
-"[" 								{	return TokenMgr(LBRACKET); 	}
-"]"									{	return TokenMgr(RBRACKET);	}
-".."								{	return TokenMgr(RANGE);		}
-['"]  								{	BEGIN(CHARBEGIN);			}
-<CHARBEGIN>("''"|[^'"\n])*  		{ 	return TokenMgr(CHRLIT);    }
-<CHARBEGIN>['"]             		{ 	BEGIN INITIAL;              }
-[0-9]+[Ee][+|-]?[0-9]+  			{	return TokenMgr(REALIT);	}
-[0-9]+\.[0-9]+([Ee][+|-]?[0-9]+)?   { 	return TokenMgr(REALIT);  	}
-[0-9]+                              { 	return TokenMgr(INTLIT);    }  
-"{"([^}]*)"}" 						{	commentMgr();				}
-
-
-. 			; // DO NOTHING WITH EVERYTHING ELSE FOR NOW
+[{][^}]*[}]                          { for (int a=0;a<strlen(yytext);a++) {
+                                           col++;
+                                           if (yytext[a]=='\n') {
+                                               col=1;
+                                               line++;
+                                           }
+                                       }
+                                     }
+"+"                                  return TokenMgr(PLUS);
+"-"                                  return TokenMgr(MINUS);
+"*"                                  return TokenMgr(STAR);
+"/"                                  return TokenMgr(SLASH);
+":="                                 return TokenMgr(ASSIGN);
+"."                                  return TokenMgr(PERIOD);
+","                                  return TokenMgr(COMMA);
+";"                                  return TokenMgr(SEMICOLON);
+":"                                  return TokenMgr(COLON);
+"="                                  return TokenMgr(EQU);
+"<>"                                 return TokenMgr(NEQ);
+"<"                                  return TokenMgr(LES);
+"<="                                 return TokenMgr(LEQ);
+">"                                  return TokenMgr(GRT);
+">="                                 return TokenMgr(GEQ);
+"("                                  return TokenMgr(LPAREN);
+")"                                  return TokenMgr(RPAREN);
+"["                                  return TokenMgr(LBRACKET);
+"]"                                  return TokenMgr(RBRACKET);
+".."                                 return TokenMgr(RANGE);
+.                                    {throw BadCharacterException
+                                              (*yytext
+                                              ,line
+                                              ,col
+                                              );
+                                     }
 %%
-
-int yywrap (void){ return 1;}
-
-int TokenMgr(int t){
-	int tc = t;
-	if (t==ID) {
-    	char s[1024];
-        ToLower(s,yytext,yyleng);
-        tc=RW[s];
-        if (tc==0){ 
-       		tc=t;
-       	}
+//--------------------------------------------------------------------
+//Class Lexer implementation
+//--------------------------------------------------------------------
+//Function TokenMgr processes the token after it has been recognized
+//--------------------------------------------------------------------
+int TokenMgr(int t)
+{   int tc=t;
+    //----------------------------------------------------------------
+    //If the token is an identifier or a reserve word then it must be
+    //coerced to lower case because Pascal is case insensitive.  All
+    //captialized variations must be made equal to the same string that
+    //has no capitalized letters.
+    //----------------------------------------------------------------
+    if (t==ID) {
+        char s[1024];
+        for (int a=0;a<strlen(yytext)&&a<1024;a++) s[a]=tolower(yytext[a]);
+        s[strlen(yytext)]=0;
+        //------------------------------------------------------------
+        //yylval is the yacc variable associated with the %union
+        //directive. Member token was declared to have the semantic
+        //value for tokens.
+        //------------------------------------------------------------
+        yylval.token=new string(s);
+        //------------------------------------------------------------
+        //Find the identifier in the list of reserve words. If the identifier
+        //is a reserve word return its unique token code. Otherwise,
+        //return zero.
+        //------------------------------------------------------------
+        tc=RW[s];        
+        //------------------------------------------------------------
+        //If the identifier was not a reserve word then restore the
+        //original token code.
+        //------------------------------------------------------------
+        if (tc==0) tc=t;
+    } else {
+        //------------------------------------------------------------
+        //Make the strings available for all tokens.
+        //------------------------------------------------------------
+        yylval.token=new string(yytext);
     }
-
-    col += yyleng;
-
-    yylval.token = new string(yytext);
-
-    printTc(tc);
-    return tc;
+    PrintToken(tfs,tc,line,col);
+    col+=yyleng;
+    return tc; 
 }
-
-void printTc(int tc){
-	o << "Token:Code="	<< setw(3) 	<< tc 
-			<< " Name= " 		<< setw(8) 	<< NAME[tc] 
-			<< " Line= "  		<< setw(3)	<< line 
-			<< " Col= "   		<< setw(3)	<< col - yyleng
-			<< " Spelling= " 	<< setw(1)	<< "\"" << yytext << "\""
-			<< endl;
+//--------------------------------------------------------------------
+//Constructor Lexer is used to redirect the input file stream from the
+//keyboard to input file stream i.
+//--------------------------------------------------------------------
+Lexer::Lexer(FILE* i) 
+{   yyin=i; 
+    const int MAXSY=48;
+    static string sy[]=
+    { "TOKEN_BEGIN"
+    , "PLUS"
+    , "MINUS"
+    , "STAR"
+    , "SLASH"
+    , "ASSIGN"
+    , "PERIOD"
+    , "COMMA"
+    , "SEMICOLON"
+    , "COLON"
+    , "EQU"
+    , "NEQ"
+    , "LES"
+    , "LEQ"
+    , "GEQ"
+    , "GRT"
+    , "LPAREN"
+    , "RPAREN"
+    , "LBRACKET"
+    , "RBRACKET"
+    , "RANGE"
+    , "RESERVE_WORDS"
+    , "AND"
+    , "ARRAY"
+    , "BEGIN"
+    , "DIV"
+    , "DO"
+    , "ELSE"
+    , "END"
+    , "FUNCTION"
+    , "IF"
+    , "MOD"
+    , "NOT"
+    , "OF"
+    , "OR"
+    , "PROCEDURE"
+    , "PROGRAM"
+    , "THEN"
+    , "TO"
+    , "TYPE"
+    , "VAR"
+    , "WHILE"
+    , "REGULAR_EXPRESSIONS"
+    , "ID"
+    , "INTLIT"
+    , "REALIT"
+    , "CHRLIT"
+    , "TOKEN_END"
+    };
+    TokenName=new string[MAXSY];
+    for (int a=0;a<MAXSY;a++) TokenName[a]=sy[a];
+    static string rw[]=
+    {
+     "and"       
+    ,"array"      
+    ,"begin"      
+    ,"div"
+    ,"do"         
+    ,"else"  
+    ,"end"        
+    ,"function"
+    ,"if"         
+    ,"mod"  
+    ,"not"        
+    ,"of"         
+    ,"or"
+    ,"procedure"
+    ,"program"    
+    ,"then"       
+    ,"to"         
+    ,"type"
+    ,"var"        
+    ,"while"
+    };
+    static int    tc[]=
+    {
+      AND        
+    , ARRAY      
+    , BEGiN      
+    , DIV        
+    , DO         
+    , ELSE       
+    , END        
+    , FUNCTION   
+    , IF  
+    , MOD        
+    , NOT        
+    , OF         
+    , OR         
+    , PROCEDURE  
+    , PROGRAM    
+    , THEN       
+    , TO 
+    , TYPE        
+    , VAR        
+    , WHILE
+    };
+    for (int a=0;a<20;a++) RW[rw[a]]=tc[a];
 }
-
-void commentMgr(void){
-	for(int j = 0; j<yyleng; j++){
-		if(yytext[j] == '\n'){
-			line++;
-			col = 1;
-		} else {
-			col++;
-		}
-	}
-}
-
-
-void reserveWordInit(void){
-	RW["begin"]		=BEGAN;
-    RW["end"  ]		=END;
-    RW["and"]		=AND;
-    RW["array"]		=ARRAY;
-    RW["div"]		=DIV;
-    RW["do"]		=DO;
-    RW["else"]		=ELSE;
-    RW["function"]	=FUNCTION;
-    RW["if"]		=IF;
-    RW["mod"]		=MOD;
-    RW["not"]		=NOT;
-    RW["of"]		=OF;
-    RW["or"]		=OR;
-    RW["procedure"]	=PROCEDURE;
-    RW["program"]	=PROGRAM;
-    RW["then"]		=THEN;
-    RW["to"]		=TO;
-    RW["type"]		=TYPE;
-    RW["var"]		=VAR;
-    RW["while"]		=WHILE;
-}
-
-void nameInit(void){
-	NAME[PLUS] 			= "PLUS";
- 	NAME[MINUS] 		= "MINUS";
- 	NAME[STAR] 			= "STAR";
- 	NAME[SLASH] 		= "SLASH";
- 	NAME[ASSIGN] 		= "ASSIGN";
- 	NAME[PERIOD] 		= "PERIOD";
- 	NAME[COMMA] 		= "COMMA";
- 	NAME[SEMICOLON] 	= "SEMICOLON";
- 	NAME[COLON] 		= "COLON";
- 	NAME[EQU] 			= "EQU";
-    NAME[NEQ] 			= "NEQ";
-    NAME[LES] 			= "LES";
-    NAME[LEQ] 			= "LEQ";
-    NAME[GRT] 			= "GRT";
-    NAME[GEQ] 			= "GEQ";
-    NAME[LPAREN] 		= "LPAREN";
-    NAME[RPAREN] 		= "RPAREN";
-    NAME[LBRACKET] 		= "LBRACKET";
-    NAME[RBRACKET] 		= "RBRACKET";
-    NAME[RANGE] 		= "RANGE";
-    NAME[AND] 			= "AND";
-    NAME[ARRAY] 		= "ARRAY";
-    NAME[BEGAN] 		= "BEGIN";
- 	NAME[DIV] 			= "DIV";
- 	NAME[DO] 			= "DO";
-	NAME[ELSE] 			= "ELSE"; 
-	NAME[END] 			= "END"; 
-	NAME[FUNCTION] 		= "FUNCTION"; 
-	NAME[IF] 			= "IF";
-	NAME[MOD] 			= "MOD"; 
-	NAME[NOT] 			= "NOT"; 
-	NAME[OF] 			= "OF"; 
-	NAME[OR] 			= "OR"; 
-	NAME[PROCEDURE] 	= "PROCEDURE"; 
-	NAME[PROGRAM] 		= "PROGRAM";
-	NAME[THEN] 			= "THEN";
-	NAME[TO] 			= "TO";
-	NAME[TYPE] 			= "TYPE"; 
-	NAME[VAR] 			= "VAR"; 
-	NAME[WHILE] 		= "PLUS"; 
-	NAME[ID] 			= "ID"; 
-	NAME[INTLIT] 		= "INTLIT"; 
-	NAME[REALIT] 		= "REALIT";
-	NAME[CHRLIT] 		= "CHRLIT";
-	NAME[COMMENT] 		= "COMMENT";
-}
-
-void ToLower(char* k,char* i,int l)
-{       for (int a=0;a<l&&a<1024;a++) k[a]=tolower(i[a]); //To lower case
-        k[l]=0; //Null termination
-
-}
-
-Lexer::Lexer(FILE* i){
-	yyin=i;
-	nameInit();
-	reserveWordInit();
-}
-
-int Lexer::Lex(void){
-	int tokencode=yylex();
+//--------------------------------------------------------------------
+//Function Lex calls yylex
+//--------------------------------------------------------------------
+int Lexer::Lex(void)
+{   tokencode=yylex();
     return tokencode;
 }
+//--------------------------------------------------------------------
+//Function PrintToken prints the token code name and the spelling of the 
+//token.
+//--------------------------------------------------------------------
+void PrintToken(ostream& o,int tc,int l,int c)
+{   o << endl;
+    o << "Token";
+    o << ":Code="     << setw( 3) << tc;
+    o << " Name="     << setw(10) << TokenName[tc-TOKEN_BEGIN];
+    o << " line="     << setw( 3) << l;
+    o << " col="      << setw( 3) << c;
+    o << " Spelling=\"" << (char*)yytext << "\"";
+}
+
+//-----------------------End of Lex Definition------------------------
+     
+
+
 

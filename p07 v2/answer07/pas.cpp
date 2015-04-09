@@ -1,28 +1,49 @@
-#include "paspar.h"
-#include <fstream>
-#include <iostream>
-#include <string>
+//-------------------------------------------------------------------
+//File pas.cpp contains functions that process command line arguments
+//and interface with the lex-generated scanner 
+//--------------------------------------------------------------------
+//Author: Thomas R. Turner
+//E-Mail: trturner@uco.edu
+//Date:   November, 2006
+//--------------------------------------------------------------------
+//Copyright November, 2006 by Thomas R. Turner
+//Do not reproduce without permission from Thomas R. Turner
+//--------------------------------------------------------------------
+//C++ Standard include files
+//--------------------------------------------------------------------
+#include <cstdlib>
 #include <cstring>
-#include <stdlib.h>
-
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <cstdio>
+#include <string>
 using namespace std;
-
-ofstream o;
-ofstream po;											// OUTPUT FILE
-
-// EXCEPTION STRUCTS ----------------------------------------------------------
+//--------------------------------------------------------------------
+//Application include files
+//--------------------------------------------------------------------
+#include "paslex.h"
+#include "paspar.h"
+//--------------------------------------------------------------------
+//Externals
+//--------------------------------------------------------------------
+ofstream tfs;                     //trace file stream 
+//--------------------------------------------------------------------
+//BadSuffixException
+//--------------------------------------------------------------------
 struct BadSuffixException {
     BadSuffixException(char* fn)
     {   cout << endl;
         cout << "Input file \"" << fn << "\" does not have a .pas suffix.";
     }
 };
-
+//--------------------------------------------------------------------
+//--------------------------------------------------------------------
 class FileNameSuffix {
     char* prefix;
 public:
-    FileNameSuffix(char* fn){
-       	char* p=strstr(fn,".pas");
+    FileNameSuffix(char* fn)
+    {   char* p=strstr(fn,".pas");
         if (!p) throw BadSuffixException(fn);
         int n=p-fn;
         if (n+4!=strlen(fn)) throw BadSuffixException(fn);
@@ -36,31 +57,42 @@ public:
         strcat(fn,suffix);
     }
 };
-
+//--------------------------------------------------------------------
+//CommandLineException
+//--------------------------------------------------------------------
 struct CommandLineException {
     CommandLineException(int m,int a)
     {   cout << endl;
-        cout << "Too many file names on the command line.";
+        cout << "Too many arguments on the command line.";
         cout << endl;
-        cout << m << " file name(s) are permitted on the command line.";
+        cout << m << " argument(s) are permitted on the command line.";
         cout << endl;
-        cout << a << " file name(s) appeared on the command line.";
+        cout << a << " argument(s) appeared on the command line.";
         cout << endl;
     }
 };
-
+//--------------------------------------------------------------------
+//FileException
+//--------------------------------------------------------------------
 struct FileException {
    FileException(const char* fn)
    {   cout << endl;
        cout << "File " << fn << " could not be opened.";
        cout << endl;
-   }														
-};																			 
-// ----------------------------------------------------------------------------
-
-int main (int argc,char* argv[]) {
-	try {
-		char ifn[255];
+   }
+};
+//--------------------------------------------------------------------
+//--------------------------------------------------------------------
+void CompilerMgr(FILE* i)
+{   Parser P(i);
+    int rc=P.Parse();
+}
+//--------------------------------------------------------------------
+//Function main processes command line arguments
+//--------------------------------------------------------------------
+int main(int argc,char* argv[])
+{   try {
+        char ifn[255];
         switch (argc) {
             case 1:               //Prompt for the input file name
                 cout << "Enter the input file name. ";
@@ -74,16 +106,14 @@ int main (int argc,char* argv[]) {
                 break;
     }
     FileNameSuffix F(ifn);        //Find the prefix of the input file name
-    char ofn[255];
-    F.Suffix(ofn,".trc");         //Create the trace file name
+    char tfn[255];
+    F.Suffix(tfn,".trc");         //Create the trace file name
     FILE* i=fopen(ifn,"r");       //Open the input file
     if (!i) throw FileException(ifn);
-    
-    o.open(ofn); if (!o) throw FileException(ofn);
-    Parser P(i);
-    P.Parse();
-    o << endl;                  //Put a new line in the trace file
-    o.close();                  //Close the trace file
+    tfs.open(tfn); if (!tfs) throw FileException(tfn);
+    CompilerMgr(i);
+    tfs << endl;                  //Put a new line in the trace file
+    tfs.close();                  //Close the trace file
     fclose(i);                    //Close the input file
     } catch (...) {
         cout << endl;
@@ -95,3 +125,5 @@ int main (int argc,char* argv[]) {
     }
     return 0;
 }
+
+

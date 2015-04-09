@@ -156,7 +156,7 @@ typedef union YYSTYPE
 {
 
 /* Line 2068 of yacc.c  */
-#line 68 "paspar.y"
+#line 70 "paspar.y"
 
   string* token;
   List<string>* slist;

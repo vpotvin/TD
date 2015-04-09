@@ -23,13 +23,20 @@ obj	=	pas.o \
 		type.o \
 		standard_type.o \
 		identifier_list.o \
+		coercetoreal.o \
+		simple_expression.o \
+		term.o \
+		factor.o \
 		Typ.o \
 		Sym.o \
 		Label.o \
 		Locality.o \
 		Namespace.o \
 		LocalityStack.o \
-		SymbolTable.o 
+		SymbolTable.o \
+		String.o \
+		PCode.o \
+		Exp.o
 #----------------------------------------------------------------------
 # Bind the subset Pascal Scanneer 
 #----------------------------------------------------------------------
@@ -136,3 +143,25 @@ LocalityStack.o:LocalityStack.cpp LocalityStack.h Locality.h Namespace.h Sym.h T
 #-------------------------------------------------------------
 SymbolTable.o:	SymbolTable.cpp SymbolTable.h LocalityStack.h Locality.h Namespace.h Sym.h Typ.h
 		g++ -c -g SymbolTable.cpp
+#-------------------------------------------------------------
+String.o:	String.cpp String.h
+		g++ -c -g String.cpp
+#-------------------------------------------------------------
+PCode.o:	PCode.cpp PCode.h String.h
+		g++ -c -g PCode.cpp
+#-------------------------------------------------------------
+Exp.o:		Exp.cpp Exp.h PCode.h Sym.h Typ.h
+		g++ -c -g Exp.cpp
+#-------------------------------------------------------------
+coercetoreal.o:	coercetoreal.cpp coercetoreal.h
+		g++ -c -g coercetoreal.cpp
+#-------------------------------------------------------------
+simple_expression.o:	simple_expression.cpp simple_expression.h coercetoreal.h
+			g++ -c -g simple_expression.cpp
+#-------------------------------------------------------------
+term.o:		term.cpp term.h coercetoreal.h
+		g++ -c -g term.cpp
+#-------------------------------------------------------------
+factor.o:	factor.cpp factor.h
+		g++ -c -g factor.cpp
+#-------------------------------------------------------------

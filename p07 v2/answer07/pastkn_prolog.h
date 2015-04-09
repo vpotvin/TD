@@ -2,7 +2,8 @@
 #define pastkn_h 1
 //-------------------------------------------------------------------------
 //File pastkn_prolog.h must be prefixed onto pastkn.h 
-//Version 4 Subset Pascal Compiler
+//Version 5 Subset Pascal Compiler
+//Symbol Table
 //-------------------------------------------------------------------------
 #include "List.h"
 #include "Typ.h"
@@ -12,6 +13,9 @@
 #include "Locality.h"
 #include "LocalityStack.h"
 #include "SymbolTable.h"
+//-------------------------------------------------------------------------
+//Semantic helper functions
+//-------------------------------------------------------------------------
 #include "String.h"
-#include "Exp.h"
 #include "PCode.h"
+#include "Exp.h"

@@ -42,6 +42,8 @@ using namespace std;
 #include "PCode.h"
 #include "Exp.h"
 
+#include "simple_expression.h"
+
 
 typedef string st;
 
@@ -87,6 +89,8 @@ SymbolTable ST;  //The SymbolTable
 %type  <explist> expression_list
 
 %type  <token>   mulop
+%type  <token>   addop
+%type  <token>   sign
 
 %token <token> BEGAN
 %token <token> END
@@ -395,17 +399,20 @@ relop: GEQ
 
 simple_expression: term
 {
-	o << "#048 simple_expression -> term" << endl;
+    o << endl << "#048 simple_expression -> term" << endl;
+    $$=simple_expression($1);
 }
 
 simple_expression: sign term
 {
-	o << "#049 simple_expression -> sign term" << endl;
+    o << endl << "#049 simple_expression -> sign term" << endl;
+    $$=simple_expression($1,$2);
 }
 
 simple_expression: simple_expression addop term
 {
-	o << "#050 simple_expression -> simple_expression addop term" << endl;
+    o << endl << "#050 simple_expression -> simple_expression addop term" << endl;
+    $$=simple_expression($1,$2,$3);
 }
 
 sign: PLUS

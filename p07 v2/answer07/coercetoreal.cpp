@@ -48,7 +48,7 @@ using namespace std;
 //---------------------------------------------------------------------
 //Externals
 //---------------------------------------------------------------------
-extern ofstream o;
+extern ofstream tfs;
 extern int line;
 extern int col;
 extern SymbolTable ST;

@@ -44,7 +44,7 @@ using namespace std;
 //---------------------------------------------------------------------
 //Externals
 //---------------------------------------------------------------------
-extern ofstream o;
+extern ofstream tfs;
 extern int line;
 extern int col;
 extern Label L;
@@ -56,6 +56,6 @@ extern SymbolTable ST;        //The SymbolTable
 //---------------------------------------------------------------------
 void subprogram_declaration(void)
 {
-   ST.Print(o);             
+   ST.Print(tfs);             
    ST.PopLocality();
 }

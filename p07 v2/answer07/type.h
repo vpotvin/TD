@@ -46,5 +46,5 @@ Typ* type(Typ* T);
 //---------------------------------------------------------------------
 //type->ARRAY LBRACKET INTLIT RANGE INTLIT RBRACKET OF standard_type
 //---------------------------------------------------------------------
-Typ* type(string lo,string hi,Typ* T);
+Array* type(string lo,string hi,Typ* T);
 #endif

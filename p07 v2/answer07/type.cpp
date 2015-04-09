@@ -45,7 +45,7 @@ using namespace std;
 //---------------------------------------------------------------------
 //Externals
 //---------------------------------------------------------------------
-extern ofstream o;
+extern ofstream tfs;
 extern int line;
 extern int col;
 extern Label L;
@@ -60,10 +60,8 @@ Typ* type(Typ* T){return T;}
 //---------------------------------------------------------------------
 //type->ARRAY LBRACKET INTLIT RANGE INTLIT RBRACKET OF standard_type
 //---------------------------------------------------------------------
-Typ* type(string lo,string hi,Typ* T)
+Array* type(string lo,string hi,Typ* T)
 {   Range* I=new Range(ST.TInteger(),lo,hi);
-    Typ* A=new Array(I,T);
-    A->Print(o,0);
-    return A;
+    return new Array(I,T);
 
 }
