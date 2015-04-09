@@ -50,7 +50,6 @@ Token:Code=265 Name=   ASSIGN Line=  16 Col=   4 Spelling= ":="
 #034 VARIABLE->ID(i)
 Token:Code=301 Name=   INTLIT Line=  16 Col=   6 Spelling= "1"
 #068 factor -> INTLIT(1)
-
           ldc       i         1         
 #056 term -> factor
 Token:Code=268 Name= SEMICOLON Line= 16  Col= 7   Spelling= ";"
@@ -64,7 +63,6 @@ Token:Code=265 Name= ASSIGN   Line= 16  Col= 9   Spelling= ":="
 #034 VARIABLE->ID(j)
 Token:Code=301 Name= INTLIT   Line= 16  Col= 11  Spelling= "2"
 #068 factor -> INTLIT(2)
-
           ldc       i         2         
 #056 term -> factor
 Token:Code=268 Name= SEMICOLON Line= 16  Col= 12  Spelling= ";"
@@ -78,7 +76,6 @@ Token:Code=265 Name= ASSIGN   Line= 16  Col= 14  Spelling= ":="
 #034 VARIABLE->ID(k)
 Token:Code=301 Name= INTLIT   Line= 16  Col= 16  Spelling= "3"
 #068 factor -> INTLIT(3)
-
           ldc       i         3         
 #056 term -> factor
 Token:Code=268 Name= SEMICOLON Line= 16  Col= 17  Spelling= ";"
@@ -99,8 +96,7 @@ Symbol(Constant Symbol) id(false)
     size(1) alignment(1)
   Constant value(0)
     type(Boolean)
-      size(1) alignment(1)
-          ldc       b         0         
+      size(1) alignment(1)          ldc       b         0         
 #056 term -> factor
 
 #048 simple_expression -> term
@@ -119,8 +115,7 @@ Symbol(Constant Symbol) id(true)
     size(1) alignment(1)
   Constant value(1)
     type(Boolean)
-      size(1) alignment(1)
-          ldc       b         1         
+      size(1) alignment(1)          ldc       b         1         
 #056 term -> factor
 
 #048 simple_expression -> term
@@ -139,8 +134,7 @@ Symbol(Constant Symbol) id(false)
     size(1) alignment(1)
   Constant value(0)
     type(Boolean)
-      size(1) alignment(1)
-          ldc       b         0         
+      size(1) alignment(1)          ldc       b         0         
 #056 term -> factor
 
 #048 simple_expression -> term
@@ -161,7 +155,6 @@ Symbol(Variable Symbol) id(j)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
           lvi       0         6         
 #056 term -> factor
 
@@ -183,16 +176,11 @@ Symbol(Variable Symbol) id(j)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
           lvi       0         6         
 #056 term -> factor
 
 #049 simple_expression -> sign term
-
-          ngi                           
-
           lvi       0         6         
-
           ngi                           
 #040 expression -> simple_expression
 #029 statement->variable := expression
@@ -209,7 +197,6 @@ Symbol(Variable Symbol) id(j)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
           lvi       0         6         
 #056 term -> factor
 
@@ -224,16 +211,12 @@ Symbol(Variable Symbol) id(k)
     size(1) alignment(1)
   lexicallevel(1) address(7)ll=0
 a (address)=7
-
           lvi       0         7         
 #056 term -> factor
 
 #050 simple_expression -> simple_expression addop term
-
           lvi       0         6         
-
           lvi       0         7         
-
           adi                           
 #040 expression -> simple_expression
 #029 statement->variable := expression
@@ -250,7 +233,6 @@ Symbol(Variable Symbol) id(j)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
           lvi       0         6         
 #056 term -> factor
 
@@ -265,16 +247,12 @@ Symbol(Variable Symbol) id(k)
     size(1) alignment(1)
   lexicallevel(1) address(7)ll=0
 a (address)=7
-
           lvi       0         7         
 #056 term -> factor
 
 #050 simple_expression -> simple_expression addop term
-
           lvi       0         6         
-
           lvi       0         7         
-
           sbi                           
 #040 expression -> simple_expression
 #029 statement->variable := expression
@@ -291,7 +269,6 @@ Symbol(Variable Symbol) id(c)
     size(1) alignment(1)
   lexicallevel(1) address(9)ll=0
 a (address)=9
-
           lvb       0         9         
 #056 term -> factor
 
@@ -306,16 +283,12 @@ Symbol(Variable Symbol) id(d)
     size(1) alignment(1)
   lexicallevel(1) address(10)ll=0
 a (address)=10
-
           lvb       0         10        
 #056 term -> factor
 
 #050 simple_expression -> simple_expression addop term
-
           lvb       0         9         
-
           lvb       0         10        
-
           ior                           
 #040 expression -> simple_expression
 #029 statement->variable := expression
@@ -327,6 +300,7 @@ Token:Code=266 Name= PERIOD   Line= 23  Col= 14  Spelling= "."
 #001 Program->program_head program_declarations program_body
 
 Locality: lexical level 1
+
 
   Symbol(Variable Symbol) id(b)
     type(Boolean)
@@ -354,6 +328,7 @@ Locality: lexical level 1
     lexicallevel(1) address(7)
 
 Locality: lexical level 0
+
 
   Symbol(Type Symbol) id(boolean)
     type(Boolean)
