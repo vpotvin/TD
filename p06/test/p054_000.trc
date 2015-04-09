@@ -1,188 +1,253 @@
-Token:Code=293 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
-Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p054_000"
-Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
+
+Token:Code=294 Name=   PROGRAM line= 12 col=  1 Spelling="program"
+Token:Code=301 Name=        ID line= 12 col=  9 Spelling="p054_000"
+Token:Code=266 Name= SEMICOLON line= 12 col= 17 Spelling=";"
 #005 program_parameters -> empty
 #002 program_head -> PROGRAM ID(p054_000) program_parameters ;
-#010 variable_declarations -> empty
-Token:Code=297 Name=      VAR Line=  13 Col=   3 Spelling= "var"
-Token:Code=260 Name=       ID Line=  13 Col=   7 Spelling= "i"
-#008 identifier_list -> ID(i)
- identifier_list={i}Token:Code=267 Name=    COMMA Line=  13 Col=   8 Spelling= ","
-Token:Code=260 Name=       ID Line=  13 Col=   9 Spelling= "j"
-#009 identifier_list -> identifier_list , ID(j)
- identifier_list={i,j}Token:Code=267 Name=    COMMA Line=  13 Col=  10 Spelling= ","
-Token:Code=260 Name=       ID Line=  13 Col=  11 Spelling= "k"
-#009 identifier_list -> identifier_list , ID(k)
- identifier_list={i,j,k}Token:Code=269 Name=    COLON Line=  13 Col=  12 Spelling= ":"
-Token:Code=260 Name=       ID Line=  13 Col=  13 Spelling= "integer"
-#014 standard_type -> ID(integer)
+Before::LexicalLevel=0 After::LexicalLevel=1
 
+#010 variable_declarations -> empty
+Token:Code=298 Name=       VAR line= 13 col=  3 Spelling="var"
+Token:Code=301 Name=        ID line= 13 col=  7 Spelling="i"
+#008 identifier_list -> ID(i) identifier_list={i}
+Token:Code=265 Name=     COMMA line= 13 col=  8 Spelling=","
+Token:Code=301 Name=        ID line= 13 col=  9 Spelling="j"
+#009 identifier_list -> identifier_list , ID(j) identifier_list={i,j}
+Token:Code=265 Name=     COMMA line= 13 col= 10 Spelling=","
+Token:Code=301 Name=        ID line= 13 col= 11 Spelling="k"
+#009 identifier_list -> identifier_list , ID(k) identifier_list={i,j,k}
+Token:Code=267 Name=     COLON line= 13 col= 12 Spelling=":"
+Token:Code=301 Name=        ID line= 13 col= 13 Spelling="integer"
+#014 standard_type -> ID(integer)
 Symbol(Type Symbol) id(integer)
   type(Integer)
     size(1) alignment(1)
 #012 type -> standard_type
-Token:Code=268 Name= SEMICOLON Line=  13 Col=  20 Spelling= ";"
+Token:Code=266 Name= SEMICOLON line= 13 col= 20 Spelling=";"
 #011 variable_declarations -> variable_declarations VAR identifier_list:type;
-Token:Code=297 Name=      VAR Line=  14 Col=   3 Spelling= "var"
-Token:Code=260 Name=       ID Line=  14 Col=   7 Spelling= "b"
-#008 identifier_list -> ID(b)
- identifier_list={b}Token:Code=267 Name=    COMMA Line=  14 Col=   8 Spelling= ","
-Token:Code=260 Name=       ID Line=  14 Col=   9 Spelling= "c"
-#009 identifier_list -> identifier_list , ID(c)
- identifier_list={b,c}Token:Code=267 Name=    COMMA Line=  14 Col=  10 Spelling= ","
-Token:Code=260 Name=       ID Line=  14 Col=  11 Spelling= "d"
-#009 identifier_list -> identifier_list , ID(d)
- identifier_list={b,c,d}Token:Code=269 Name=    COLON Line=  14 Col=  12 Spelling= ":"
-Token:Code=260 Name=       ID Line=  14 Col=  13 Spelling= "boolean"
+Token:Code=298 Name=       VAR line= 14 col=  3 Spelling="var"
+Token:Code=301 Name=        ID line= 14 col=  7 Spelling="b"
+#008 identifier_list -> ID(b) identifier_list={b}
+Token:Code=265 Name=     COMMA line= 14 col=  8 Spelling=","
+Token:Code=301 Name=        ID line= 14 col=  9 Spelling="c"
+#009 identifier_list -> identifier_list , ID(c) identifier_list={b,c}
+Token:Code=265 Name=     COMMA line= 14 col= 10 Spelling=","
+Token:Code=301 Name=        ID line= 14 col= 11 Spelling="d"
+#009 identifier_list -> identifier_list , ID(d) identifier_list={b,c,d}
+Token:Code=267 Name=     COLON line= 14 col= 12 Spelling=":"
+Token:Code=301 Name=        ID line= 14 col= 13 Spelling="boolean"
 #014 standard_type -> ID(boolean)
-
 Symbol(Type Symbol) id(boolean)
   type(Boolean)
     size(1) alignment(1)
 #012 type -> standard_type
-Token:Code=268 Name= SEMICOLON Line=  14 Col=  20 Spelling= ";"
+Token:Code=266 Name= SEMICOLON line= 14 col= 20 Spelling=";"
 #011 variable_declarations -> variable_declarations VAR identifier_list:type;
-Token:Code=258 Name=    BEGIN Line=  15 Col=   1 Spelling= "begin"
+Token:Code=282 Name=     BEGIN line= 15 col=  1 Spelling="begin"
 #015 subprogram_declarations -> empty
 #003 program_declarations -> variable_declarations subprogram_declarations
-Token:Code=260 Name=       ID Line=  16 Col=   3 Spelling= "i"
-Token:Code=265 Name=   ASSIGN Line=  16 Col=   4 Spelling= ":="
+Token:Code=301 Name=        ID line= 16 col=  3 Spelling="i"
+Token:Code=263 Name=    ASSIGN line= 16 col=  4 Spelling=":="
 #034 variable -> ID(i)
-Token:Code=301 Name=   INTLIT Line=  16 Col=   6 Spelling= "1"
+Token:Code=302 Name=    INTLIT line= 16 col=  6 Spelling="1"
 #068 factor -> INTLIT(1)
+          ldc       i         1         
 #056 term -> factor
-Token:Code=268 Name= SEMICOLON Line=  16 Col=   7 Spelling= ";"
+Token:Code=266 Name=SEMICOLON  line=16  col=7   Spelling=";"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
 #027 statement_list -> statement
-Token:Code=260 Name=       ID Line=  16 Col=   8 Spelling= "j"
-Token:Code=265 Name=   ASSIGN Line=  16 Col=   9 Spelling= ":="
+Token:Code=301 Name=ID         line=16  col=8   Spelling="j"
+Token:Code=263 Name=ASSIGN     line=16  col=9   Spelling=":="
 #034 variable -> ID(j)
-Token:Code=301 Name=   INTLIT Line=  16 Col=  11 Spelling= "2"
+Token:Code=302 Name=INTLIT     line=16  col=11  Spelling="2"
 #068 factor -> INTLIT(2)
+          ldc       i         2         
 #056 term -> factor
-Token:Code=268 Name= SEMICOLON Line=  16 Col=  12 Spelling= ";"
+Token:Code=266 Name=SEMICOLON  line=16  col=12  Spelling=";"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
 #028 statement_list -> statement_list ; statement
-Token:Code=260 Name=       ID Line=  16 Col=  13 Spelling= "k"
-Token:Code=265 Name=   ASSIGN Line=  16 Col=  14 Spelling= ":="
+Token:Code=301 Name=ID         line=16  col=13  Spelling="k"
+Token:Code=263 Name=ASSIGN     line=16  col=14  Spelling=":="
 #034 variable -> ID(k)
-Token:Code=301 Name=   INTLIT Line=  16 Col=  16 Spelling= "3"
+Token:Code=302 Name=INTLIT     line=16  col=16  Spelling="3"
 #068 factor -> INTLIT(3)
+          ldc       i         3         
 #056 term -> factor
-Token:Code=268 Name= SEMICOLON Line=  16 Col=  17 Spelling= ";"
+Token:Code=266 Name=SEMICOLON  line=16  col=17  Spelling=";"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
 #028 statement_list -> statement_list ; statement
-Token:Code=260 Name=       ID Line=  17 Col=   3 Spelling= "b"
-Token:Code=265 Name=   ASSIGN Line=  17 Col=   4 Spelling= ":="
+Token:Code=301 Name=ID         line=17  col=3   Spelling="b"
+Token:Code=263 Name=ASSIGN     line=17  col=4   Spelling=":="
 #034 variable -> ID(b)
-Token:Code=260 Name=       ID Line=  17 Col=   6 Spelling= "false"
-Token:Code=268 Name= SEMICOLON Line=  17 Col=  11 Spelling= ";"
+Token:Code=301 Name=ID         line=17  col=6   Spelling="false"
+Token:Code=266 Name=SEMICOLON  line=17  col=11  Spelling=";"
 #063 factor -> ID(false)
+Symbol(Constant Symbol) id(false)
+  type(Boolean)
+    size(1) alignment(1)
+  Constant value(0)
+    type(Boolean)
+      size(1) alignment(1)
+          ldc       b         0         
 #056 term -> factor
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
 #028 statement_list -> statement_list ; statement
-Token:Code=260 Name=       ID Line=  17 Col=  12 Spelling= "c"
-Token:Code=265 Name=   ASSIGN Line=  17 Col=  13 Spelling= ":="
+Token:Code=301 Name=ID         line=17  col=12  Spelling="c"
+Token:Code=263 Name=ASSIGN     line=17  col=13  Spelling=":="
 #034 variable -> ID(c)
-Token:Code=260 Name=       ID Line=  17 Col=  15 Spelling= "true"
-Token:Code=268 Name= SEMICOLON Line=  17 Col=  19 Spelling= ";"
+Token:Code=301 Name=ID         line=17  col=15  Spelling="true"
+Token:Code=266 Name=SEMICOLON  line=17  col=19  Spelling=";"
 #063 factor -> ID(true)
+Symbol(Constant Symbol) id(true)
+  type(Boolean)
+    size(1) alignment(1)
+  Constant value(1)
+    type(Boolean)
+      size(1) alignment(1)
+          ldc       b         1         
 #056 term -> factor
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
 #028 statement_list -> statement_list ; statement
-Token:Code=260 Name=       ID Line=  17 Col=  20 Spelling= "d"
-Token:Code=265 Name=   ASSIGN Line=  17 Col=  21 Spelling= ":="
+Token:Code=301 Name=ID         line=17  col=20  Spelling="d"
+Token:Code=263 Name=ASSIGN     line=17  col=21  Spelling=":="
 #034 variable -> ID(d)
-Token:Code=260 Name=       ID Line=  17 Col=  23 Spelling= "false"
-Token:Code=268 Name= SEMICOLON Line=  17 Col=  28 Spelling= ";"
+Token:Code=301 Name=ID         line=17  col=23  Spelling="false"
+Token:Code=266 Name=SEMICOLON  line=17  col=28  Spelling=";"
 #063 factor -> ID(false)
+Symbol(Constant Symbol) id(false)
+  type(Boolean)
+    size(1) alignment(1)
+  Constant value(0)
+    type(Boolean)
+      size(1) alignment(1)
+          ldc       b         0         
 #056 term -> factor
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
 #028 statement_list -> statement_list ; statement
-Token:Code=260 Name=       ID Line=  18 Col=   3 Spelling= "i"
-Token:Code=265 Name=   ASSIGN Line=  18 Col=   4 Spelling= ":="
+Token:Code=301 Name=ID         line=18  col=3   Spelling="i"
+Token:Code=263 Name=ASSIGN     line=18  col=4   Spelling=":="
 #034 variable -> ID(i)
-Token:Code=261 Name=     PLUS Line=  18 Col=   6 Spelling= "+"
+Token:Code=259 Name=PLUS       line=18  col=6   Spelling="+"
 #051 sign -> +
-Token:Code=260 Name=       ID Line=  18 Col=   7 Spelling= "j"
-Token:Code=268 Name= SEMICOLON Line=  18 Col=   8 Spelling= ";"
+Token:Code=301 Name=ID         line=18  col=7   Spelling="j"
+Token:Code=266 Name=SEMICOLON  line=18  col=8   Spelling=";"
 #063 factor -> ID(j)
+Symbol(Variable Symbol) id(j)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(6)
+          lvi       0         6         
 #056 term -> factor
 #049 simple_expression -> sign term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
 #028 statement_list -> statement_list ; statement
-Token:Code=260 Name=       ID Line=  19 Col=   3 Spelling= "i"
-Token:Code=265 Name=   ASSIGN Line=  19 Col=   4 Spelling= ":="
+Token:Code=301 Name=ID         line=19  col=3   Spelling="i"
+Token:Code=263 Name=ASSIGN     line=19  col=4   Spelling=":="
 #034 variable -> ID(i)
-Token:Code=262 Name=    MINUS Line=  19 Col=   6 Spelling= "-"
+Token:Code=260 Name=MINUS      line=19  col=6   Spelling="-"
 #052 sign -> -
-Token:Code=260 Name=       ID Line=  19 Col=   7 Spelling= "j"
-Token:Code=268 Name= SEMICOLON Line=  19 Col=   8 Spelling= ";"
+Token:Code=301 Name=ID         line=19  col=7   Spelling="j"
+Token:Code=266 Name=SEMICOLON  line=19  col=8   Spelling=";"
 #063 factor -> ID(j)
+Symbol(Variable Symbol) id(j)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(6)
+          lvi       0         6         
 #056 term -> factor
 #049 simple_expression -> sign term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
 #028 statement_list -> statement_list ; statement
-Token:Code=260 Name=       ID Line=  20 Col=   3 Spelling= "i"
-Token:Code=265 Name=   ASSIGN Line=  20 Col=   4 Spelling= ":="
+Token:Code=301 Name=ID         line=20  col=3   Spelling="i"
+Token:Code=263 Name=ASSIGN     line=20  col=4   Spelling=":="
 #034 variable -> ID(i)
-Token:Code=260 Name=       ID Line=  20 Col=   6 Spelling= "j"
-Token:Code=261 Name=     PLUS Line=  20 Col=   7 Spelling= "+"
+Token:Code=301 Name=ID         line=20  col=6   Spelling="j"
+Token:Code=259 Name=PLUS       line=20  col=7   Spelling="+"
 #063 factor -> ID(j)
+Symbol(Variable Symbol) id(j)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(6)
+          lvi       0         6         
 #056 term -> factor
 #048 simple_expression -> term
 #053 addop -> +
-Token:Code=260 Name=       ID Line=  20 Col=   8 Spelling= "k"
-Token:Code=268 Name= SEMICOLON Line=  20 Col=   9 Spelling= ";"
+Token:Code=301 Name=ID         line=20  col=8   Spelling="k"
+Token:Code=266 Name=SEMICOLON  line=20  col=9   Spelling=";"
 #063 factor -> ID(k)
+Symbol(Variable Symbol) id(k)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(7)
+          lvi       0         7         
 #056 term -> factor
 #050 simple_expression -> simple_expression addop term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
 #028 statement_list -> statement_list ; statement
-Token:Code=260 Name=       ID Line=  21 Col=   3 Spelling= "i"
-Token:Code=265 Name=   ASSIGN Line=  21 Col=   4 Spelling= ":="
+Token:Code=301 Name=ID         line=21  col=3   Spelling="i"
+Token:Code=263 Name=ASSIGN     line=21  col=4   Spelling=":="
 #034 variable -> ID(i)
-Token:Code=260 Name=       ID Line=  21 Col=   6 Spelling= "j"
-Token:Code=262 Name=    MINUS Line=  21 Col=   7 Spelling= "-"
+Token:Code=301 Name=ID         line=21  col=6   Spelling="j"
+Token:Code=260 Name=MINUS      line=21  col=7   Spelling="-"
 #063 factor -> ID(j)
+Symbol(Variable Symbol) id(j)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(6)
+          lvi       0         6         
 #056 term -> factor
 #048 simple_expression -> term
 #054 addop -> -
-Token:Code=260 Name=       ID Line=  21 Col=   8 Spelling= "k"
-Token:Code=268 Name= SEMICOLON Line=  21 Col=   9 Spelling= ";"
+Token:Code=301 Name=ID         line=21  col=8   Spelling="k"
+Token:Code=266 Name=SEMICOLON  line=21  col=9   Spelling=";"
 #063 factor -> ID(k)
+Symbol(Variable Symbol) id(k)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(7)
+          lvi       0         7         
 #056 term -> factor
 #050 simple_expression -> simple_expression addop term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
 #028 statement_list -> statement_list ; statement
-Token:Code=260 Name=       ID Line=  22 Col=   3 Spelling= "b"
-Token:Code=265 Name=   ASSIGN Line=  22 Col=   4 Spelling= ":="
+Token:Code=301 Name=ID         line=22  col=3   Spelling="b"
+Token:Code=263 Name=ASSIGN     line=22  col=4   Spelling=":="
 #034 variable -> ID(b)
-Token:Code=260 Name=       ID Line=  22 Col=   6 Spelling= "c"
-Token:Code=291 Name=       OR Line=  22 Col=   8 Spelling= "or"
+Token:Code=301 Name=ID         line=22  col=6   Spelling="c"
+Token:Code=292 Name=OR         line=22  col=8   Spelling="or"
 #063 factor -> ID(c)
+Symbol(Variable Symbol) id(c)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(9)
+          lvb       0         9         
 #056 term -> factor
 #048 simple_expression -> term
 #055 addop -> OR
-Token:Code=260 Name=       ID Line=  22 Col=  11 Spelling= "d"
-Token:Code=259 Name=      END Line=  23 Col=   1 Spelling= "end"
+Token:Code=301 Name=ID         line=22  col=11  Spelling="d"
+Token:Code=286 Name=END        line=23  col=1   Spelling="end"
 #063 factor -> ID(d)
+Symbol(Variable Symbol) id(d)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(10)
+          lvb       0         10        
 #056 term -> factor
 #050 simple_expression -> simple_expression addop term
 #040 expression -> simple_expression
@@ -190,11 +255,12 @@ Token:Code=259 Name=      END Line=  23 Col=   1 Spelling= "end"
 #028 statement_list -> statement_list ; statement
 #026 optional_statements -> statement_list
 #024 compound_statement -> BEGIN optional_statement END
-Token:Code=266 Name=   PERIOD Line=  23 Col=  14 Spelling= "."
+Token:Code=264 Name=PERIOD     line=23  col=14  Spelling="."
 #004 program_body -> compound_statement .
 #001 program -> program_head program_declarations program_body
-
+Before::LexicalLevel=1
 Locality: lexical level 1
+
 
   Symbol(Variable Symbol) id(b)
     type(Boolean)
@@ -220,31 +286,8 @@ Locality: lexical level 1
     type(Integer)
       size(1) alignment(1)
     lexicallevel(1) address(7)
+ After::LexicalLevel=0
 
-Locality: lexical level 1
+Locality: lexical level 0
 
-  Symbol(Variable Symbol) id(b)
-    type(Boolean)
-      size(1) alignment(1)
-    lexicallevel(1) address(8)
-  Symbol(Variable Symbol) id(c)
-    type(Boolean)
-      size(1) alignment(1)
-    lexicallevel(1) address(9)
-  Symbol(Variable Symbol) id(d)
-    type(Boolean)
-      size(1) alignment(1)
-    lexicallevel(1) address(10)
-  Symbol(Variable Symbol) id(i)
-    type(Integer)
-      size(1) alignment(1)
-    lexicallevel(1) address(5)
-  Symbol(Variable Symbol) id(j)
-    type(Integer)
-      size(1) alignment(1)
-    lexicallevel(1) address(6)
-  Symbol(Variable Symbol) id(k)
-    type(Integer)
-      size(1) alignment(1)
-    lexicallevel(1) address(7)
 

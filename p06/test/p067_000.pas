@@ -10,11 +10,7 @@
 {Do not reproduce without permission from Thomas R. Turner.                          }
 {------------------------------------------------------------------------------------}
 program p067_000;
-  var a,b:boolean;
+  var b:boolean;
 begin{p067_000}
-  a:=false;b:=false;
-  write(not(a and b));
-  write(' = ');
-  write(not a or not b);
-  writeln
+  b:=NOT true
 end{p067_000}.

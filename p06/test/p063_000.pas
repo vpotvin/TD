@@ -1,6 +1,7 @@
 {------------------------------------------------------------------------------------}
 {program p063_000 exercises production #063                                          }
 {factor -> ID                                                                        }
+{ID is a constant symbol
 {------------------------------------------------------------------------------------}
 {Author: Thomas R. Turner                                                            }
 {E-Mail: trturner@uco.edu                                                            }
@@ -10,7 +11,8 @@
 {Do not reproduce without permission from Thomas R. Turner.                          }
 {------------------------------------------------------------------------------------}
 program p063_000;
-  var r,s:real;
+  var b:boolean;
 begin{p063_000}
-  r:=s
+  b:=true;
+  b:=false
 end{p063_000}.

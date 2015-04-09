@@ -12,10 +12,9 @@
 #include "Locality.h"
 #include "LocalityStack.h"
 #include "SymbolTable.h"
-
 #include "String.h"
-#include "PCode.h"
 #include "Exp.h"
+#include "PCode.h"
 /* A Bison parser, made by GNU Bison 2.5.  */
 
 /* Bison interface for Yacc-like parsers in C
@@ -157,17 +156,19 @@ typedef union YYSTYPE
 {
 
 /* Line 2068 of yacc.c  */
-#line 58 "paspar.y"
+#line 68 "paspar.y"
 
   string* token;
   List<string>* slist;
   Typ* typ;
   List<VariableSymbol*>* varlist;
+  Exp* exp;
+  List<Exp*>* explist;
 
 
 
 /* Line 2068 of yacc.c  */
-#line 153 "y.tab.h"
+#line 155 "y.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

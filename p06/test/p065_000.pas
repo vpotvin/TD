@@ -16,5 +16,5 @@ program p065_000;
     if a>b then max:=a else max:=b
   end{max};
 begin{p065_000}
-  i:=max(3,4*5)
+  i:=max(3,4)
 end{p065_000}.

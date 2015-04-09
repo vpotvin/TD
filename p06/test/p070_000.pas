@@ -1,6 +1,6 @@
 {------------------------------------------------------------------------------------}
 {program p070_000 exercises production #070                                          }
-{factor -> REALIT                                                                    }
+{factor -> CHRLIT                                                                    }
 {------------------------------------------------------------------------------------}
 {Author: Thomas R. Turner                                                            }
 {E-Mail: trturner@uco.edu                                                            }
@@ -10,7 +10,7 @@
 {Do not reproduce without permission from Thomas R. Turner.                          }
 {------------------------------------------------------------------------------------}
 program p070_000;
-  var s:array[1..5] of char;
+  var c: char;
 begin{p070_000}
-  s:='hello'
+  c:='h'
 end{p070_000}.

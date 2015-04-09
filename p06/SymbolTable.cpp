@@ -43,8 +43,8 @@ SymbolTable::~SymbolTable()
 void SymbolTable::Standard(void)
 {   StandardTypes();
     StandardConstants();
-    StandardProcedures();
-    StandardFunctions();
+    //StandardProcedures();
+    //StandardFunctions();
 }
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------

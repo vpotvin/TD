@@ -12,3 +12,6 @@
 #include "Locality.h"
 #include "LocalityStack.h"
 #include "SymbolTable.h"
+#include "String.h"
+#include "Exp.h"
+#include "PCode.h"

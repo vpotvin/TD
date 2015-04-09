@@ -60,7 +60,7 @@ bool Typ::IsArray(void){return tk==tk_array;}
 bool Typ::IsRange(void){return tk==tk_range;}
 bool Typ::IsVoid(void){return tk==tk_void;}
 bool Typ::IsSubprogram(void){return tk==tk_subprogram;}
-/*
+
 string Typ::TypeChar(void)
 {   static string TC[]=
     {"v","a","b","c","i","r","x"
@@ -68,7 +68,7 @@ string Typ::TypeChar(void)
     };
     return TC[tk];
 }
-*/
+
 //-----------------------------------------------------------------------------
 //Member functions of class Scalar
 //-----------------------------------------------------------------------------

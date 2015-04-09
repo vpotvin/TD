@@ -98,9 +98,13 @@ Exp* factor_1_variable(VariableSymbol* S)
     Typ* T=S->Type();
     string op="lv" + T->TypeChar();
     int ll=ST.LexicalLevel()-S->LexicalLevel();
+    o << "ll=" << ll << endl;
     int a=S->Address();
-    PCode* P=new PCode("",op,ll,a);
+    o << "a (address)=" << a << endl;
+    PCode* P=new PCode(string(""),op,ll,a);
+    P->Print(o);
     Exp* E=new Exp(T,P);
+    o << "I think we have a problem here!" << endl;
     E->PPrint(o);
     return E;
 }
