@@ -15,24 +15,27 @@
 #include "String.h"
 #include "Exp.h"
 #include "PCode.h"
-/* A Bison parser, made by GNU Bison 2.5.  */
+/* A Bison parser, made by GNU Bison 2.3.  */
 
-/* Bison interface for Yacc-like parsers in C
-   
-      Copyright (C) 1984, 1989-1990, 2000-2011 Free Software Foundation, Inc.
-   
-   This program is free software: you can redistribute it and/or modify
+/* Skeleton interface for Bison's Yacc-like parsers in C
+
+   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+   Free Software Foundation, Inc.
+
+   This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-   
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-   
+
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor,
+   Boston, MA 02110-1301, USA.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -43,10 +46,9 @@
    special exception, which will cause the skeleton and the resulting
    Bison output files to be licensed under the GNU General Public
    License without this special exception.
-   
+
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
-
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -77,28 +79,31 @@
      LBRACKET = 278,
      RBRACKET = 279,
      RANGE = 280,
-     AND = 281,
-     ARRAY = 282,
-     DIV = 283,
-     DO = 284,
-     ELSE = 285,
-     FUNCTION = 286,
-     IF = 287,
-     MOD = 288,
-     NOT = 289,
-     OF = 290,
-     OR = 291,
-     PROCEDURE = 292,
-     PROGRAM = 293,
-     THEN = 294,
-     TO = 295,
-     TYPE = 296,
-     VAR = 297,
-     COMMENT = 298,
-     CHRLIT = 299,
-     REALIT = 300,
-     INTLIT = 301,
-     WHILE = 302
+     RESERVE_WORDS = 281,
+     AND = 282,
+     ARRAY = 283,
+     DIV = 284,
+     DO = 285,
+     ELSE = 286,
+     FUNCTION = 287,
+     IF = 288,
+     MOD = 289,
+     NOT = 290,
+     OF = 291,
+     OR = 292,
+     PROCEDURE = 293,
+     PROGRAM = 294,
+     THEN = 295,
+     TO = 296,
+     TYPE = 297,
+     VAR = 298,
+     COMMENT = 299,
+     CHRLIT = 300,
+     REALIT = 301,
+     INTLIT = 302,
+     WHILE = 303,
+     REGULAR_EXPRESSIONS = 304,
+     TOKEN_END = 305
    };
 #endif
 /* Tokens.  */
@@ -125,58 +130,55 @@
 #define LBRACKET 278
 #define RBRACKET 279
 #define RANGE 280
-#define AND 281
-#define ARRAY 282
-#define DIV 283
-#define DO 284
-#define ELSE 285
-#define FUNCTION 286
-#define IF 287
-#define MOD 288
-#define NOT 289
-#define OF 290
-#define OR 291
-#define PROCEDURE 292
-#define PROGRAM 293
-#define THEN 294
-#define TO 295
-#define TYPE 296
-#define VAR 297
-#define COMMENT 298
-#define CHRLIT 299
-#define REALIT 300
-#define INTLIT 301
-#define WHILE 302
+#define RESERVE_WORDS 281
+#define AND 282
+#define ARRAY 283
+#define DIV 284
+#define DO 285
+#define ELSE 286
+#define FUNCTION 287
+#define IF 288
+#define MOD 289
+#define NOT 290
+#define OF 291
+#define OR 292
+#define PROCEDURE 293
+#define PROGRAM 294
+#define THEN 295
+#define TO 296
+#define TYPE 297
+#define VAR 298
+#define COMMENT 299
+#define CHRLIT 300
+#define REALIT 301
+#define INTLIT 302
+#define WHILE 303
+#define REGULAR_EXPRESSIONS 304
+#define TOKEN_END 305
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
+#line 75 "paspar.y"
 {
-
-/* Line 2068 of yacc.c  */
-#line 70 "paspar.y"
-
   string* token;
   List<string>* slist;
   Typ* typ;
   List<VariableSymbol*>* varlist;
   Exp* exp;
   List<Exp*>* explist;
-
-
-
-/* Line 2068 of yacc.c  */
-#line 155 "y.tab.h"
-} YYSTYPE;
-# define YYSTYPE_IS_TRIVIAL 1
+}
+/* Line 1529 of yacc.c.  */
+#line 158 "y.tab.h"
+	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
+# define YYSTYPE_IS_TRIVIAL 1
 #endif
 
 extern YYSTYPE yylval;
-
 
 //------------------------------------------------------------------------
 //File pastkn_epilog.h must be appended to file pastkn.h

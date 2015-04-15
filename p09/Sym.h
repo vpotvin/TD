@@ -45,21 +45,23 @@ class Sym {
     string id;                                    //Symbol identifier
     Typ* t;                                       //Symbol type
 public:
-    Sym(symkind k,const char* i,Typ* u); 
-    Sym(symkind k,string i,Typ* u);
-    string SymkindSymbol(symkind sk);
-	symkind Symkind(void); 
+    Sym(symkind k,const char* i,Typ* u);          //Constructor 
+    Sym(symkind k,string i,Typ* u);               //Constructor
+    string SymkindSymbol(symkind sk);             //Return a string for the enumeration
+                                                  //constant defining this symbol
+    symkind Symkind(void);                        //Return the enumeration constant 
+                                                  //for this symbol
     virtual void Print(ostream& o,int indent);
     string Id(void);                              //Returns the Symbol's id.
-    Typ* Type(void);
-	bool IsStandardFunctionSymbol(void); 	//Return the Symbol's type
-    bool IsStandardProcedureSymbol(void);
-	bool IsVariableSymbol(void);                  //Is the symbol a variable
-    bool IsProcedureSymbol(void);
-	bool IsProgramSymbol(void);                   //Is the symbol a program
+    Typ* Type(void);                              //Return the Symbol's type
+    bool IsStandardFunctionSymbol(void);          //Is the symbol a standard function
+    bool IsStandardProcedureSymbol(void);         //Is the symbol a standard procedure
+    bool IsVariableSymbol(void);                  //Is the symbol a variable
+    bool IsProgramSymbol(void);                   //Is the symbol a program
+    bool IsProcedureSymbol(void);                 //Is the symbol a procedure
     bool IsTypeSymbol(void);                      //Is the symbol a type
     bool IsFunctionSymbol(void);                  //Is the symbol a function
-	};
+};
 //---------------------------------------------------------------------------
 //class TypeSymbol
 //---------------------------------------------------------------------------
@@ -80,7 +82,7 @@ public:
     ConstantSymbol(const char* id,Typ* t,string v);
     ConstantSymbol(string id,Typ* t,string v);
     void Print(ostream& o,int indent);
-	string ConstantValue(void);
+    string ConstantValue(void);
 };
 //---------------------------------------------------------------------------
 //class StandardSubprogramSymbol
@@ -90,7 +92,7 @@ class StandardSubprogramSymbol: public Sym {
 public:
     StandardSubprogramSymbol(symkind sk,string id,string cid);
     void Print(ostream& id,int indent);
-	string CSPID(void);
+    string CSPID(void);
 };
 //---------------------------------------------------------------------------
 //class StandardProcedureSymbol
@@ -126,7 +128,7 @@ public:
     void Print(ostream& o,int indent);
     void setLexicalLevel(int ll);
     void setAddress(int a);
-	int LexicalLevel(void);
+    int LexicalLevel(void);
     int Address(void);
 };
 //---------------------------------------------------------------------------

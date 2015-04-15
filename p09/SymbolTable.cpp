@@ -21,6 +21,7 @@ using namespace std;
 //-----------------------------------------------------------------------------
 #include "List.h"
 #include "Typ.h"
+#include "StandardTypes.h"
 #include "Sym.h"
 #include "Label.h"
 #include "Namespace.h"
@@ -43,30 +44,36 @@ SymbolTable::~SymbolTable()
 void SymbolTable::Standard(void)
 {   StandardTypes();
     StandardConstants();
-    //StandardProcedures();
-    //StandardFunctions();
+    StandardProcedures();
+    StandardFunctions();
 }
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void SymbolTable::StandardTypes(void)
 {       
     tvoid=new Void();
+    SetTVoid(tvoid);
     
     taddress=new Address();
+    SetTAddress(taddress);
     
     tboolean=new Boolean();
+    SetTBoolean(tboolean);
     Sym* sboolean=new TypeSymbol("boolean",tboolean);
     Insert(sboolean);
 
     tchar=new Character();
+    SetTChar(tchar);
     Sym* schar=new TypeSymbol("char",tchar);
     Insert(schar);
 
     tinteger=new Integer();
+    SetTInteger(tinteger);
     Sym* sinteger=new TypeSymbol("integer",tinteger);
     Insert(sinteger);
 
     treal=new Real();
+    SetTReal(treal);
     Sym* sreal=new TypeSymbol("real",treal);
     Insert(sreal);
 }

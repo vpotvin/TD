@@ -25,11 +25,13 @@ using namespace std;
 //-----------------------------------------------------------------------------
 //External Variables
 //-----------------------------------------------------------------------------
+extern Typ* TypeVoid;
+extern Typ* TypeAddress;
+extern Typ* TypeBoolean;
+extern Typ* TypeChar;
+extern Typ* TypeInteger;
+extern Typ* TypeReal;
 Label L;
-//-----------------------------------------------------------------------------
-//File global variables
-//-----------------------------------------------------------------------------
-static Typ* tvoid=new Void();
 //-----------------------------------------------------------------------------
 //class Sym member functions
 //-----------------------------------------------------------------------------
@@ -102,13 +104,14 @@ string ConstantSymbol::ConstantValue(void)
 //class StandardSubprogramSymbol
 //-----------------------------------------------------------------------------
 StandardSubprogramSymbol::StandardSubprogramSymbol(symkind sk,string id,string cid)
-    :Sym(sk,id,tvoid),cspid(cid){}
+    :Sym(sk,id,TypeVoid),cspid(cid){}
 void StandardSubprogramSymbol::Print(ostream& o,int indent)
 {   Sym::Print(o,indent);
     o << endl;
     for (int a=0;a<indent+1;a++) o << "  ";
     o << "cspid(" << cspid << ")";
 }
+string StandardSubprogramSymbol::CSPID(void){return cspid;}
 //-----------------------------------------------------------------------------
 //class StandardProcedureSymbol
 //-----------------------------------------------------------------------------
@@ -219,9 +222,9 @@ void FunctionSymbol::Print(ostream& o,int indent)
 //class ProgramSymbol
 //-----------------------------------------------------------------------------
 ProgramSymbol::ProgramSymbol(const char* id)
-    :SubprogramSymbol(sk_program,id,tvoid,0){}
+    :SubprogramSymbol(sk_program,id,TypeVoid,0){}
 ProgramSymbol::ProgramSymbol(string id)
-    :SubprogramSymbol(sk_program,id,tvoid,0){}
+    :SubprogramSymbol(sk_program,id,TypeVoid,0){}
 void ProgramSymbol::Print(ostream& o,int indent)
 {   SubprogramSymbol::Print(o,indent);
 }
