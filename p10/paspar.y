@@ -259,7 +259,7 @@ subprogram_declarations: subprogram_declarations subprogram_declaration SEMICOLO
 subprogram_declaration: subprogram_head declarations compound_statement
 {
 	o << "#017 subprogram_declarations->subprogram_head declarations compound_statement" << endl;
-	subprogram_declaration();
+	subprogram_declaration($1, $3);
 }
 
 subprogram_head: FUNCTION ID subprogram_parameters COLON standard_type

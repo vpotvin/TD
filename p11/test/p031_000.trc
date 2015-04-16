@@ -1,0 +1,35 @@
+Token:Code=294 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
+Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p031_000"
+Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
+#005 program_parameters -> Empty
+#002 program_head->PROGRAM ID program_parameters
+#010 declarations->Empty
+Token:Code=298 Name=      VAR Line=  13 Col=   3 Spelling= "var"
+Token:Code=260 Name=       ID Line=  13 Col=   7 Spelling= "cash"
+#008 identifier_list->ID(cash)
+ identifier_list={cash}Token:Code=269 Name=    COLON Line=  13 Col=  11 Spelling= ":"
+Token:Code=260 Name=       ID Line=  13 Col=  12 Spelling= "real"
+#014 standard_type -> ID(real)
+
+Symbol(Type Symbol) id(real)
+  type(Real)
+    size(1) alignment(1)
+#012 type->standard_type
+Token:Code=268 Name= SEMICOLON Line=  13 Col=  16 Spelling= ";"
+#011 declarations->declarations VAR identifier_list: type ;
+Token:Code=258 Name=    BEGIN Line=  14 Col=   1 Spelling= "begin"
+#015 subprogram_declarations->Empty
+#003 program_declarations->declarations subprogram_declarations
+Token:Code=260 Name=       ID Line=  15 Col=   3 Spelling= "write"
+Token:Code=276 Name=   LPAREN Line=  15 Col=   8 Spelling= "("
+Token:Code=300 Name=   CHRLIT Line=  15 Col=   9 Spelling= "How much cash do you have? "
+#070 factor -> CHRLIT(How much cash do you have? )
+
+          ldc       c         How much cash do you have? 
+#056 term -> factor
+Token:Code=277 Name= RPAREN   Line= 15  Col= 36  Spelling= ")"
+
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#038 expression_list->expression
+#037 procedure_statement->ID(write)( expression_list )
