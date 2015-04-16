@@ -55,7 +55,7 @@ typedef string st;
 
 
 //functions
-void yyerror(const char* msg) {}
+void yyerror(const char* msg); 
 int yylex(void);
 int yywrap(){
 	return 1;
@@ -546,3 +546,11 @@ factor: CHRLIT
 
 %%
 
+//-----------------------------------------------------------------------
+//User function section
+//-----------------------------------------------------------------------
+void yyerror(const char* m)
+{   cout << endl
+         << "line(" << line << ") col(" << col << ") " << m;
+    cout << endl;
+}
