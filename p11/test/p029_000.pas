@@ -16,12 +16,12 @@ program p029_000;
   end{max};
   procedure print(a:integer;b:integer);
   begin{print}
-    writestring('The maximum of ');
-    writeinteger(a);
-    writestring(' and ');
-    writeinteger(b);
-    writestring(' is ');
-    writeinteger(max(a,b));
+    write('The maximum of ');
+    write(a);
+    write(' and ');
+    write(b);
+    write(' is ');
+    write(max(a,b));
     writeln
   end{print};
 begin{p029_000}

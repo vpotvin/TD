@@ -36,15 +36,14 @@ using namespace std;
 #include "identifier_list.h"
 #include "factor.h"
 #include "term.h"
-#include "simple_expression.h"
 #include "expression.h"
 #include "expression_list.h"
 #include "procedure_statement.h"
 #include "variable.h"
+#include "compound_statement.h"
 #include "statement.h"
 #include "statement_list.h"
 #include "optional_statements.h"
-#include "compound_statement.h"
 //---------------------------------------------------------------------
 //Semantic helper include files
 //---------------------------------------------------------------------
@@ -52,6 +51,10 @@ using namespace std;
 #include "String.h"
 #include "PCode.h"
 #include "Exp.h"
+
+#include "simple_expression.h"
+
+
 
 
 typedef string st;
@@ -317,7 +320,7 @@ optional_statements:
 optional_statements: statement_list
 {
 	o << "#026 optional_statements->statement_list" << endl;
-    $$=Statement_list($1);
+    $$=Optional_statements($1);
 }
 
 statement_list: statement

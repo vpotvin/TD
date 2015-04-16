@@ -44,7 +44,7 @@ using namespace std;
 //---------------------------------------------------------------------
 //Externals
 //---------------------------------------------------------------------
-extern ofstream tfs;
+extern ofstream o;
 extern int line;
 extern int col;
 extern Label L;
@@ -53,25 +53,10 @@ extern Label L;
 //---------------------------------------------------------------------
 extern SymbolTable ST;        //The SymbolTable
 //---------------------------------------------------------------------
-//Function ParameterList creates a parameter list from a list of Variables
 //---------------------------------------------------------------------
-static Subprogram* ParameterList(List<VariableSymbol*>* VL,Typ* RT)
-{   List<Typ*>* PL=new List<Typ*>;
-    for (VL->First();!VL->IsEol();VL->Next())
-    {   VariableSymbol* S=VL->Member();
-        Typ* T=S->Type();
-        PL->Insert(T);
-    }
-    return new Subprogram(PL,RT);
-}
-//---------------------------------------------------------------------
-//---------------------------------------------------------------------
-SubprogramSymbol* program_head(string id)
-{  List<VariableSymbol*>* VL=new List<VariableSymbol*>;
-   Subprogram* PL=ParameterList(VL,ST.TVoid());
-   ProcedureSymbol* P=new ProcedureSymbol(id,PL,0);
-
-   ST.Insert(P);
+void program_head(string id)
+{
+   Sym* p=new ProgramSymbol(id);
+   ST.Insert(p);
    ST.NewLocality();
-   return P;
 }

@@ -21,8 +21,8 @@ program p024_000;
     writestring(' and ');
     writeinteger(b);
     writestring(' is ');
-    writeinteger(max(a,b));
-    writeln
+    writestring(max(a,b));
+    writeline
   end{print};
 begin{p024_000}
   print(2,3)

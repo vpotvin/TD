@@ -47,12 +47,7 @@ Token:Code=282 Name=     BEGIN line= 15 col=  1 Spelling="begin"
 Token:Code=301 Name=        ID line= 16 col=  3 Spelling="i"
 Token:Code=263 Name=    ASSIGN line= 16 col=  4 Spelling=":="
 #034 variable -> ID(i)
-Symbol(Variable Symbol) id(i)
-  type(Integer)
-    size(1) alignment(1)
-  lexicallevel(1) address(5)
-          lda       0         5         
-Token:Code=302 Name=INTLIT     line=16  col=6   Spelling="1"
+Token:Code=302 Name=    INTLIT line= 16 col=  6 Spelling="1"
 #068 factor -> INTLIT(1)
           ldc       i         1         
 #056 term -> factor
@@ -60,21 +55,10 @@ Token:Code=266 Name=SEMICOLON  line=16  col=7   Spelling=";"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
 #027 statement_list -> statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
 Token:Code=301 Name=ID         line=16  col=8   Spelling="j"
 Token:Code=263 Name=ASSIGN     line=16  col=9   Spelling=":="
 #034 variable -> ID(j)
-Symbol(Variable Symbol) id(j)
-  type(Integer)
-    size(1) alignment(1)
-  lexicallevel(1) address(6)
-          lda       0         6         
 Token:Code=302 Name=INTLIT     line=16  col=11  Spelling="2"
 #068 factor -> INTLIT(2)
           ldc       i         2         
@@ -83,24 +67,10 @@ Token:Code=266 Name=SEMICOLON  line=16  col=12  Spelling=";"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
 #028 statement_list -> statement_list ; statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
 Token:Code=301 Name=ID         line=16  col=13  Spelling="k"
 Token:Code=263 Name=ASSIGN     line=16  col=14  Spelling=":="
 #034 variable -> ID(k)
-Symbol(Variable Symbol) id(k)
-  type(Integer)
-    size(1) alignment(1)
-  lexicallevel(1) address(7)
-          lda       0         7         
 Token:Code=302 Name=INTLIT     line=16  col=16  Spelling="3"
 #068 factor -> INTLIT(3)
           ldc       i         3         
@@ -109,27 +79,10 @@ Token:Code=266 Name=SEMICOLON  line=16  col=17  Spelling=";"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
 #028 statement_list -> statement_list ; statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
 Token:Code=301 Name=ID         line=17  col=3   Spelling="b"
 Token:Code=263 Name=ASSIGN     line=17  col=4   Spelling=":="
 #034 variable -> ID(b)
-Symbol(Variable Symbol) id(b)
-  type(Boolean)
-    size(1) alignment(1)
-  lexicallevel(1) address(8)
-          lda       0         8         
 Token:Code=301 Name=ID         line=17  col=6   Spelling="false"
 Token:Code=266 Name=SEMICOLON  line=17  col=11  Spelling=";"
 #063 factor -> ID(false)
@@ -144,30 +97,10 @@ Symbol(Constant Symbol) id(false)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
 #028 statement_list -> statement_list ; statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
 Token:Code=301 Name=ID         line=17  col=12  Spelling="c"
 Token:Code=263 Name=ASSIGN     line=17  col=13  Spelling=":="
 #034 variable -> ID(c)
-Symbol(Variable Symbol) id(c)
-  type(Boolean)
-    size(1) alignment(1)
-  lexicallevel(1) address(9)
-          lda       0         9         
 Token:Code=301 Name=ID         line=17  col=15  Spelling="true"
 Token:Code=266 Name=SEMICOLON  line=17  col=19  Spelling=";"
 #063 factor -> ID(true)
@@ -182,33 +115,10 @@ Symbol(Constant Symbol) id(true)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         9         
-          ldc       b         1         
-          sti       b                   
 #028 statement_list -> statement_list ; statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
-          lda       0         9         
-          ldc       b         1         
-          sti       b                   
 Token:Code=301 Name=ID         line=17  col=20  Spelling="d"
 Token:Code=263 Name=ASSIGN     line=17  col=21  Spelling=":="
 #034 variable -> ID(d)
-Symbol(Variable Symbol) id(d)
-  type(Boolean)
-    size(1) alignment(1)
-  lexicallevel(1) address(10)
-          lda       0         10        
 Token:Code=301 Name=ID         line=17  col=23  Spelling="false"
 Token:Code=266 Name=SEMICOLON  line=17  col=28  Spelling=";"
 #063 factor -> ID(false)
@@ -223,36 +133,10 @@ Symbol(Constant Symbol) id(false)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         10        
-          ldc       b         0         
-          sti       b                   
 #028 statement_list -> statement_list ; statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
-          lda       0         9         
-          ldc       b         1         
-          sti       b                   
-          lda       0         10        
-          ldc       b         0         
-          sti       b                   
 Token:Code=301 Name=ID         line=18  col=3   Spelling="i"
 Token:Code=263 Name=ASSIGN     line=18  col=4   Spelling=":="
 #034 variable -> ID(i)
-Symbol(Variable Symbol) id(i)
-  type(Integer)
-    size(1) alignment(1)
-  lexicallevel(1) address(5)
-          lda       0         5         
 Token:Code=259 Name=PLUS       line=18  col=6   Spelling="+"
 #051 sign -> +
 Token:Code=301 Name=ID         line=18  col=7   Spelling="j"
@@ -267,39 +151,10 @@ Symbol(Variable Symbol) id(j)
 #049 simple_expression -> sign term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         5         
-          lvi       0         6         
-          sti       i                   
 #028 statement_list -> statement_list ; statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
-          lda       0         9         
-          ldc       b         1         
-          sti       b                   
-          lda       0         10        
-          ldc       b         0         
-          sti       b                   
-          lda       0         5         
-          lvi       0         6         
-          sti       i                   
 Token:Code=301 Name=ID         line=19  col=3   Spelling="i"
 Token:Code=263 Name=ASSIGN     line=19  col=4   Spelling=":="
 #034 variable -> ID(i)
-Symbol(Variable Symbol) id(i)
-  type(Integer)
-    size(1) alignment(1)
-  lexicallevel(1) address(5)
-          lda       0         5         
 Token:Code=260 Name=MINUS      line=19  col=6   Spelling="-"
 #052 sign -> -
 Token:Code=301 Name=ID         line=19  col=7   Spelling="j"
@@ -316,44 +171,10 @@ Symbol(Variable Symbol) id(j)
           ngi                           
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         5         
-          lvi       0         6         
-          ngi                           
-          sti       i                   
 #028 statement_list -> statement_list ; statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
-          lda       0         9         
-          ldc       b         1         
-          sti       b                   
-          lda       0         10        
-          ldc       b         0         
-          sti       b                   
-          lda       0         5         
-          lvi       0         6         
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          ngi                           
-          sti       i                   
 Token:Code=301 Name=ID         line=20  col=3   Spelling="i"
 Token:Code=263 Name=ASSIGN     line=20  col=4   Spelling=":="
 #034 variable -> ID(i)
-Symbol(Variable Symbol) id(i)
-  type(Integer)
-    size(1) alignment(1)
-  lexicallevel(1) address(5)
-          lda       0         5         
 Token:Code=301 Name=ID         line=20  col=6   Spelling="j"
 Token:Code=259 Name=PLUS       line=20  col=7   Spelling="+"
 #063 factor -> ID(j)
@@ -380,50 +201,10 @@ Symbol(Variable Symbol) id(k)
           adi                           
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          adi                           
-          sti       i                   
 #028 statement_list -> statement_list ; statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
-          lda       0         9         
-          ldc       b         1         
-          sti       b                   
-          lda       0         10        
-          ldc       b         0         
-          sti       b                   
-          lda       0         5         
-          lvi       0         6         
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          ngi                           
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          adi                           
-          sti       i                   
 Token:Code=301 Name=ID         line=21  col=3   Spelling="i"
 Token:Code=263 Name=ASSIGN     line=21  col=4   Spelling=":="
 #034 variable -> ID(i)
-Symbol(Variable Symbol) id(i)
-  type(Integer)
-    size(1) alignment(1)
-  lexicallevel(1) address(5)
-          lda       0         5         
 Token:Code=301 Name=ID         line=21  col=6   Spelling="j"
 Token:Code=260 Name=MINUS      line=21  col=7   Spelling="-"
 #063 factor -> ID(j)
@@ -450,55 +231,10 @@ Symbol(Variable Symbol) id(k)
           sbi                           
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          sbi                           
-          sti       i                   
 #028 statement_list -> statement_list ; statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
-          lda       0         9         
-          ldc       b         1         
-          sti       b                   
-          lda       0         10        
-          ldc       b         0         
-          sti       b                   
-          lda       0         5         
-          lvi       0         6         
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          ngi                           
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          adi                           
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          sbi                           
-          sti       i                   
 Token:Code=301 Name=ID         line=22  col=3   Spelling="b"
 Token:Code=263 Name=ASSIGN     line=22  col=4   Spelling=":="
 #034 variable -> ID(b)
-Symbol(Variable Symbol) id(b)
-  type(Boolean)
-    size(1) alignment(1)
-  lexicallevel(1) address(8)
-          lda       0         8         
 Token:Code=301 Name=ID         line=22  col=6   Spelling="c"
 Token:Code=292 Name=OR         line=22  col=8   Spelling="or"
 #063 factor -> ID(c)
@@ -525,196 +261,12 @@ Symbol(Variable Symbol) id(d)
           ior                           
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         8         
-          lvb       0         9         
-          lvb       0         10        
-          ior                           
-          sti       b                   
 #028 statement_list -> statement_list ; statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
-          lda       0         9         
-          ldc       b         1         
-          sti       b                   
-          lda       0         10        
-          ldc       b         0         
-          sti       b                   
-          lda       0         5         
-          lvi       0         6         
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          ngi                           
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          adi                           
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          sbi                           
-          sti       i                   
-          lda       0         8         
-          lvb       0         9         
-          lvb       0         10        
-          ior                           
-          sti       b                   
 #026 optional_statements -> statement_list
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
-          lda       0         9         
-          ldc       b         1         
-          sti       b                   
-          lda       0         10        
-          ldc       b         0         
-          sti       b                   
-          lda       0         5         
-          lvi       0         6         
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          ngi                           
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          adi                           
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          sbi                           
-          sti       i                   
-          lda       0         8         
-          lvb       0         9         
-          lvb       0         10        
-          ior                           
-          sti       b                   
 #024 compound_statement -> BEGIN optional_statement END
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
-          lda       0         9         
-          ldc       b         1         
-          sti       b                   
-          lda       0         10        
-          ldc       b         0         
-          sti       b                   
-          lda       0         5         
-          lvi       0         6         
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          ngi                           
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          adi                           
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          sbi                           
-          sti       i                   
-          lda       0         8         
-          lvb       0         9         
-          lvb       0         10        
-          ior                           
-          sti       b                   
 Token:Code=264 Name=PERIOD     line=23  col=14  Spelling="."
 #004 program_body -> compound_statement .
 #001 program -> program_head program_declarations program_body
-prolog
-L00001    ent       sp        L00002    
-          ent       ep        L00003    
-compound_statement
-          lda       0         5         
-          ldc       i         1         
-          sti       i                   
-          lda       0         6         
-          ldc       i         2         
-          sti       i                   
-          lda       0         7         
-          ldc       i         3         
-          sti       i                   
-          lda       0         8         
-          ldc       b         0         
-          sti       b                   
-          lda       0         9         
-          ldc       b         1         
-          sti       b                   
-          lda       0         10        
-          ldc       b         0         
-          sti       b                   
-          lda       0         5         
-          lvi       0         6         
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          ngi                           
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          adi                           
-          sti       i                   
-          lda       0         5         
-          lvi       0         6         
-          lvi       0         7         
-          sbi                           
-          sti       i                   
-          lda       0         8         
-          lvb       0         9         
-          lvb       0         10        
-          ior                           
-          sti       b                   
-          rtn       p                   
-
-#define   L00002    10                  
-
-
-#define   L00003    13                  
-
-epilog
-          rtn       p                   
-#define   L00002    10                  
-#define   L00003    13                  
-program epilog
-          mst       0                   
-          cup       0         L00001    
-          stp                           
 Locality: lexical level 1
 
   Symbol(Variable Symbol) id(b)
@@ -743,4 +295,33 @@ Locality: lexical level 1
     lexicallevel(1) address(7)
 
 Locality: lexical level 0
+
+  Symbol(Type Symbol) id(boolean)
+    type(Boolean)
+      size(1) alignment(1)
+  Symbol(Type Symbol) id(char)
+    type(Character)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(false)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(0)
+      type(Boolean)
+        size(1) alignment(1)
+  Symbol(Type Symbol) id(integer)
+    type(Integer)
+      size(1) alignment(1)
+  Symbol(Program Symbol) id(p052_000)
+    type(Void)
+      size(0) alignment(0)
+    lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
+  Symbol(Type Symbol) id(real)
+    type(Real)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(true)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(1)
+      type(Boolean)
+        size(1) alignment(1)
 

@@ -16,7 +16,7 @@ begin{p034_000}
   while count>=0 do
   begin
     writeinteger(count);
-    writestring(', ');
+    writechar(' ');
     count:=count-1
   end{while};
   writestring('Blast off!');

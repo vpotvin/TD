@@ -11,7 +11,7 @@
 {------------------------------------------------------------------------------------}
 program p041_000;
   var b:boolean;
-  var i,j:integer;
+  var i,j,k:integer;
 begin{p041_000}
   b:=true;
   b:=i =  j;
@@ -19,5 +19,6 @@ begin{p041_000}
   b:=i <  j;
   b:=i <= j;
   b:=i >  j;
-  b:=i >= j
+  b:=i >= j;
+  b:= (i+j mod k) < (i+j)
 end{p041_000}.

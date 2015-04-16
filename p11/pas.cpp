@@ -76,19 +76,19 @@ int main (int argc,char* argv[]) {
     FileNameSuffix F(ifn);        //Find the prefix of the input file name
     char ofn[255];
     F.Suffix(ofn,".trc");         //Create the trace file name
+    char pfn[255];                //P-Code File Name
+    F.Suffix(pfn,".pcd");         //Create the P-Code File Name
     FILE* i=fopen(ifn,"r");       //Open the input file
     if (!i) throw FileException(ifn);
-    char pofn[255];
-    F.Suffix(pofn, ".pcd");
     
     o.open(ofn); if (!o) throw FileException(ofn);
-    pfs.open(pofn); if (!o) throw FileException(ofn);
+    pfs.open(pfn); if (!pfs) throw FileException(pfn);
     Parser P(i);
     P.Parse();
-    o << endl;                 //Put a new line in the trace file
-    o.close();                  //Close the trace file
+    o << endl;                  //Put a new line in the trace file
     pfs << endl;
-    pfs.close();
+    o.close();                  //Close the trace file
+    pfs.close();                  //Clsoe the pcdoe file
     fclose(i);                    //Close the input file
     } catch (...) {
         cout << endl;

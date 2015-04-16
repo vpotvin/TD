@@ -11,21 +11,13 @@
 {------------------------------------------------------------------------------------}
 program p050_000;
   var i,j,k:integer;
-  var r,s,t:real;
   var b,c,d:boolean;
 begin{p050_000}
   i:=1;j:=2;k:=3;
-  r:=1.0;s:=1.0;t:=2.0;
   b:=false;c:=true;d:=false;
   i:=+j;
   i:=-j;
   i:=j+k;
-  r:=j+t;
-  r:=s+k;
-  r:=s+t;
-  i:=j-k;
-  r:=j-t;
-  r:=s-k;
-  r:=s-t;
+  i:=k-i mod j;
   b:=c or d
 end{p050_000}.

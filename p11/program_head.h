@@ -39,5 +39,5 @@ using namespace std;
 //---------------------------------------------------------------------
 //Semantic include files
 //---------------------------------------------------------------------
-SubprogramSymbol* program_head(string id);
+void program_head(string id);
 #endif

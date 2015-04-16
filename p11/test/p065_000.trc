@@ -72,18 +72,6 @@ Symbol(Variable Symbol) id(b)
 Token:Code=301 Name=ID         line=16  col=17  Spelling="max"
 Token:Code=263 Name=ASSIGN     line=16  col=20  Spelling=":="
 #034 variable -> ID(max)
-Symbol(Function Symbol) id(max)
-  type(Subprogram)
-      Return Type
-        type(Integer)
-          size(1) alignment(1)
-      Parameter Types
-        type(Integer)
-          size(1) alignment(1)
-        type(Integer)
-          size(1) alignment(1)
-  lexicallevel(1) elabel(L00004) splabel(L00005) eplabel(L00006)
-          lda       0         0         
 Token:Code=301 Name=ID         line=16  col=22  Spelling="a"
 Token:Code=285 Name=ELSE       line=16  col=24  Spelling="else"
 #063 factor -> ID(a)
@@ -96,24 +84,9 @@ Symbol(Variable Symbol) id(a)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
 Token:Code=301 Name=ID         line=16  col=29  Spelling="max"
 Token:Code=263 Name=ASSIGN     line=16  col=32  Spelling=":="
 #034 variable -> ID(max)
-Symbol(Function Symbol) id(max)
-  type(Subprogram)
-      Return Type
-        type(Integer)
-          size(1) alignment(1)
-      Parameter Types
-        type(Integer)
-          size(1) alignment(1)
-        type(Integer)
-          size(1) alignment(1)
-  lexicallevel(1) elabel(L00004) splabel(L00005) eplabel(L00006)
-          lda       0         0         
 Token:Code=301 Name=ID         line=16  col=34  Spelling="b"
 Token:Code=286 Name=END        line=17  col=3   Spelling="end"
 #063 factor -> ID(b)
@@ -126,94 +99,11 @@ Symbol(Variable Symbol) id(b)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
 #032 statement -> IF expression THEN statement ELSE statement 
-          lvi       0         5         
-          lvi       0         6         
-          grt       i                   
-          fjp                 L00007    
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
-          ujp                 L00008    
-L00007                                  
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
-L00008                                  
 #027 statement_list -> statement
-          lvi       0         5         
-          lvi       0         6         
-          grt       i                   
-          fjp                 L00007    
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
-          ujp                 L00008    
-L00007                                  
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
-L00008                                  
 #026 optional_statements -> statement_list
-          lvi       0         5         
-          lvi       0         6         
-          grt       i                   
-          fjp                 L00007    
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
-          ujp                 L00008    
-L00007                                  
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
-L00008                                  
 #024 compound_statement -> BEGIN optional_statement END
-          lvi       0         5         
-          lvi       0         6         
-          grt       i                   
-          fjp                 L00007    
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
-          ujp                 L00008    
-L00007                                  
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
-L00008                                  
 #017 subprogram_declaration -> subprogram_head variable_declarations compound_statement
-prolog
-L00004    ent       sp        L00005    
-          ent       ep        L00006    
-compound_statement
-          lvi       0         5         
-          lvi       0         6         
-          grt       i                   
-          fjp                 L00007    
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
-          ujp                 L00008    
-L00007                                  
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
-L00008                                  
-          rtn       i                   
-
-#define   L00005    6                   
-
-
-#define   L00006    8                   
-
-epilog
-          rtn       i                   
-#define   L00005    6                   
-#define   L00006    8                   
 Locality: lexical level 2
 
   Symbol(Variable Symbol) id(a)
@@ -232,11 +122,6 @@ Token:Code=282 Name=BEGIN      line=18  col=1   Spelling="begin"
 Token:Code=301 Name=ID         line=19  col=3   Spelling="i"
 Token:Code=263 Name=ASSIGN     line=19  col=4   Spelling=":="
 #034 variable -> ID(i)
-Symbol(Variable Symbol) id(i)
-  type(Integer)
-    size(1) alignment(1)
-  lexicallevel(1) address(5)
-          lda       0         5         
 Token:Code=301 Name=ID         line=19  col=6   Spelling="max"
 Token:Code=274 Name=LPAREN     line=19  col=9   Spelling="("
 Token:Code=302 Name=INTLIT     line=19  col=10  Spelling="3"
@@ -257,69 +142,18 @@ Token:Code=275 Name=RPAREN     line=19  col=13  Spelling=")"
 #039 expression_list -> expression_list , expression
 #065 factor -> ID(max) ( expression_list )
           mst       0                   
-          ldc       i         3         
-          ldc       i         4         
           cup       2         L00004    
 #056 term -> factor
 Token:Code=286 Name=END        line=20  col=1   Spelling="end"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         5         
-          mst       0                   
-          ldc       i         3         
-          ldc       i         4         
-          cup       2         L00004    
-          sti       i                   
 #027 statement_list -> statement
-          lda       0         5         
-          mst       0                   
-          ldc       i         3         
-          ldc       i         4         
-          cup       2         L00004    
-          sti       i                   
 #026 optional_statements -> statement_list
-          lda       0         5         
-          mst       0                   
-          ldc       i         3         
-          ldc       i         4         
-          cup       2         L00004    
-          sti       i                   
 #024 compound_statement -> BEGIN optional_statement END
-          lda       0         5         
-          mst       0                   
-          ldc       i         3         
-          ldc       i         4         
-          cup       2         L00004    
-          sti       i                   
 Token:Code=264 Name=PERIOD     line=20  col=14  Spelling="."
 #004 program_body -> compound_statement .
 #001 program -> program_head program_declarations program_body
-prolog
-L00001    ent       sp        L00002    
-          ent       ep        L00003    
-compound_statement
-          lda       0         5         
-          mst       0                   
-          ldc       i         3         
-          ldc       i         4         
-          cup       2         L00004    
-          sti       i                   
-          rtn       p                   
-
-#define   L00002    5                   
-
-
-#define   L00003    13                  
-
-epilog
-          rtn       p                   
-#define   L00002    5                   
-#define   L00003    13                  
-program epilog
-          mst       0                   
-          cup       0         L00001    
-          stp                           
 Locality: lexical level 1
 
   Symbol(Variable Symbol) id(i)
@@ -339,4 +173,33 @@ Locality: lexical level 1
     lexicallevel(1) elabel(L00004) splabel(L00005) eplabel(L00006)
 
 Locality: lexical level 0
+
+  Symbol(Type Symbol) id(boolean)
+    type(Boolean)
+      size(1) alignment(1)
+  Symbol(Type Symbol) id(char)
+    type(Character)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(false)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(0)
+      type(Boolean)
+        size(1) alignment(1)
+  Symbol(Type Symbol) id(integer)
+    type(Integer)
+      size(1) alignment(1)
+  Symbol(Program Symbol) id(p065_000)
+    type(Void)
+      size(0) alignment(0)
+    lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
+  Symbol(Type Symbol) id(real)
+    type(Real)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(true)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(1)
+      type(Boolean)
+        size(1) alignment(1)
 

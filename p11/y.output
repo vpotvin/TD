@@ -41,7 +41,7 @@ Grammar
 
    17 subprogram_declaration: subprogram_head declarations compound_statement
 
-   18 subprogram_head: FUNCTION ID subprogram_parameters COLON standard_type
+   18 subprogram_head: FUNCTION ID subprogram_parameters COLON standard_type SEMICOLON
    19                | PROCEDURE ID subprogram_parameters SEMICOLON
 
    20 subprogram_parameters: /* empty */
@@ -127,7 +127,7 @@ SLASH (264) 59
 ASSIGN (265) 29
 PERIOD (266) 4
 COMMA (267) 9 39
-SEMICOLON (268) 2 11 16 19 23 28
+SEMICOLON (268) 2 11 16 18 19 23 28
 COLON (269) 11 18 22 23
 EQU (270) 42
 NEQ (271) 43
@@ -528,7 +528,7 @@ state 29
 
 state 30
 
-   18 subprogram_head: FUNCTION . ID subprogram_parameters COLON standard_type
+   18 subprogram_head: FUNCTION . ID subprogram_parameters COLON standard_type SEMICOLON
 
     ID  shift, and go to state 56
 
@@ -821,7 +821,7 @@ state 55
 
 state 56
 
-   18 subprogram_head: FUNCTION ID . subprogram_parameters COLON standard_type
+   18 subprogram_head: FUNCTION ID . subprogram_parameters COLON standard_type SEMICOLON
 
     LPAREN  shift, and go to state 94
 
@@ -1190,7 +1190,7 @@ state 94
 
 state 95
 
-   18 subprogram_head: FUNCTION ID subprogram_parameters . COLON standard_type
+   18 subprogram_head: FUNCTION ID subprogram_parameters . COLON standard_type SEMICOLON
 
     COLON  shift, and go to state 113
 
@@ -1351,7 +1351,7 @@ state 112
 
 state 113
 
-   18 subprogram_head: FUNCTION ID subprogram_parameters COLON . standard_type
+   18 subprogram_head: FUNCTION ID subprogram_parameters COLON . standard_type SEMICOLON
 
     ID  shift, and go to state 90
 
@@ -1437,9 +1437,9 @@ state 122
 
 state 123
 
-   18 subprogram_head: FUNCTION ID subprogram_parameters COLON standard_type .
+   18 subprogram_head: FUNCTION ID subprogram_parameters COLON standard_type . SEMICOLON
 
-    $default  reduce using rule 18 (subprogram_head)
+    SEMICOLON  shift, and go to state 128
 
 
 state 124
@@ -1453,7 +1453,7 @@ state 125
 
    13 type: ARRAY LBRACKET INTLIT RANGE . INTLIT RBRACKET OF standard_type
 
-    INTLIT  shift, and go to state 128
+    INTLIT  shift, and go to state 129
 
 
 state 126
@@ -1469,51 +1469,58 @@ state 127
    23 parameter_list: parameter_list SEMICOLON identifier_list . COLON type
 
     COMMA  shift, and go to state 35
-    COLON  shift, and go to state 129
+    COLON  shift, and go to state 130
 
 
 state 128
 
-   13 type: ARRAY LBRACKET INTLIT RANGE INTLIT . RBRACKET OF standard_type
+   18 subprogram_head: FUNCTION ID subprogram_parameters COLON standard_type SEMICOLON .
 
-    RBRACKET  shift, and go to state 130
+    $default  reduce using rule 18 (subprogram_head)
 
 
 state 129
+
+   13 type: ARRAY LBRACKET INTLIT RANGE INTLIT . RBRACKET OF standard_type
+
+    RBRACKET  shift, and go to state 131
+
+
+state 130
 
    23 parameter_list: parameter_list SEMICOLON identifier_list COLON . type
 
     ID     shift, and go to state 90
     ARRAY  shift, and go to state 91
 
-    type           go to state 131
+    type           go to state 132
     standard_type  go to state 93
 
 
-state 130
+state 131
 
    13 type: ARRAY LBRACKET INTLIT RANGE INTLIT RBRACKET . OF standard_type
 
-    OF  shift, and go to state 132
+    OF  shift, and go to state 133
 
 
-state 131
+state 132
 
    23 parameter_list: parameter_list SEMICOLON identifier_list COLON type .
 
     $default  reduce using rule 23 (parameter_list)
 
 
-state 132
+state 133
 
    13 type: ARRAY LBRACKET INTLIT RANGE INTLIT RBRACKET OF . standard_type
 
     ID  shift, and go to state 90
 
-    standard_type  go to state 133
+    standard_type  go to state 134
 
 
-state 133
+state 134
 
    13 type: ARRAY LBRACKET INTLIT RANGE INTLIT RBRACKET OF standard_type .
 

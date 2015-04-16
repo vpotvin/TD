@@ -60,18 +60,6 @@ Symbol(Variable Symbol) id(b)
 Token:Code=301 Name=ID         line=15  col=17  Spelling="max"
 Token:Code=263 Name=ASSIGN     line=15  col=20  Spelling=":="
 #034 variable -> ID(max)
-Symbol(Function Symbol) id(max)
-  type(Subprogram)
-      Return Type
-        type(Integer)
-          size(1) alignment(1)
-      Parameter Types
-        type(Integer)
-          size(1) alignment(1)
-        type(Integer)
-          size(1) alignment(1)
-  lexicallevel(1) elabel(L00004) splabel(L00005) eplabel(L00006)
-          lda       0         0         
 Token:Code=301 Name=ID         line=15  col=22  Spelling="a"
 Token:Code=285 Name=ELSE       line=15  col=24  Spelling="else"
 #063 factor -> ID(a)
@@ -84,24 +72,9 @@ Symbol(Variable Symbol) id(a)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
 Token:Code=301 Name=ID         line=15  col=29  Spelling="max"
 Token:Code=263 Name=ASSIGN     line=15  col=32  Spelling=":="
 #034 variable -> ID(max)
-Symbol(Function Symbol) id(max)
-  type(Subprogram)
-      Return Type
-        type(Integer)
-          size(1) alignment(1)
-      Parameter Types
-        type(Integer)
-          size(1) alignment(1)
-        type(Integer)
-          size(1) alignment(1)
-  lexicallevel(1) elabel(L00004) splabel(L00005) eplabel(L00006)
-          lda       0         0         
 Token:Code=301 Name=ID         line=15  col=34  Spelling="b"
 Token:Code=286 Name=END        line=16  col=3   Spelling="end"
 #063 factor -> ID(b)
@@ -114,94 +87,11 @@ Symbol(Variable Symbol) id(b)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
 #032 statement -> IF expression THEN statement ELSE statement 
-          lvi       0         5         
-          lvi       0         6         
-          grt       i                   
-          fjp                 L00007    
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
-          ujp                 L00008    
-L00007                                  
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
-L00008                                  
 #027 statement_list -> statement
-          lvi       0         5         
-          lvi       0         6         
-          grt       i                   
-          fjp                 L00007    
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
-          ujp                 L00008    
-L00007                                  
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
-L00008                                  
 #026 optional_statements -> statement_list
-          lvi       0         5         
-          lvi       0         6         
-          grt       i                   
-          fjp                 L00007    
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
-          ujp                 L00008    
-L00007                                  
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
-L00008                                  
 #024 compound_statement -> BEGIN optional_statement END
-          lvi       0         5         
-          lvi       0         6         
-          grt       i                   
-          fjp                 L00007    
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
-          ujp                 L00008    
-L00007                                  
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
-L00008                                  
 #017 subprogram_declaration -> subprogram_head variable_declarations compound_statement
-prolog
-L00004    ent       sp        L00005    
-          ent       ep        L00006    
-compound_statement
-          lvi       0         5         
-          lvi       0         6         
-          grt       i                   
-          fjp                 L00007    
-          lda       0         0         
-          lvi       0         5         
-          sti       i                   
-          ujp                 L00008    
-L00007                                  
-          lda       0         0         
-          lvi       0         6         
-          sti       i                   
-L00008                                  
-          rtn       i                   
-
-#define   L00005    6                   
-
-
-#define   L00006    8                   
-
-epilog
-          rtn       i                   
-#define   L00005    6                   
-#define   L00006    8                   
 Locality: lexical level 2
 
   Symbol(Variable Symbol) id(a)
@@ -241,7 +131,7 @@ Token:Code=301 Name=ID         line=19  col=5   Spelling="writeln"
 Token:Code=274 Name=LPAREN     line=19  col=12  Spelling="("
 Token:Code=304 Name=CHRLIT     line=19  col=13  Spelling="'The maximum of '"
 #070 factor -> CHRLIT('The maximum of ')
-          ldc       s         'The maximum of '
+          ldc       c         'The maximum of '
 #056 term -> factor
 Token:Code=265 Name=COMMA      line=19  col=30  Spelling=","
 #048 simple_expression -> term
@@ -261,7 +151,7 @@ Symbol(Variable Symbol) id(a)
 #039 expression_list -> expression_list , expression
 Token:Code=304 Name=CHRLIT     line=19  col=33  Spelling="' and '"
 #070 factor -> CHRLIT(' and ')
-          ldc       s         ' and '   
+          ldc       c         ' and '   
 #056 term -> factor
 Token:Code=265 Name=COMMA      line=19  col=40  Spelling=","
 #048 simple_expression -> term
@@ -281,7 +171,7 @@ Symbol(Variable Symbol) id(b)
 #039 expression_list -> expression_list , expression
 Token:Code=304 Name=CHRLIT     line=19  col=43  Spelling="' is '"
 #070 factor -> CHRLIT(' is ')
-          ldc       s         ' is '    
+          ldc       c         ' is '    
 #056 term -> factor
 Token:Code=265 Name=COMMA      line=19  col=49  Spelling=","
 #048 simple_expression -> term
@@ -315,8 +205,6 @@ Symbol(Variable Symbol) id(b)
 #039 expression_list -> expression_list , expression
 #065 factor -> ID(max) ( expression_list )
           mst       1                   
-          lvi       0         5         
-          lvi       0         6         
           cup       2         L00004    
 #056 term -> factor
 Token:Code=275 Name=RPAREN     line=19  col=58  Spelling=")"
@@ -324,68 +212,12 @@ Token:Code=275 Name=RPAREN     line=19  col=58  Spelling=")"
 #040 expression -> simple_expression
 #039 expression_list -> expression_list , expression
 #037 procedure_statement -> ID(writeln) ( expression_list )
-          csp                 wln       
 #030 statement -> procedure_statement
 #027 statement_list -> statement
-          ldc       s         'The maximum of '
-          lvi       0         5         
-          ldc       s         ' and '   
-          lvi       0         6         
-          ldc       s         ' is '    
-          mst       1                   
-          lvi       0         5         
-          lvi       0         6         
-          cup       2         L00004    
-          csp                 wln       
 Token:Code=286 Name=END        line=20  col=3   Spelling="end"
 #026 optional_statements -> statement_list
-          ldc       s         'The maximum of '
-          lvi       0         5         
-          ldc       s         ' and '   
-          lvi       0         6         
-          ldc       s         ' is '    
-          mst       1                   
-          lvi       0         5         
-          lvi       0         6         
-          cup       2         L00004    
-          csp                 wln       
 #024 compound_statement -> BEGIN optional_statement END
-          ldc       s         'The maximum of '
-          lvi       0         5         
-          ldc       s         ' and '   
-          lvi       0         6         
-          ldc       s         ' is '    
-          mst       1                   
-          lvi       0         5         
-          lvi       0         6         
-          cup       2         L00004    
-          csp                 wln       
 #017 subprogram_declaration -> subprogram_head variable_declarations compound_statement
-prolog
-L00009    ent       sp        L00010    
-          ent       ep        L00011    
-compound_statement
-          ldc       s         'The maximum of '
-          lvi       0         5         
-          ldc       s         ' and '   
-          lvi       0         6         
-          ldc       s         ' is '    
-          mst       1                   
-          lvi       0         5         
-          lvi       0         6         
-          cup       2         L00004    
-          csp                 wln       
-          rtn       p                   
-
-#define   L00010    6                   
-
-
-#define   L00011    18                  
-
-epilog
-          rtn       p                   
-#define   L00010    6                   
-#define   L00011    18                  
 Locality: lexical level 2
 
   Symbol(Variable Symbol) id(a)
@@ -420,53 +252,14 @@ Token:Code=275 Name=RPAREN     line=22  col=12  Spelling=")"
 #040 expression -> simple_expression
 #039 expression_list -> expression_list , expression
 #037 procedure_statement -> ID(print) ( expression_list )
-          mst       0                   
-          ldc       i         2         
-          ldc       i         3         
-          cup       2         L00009    
 #030 statement -> procedure_statement
 #027 statement_list -> statement
-          mst       0                   
-          ldc       i         2         
-          ldc       i         3         
-          cup       2         L00009    
 Token:Code=286 Name=END        line=23  col=1   Spelling="end"
 #026 optional_statements -> statement_list
-          mst       0                   
-          ldc       i         2         
-          ldc       i         3         
-          cup       2         L00009    
 #024 compound_statement -> BEGIN optional_statement END
-          mst       0                   
-          ldc       i         2         
-          ldc       i         3         
-          cup       2         L00009    
 Token:Code=264 Name=PERIOD     line=23  col=14  Spelling="."
 #004 program_body -> compound_statement .
 #001 program -> program_head program_declarations program_body
-prolog
-L00001    ent       sp        L00002    
-          ent       ep        L00003    
-compound_statement
-          mst       0                   
-          ldc       i         2         
-          ldc       i         3         
-          cup       2         L00009    
-          rtn       p                   
-
-#define   L00002    4                   
-
-
-#define   L00003    11                  
-
-epilog
-          rtn       p                   
-#define   L00002    4                   
-#define   L00003    11                  
-program epilog
-          mst       0                   
-          cup       0         L00001    
-          stp                           
 Locality: lexical level 1
 
   Symbol(Function Symbol) id(max)
@@ -490,7 +283,36 @@ Locality: lexical level 1
             size(1) alignment(1)
           type(Integer)
             size(1) alignment(1)
-    lexicallevel(1) elabel(L00009) splabel(L00010) eplabel(L00011)
+    lexicallevel(1) elabel(L00007) splabel(L00008) eplabel(L00009)
 
 Locality: lexical level 0
+
+  Symbol(Type Symbol) id(boolean)
+    type(Boolean)
+      size(1) alignment(1)
+  Symbol(Type Symbol) id(char)
+    type(Character)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(false)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(0)
+      type(Boolean)
+        size(1) alignment(1)
+  Symbol(Type Symbol) id(integer)
+    type(Integer)
+      size(1) alignment(1)
+  Symbol(Program Symbol) id(p021_000)
+    type(Void)
+      size(0) alignment(0)
+    lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
+  Symbol(Type Symbol) id(real)
+    type(Real)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(true)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(1)
+      type(Boolean)
+        size(1) alignment(1)
 

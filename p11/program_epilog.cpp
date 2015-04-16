@@ -46,7 +46,7 @@ using namespace std;
 //Externals
 //---------------------------------------------------------------------
 extern ofstream pfs;
-extern ofstream tfs;
+extern ofstream o;
 extern int line;
 extern int col;
 extern SymbolTable ST;

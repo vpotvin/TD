@@ -55,5 +55,6 @@ List<Exp*>* Optional_statements(void)
 //optional_statements -> statement_list
 //--------------------------------------------------------------------
 List<Exp*>* Optional_statements(List<Exp*>* sl)
-{  return sl;
+{   sl->Print(o);
+    return sl;
 }

@@ -1,4 +1,17 @@
-
+//-------------------------------------------------------------------------
+//File procedure_statement.cpp contains functions for the 
+//following productions: 
+//procedure_statement_1: procedure_statement -> ID
+//procedure_statement_2: procedure_statement -> ID ( expression_list )
+//-------------------------------------------------------------------------
+//---------------------------------------------------------------------
+//Author:   Thomas R. Turner
+//E-Mail:   trturner@uco.edu
+//Date:     March, 2009
+//---------------------------------------------------------------------
+//Copyright March, 2009 by Thomas R. Turner.
+//Do not reproduce without permission from Thomas R. Turner.
+//---------------------------------------------------------------------
 //C++ inlcude files
 //---------------------------------------------------------------------
 #include <iostream>
@@ -103,6 +116,7 @@ Exp* StandardProcedure(StandardProcedureSymbol* S,List<Exp*>* e)
 //-------------------------------------------------------------------------
 Exp* procedure_statement(string* id, List<Exp*>* EL)
 {  Sym* S=ST.Find(*id);
+   o << "id=\"" << (*id) << "\"" << endl;
    if (!S) yyerror("Semantic error - ID cannot be found");
    if (S->IsProcedureSymbol())
        return UserSubprogram((SubprogramSymbol*)S,EL);

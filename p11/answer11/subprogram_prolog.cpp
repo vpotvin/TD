@@ -55,6 +55,7 @@ extern Label L;
 //---------------------------------------------------------------------
 List<Exp*>* subprogram_prolog(SubprogramSymbol* S)
 {   List<Exp*>* L=new List<Exp*>;
+    if(!S) cout << "Not here" << endl;
     PCode* P=new PCode(S->ELabel(),"ent","sp",S->SPLabel());
     Exp* E=new Exp(ST.TVoid(),P);
     L->Insert(E);

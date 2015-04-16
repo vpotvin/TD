@@ -18,9 +18,6 @@ begin{p057_000}
   i:=1;j:=2;k:=3;
   r:=1.0;s:=2.0;t:=3.0;
   i:=j*k;
-  r:=j*t;
-  r:=s*k;
-  r:=s*t;
   r:=s/t;
   i:=j div k;
   i:=j mod k;

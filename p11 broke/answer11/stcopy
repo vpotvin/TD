@@ -1,0 +1,18 @@
+cp ~tt/cs4173/SymbolTable/v11/List.h .
+cp ~tt/cs4173/SymbolTable/v11/Typ.h .
+cp ~tt/cs4173/SymbolTable/v11/Typ.cpp .
+cp ~tt/cs4173/SymbolTable/v11/StandardTypes.h .
+cp ~tt/cs4173/SymbolTable/v11/StandardTypes.cpp .
+cp ~tt/cs4173/SymbolTable/v11/Sym.h .
+cp ~tt/cs4173/SymbolTable/v11/Sym.cpp .
+cp ~tt/cs4173/SymbolTable/v11/Label.h .
+cp ~tt/cs4173/SymbolTable/v11/Label.cpp .
+cp ~tt/cs4173/SymbolTable/v11/Namespace.h .
+cp ~tt/cs4173/SymbolTable/v11/Namespace.cpp .
+cp ~tt/cs4173/SymbolTable/v11/Locality.h .
+cp ~tt/cs4173/SymbolTable/v11/Locality.cpp .
+cp ~tt/cs4173/SymbolTable/v11/LocalityStack.h .
+cp ~tt/cs4173/SymbolTable/v11/LocalityStack.cpp .
+cp ~tt/cs4173/SymbolTable/v11/SymbolTable.h .
+cp ~tt/cs4173/SymbolTable/v11/SymbolTable.cpp .
+
