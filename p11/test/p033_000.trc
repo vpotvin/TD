@@ -23,7 +23,12 @@ Token:Code=282 Name=     BEGIN line= 14 col=  1 Spelling="begin"
 Token:Code=301 Name=        ID line= 15 col=  3 Spelling="count"
 Token:Code=263 Name=    ASSIGN line= 15 col=  8 Spelling=":="
 #034 variable -> ID(count)
-Token:Code=302 Name=    INTLIT line= 15 col= 10 Spelling="10"
+Symbol(Variable Symbol) id(count)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
+Token:Code=302 Name=INTLIT     line=15  col=10  Spelling="10"
 #068 factor -> INTLIT(10)
           ldc       i         10        
 #056 term -> factor
@@ -31,7 +36,13 @@ Token:Code=266 Name=SEMICOLON  line=15  col=12  Spelling=";"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
+          lda       0         5         
+          ldc       i         10        
+          sti       i                   
 #027 statement_list -> statement
+          lda       0         5         
+          ldc       i         10        
+          sti       i                   
 Token:Code=299 Name=WHILE      line=16  col=3   Spelling="while"
 Token:Code=301 Name=ID         line=16  col=9   Spelling="count"
 Token:Code=272 Name=GEQ        line=16  col=14  Spelling=">="
@@ -52,10 +63,10 @@ Token:Code=284 Name=DO         line=16  col=18  Spelling="do"
 #048 simple_expression -> term
 #041 expression -> simple_expression relop simple_expression
 Token:Code=282 Name=BEGIN      line=17  col=3   Spelling="begin"
-Token:Code=301 Name=ID         line=18  col=5   Spelling="write"
-Token:Code=274 Name=LPAREN     line=18  col=10  Spelling="("
-Token:Code=301 Name=ID         line=18  col=11  Spelling="count"
-Token:Code=265 Name=COMMA      line=18  col=16  Spelling=","
+Token:Code=301 Name=ID         line=18  col=5   Spelling="writeinteger"
+Token:Code=274 Name=LPAREN     line=18  col=17  Spelling="("
+Token:Code=301 Name=ID         line=18  col=18  Spelling="count"
+Token:Code=275 Name=RPAREN     line=18  col=23  Spelling=")"
 #063 factor -> ID(count)
 Symbol(Variable Symbol) id(count)
   type(Integer)
@@ -66,23 +77,42 @@ Symbol(Variable Symbol) id(count)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #038 expression_list -> expression
-Token:Code=304 Name=CHRLIT     line=18  col=17  Spelling="', '"
+#037 procedure_statement -> ID(writeinteger) ( expression_list )
+          csp                 wri       
+#030 statement -> procedure_statement
+#027 statement_list -> statement
+          lvi       0         5         
+          csp                 wri       
+Token:Code=266 Name=SEMICOLON  line=18  col=24  Spelling=";"
+Token:Code=301 Name=ID         line=19  col=5   Spelling="writestring"
+Token:Code=274 Name=LPAREN     line=19  col=16  Spelling="("
+Token:Code=304 Name=CHRLIT     line=19  col=17  Spelling="', '"
 #070 factor -> CHRLIT(', ')
           ldc       c         ', '      
 #056 term -> factor
-Token:Code=275 Name=RPAREN     line=18  col=21  Spelling=")"
+Token:Code=275 Name=RPAREN     line=19  col=21  Spelling=")"
 #048 simple_expression -> term
 #040 expression -> simple_expression
-#039 expression_list -> expression_list , expression
-#037 procedure_statement -> ID(write) ( expression_list )
+#038 expression_list -> expression
+#037 procedure_statement -> ID(writestring) ( expression_list )
+          csp                 wrs       
 #030 statement -> procedure_statement
-#027 statement_list -> statement
-Token:Code=266 Name=SEMICOLON  line=18  col=22  Spelling=";"
-Token:Code=301 Name=ID         line=19  col=5   Spelling="count"
-Token:Code=263 Name=ASSIGN     line=19  col=10  Spelling=":="
+#028 statement_list -> statement_list ; statement
+          lvi       0         5         
+          csp                 wri       
+          ldc       c         ', '      
+          csp                 wrs       
+Token:Code=266 Name=SEMICOLON  line=19  col=22  Spelling=";"
+Token:Code=301 Name=ID         line=20  col=5   Spelling="count"
+Token:Code=263 Name=ASSIGN     line=20  col=10  Spelling=":="
 #034 variable -> ID(count)
-Token:Code=301 Name=ID         line=19  col=12  Spelling="count"
-Token:Code=260 Name=MINUS      line=19  col=17  Spelling="-"
+Symbol(Variable Symbol) id(count)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
+Token:Code=301 Name=ID         line=20  col=12  Spelling="count"
+Token:Code=260 Name=MINUS      line=20  col=17  Spelling="-"
 #063 factor -> ID(count)
 Symbol(Variable Symbol) id(count)
   type(Integer)
@@ -92,43 +122,244 @@ Symbol(Variable Symbol) id(count)
 #056 term -> factor
 #048 simple_expression -> term
 #054 addop -> -
-Token:Code=302 Name=INTLIT     line=19  col=18  Spelling="1"
+Token:Code=302 Name=INTLIT     line=20  col=18  Spelling="1"
 #068 factor -> INTLIT(1)
           ldc       i         1         
 #056 term -> factor
-Token:Code=286 Name=END        line=20  col=3   Spelling="end"
+Token:Code=286 Name=END        line=21  col=3   Spelling="end"
 #050 simple_expression -> simple_expression addop term
           lvi       0         5         
           ldc       i         1         
           sbi                           
 #040 expression -> simple_expression
 #029 statement -> variable := expression
+          lda       0         5         
+          lvi       0         5         
+          ldc       i         1         
+          sbi                           
+          sti       i                   
 #028 statement_list -> statement_list ; statement
+          lvi       0         5         
+          csp                 wri       
+          ldc       c         ', '      
+          csp                 wrs       
+          lda       0         5         
+          lvi       0         5         
+          ldc       i         1         
+          sbi                           
+          sti       i                   
 #026 optional_statements -> statement_list
+          lvi       0         5         
+          csp                 wri       
+          ldc       c         ', '      
+          csp                 wrs       
+          lda       0         5         
+          lvi       0         5         
+          ldc       i         1         
+          sbi                           
+          sti       i                   
 #024 compound_statement -> BEGIN optional_statement END
+          lvi       0         5         
+          csp                 wri       
+          ldc       c         ', '      
+          csp                 wrs       
+          lda       0         5         
+          lvi       0         5         
+          ldc       i         1         
+          sbi                           
+          sti       i                   
 #031 statement -> compound_statement
 #033 statement -> WHILE expression DO statement 
+L00004                                  
+          lvi       0         5         
+          ldc       i         0         
+          geq       i                   
+          fjp                 L00005    
+          lvi       0         5         
+          csp                 wri       
+          ldc       c         ', '      
+          csp                 wrs       
+          lda       0         5         
+          lvi       0         5         
+          ldc       i         1         
+          sbi                           
+          sti       i                   
+          ujp                 L00004    
+L00005                                  
 #028 statement_list -> statement_list ; statement
-Token:Code=266 Name=SEMICOLON  line=20  col=13  Spelling=";"
-Token:Code=301 Name=ID         line=21  col=3   Spelling="writeln"
-Token:Code=274 Name=LPAREN     line=21  col=10  Spelling="("
-Token:Code=304 Name=CHRLIT     line=21  col=11  Spelling="'Blast off!'"
+          lda       0         5         
+          ldc       i         10        
+          sti       i                   
+L00004                                  
+          lvi       0         5         
+          ldc       i         0         
+          geq       i                   
+          fjp                 L00005    
+          lvi       0         5         
+          csp                 wri       
+          ldc       c         ', '      
+          csp                 wrs       
+          lda       0         5         
+          lvi       0         5         
+          ldc       i         1         
+          sbi                           
+          sti       i                   
+          ujp                 L00004    
+L00005                                  
+Token:Code=266 Name=SEMICOLON  line=21  col=13  Spelling=";"
+Token:Code=301 Name=ID         line=22  col=3   Spelling="writestring"
+Token:Code=274 Name=LPAREN     line=22  col=14  Spelling="("
+Token:Code=304 Name=CHRLIT     line=22  col=15  Spelling="'Blast off!'"
 #070 factor -> CHRLIT('Blast off!')
-          ldc       c         'Blast off!'
+          ldc       s         'Blast off!'
 #056 term -> factor
-Token:Code=275 Name=RPAREN     line=21  col=23  Spelling=")"
+Token:Code=275 Name=RPAREN     line=22  col=27  Spelling=")"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #038 expression_list -> expression
-#037 procedure_statement -> ID(writeln) ( expression_list )
+#037 procedure_statement -> ID(writestring) ( expression_list )
+          csp                 wrs       
 #030 statement -> procedure_statement
 #028 statement_list -> statement_list ; statement
-Token:Code=286 Name=END        line=22  col=1   Spelling="end"
+          lda       0         5         
+          ldc       i         10        
+          sti       i                   
+L00004                                  
+          lvi       0         5         
+          ldc       i         0         
+          geq       i                   
+          fjp                 L00005    
+          lvi       0         5         
+          csp                 wri       
+          ldc       c         ', '      
+          csp                 wrs       
+          lda       0         5         
+          lvi       0         5         
+          ldc       i         1         
+          sbi                           
+          sti       i                   
+          ujp                 L00004    
+L00005                                  
+          ldc       s         'Blast off!'
+          csp                 wrs       
+Token:Code=266 Name=SEMICOLON  line=22  col=28  Spelling=";"
+Token:Code=301 Name=ID         line=23  col=3   Spelling="writeln"
+Token:Code=286 Name=END        line=24  col=1   Spelling="end"
+#036 procedure_statement -> ID(writeln)
+#030 statement -> procedure_statement
+#028 statement_list -> statement_list ; statement
+          lda       0         5         
+          ldc       i         10        
+          sti       i                   
+L00004                                  
+          lvi       0         5         
+          ldc       i         0         
+          geq       i                   
+          fjp                 L00005    
+          lvi       0         5         
+          csp                 wri       
+          ldc       c         ', '      
+          csp                 wrs       
+          lda       0         5         
+          lvi       0         5         
+          ldc       i         1         
+          sbi                           
+          sti       i                   
+          ujp                 L00004    
+L00005                                  
+          ldc       s         'Blast off!'
+          csp                 wrs       
+          csp                 wln       
 #026 optional_statements -> statement_list
+          lda       0         5         
+          ldc       i         10        
+          sti       i                   
+L00004                                  
+          lvi       0         5         
+          ldc       i         0         
+          geq       i                   
+          fjp                 L00005    
+          lvi       0         5         
+          csp                 wri       
+          ldc       c         ', '      
+          csp                 wrs       
+          lda       0         5         
+          lvi       0         5         
+          ldc       i         1         
+          sbi                           
+          sti       i                   
+          ujp                 L00004    
+L00005                                  
+          ldc       s         'Blast off!'
+          csp                 wrs       
+          csp                 wln       
 #024 compound_statement -> BEGIN optional_statement END
-Token:Code=264 Name=PERIOD     line=22  col=14  Spelling="."
+          lda       0         5         
+          ldc       i         10        
+          sti       i                   
+L00004                                  
+          lvi       0         5         
+          ldc       i         0         
+          geq       i                   
+          fjp                 L00005    
+          lvi       0         5         
+          csp                 wri       
+          ldc       c         ', '      
+          csp                 wrs       
+          lda       0         5         
+          lvi       0         5         
+          ldc       i         1         
+          sbi                           
+          sti       i                   
+          ujp                 L00004    
+L00005                                  
+          ldc       s         'Blast off!'
+          csp                 wrs       
+          csp                 wln       
+Token:Code=264 Name=PERIOD     line=24  col=14  Spelling="."
 #004 program_body -> compound_statement .
 #001 program -> program_head program_declarations program_body
+prolog
+L00001    ent       sp        L00002    
+          ent       ep        L00003    
+compound_statement
+          lda       0         5         
+          ldc       i         10        
+          sti       i                   
+L00004                                  
+          lvi       0         5         
+          ldc       i         0         
+          geq       i                   
+          fjp                 L00005    
+          lvi       0         5         
+          csp                 wri       
+          ldc       c         ', '      
+          csp                 wrs       
+          lda       0         5         
+          lvi       0         5         
+          ldc       i         1         
+          sbi                           
+          sti       i                   
+          ujp                 L00004    
+L00005                                  
+          ldc       s         'Blast off!'
+          csp                 wrs       
+          csp                 wln       
+          rtn       p                   
+
+#define   L00002    5                   
+
+
+#define   L00003    8                   
+
+epilog
+          rtn       p                   
+#define   L00002    5                   
+#define   L00003    8                   
+program epilog
+          mst       0                   
+          cup       0         L00001    
+          stp                           
 Locality: lexical level 1
 
   Symbol(Variable Symbol) id(count)
@@ -137,33 +368,4 @@ Locality: lexical level 1
     lexicallevel(1) address(5)
 
 Locality: lexical level 0
-
-  Symbol(Type Symbol) id(boolean)
-    type(Boolean)
-      size(1) alignment(1)
-  Symbol(Type Symbol) id(char)
-    type(Character)
-      size(1) alignment(1)
-  Symbol(Constant Symbol) id(false)
-    type(Boolean)
-      size(1) alignment(1)
-    Constant value(0)
-      type(Boolean)
-        size(1) alignment(1)
-  Symbol(Type Symbol) id(integer)
-    type(Integer)
-      size(1) alignment(1)
-  Symbol(Program Symbol) id(p033_000)
-    type(Void)
-      size(0) alignment(0)
-    lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
-  Symbol(Type Symbol) id(real)
-    type(Real)
-      size(1) alignment(1)
-  Symbol(Constant Symbol) id(true)
-    type(Boolean)
-      size(1) alignment(1)
-    Constant value(1)
-      type(Boolean)
-        size(1) alignment(1)
 

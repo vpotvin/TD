@@ -49,6 +49,11 @@ Token:Code=277 Name=RBRACKET   line=16  col=6   Spelling="]"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #035 variable -> ID [ expression ]
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
 Token:Code=263 Name=ASSIGN     line=16  col=7   Spelling=":="
 Token:Code=303 Name=REALIT     line=16  col=9   Spelling="3.14159"
 #069 factor -> REALIT(3.14159)
@@ -58,10 +63,29 @@ Token:Code=266 Name=SEMICOLON  line=16  col=16  Spelling=";"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ldc       r         3.14159   
+          sti       r                   
 #027 statement_list -> statement
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ldc       r         3.14159   
+          sti       r                   
 Token:Code=301 Name=ID         line=17  col=3   Spelling="r"
 Token:Code=263 Name=ASSIGN     line=17  col=4   Spelling=":="
 #034 variable -> ID(r)
+Symbol(Variable Symbol) id(r)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(15)
+          lda       0         15        
 Token:Code=301 Name=ID         line=17  col=6   Spelling="a"
 Token:Code=276 Name=LBRACKET   line=17  col=7   Spelling="["
 Token:Code=302 Name=INTLIT     line=17  col=8   Spelling="2"
@@ -72,7 +96,7 @@ Token:Code=277 Name=RBRACKET   line=17  col=9   Spelling="]"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #064 factor -> ID(a) [ expression ]
-          lda       0         5         
+          lda       0         14        
           ldc       i         2         
           ldc       i         1         
           sbi                           
@@ -83,12 +107,99 @@ Token:Code=286 Name=END        line=18  col=1   Spelling="end"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
+          lda       0         15        
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ind       r                   
+          sti       r                   
 #028 statement_list -> statement_list ; statement
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ldc       r         3.14159   
+          sti       r                   
+          lda       0         15        
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ind       r                   
+          sti       r                   
 #026 optional_statements -> statement_list
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ldc       r         3.14159   
+          sti       r                   
+          lda       0         15        
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ind       r                   
+          sti       r                   
 #024 compound_statement -> BEGIN optional_statement END
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ldc       r         3.14159   
+          sti       r                   
+          lda       0         15        
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ind       r                   
+          sti       r                   
 Token:Code=264 Name=PERIOD     line=18  col=14  Spelling="."
 #004 program_body -> compound_statement .
 #001 program -> program_head program_declarations program_body
+prolog
+L00001    ent       sp        L00002    
+          ent       ep        L00003    
+compound_statement
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ldc       r         3.14159   
+          sti       r                   
+          lda       0         15        
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ind       r                   
+          sti       r                   
+          rtn       p                   
+
+#define   L00002    15                  
+
+
+#define   L00003    19                  
+
+epilog
+          rtn       p                   
+#define   L00002    15                  
+#define   L00003    19                  
+program epilog
+          mst       0                   
+          cup       0         L00001    
+          stp                           
 Locality: lexical level 1
 
   Symbol(Variable Symbol) id(a)
@@ -105,40 +216,11 @@ Locality: lexical level 1
       Element Type
         type(Real)
           size(1) alignment(1)
-    lexicallevel(1) address(5)
+    lexicallevel(1) address(14)
   Symbol(Variable Symbol) id(r)
     type(Real)
       size(1) alignment(1)
     lexicallevel(1) address(15)
 
 Locality: lexical level 0
-
-  Symbol(Type Symbol) id(boolean)
-    type(Boolean)
-      size(1) alignment(1)
-  Symbol(Type Symbol) id(char)
-    type(Character)
-      size(1) alignment(1)
-  Symbol(Constant Symbol) id(false)
-    type(Boolean)
-      size(1) alignment(1)
-    Constant value(0)
-      type(Boolean)
-        size(1) alignment(1)
-  Symbol(Type Symbol) id(integer)
-    type(Integer)
-      size(1) alignment(1)
-  Symbol(Program Symbol) id(p064_000)
-    type(Void)
-      size(0) alignment(0)
-    lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
-  Symbol(Type Symbol) id(real)
-    type(Real)
-      size(1) alignment(1)
-  Symbol(Constant Symbol) id(true)
-    type(Boolean)
-      size(1) alignment(1)
-    Constant value(1)
-      type(Boolean)
-        size(1) alignment(1)
 

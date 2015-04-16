@@ -37,6 +37,11 @@ Token:Code=277 Name=RBRACKET   line=15  col=6   Spelling="]"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #035 variable -> ID [ expression ]
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
 Token:Code=263 Name=ASSIGN     line=15  col=7   Spelling=":="
 Token:Code=302 Name=INTLIT     line=15  col=9   Spelling="10"
 #068 factor -> INTLIT(10)
@@ -46,12 +51,66 @@ Token:Code=286 Name=END        line=16  col=1   Spelling="end"
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement -> variable := expression
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ldc       i         10        
+          sti       i                   
 #027 statement_list -> statement
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ldc       i         10        
+          sti       i                   
 #026 optional_statements -> statement_list
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ldc       i         10        
+          sti       i                   
 #024 compound_statement -> BEGIN optional_statement END
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ldc       i         10        
+          sti       i                   
 Token:Code=264 Name=PERIOD     line=16  col=14  Spelling="."
 #004 program_body -> compound_statement .
 #001 program -> program_head program_declarations program_body
+prolog
+L00001    ent       sp        L00002    
+          ent       ep        L00003    
+compound_statement
+          lda       0         14        
+          ldc       i         2         
+          ldc       i         1         
+          sbi                           
+          ixa                 1         
+          ldc       i         10        
+          sti       i                   
+          rtn       p                   
+
+#define   L00002    14                  
+
+
+#define   L00003    17                  
+
+epilog
+          rtn       p                   
+#define   L00002    14                  
+#define   L00003    17                  
+program epilog
+          mst       0                   
+          cup       0         L00001    
+          stp                           
 Locality: lexical level 1
 
   Symbol(Variable Symbol) id(a)
@@ -68,36 +127,7 @@ Locality: lexical level 1
       Element Type
         type(Integer)
           size(1) alignment(1)
-    lexicallevel(1) address(5)
+    lexicallevel(1) address(14)
 
 Locality: lexical level 0
-
-  Symbol(Type Symbol) id(boolean)
-    type(Boolean)
-      size(1) alignment(1)
-  Symbol(Type Symbol) id(char)
-    type(Character)
-      size(1) alignment(1)
-  Symbol(Constant Symbol) id(false)
-    type(Boolean)
-      size(1) alignment(1)
-    Constant value(0)
-      type(Boolean)
-        size(1) alignment(1)
-  Symbol(Type Symbol) id(integer)
-    type(Integer)
-      size(1) alignment(1)
-  Symbol(Program Symbol) id(p035_000)
-    type(Void)
-      size(0) alignment(0)
-    lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
-  Symbol(Type Symbol) id(real)
-    type(Real)
-      size(1) alignment(1)
-  Symbol(Constant Symbol) id(true)
-    type(Boolean)
-      size(1) alignment(1)
-    Constant value(1)
-      type(Boolean)
-        size(1) alignment(1)
 

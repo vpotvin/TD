@@ -12,16 +12,21 @@
 program p031_000;
   var cash:real;
 begin{p031_000}
-  write('How much cash do you have? ');
-  readln(cash);
+  writestring('How much cash do you have? ');
+  readreal(cash);
+  readln;
   if cash<100.0 then
     begin
-      writeln('You wicked and slothful person.');
-      writeln('I''d never go out with you.')
+      writestring('You wicked and slothful person.');
+      writeln;
+      writestring('I''d never go out with you.');
+      writeln
     end
   else
     begin
-      writeln('Come on, honey, let''s have a good time tonight!')
+      writestring('Come on, honey, let''s have a good time tonight!');
+      writeln
     end;
-  writeln('See you later!')
+  writestring('See you later!');
+  writeln
 end{p031_000}.
