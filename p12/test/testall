@@ -1,3 +1,5 @@
+echo   gcd.pas
+../pas gcd.pas
 echo   p001_000.pas
 ../pas p001_000.pas
 echo   p002_000.pas
@@ -124,6 +126,12 @@ echo   p062_000.pas
 ../pas p062_000.pas
 echo   p063_000.pas
 ../pas p063_000.pas
+echo   p063_001.pas
+../pas p063_001.pas
+echo   p063_002.pas
+../pas p063_002.pas
+echo   p063_003.pas
+../pas p063_003.pas
 echo   p064_000.pas
 ../pas p064_000.pas
 echo   p065_000.pas
@@ -137,4 +145,8 @@ echo   p068_000.pas
 echo   p069_000.pas
 ../pas p069_000.pas
 echo   p070_000.pas
+../pas p070_000.pas
+echo   p070_002.pas
+../pas p070_002.pas
+echo   p070_001.pas
 ../pas p070_000.pas

@@ -1,19 +1,49 @@
+Token:Code=294 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
+Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p004_000"
+Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
+#005 program_parameters -> Empty
+#002 program_head->PROGRAM ID program_parameters
+#010 declarations->Empty
+Token:Code=258 Name=    BEGIN Line=  13 Col=   1 Spelling= "begin"
+#015 subprogram_declarations->Empty
+#003 program_declarations->declarations subprogram_declarations
+Token:Code=259 Name=      END Line=  14 Col=   1 Spelling= "end"
+#025 optional_statements->Empty
+#024 compound_statement->BEGIN optional_statements END
+Token:Code=266 Name=   PERIOD Line=  14 Col=  14 Spelling= "."
+#004 program_body->compound_statement .
+#001 Program->program_head program_declarations program_body
 
-Token:Code=294 Name=   PROGRAM line= 12 col=  1 Spelling="program"
-Token:Code=301 Name=        ID line= 12 col=  9 Spelling="p004_000"
-Token:Code=266 Name= SEMICOLON line= 12 col= 17 Spelling=";"
-#005 program_parameters -> empty
-#002 program_head -> PROGRAM ID(p004_000) program_parameters ;
-#010 variable_declarations -> empty
-Token:Code=282 Name=     BEGIN line= 13 col=  1 Spelling="begin"
-#015 subprogram_declarations -> empty
-#003 program_declarations -> variable_declarations subprogram_declarations
-Token:Code=286 Name=       END line= 14 col=  1 Spelling="end"
-#025 optional_statements -> empty
-#024 compound_statement -> BEGIN optional_statement END
-Token:Code=264 Name=    PERIOD line= 14 col= 14 Spelling="."
-#004 program_body -> compound_statement .
-#001 program -> program_head program_declarations program_body
+prolog
+L00001    ent       sp        L00002    
+
+          ent       ep        L00003    
+
+compound_statement
+          rtn       v                   
+
+
+#define   L00002    4                   
+
+
+
+#define   L00003    4                   
+
+
+epilog
+          rtn       v                   
+
+#define   L00002    4                   
+
+#define   L00003    4                   
+
+program epilog
+          mst       0                   
+
+          cup       0         L00001    
+
+          stp                           
+
 Locality: lexical level 1
 
 
@@ -34,9 +64,12 @@ Locality: lexical level 0
   Symbol(Type Symbol) id(integer)
     type(Integer)
       size(1) alignment(1)
-  Symbol(Program Symbol) id(p004_000)
-    type(Void)
-      size(0) alignment(0)
+  Symbol(Procedure Symbol) id(p004_000)
+    type(Subprogram)
+        Return Type
+          type(Void)
+            size(0) alignment(0)
+        Parameter Types
     lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
   Symbol(Type Symbol) id(real)
     type(Real)

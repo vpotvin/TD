@@ -13,7 +13,7 @@ program p066_000;
   var c:real;
   function celsius(f:real):real;
   begin{celsius}
-    celsius:=5*(f-32)/9
+    celsius:=5*(f-32)/9.0
   end{celsius};
 begin{p066_000}
   c:=celsius(77)

@@ -39,8 +39,14 @@ Token:Code=258 Name=    BEGIN Line=  15 Col=   1 Spelling= "begin"
 Token:Code=260 Name=       ID Line=  16 Col=   3 Spelling= "b"
 Token:Code=265 Name=   ASSIGN Line=  16 Col=   4 Spelling= ":="
 #034 VARIABLE->ID(b)
-Token:Code=260 Name=       ID Line=  16 Col=   6 Spelling= "true"
-Token:Code=268 Name= SEMICOLON Line=  16 Col=  10 Spelling= ";"
+
+Symbol(Variable Symbol) id(b)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
+Token:Code=260 Name= ID       Line= 16  Col= 6   Spelling= "true"
+Token:Code=268 Name= SEMICOLON Line= 16  Col= 10  Spelling= ";"
 #063 factor -> ID(true)
 
 Symbol(Constant Symbol) id(true)
@@ -55,10 +61,28 @@ Symbol(Constant Symbol) id(true)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement->variable := expression
+
+          lda       0         5         
+
+          ldc       b         1         
+
+          sti       b                   
 #027 statement_list->statement
+
+          lda       0         5         
+
+          ldc       b         1         
+
+          sti       b                   
 Token:Code=260 Name= ID       Line= 17  Col= 3   Spelling= "b"
 Token:Code=265 Name= ASSIGN   Line= 17  Col= 4   Spelling= ":="
 #034 VARIABLE->ID(b)
+
+Symbol(Variable Symbol) id(b)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
 Token:Code=260 Name= ID       Line= 17  Col= 6   Spelling= "i"
 Token:Code=270 Name= EQU      Line= 17  Col= 8   Spelling= "="
 #063 factor -> ID(i)
@@ -68,9 +92,6 @@ Symbol(Variable Symbol) id(i)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
-          lvi       0         6         
-I think we have a problem here!
 
           lvi       0         6         
 #056 term -> factor
@@ -88,9 +109,6 @@ Symbol(Variable Symbol) id(j)
 a (address)=7
 
           lvi       0         7         
-I think we have a problem here!
-
-          lvi       0         7         
 #056 term -> factor
 
 #048 simple_expression -> term
@@ -102,10 +120,42 @@ I think we have a problem here!
 
           equ       i                   
 #029 statement->variable := expression
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          equ       i                   
+
+          sti       b                   
 #028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          equ       i                   
+
+          sti       b                   
 Token:Code=260 Name= ID       Line= 18  Col= 3   Spelling= "b"
 Token:Code=265 Name= ASSIGN   Line= 18  Col= 4   Spelling= ":="
 #034 VARIABLE->ID(b)
+
+Symbol(Variable Symbol) id(b)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
 Token:Code=260 Name= ID       Line= 18  Col= 6   Spelling= "i"
 Token:Code=271 Name= NEQ      Line= 18  Col= 8   Spelling= "<>"
 #063 factor -> ID(i)
@@ -115,9 +165,6 @@ Symbol(Variable Symbol) id(i)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
-          lvi       0         6         
-I think we have a problem here!
 
           lvi       0         6         
 #056 term -> factor
@@ -135,9 +182,6 @@ Symbol(Variable Symbol) id(j)
 a (address)=7
 
           lvi       0         7         
-I think we have a problem here!
-
-          lvi       0         7         
 #056 term -> factor
 
 #048 simple_expression -> term
@@ -149,10 +193,52 @@ I think we have a problem here!
 
           neq       i                   
 #029 statement->variable := expression
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          neq       i                   
+
+          sti       b                   
 #028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          equ       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          neq       i                   
+
+          sti       b                   
 Token:Code=260 Name= ID       Line= 19  Col= 3   Spelling= "b"
 Token:Code=265 Name= ASSIGN   Line= 19  Col= 4   Spelling= ":="
 #034 VARIABLE->ID(b)
+
+Symbol(Variable Symbol) id(b)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
 Token:Code=260 Name= ID       Line= 19  Col= 6   Spelling= "i"
 Token:Code=272 Name= LES      Line= 19  Col= 8   Spelling= "<"
 #063 factor -> ID(i)
@@ -162,9 +248,6 @@ Symbol(Variable Symbol) id(i)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
-          lvi       0         6         
-I think we have a problem here!
 
           lvi       0         6         
 #056 term -> factor
@@ -182,9 +265,6 @@ Symbol(Variable Symbol) id(j)
 a (address)=7
 
           lvi       0         7         
-I think we have a problem here!
-
-          lvi       0         7         
 #056 term -> factor
 
 #048 simple_expression -> term
@@ -196,10 +276,62 @@ I think we have a problem here!
 
           les       i                   
 #029 statement->variable := expression
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          les       i                   
+
+          sti       b                   
 #028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          equ       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          neq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          les       i                   
+
+          sti       b                   
 Token:Code=260 Name= ID       Line= 20  Col= 3   Spelling= "b"
 Token:Code=265 Name= ASSIGN   Line= 20  Col= 4   Spelling= ":="
 #034 VARIABLE->ID(b)
+
+Symbol(Variable Symbol) id(b)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
 Token:Code=260 Name= ID       Line= 20  Col= 6   Spelling= "i"
 Token:Code=273 Name= LEQ      Line= 20  Col= 8   Spelling= "<="
 #063 factor -> ID(i)
@@ -209,9 +341,6 @@ Symbol(Variable Symbol) id(i)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
-          lvi       0         6         
-I think we have a problem here!
 
           lvi       0         6         
 #056 term -> factor
@@ -229,9 +358,6 @@ Symbol(Variable Symbol) id(j)
 a (address)=7
 
           lvi       0         7         
-I think we have a problem here!
-
-          lvi       0         7         
 #056 term -> factor
 
 #048 simple_expression -> term
@@ -243,10 +369,72 @@ I think we have a problem here!
 
           leq       i                   
 #029 statement->variable := expression
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          leq       i                   
+
+          sti       b                   
 #028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          equ       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          neq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          les       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          leq       i                   
+
+          sti       b                   
 Token:Code=260 Name= ID       Line= 21  Col= 3   Spelling= "b"
 Token:Code=265 Name= ASSIGN   Line= 21  Col= 4   Spelling= ":="
 #034 VARIABLE->ID(b)
+
+Symbol(Variable Symbol) id(b)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
 Token:Code=260 Name= ID       Line= 21  Col= 6   Spelling= "i"
 Token:Code=274 Name= GRT      Line= 21  Col= 8   Spelling= ">"
 #063 factor -> ID(i)
@@ -256,9 +444,6 @@ Symbol(Variable Symbol) id(i)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
-          lvi       0         6         
-I think we have a problem here!
 
           lvi       0         6         
 #056 term -> factor
@@ -276,9 +461,6 @@ Symbol(Variable Symbol) id(j)
 a (address)=7
 
           lvi       0         7         
-I think we have a problem here!
-
-          lvi       0         7         
 #056 term -> factor
 
 #048 simple_expression -> term
@@ -290,10 +472,82 @@ I think we have a problem here!
 
           grt       i                   
 #029 statement->variable := expression
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          grt       i                   
+
+          sti       b                   
 #028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          equ       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          neq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          les       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          leq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          grt       i                   
+
+          sti       b                   
 Token:Code=260 Name= ID       Line= 22  Col= 3   Spelling= "b"
 Token:Code=265 Name= ASSIGN   Line= 22  Col= 4   Spelling= ":="
 #034 VARIABLE->ID(b)
+
+Symbol(Variable Symbol) id(b)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
 Token:Code=260 Name= ID       Line= 22  Col= 6   Spelling= "i"
 Token:Code=275 Name= GEQ      Line= 22  Col= 8   Spelling= ">="
 #063 factor -> ID(i)
@@ -303,9 +557,6 @@ Symbol(Variable Symbol) id(i)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
-          lvi       0         6         
-I think we have a problem here!
 
           lvi       0         6         
 #056 term -> factor
@@ -323,9 +574,6 @@ Symbol(Variable Symbol) id(j)
 a (address)=7
 
           lvi       0         7         
-I think we have a problem here!
-
-          lvi       0         7         
 #056 term -> factor
 
 #048 simple_expression -> term
@@ -337,12 +585,316 @@ I think we have a problem here!
 
           geq       i                   
 #029 statement->variable := expression
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          geq       i                   
+
+          sti       b                   
 #028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          equ       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          neq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          les       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          leq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          grt       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          geq       i                   
+
+          sti       b                   
 #026 optional_statements->statement_list
+
+          lda       0         5         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          equ       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          neq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          les       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          leq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          grt       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          geq       i                   
+
+          sti       b                   
 #024 compound_statement->BEGIN optional_statements END
+
+          lda       0         5         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          equ       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          neq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          les       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          leq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          grt       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          geq       i                   
+
+          sti       b                   
 Token:Code=266 Name= PERIOD   Line= 23  Col= 14  Spelling= "."
 #004 program_body->compound_statement .
 #001 Program->program_head program_declarations program_body
+
+prolog
+L00001    ent       sp        L00002    
+
+          ent       ep        L00003    
+
+compound_statement
+          lda       0         5         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          equ       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          neq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          les       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          leq       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          grt       i                   
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          geq       i                   
+
+          sti       b                   
+
+          rtn       v                   
+
+
+#define   L00002    7                   
+
+
+
+#define   L00003    10                  
+
+
+epilog
+          rtn       v                   
+
+#define   L00002    7                   
+
+#define   L00003    10                  
+
+program epilog
+          mst       0                   
+
+          cup       0         L00001    
+
+          stp                           
 
 Locality: lexical level 1
 
@@ -376,9 +928,12 @@ Locality: lexical level 0
   Symbol(Type Symbol) id(integer)
     type(Integer)
       size(1) alignment(1)
-  Symbol(Program Symbol) id(p040_000)
-    type(Void)
-      size(0) alignment(0)
+  Symbol(Procedure Symbol) id(p040_000)
+    type(Subprogram)
+        Return Type
+          type(Void)
+            size(0) alignment(0)
+        Parameter Types
     lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
   Symbol(Type Symbol) id(real)
     type(Real)

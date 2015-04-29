@@ -15,8 +15,10 @@ begin{p033_000}
   count:=10;
   while count>=0 do
   begin
-    write(count,', ');
+    writeinteger(count);
+    writestring(', ');
     count:=count-1
   end{while};
-  writeln('Blast off!')
+  writestring('Blast off!');
+  writeln
 end{p033_000}.

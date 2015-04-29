@@ -1,10 +1,10 @@
-Token:Code=293 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
+Token:Code=294 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
 Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p049_000"
 Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
 #005 program_parameters -> Empty
 #002 program_head->PROGRAM ID program_parameters
 #010 declarations->Empty
-Token:Code=297 Name=      VAR Line=  13 Col=   3 Spelling= "var"
+Token:Code=298 Name=      VAR Line=  13 Col=   3 Spelling= "var"
 Token:Code=260 Name=       ID Line=  13 Col=   7 Spelling= "i"
 #008 identifier_list->ID(i)
  identifier_list={i}Token:Code=267 Name=    COMMA Line=  13 Col=   8 Spelling= ","
@@ -23,7 +23,7 @@ Symbol(Type Symbol) id(integer)
 #012 type->standard_type
 Token:Code=268 Name= SEMICOLON Line=  13 Col=  20 Spelling= ";"
 #011 declarations->declarations VAR identifier_list: type ;
-Token:Code=297 Name=      VAR Line=  14 Col=   3 Spelling= "var"
+Token:Code=298 Name=      VAR Line=  14 Col=   3 Spelling= "var"
 Token:Code=260 Name=       ID Line=  14 Col=   7 Spelling= "b"
 #008 identifier_list->ID(b)
  identifier_list={b}Token:Code=267 Name=    COMMA Line=  14 Col=   8 Spelling= ","
@@ -42,56 +42,321 @@ Symbol(Type Symbol) id(boolean)
 #012 type->standard_type
 Token:Code=268 Name= SEMICOLON Line=  14 Col=  20 Spelling= ";"
 #011 declarations->declarations VAR identifier_list: type ;
-Token:Code=258 Name=    BEGIN Line=  15 Col=   1 Spelling= "begin"
+Token:Code=298 Name=      VAR Line=  15 Col=   3 Spelling= "var"
+Token:Code=260 Name=       ID Line=  15 Col=   7 Spelling= "r"
+#008 identifier_list->ID(r)
+ identifier_list={r}Token:Code=267 Name=    COMMA Line=  15 Col=   8 Spelling= ","
+Token:Code=260 Name=       ID Line=  15 Col=   9 Spelling= "s"
+#009 identifier_list -> identifier_list , ID(s)
+ identifier_list={r,s}Token:Code=267 Name=    COMMA Line=  15 Col=  10 Spelling= ","
+Token:Code=260 Name=       ID Line=  15 Col=  11 Spelling= "t"
+#009 identifier_list -> identifier_list , ID(t)
+ identifier_list={r,s,t}Token:Code=269 Name=    COLON Line=  15 Col=  12 Spelling= ":"
+Token:Code=260 Name=       ID Line=  15 Col=  13 Spelling= "real"
+#014 standard_type -> ID(real)
+
+Symbol(Type Symbol) id(real)
+  type(Real)
+    size(1) alignment(1)
+#012 type->standard_type
+Token:Code=268 Name= SEMICOLON Line=  15 Col=  17 Spelling= ";"
+#011 declarations->declarations VAR identifier_list: type ;
+Token:Code=258 Name=    BEGIN Line=  16 Col=   1 Spelling= "begin"
 #015 subprogram_declarations->Empty
 #003 program_declarations->declarations subprogram_declarations
-Token:Code=260 Name=       ID Line=  16 Col=   3 Spelling= "i"
-Token:Code=265 Name=   ASSIGN Line=  16 Col=   4 Spelling= ":="
+Token:Code=260 Name=       ID Line=  17 Col=   3 Spelling= "i"
+Token:Code=265 Name=   ASSIGN Line=  17 Col=   4 Spelling= ":="
 #034 VARIABLE->ID(i)
-Token:Code=301 Name=   INTLIT Line=  16 Col=   6 Spelling= "1"
+
+Symbol(Variable Symbol) id(i)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
+Token:Code=302 Name= INTLIT   Line= 17  Col= 6   Spelling= "1"
 #068 factor -> INTLIT(1)
 
           ldc       i         1         
 #056 term -> factor
-Token:Code=268 Name= SEMICOLON Line= 16  Col= 7   Spelling= ";"
+Token:Code=268 Name= SEMICOLON Line= 17  Col= 7   Spelling= ";"
 
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement->variable := expression
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
 #027 statement_list->statement
-Token:Code=260 Name= ID       Line= 16  Col= 8   Spelling= "j"
-Token:Code=265 Name= ASSIGN   Line= 16  Col= 9   Spelling= ":="
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+Token:Code=260 Name= ID       Line= 17  Col= 8   Spelling= "j"
+Token:Code=265 Name= ASSIGN   Line= 17  Col= 9   Spelling= ":="
 #034 VARIABLE->ID(j)
-Token:Code=301 Name= INTLIT   Line= 16  Col= 11  Spelling= "2"
+
+Symbol(Variable Symbol) id(j)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(6)
+          lda       0         6         
+Token:Code=302 Name= INTLIT   Line= 17  Col= 11  Spelling= "2"
 #068 factor -> INTLIT(2)
 
           ldc       i         2         
 #056 term -> factor
-Token:Code=268 Name= SEMICOLON Line= 16  Col= 12  Spelling= ";"
+Token:Code=268 Name= SEMICOLON Line= 17  Col= 12  Spelling= ";"
 
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement->variable := expression
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
 #028 statement_list->statement_list ; statement
-Token:Code=260 Name= ID       Line= 16  Col= 13  Spelling= "k"
-Token:Code=265 Name= ASSIGN   Line= 16  Col= 14  Spelling= ":="
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+Token:Code=260 Name= ID       Line= 17  Col= 13  Spelling= "k"
+Token:Code=265 Name= ASSIGN   Line= 17  Col= 14  Spelling= ":="
 #034 VARIABLE->ID(k)
-Token:Code=301 Name= INTLIT   Line= 16  Col= 16  Spelling= "3"
+
+Symbol(Variable Symbol) id(k)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(7)
+          lda       0         7         
+Token:Code=302 Name= INTLIT   Line= 17  Col= 16  Spelling= "3"
 #068 factor -> INTLIT(3)
 
           ldc       i         3         
 #056 term -> factor
-Token:Code=268 Name= SEMICOLON Line= 16  Col= 17  Spelling= ";"
+Token:Code=268 Name= SEMICOLON Line= 17  Col= 17  Spelling= ";"
 
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement->variable := expression
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
 #028 statement_list->statement_list ; statement
-Token:Code=260 Name= ID       Line= 17  Col= 3   Spelling= "b"
-Token:Code=265 Name= ASSIGN   Line= 17  Col= 4   Spelling= ":="
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+Token:Code=260 Name= ID       Line= 18  Col= 3   Spelling= "r"
+Token:Code=265 Name= ASSIGN   Line= 18  Col= 4   Spelling= ":="
+#034 VARIABLE->ID(r)
+
+Symbol(Variable Symbol) id(r)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(11)
+          lda       0         11        
+Token:Code=301 Name= REALIT   Line= 18  Col= 6   Spelling= "1.0"
+#069 factor -> REALIT(1.0)
+
+          ldc       r         1.0       
+#056 term -> factor
+Token:Code=268 Name= SEMICOLON Line= 18  Col= 9   Spelling= ";"
+
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#029 statement->variable := expression
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+#028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+Token:Code=260 Name= ID       Line= 18  Col= 10  Spelling= "s"
+Token:Code=265 Name= ASSIGN   Line= 18  Col= 11  Spelling= ":="
+#034 VARIABLE->ID(s)
+
+Symbol(Variable Symbol) id(s)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(12)
+          lda       0         12        
+Token:Code=301 Name= REALIT   Line= 18  Col= 13  Spelling= "2.0"
+#069 factor -> REALIT(2.0)
+
+          ldc       r         2.0       
+#056 term -> factor
+Token:Code=268 Name= SEMICOLON Line= 18  Col= 16  Spelling= ";"
+
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#029 statement->variable := expression
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+#028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+Token:Code=260 Name= ID       Line= 18  Col= 17  Spelling= "t"
+Token:Code=265 Name= ASSIGN   Line= 18  Col= 18  Spelling= ":="
+#034 VARIABLE->ID(t)
+
+Symbol(Variable Symbol) id(t)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(13)
+          lda       0         13        
+Token:Code=301 Name= REALIT   Line= 18  Col= 20  Spelling= "3.0"
+#069 factor -> REALIT(3.0)
+
+          ldc       r         3.0       
+#056 term -> factor
+Token:Code=268 Name= SEMICOLON Line= 18  Col= 23  Spelling= ";"
+
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#029 statement->variable := expression
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+#028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+Token:Code=260 Name= ID       Line= 19  Col= 3   Spelling= "b"
+Token:Code=265 Name= ASSIGN   Line= 19  Col= 4   Spelling= ":="
 #034 VARIABLE->ID(b)
-Token:Code=260 Name= ID       Line= 17  Col= 6   Spelling= "false"
-Token:Code=268 Name= SEMICOLON Line= 17  Col= 11  Spelling= ";"
+
+Symbol(Variable Symbol) id(b)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(8)
+          lda       0         8         
+Token:Code=260 Name= ID       Line= 19  Col= 6   Spelling= "false"
+Token:Code=268 Name= SEMICOLON Line= 19  Col= 11  Spelling= ";"
 #063 factor -> ID(false)
 
 Symbol(Constant Symbol) id(false)
@@ -106,12 +371,66 @@ Symbol(Constant Symbol) id(false)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement->variable := expression
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
 #028 statement_list->statement_list ; statement
-Token:Code=260 Name= ID       Line= 17  Col= 12  Spelling= "c"
-Token:Code=265 Name= ASSIGN   Line= 17  Col= 13  Spelling= ":="
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+Token:Code=260 Name= ID       Line= 19  Col= 12  Spelling= "c"
+Token:Code=265 Name= ASSIGN   Line= 19  Col= 13  Spelling= ":="
 #034 VARIABLE->ID(c)
-Token:Code=260 Name= ID       Line= 17  Col= 15  Spelling= "true"
-Token:Code=268 Name= SEMICOLON Line= 17  Col= 19  Spelling= ";"
+
+Symbol(Variable Symbol) id(c)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(9)
+          lda       0         9         
+Token:Code=260 Name= ID       Line= 19  Col= 15  Spelling= "true"
+Token:Code=268 Name= SEMICOLON Line= 19  Col= 19  Spelling= ";"
 #063 factor -> ID(true)
 
 Symbol(Constant Symbol) id(true)
@@ -126,12 +445,72 @@ Symbol(Constant Symbol) id(true)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement->variable := expression
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
 #028 statement_list->statement_list ; statement
-Token:Code=260 Name= ID       Line= 17  Col= 20  Spelling= "d"
-Token:Code=265 Name= ASSIGN   Line= 17  Col= 21  Spelling= ":="
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+Token:Code=260 Name= ID       Line= 19  Col= 20  Spelling= "d"
+Token:Code=265 Name= ASSIGN   Line= 19  Col= 21  Spelling= ":="
 #034 VARIABLE->ID(d)
-Token:Code=260 Name= ID       Line= 17  Col= 23  Spelling= "false"
-Token:Code=268 Name= SEMICOLON Line= 17  Col= 28  Spelling= ";"
+
+Symbol(Variable Symbol) id(d)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(10)
+          lda       0         10        
+Token:Code=260 Name= ID       Line= 19  Col= 23  Spelling= "false"
+Token:Code=268 Name= SEMICOLON Line= 19  Col= 28  Spelling= ";"
 #063 factor -> ID(false)
 
 Symbol(Constant Symbol) id(false)
@@ -146,14 +525,80 @@ Symbol(Constant Symbol) id(false)
 #048 simple_expression -> term
 #040 expression -> simple_expression
 #029 statement->variable := expression
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
 #028 statement_list->statement_list ; statement
-Token:Code=260 Name= ID       Line= 18  Col= 3   Spelling= "i"
-Token:Code=265 Name= ASSIGN   Line= 18  Col= 4   Spelling= ":="
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+Token:Code=260 Name= ID       Line= 20  Col= 3   Spelling= "i"
+Token:Code=265 Name= ASSIGN   Line= 20  Col= 4   Spelling= ":="
 #034 VARIABLE->ID(i)
-Token:Code=261 Name= PLUS     Line= 18  Col= 6   Spelling= "+"
+
+Symbol(Variable Symbol) id(i)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
+Token:Code=261 Name= PLUS     Line= 20  Col= 6   Spelling= "+"
 #051 sign -> +
-Token:Code=260 Name= ID       Line= 18  Col= 7   Spelling= "j"
-Token:Code=268 Name= SEMICOLON Line= 18  Col= 8   Spelling= ";"
+Token:Code=260 Name= ID       Line= 20  Col= 7   Spelling= "j"
+Token:Code=268 Name= SEMICOLON Line= 20  Col= 8   Spelling= ";"
 #063 factor -> ID(j)
 
 Symbol(Variable Symbol) id(j)
@@ -161,9 +606,6 @@ Symbol(Variable Symbol) id(j)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
-          lvi       0         6         
-I think we have a problem here!
 
           lvi       0         6         
 #056 term -> factor
@@ -171,14 +613,86 @@ I think we have a problem here!
 #049 simple_expression -> sign term
 #040 expression -> simple_expression
 #029 statement->variable := expression
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
 #028 statement_list->statement_list ; statement
-Token:Code=260 Name= ID       Line= 19  Col= 3   Spelling= "i"
-Token:Code=265 Name= ASSIGN   Line= 19  Col= 4   Spelling= ":="
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+Token:Code=260 Name= ID       Line= 21  Col= 3   Spelling= "i"
+Token:Code=265 Name= ASSIGN   Line= 21  Col= 4   Spelling= ":="
 #034 VARIABLE->ID(i)
-Token:Code=262 Name= MINUS    Line= 19  Col= 6   Spelling= "-"
+
+Symbol(Variable Symbol) id(i)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
+Token:Code=262 Name= MINUS    Line= 21  Col= 6   Spelling= "-"
 #052 sign -> -
-Token:Code=260 Name= ID       Line= 19  Col= 7   Spelling= "j"
-Token:Code=268 Name= SEMICOLON Line= 19  Col= 8   Spelling= ";"
+Token:Code=260 Name= ID       Line= 21  Col= 7   Spelling= "j"
+Token:Code=268 Name= SEMICOLON Line= 21  Col= 8   Spelling= ";"
 #063 factor -> ID(j)
 
 Symbol(Variable Symbol) id(j)
@@ -186,9 +700,6 @@ Symbol(Variable Symbol) id(j)
     size(1) alignment(1)
   lexicallevel(1) address(6)ll=0
 a (address)=6
-
-          lvi       0         6         
-I think we have a problem here!
 
           lvi       0         6         
 #056 term -> factor
@@ -200,12 +711,324 @@ I think we have a problem here!
           ngi                           
 #040 expression -> simple_expression
 #029 statement->variable := expression
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
 #028 statement_list->statement_list ; statement
-Token:Code=260 Name= ID       Line= 20  Col= 3   Spelling= "i"
-Token:Code=265 Name= ASSIGN   Line= 20  Col= 4   Spelling= ":="
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+Token:Code=260 Name= ID       Line= 22  Col= 3   Spelling= "r"
+Token:Code=265 Name= ASSIGN   Line= 22  Col= 4   Spelling= ":="
+#034 VARIABLE->ID(r)
+
+Symbol(Variable Symbol) id(r)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(11)
+          lda       0         11        
+Token:Code=261 Name= PLUS     Line= 22  Col= 6   Spelling= "+"
+#051 sign -> +
+Token:Code=260 Name= ID       Line= 22  Col= 7   Spelling= "s"
+Token:Code=268 Name= SEMICOLON Line= 22  Col= 8   Spelling= ";"
+#063 factor -> ID(s)
+
+Symbol(Variable Symbol) id(s)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(12)ll=0
+a (address)=12
+
+          lvr       0         12        
+#056 term -> factor
+
+#049 simple_expression -> sign term
+#040 expression -> simple_expression
+#029 statement->variable := expression
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+#028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+Token:Code=260 Name= ID       Line= 23  Col= 3   Spelling= "r"
+Token:Code=265 Name= ASSIGN   Line= 23  Col= 4   Spelling= ":="
+#034 VARIABLE->ID(r)
+
+Symbol(Variable Symbol) id(r)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(11)
+          lda       0         11        
+Token:Code=262 Name= MINUS    Line= 23  Col= 6   Spelling= "-"
+#052 sign -> -
+Token:Code=260 Name= ID       Line= 23  Col= 7   Spelling= "s"
+Token:Code=268 Name= SEMICOLON Line= 23  Col= 8   Spelling= ";"
+#063 factor -> ID(s)
+
+Symbol(Variable Symbol) id(s)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(12)ll=0
+a (address)=12
+
+          lvr       0         12        
+#056 term -> factor
+
+#049 simple_expression -> sign term
+
+          lvr       0         12        
+
+          ngr                           
+#040 expression -> simple_expression
+#029 statement->variable := expression
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+#028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+Token:Code=260 Name= ID       Line= 24  Col= 3   Spelling= "i"
+Token:Code=265 Name= ASSIGN   Line= 24  Col= 4   Spelling= ":="
 #034 VARIABLE->ID(i)
-Token:Code=260 Name= ID       Line= 20  Col= 6   Spelling= "j"
-Token:Code=261 Name= PLUS     Line= 20  Col= 7   Spelling= "+"
+
+Symbol(Variable Symbol) id(i)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
+Token:Code=260 Name= ID       Line= 24  Col= 6   Spelling= "j"
+Token:Code=261 Name= PLUS     Line= 24  Col= 7   Spelling= "+"
 #063 factor -> ID(j)
 
 Symbol(Variable Symbol) id(j)
@@ -215,15 +1038,12 @@ Symbol(Variable Symbol) id(j)
 a (address)=6
 
           lvi       0         6         
-I think we have a problem here!
-
-          lvi       0         6         
 #056 term -> factor
 
 #048 simple_expression -> term
 #053 addop -> +
-Token:Code=260 Name= ID       Line= 20  Col= 8   Spelling= "k"
-Token:Code=268 Name= SEMICOLON Line= 20  Col= 9   Spelling= ";"
+Token:Code=260 Name= ID       Line= 24  Col= 8   Spelling= "k"
+Token:Code=268 Name= SEMICOLON Line= 24  Col= 9   Spelling= ";"
 #063 factor -> ID(k)
 
 Symbol(Variable Symbol) id(k)
@@ -231,9 +1051,6 @@ Symbol(Variable Symbol) id(k)
     size(1) alignment(1)
   lexicallevel(1) address(7)ll=0
 a (address)=7
-
-          lvi       0         7         
-I think we have a problem here!
 
           lvi       0         7         
 #056 term -> factor
@@ -247,30 +1064,300 @@ I think we have a problem here!
           adi                           
 #040 expression -> simple_expression
 #029 statement->variable := expression
-#028 statement_list->statement_list ; statement
-Token:Code=260 Name= ID       Line= 21  Col= 3   Spelling= "i"
-Token:Code=265 Name= ASSIGN   Line= 21  Col= 4   Spelling= ":="
-#034 VARIABLE->ID(i)
-Token:Code=260 Name= ID       Line= 21  Col= 6   Spelling= "j"
-Token:Code=262 Name= MINUS    Line= 21  Col= 7   Spelling= "-"
-#063 factor -> ID(j)
 
-Symbol(Variable Symbol) id(j)
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          adi                           
+
+          sti       i                   
+#028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          adi                           
+
+          sti       i                   
+Token:Code=260 Name= ID       Line= 25  Col= 3   Spelling= "r"
+Token:Code=265 Name= ASSIGN   Line= 25  Col= 4   Spelling= ":="
+#034 VARIABLE->ID(r)
+
+Symbol(Variable Symbol) id(r)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(11)
+          lda       0         11        
+Token:Code=260 Name= ID       Line= 25  Col= 6   Spelling= "i"
+Token:Code=261 Name= PLUS     Line= 25  Col= 7   Spelling= "+"
+#063 factor -> ID(i)
+
+Symbol(Variable Symbol) id(i)
   type(Integer)
     size(1) alignment(1)
-  lexicallevel(1) address(6)ll=0
-a (address)=6
+  lexicallevel(1) address(5)ll=0
+a (address)=5
 
-          lvi       0         6         
-I think we have a problem here!
-
-          lvi       0         6         
+          lvi       0         5         
 #056 term -> factor
 
 #048 simple_expression -> term
-#054 addop -> -
-Token:Code=260 Name= ID       Line= 21  Col= 8   Spelling= "k"
-Token:Code=268 Name= SEMICOLON Line= 21  Col= 9   Spelling= ";"
+#053 addop -> +
+Token:Code=260 Name= ID       Line= 25  Col= 8   Spelling= "t"
+Token:Code=268 Name= SEMICOLON Line= 25  Col= 9   Spelling= ";"
+#063 factor -> ID(t)
+
+Symbol(Variable Symbol) id(t)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(13)ll=0
+a (address)=13
+
+          lvr       0         13        
+#056 term -> factor
+
+#050 simple_expression -> simple_expression addop term
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          adr                           
+#040 expression -> simple_expression
+#029 statement->variable := expression
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          adr                           
+
+          sti       r                   
+#028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          adi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          adr                           
+
+          sti       r                   
+Token:Code=260 Name= ID       Line= 26  Col= 3   Spelling= "r"
+Token:Code=265 Name= ASSIGN   Line= 26  Col= 4   Spelling= ":="
+#034 VARIABLE->ID(r)
+
+Symbol(Variable Symbol) id(r)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(11)
+          lda       0         11        
+Token:Code=260 Name= ID       Line= 26  Col= 6   Spelling= "s"
+Token:Code=261 Name= PLUS     Line= 26  Col= 7   Spelling= "+"
+#063 factor -> ID(s)
+
+Symbol(Variable Symbol) id(s)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(12)ll=0
+a (address)=12
+
+          lvr       0         12        
+#056 term -> factor
+
+#048 simple_expression -> term
+#053 addop -> +
+Token:Code=260 Name= ID       Line= 26  Col= 8   Spelling= "k"
+Token:Code=268 Name= SEMICOLON Line= 26  Col= 9   Spelling= ";"
 #063 factor -> ID(k)
 
 Symbol(Variable Symbol) id(k)
@@ -280,7 +1367,181 @@ Symbol(Variable Symbol) id(k)
 a (address)=7
 
           lvi       0         7         
-I think we have a problem here!
+#056 term -> factor
+
+#050 simple_expression -> simple_expression addop term
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          adr                           
+#040 expression -> simple_expression
+#029 statement->variable := expression
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          adr                           
+
+          sti       r                   
+#028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          adi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          adr                           
+
+          sti       r                   
+Token:Code=260 Name= ID       Line= 27  Col= 3   Spelling= "i"
+Token:Code=265 Name= ASSIGN   Line= 27  Col= 4   Spelling= ":="
+#034 VARIABLE->ID(i)
+
+Symbol(Variable Symbol) id(i)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
+Token:Code=260 Name= ID       Line= 27  Col= 6   Spelling= "j"
+Token:Code=262 Name= MINUS    Line= 27  Col= 7   Spelling= "-"
+#063 factor -> ID(j)
+
+Symbol(Variable Symbol) id(j)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(6)ll=0
+a (address)=6
+
+          lvi       0         6         
+#056 term -> factor
+
+#048 simple_expression -> term
+#054 addop -> -
+Token:Code=260 Name= ID       Line= 27  Col= 8   Spelling= "k"
+Token:Code=268 Name= SEMICOLON Line= 27  Col= 9   Spelling= ";"
+#063 factor -> ID(k)
+
+Symbol(Variable Symbol) id(k)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(7)ll=0
+a (address)=7
 
           lvi       0         7         
 #056 term -> factor
@@ -294,12 +1555,564 @@ I think we have a problem here!
           sbi                           
 #040 expression -> simple_expression
 #029 statement->variable := expression
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          sbi                           
+
+          sti       i                   
 #028 statement_list->statement_list ; statement
-Token:Code=260 Name= ID       Line= 22  Col= 3   Spelling= "b"
-Token:Code=265 Name= ASSIGN   Line= 22  Col= 4   Spelling= ":="
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          adi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          sbi                           
+
+          sti       i                   
+Token:Code=260 Name= ID       Line= 28  Col= 3   Spelling= "r"
+Token:Code=265 Name= ASSIGN   Line= 28  Col= 4   Spelling= ":="
+#034 VARIABLE->ID(r)
+
+Symbol(Variable Symbol) id(r)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(11)
+          lda       0         11        
+Token:Code=260 Name= ID       Line= 28  Col= 6   Spelling= "i"
+Token:Code=262 Name= MINUS    Line= 28  Col= 7   Spelling= "-"
+#063 factor -> ID(i)
+
+Symbol(Variable Symbol) id(i)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)ll=0
+a (address)=5
+
+          lvi       0         5         
+#056 term -> factor
+
+#048 simple_expression -> term
+#054 addop -> -
+Token:Code=260 Name= ID       Line= 28  Col= 8   Spelling= "t"
+Token:Code=268 Name= SEMICOLON Line= 28  Col= 9   Spelling= ";"
+#063 factor -> ID(t)
+
+Symbol(Variable Symbol) id(t)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(13)ll=0
+a (address)=13
+
+          lvr       0         13        
+#056 term -> factor
+
+#050 simple_expression -> simple_expression addop term
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          sbr                           
+#040 expression -> simple_expression
+#029 statement->variable := expression
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          sbr                           
+
+          sti       r                   
+#028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          adi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          sbi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          sbr                           
+
+          sti       r                   
+Token:Code=260 Name= ID       Line= 29  Col= 3   Spelling= "r"
+Token:Code=265 Name= ASSIGN   Line= 29  Col= 4   Spelling= ":="
+#034 VARIABLE->ID(r)
+
+Symbol(Variable Symbol) id(r)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(11)
+          lda       0         11        
+Token:Code=260 Name= ID       Line= 29  Col= 6   Spelling= "s"
+Token:Code=262 Name= MINUS    Line= 29  Col= 7   Spelling= "-"
+#063 factor -> ID(s)
+
+Symbol(Variable Symbol) id(s)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(12)ll=0
+a (address)=12
+
+          lvr       0         12        
+#056 term -> factor
+
+#048 simple_expression -> term
+#054 addop -> -
+Token:Code=260 Name= ID       Line= 29  Col= 8   Spelling= "k"
+Token:Code=268 Name= SEMICOLON Line= 29  Col= 9   Spelling= ";"
+#063 factor -> ID(k)
+
+Symbol(Variable Symbol) id(k)
+  type(Integer)
+    size(1) alignment(1)
+  lexicallevel(1) address(7)ll=0
+a (address)=7
+
+          lvi       0         7         
+#056 term -> factor
+
+#050 simple_expression -> simple_expression addop term
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          sbr                           
+#040 expression -> simple_expression
+#029 statement->variable := expression
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          sbr                           
+
+          sti       r                   
+#028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          adi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          sbi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          sbr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          sbr                           
+
+          sti       r                   
+Token:Code=260 Name= ID       Line= 30  Col= 3   Spelling= "b"
+Token:Code=265 Name= ASSIGN   Line= 30  Col= 4   Spelling= ":="
 #034 VARIABLE->ID(b)
-Token:Code=260 Name= ID       Line= 22  Col= 6   Spelling= "c"
-Token:Code=291 Name= OR       Line= 22  Col= 8   Spelling= "or"
+
+Symbol(Variable Symbol) id(b)
+  type(Boolean)
+    size(1) alignment(1)
+  lexicallevel(1) address(8)
+          lda       0         8         
+Token:Code=260 Name= ID       Line= 30  Col= 6   Spelling= "c"
+Token:Code=292 Name= OR       Line= 30  Col= 8   Spelling= "or"
 #063 factor -> ID(c)
 
 Symbol(Variable Symbol) id(c)
@@ -309,15 +2122,12 @@ Symbol(Variable Symbol) id(c)
 a (address)=9
 
           lvb       0         9         
-I think we have a problem here!
-
-          lvb       0         9         
 #056 term -> factor
 
 #048 simple_expression -> term
 #055 addop -> or
-Token:Code=260 Name= ID       Line= 22  Col= 11  Spelling= "d"
-Token:Code=259 Name= END      Line= 23  Col= 1   Spelling= "end"
+Token:Code=260 Name= ID       Line= 30  Col= 11  Spelling= "d"
+Token:Code=259 Name= END      Line= 31  Col= 1   Spelling= "end"
 #063 factor -> ID(d)
 
 Symbol(Variable Symbol) id(d)
@@ -325,9 +2135,6 @@ Symbol(Variable Symbol) id(d)
     size(1) alignment(1)
   lexicallevel(1) address(10)ll=0
 a (address)=10
-
-          lvb       0         10        
-I think we have a problem here!
 
           lvb       0         10        
 #056 term -> factor
@@ -341,12 +2148,692 @@ I think we have a problem here!
           ior                           
 #040 expression -> simple_expression
 #029 statement->variable := expression
+
+          lda       0         8         
+
+          lvb       0         9         
+
+          lvb       0         10        
+
+          ior                           
+
+          sti       b                   
 #028 statement_list->statement_list ; statement
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          adi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          sbi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          sbr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          sbr                           
+
+          sti       r                   
+
+          lda       0         8         
+
+          lvb       0         9         
+
+          lvb       0         10        
+
+          ior                           
+
+          sti       b                   
 #026 optional_statements->statement_list
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          adi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          sbi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          sbr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          sbr                           
+
+          sti       r                   
+
+          lda       0         8         
+
+          lvb       0         9         
+
+          lvb       0         10        
+
+          ior                           
+
+          sti       b                   
 #024 compound_statement->BEGIN optional_statements END
-Token:Code=266 Name= PERIOD   Line= 23  Col= 14  Spelling= "."
+
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          adi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          sbi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          sbr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          sbr                           
+
+          sti       r                   
+
+          lda       0         8         
+
+          lvb       0         9         
+
+          lvb       0         10        
+
+          ior                           
+
+          sti       b                   
+Token:Code=266 Name= PERIOD   Line= 31  Col= 14  Spelling= "."
 #004 program_body->compound_statement .
 #001 Program->program_head program_declarations program_body
+
+prolog
+L00001    ent       sp        L00002    
+
+          ent       ep        L00003    
+
+compound_statement
+          lda       0         5         
+
+          ldc       i         1         
+
+          sti       i                   
+
+          lda       0         6         
+
+          ldc       i         2         
+
+          sti       i                   
+
+          lda       0         7         
+
+          ldc       i         3         
+
+          sti       i                   
+
+          lda       0         11        
+
+          ldc       r         1.0       
+
+          sti       r                   
+
+          lda       0         12        
+
+          ldc       r         2.0       
+
+          sti       r                   
+
+          lda       0         13        
+
+          ldc       r         3.0       
+
+          sti       r                   
+
+          lda       0         8         
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         9         
+
+          ldc       b         1         
+
+          sti       b                   
+
+          lda       0         10        
+
+          ldc       b         0         
+
+          sti       b                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          sti       i                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          ngi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          ngr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          adi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          adr                           
+
+          sti       r                   
+
+          lda       0         5         
+
+          lvi       0         6         
+
+          lvi       0         7         
+
+          sbi                           
+
+          sti       i                   
+
+          lda       0         11        
+
+          lvi       0         5         
+
+          flt                           
+
+          lvr       0         13        
+
+          sbr                           
+
+          sti       r                   
+
+          lda       0         11        
+
+          lvr       0         12        
+
+          lvi       0         7         
+
+          flt                           
+
+          sbr                           
+
+          sti       r                   
+
+          lda       0         8         
+
+          lvb       0         9         
+
+          lvb       0         10        
+
+          ior                           
+
+          sti       b                   
+
+          rtn       v                   
+
+
+#define   L00002    13                  
+
+
+
+#define   L00003    16                  
+
+
+epilog
+          rtn       v                   
+
+#define   L00002    13                  
+
+#define   L00003    16                  
+
+program epilog
+          mst       0                   
+
+          cup       0         L00001    
+
+          stp                           
 
 Locality: lexical level 1
 
@@ -374,6 +2861,18 @@ Locality: lexical level 1
     type(Integer)
       size(1) alignment(1)
     lexicallevel(1) address(7)
+  Symbol(Variable Symbol) id(r)
+    type(Real)
+      size(1) alignment(1)
+    lexicallevel(1) address(11)
+  Symbol(Variable Symbol) id(s)
+    type(Real)
+      size(1) alignment(1)
+    lexicallevel(1) address(12)
+  Symbol(Variable Symbol) id(t)
+    type(Real)
+      size(1) alignment(1)
+    lexicallevel(1) address(13)
 
 Locality: lexical level 0
 
@@ -392,9 +2891,12 @@ Locality: lexical level 0
   Symbol(Type Symbol) id(integer)
     type(Integer)
       size(1) alignment(1)
-  Symbol(Program Symbol) id(p049_000)
-    type(Void)
-      size(0) alignment(0)
+  Symbol(Procedure Symbol) id(p049_000)
+    type(Subprogram)
+        Return Type
+          type(Void)
+            size(0) alignment(0)
+        Parameter Types
     lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
   Symbol(Type Symbol) id(real)
     type(Real)

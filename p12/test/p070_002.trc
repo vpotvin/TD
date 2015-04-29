@@ -1,0 +1,149 @@
+Token:Code=294 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
+Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p070_002"
+Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
+#005 program_parameters -> Empty
+#002 program_head->PROGRAM ID program_parameters
+#010 declarations->Empty
+Token:Code=298 Name=      VAR Line=  13 Col=   4 Spelling= "var"
+Token:Code=260 Name=       ID Line=  13 Col=   8 Spelling= "c"
+#008 identifier_list->ID(c)
+ identifier_list={c}Token:Code=269 Name=    COLON Line=  13 Col=   9 Spelling= ":"
+Token:Code=260 Name=       ID Line=  13 Col=  10 Spelling= "char"
+#014 standard_type -> ID(char)
+
+Symbol(Type Symbol) id(char)
+  type(Character)
+    size(1) alignment(1)
+#012 type->standard_type
+Token:Code=268 Name= SEMICOLON Line=  13 Col=  14 Spelling= ";"
+#011 declarations->declarations VAR identifier_list: type ;
+Token:Code=258 Name=    BEGIN Line=  14 Col=   1 Spelling= "begin"
+#015 subprogram_declarations->Empty
+#003 program_declarations->declarations subprogram_declarations
+Token:Code=260 Name=       ID Line=  15 Col=   3 Spelling= "c"
+Token:Code=265 Name=   ASSIGN Line=  15 Col=   4 Spelling= ":="
+#034 VARIABLE->ID(c)
+
+Symbol(Variable Symbol) id(c)
+  type(Character)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
+Token:Code=300 Name= CHRLIT   Line= 15  Col= 6   Spelling= "''"
+#070 factor -> CHRLIT('')
+
+          ldc       c         ''        
+#056 term -> factor
+Token:Code=259 Name= END      Line= 16  Col= 1   Spelling= "end"
+
+#048 simple_expression -> term
+#040 expression -> simple_expression
+#029 statement->variable := expression
+
+          lda       0         5         
+
+          ldc       c         ''        
+
+          sti       c                   
+#027 statement_list->statement
+
+          lda       0         5         
+
+          ldc       c         ''        
+
+          sti       c                   
+#026 optional_statements->statement_list
+
+          lda       0         5         
+
+          ldc       c         ''        
+
+          sti       c                   
+#024 compound_statement->BEGIN optional_statements END
+
+          lda       0         5         
+
+          ldc       c         ''        
+
+          sti       c                   
+Token:Code=266 Name= PERIOD   Line= 16  Col= 14  Spelling= "."
+#004 program_body->compound_statement .
+#001 Program->program_head program_declarations program_body
+
+prolog
+L00001    ent       sp        L00002    
+
+          ent       ep        L00003    
+
+compound_statement
+          lda       0         5         
+
+          ldc       c         ''        
+
+          sti       c                   
+
+          rtn       v                   
+
+
+#define   L00002    5                   
+
+
+
+#define   L00003    7                   
+
+
+epilog
+          rtn       v                   
+
+#define   L00002    5                   
+
+#define   L00003    7                   
+
+program epilog
+          mst       0                   
+
+          cup       0         L00001    
+
+          stp                           
+
+Locality: lexical level 1
+
+  Symbol(Variable Symbol) id(c)
+    type(Character)
+      size(1) alignment(1)
+    lexicallevel(1) address(5)
+
+Locality: lexical level 0
+
+  Symbol(Type Symbol) id(boolean)
+    type(Boolean)
+      size(1) alignment(1)
+  Symbol(Type Symbol) id(char)
+    type(Character)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(false)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(0)
+      type(Boolean)
+        size(1) alignment(1)
+  Symbol(Type Symbol) id(integer)
+    type(Integer)
+      size(1) alignment(1)
+  Symbol(Procedure Symbol) id(p070_002)
+    type(Subprogram)
+        Return Type
+          type(Void)
+            size(0) alignment(0)
+        Parameter Types
+    lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
+  Symbol(Type Symbol) id(real)
+    type(Real)
+      size(1) alignment(1)
+  Symbol(Constant Symbol) id(true)
+    type(Boolean)
+      size(1) alignment(1)
+    Constant value(1)
+      type(Boolean)
+        size(1) alignment(1)
+

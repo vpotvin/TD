@@ -1,42 +1,111 @@
-
-Token:Code=294 Name=   PROGRAM line= 12 col=  1 Spelling="program"
-Token:Code=301 Name=        ID line= 12 col=  9 Spelling="p069_000"
-Token:Code=266 Name= SEMICOLON line= 12 col= 17 Spelling=";"
-#005 program_parameters -> empty
-#002 program_head -> PROGRAM ID(p069_000) program_parameters ;
-#010 variable_declarations -> empty
-Token:Code=298 Name=       VAR line= 13 col=  3 Spelling="var"
-Token:Code=301 Name=        ID line= 13 col=  7 Spelling="r"
-#008 identifier_list -> ID(r) identifier_list={r}
-Token:Code=267 Name=     COLON line= 13 col=  8 Spelling=":"
-Token:Code=301 Name=        ID line= 13 col=  9 Spelling="real"
+Token:Code=294 Name=  PROGRAM Line=  12 Col=   1 Spelling= "program"
+Token:Code=260 Name=       ID Line=  12 Col=   9 Spelling= "p069_000"
+Token:Code=268 Name= SEMICOLON Line=  12 Col=  17 Spelling= ";"
+#005 program_parameters -> Empty
+#002 program_head->PROGRAM ID program_parameters
+#010 declarations->Empty
+Token:Code=298 Name=      VAR Line=  13 Col=   3 Spelling= "var"
+Token:Code=260 Name=       ID Line=  13 Col=   7 Spelling= "r"
+#008 identifier_list->ID(r)
+ identifier_list={r}Token:Code=269 Name=    COLON Line=  13 Col=   8 Spelling= ":"
+Token:Code=260 Name=       ID Line=  13 Col=   9 Spelling= "real"
 #014 standard_type -> ID(real)
+
 Symbol(Type Symbol) id(real)
   type(Real)
     size(1) alignment(1)
-#012 type -> standard_type
-Token:Code=266 Name= SEMICOLON line= 13 col= 13 Spelling=";"
-#011 variable_declarations -> variable_declarations VAR identifier_list:type;
-Token:Code=282 Name=     BEGIN line= 14 col=  1 Spelling="begin"
-#015 subprogram_declarations -> empty
-#003 program_declarations -> variable_declarations subprogram_declarations
-Token:Code=301 Name=        ID line= 15 col=  3 Spelling="r"
-Token:Code=263 Name=    ASSIGN line= 15 col=  4 Spelling=":="
-#034 variable -> ID(r)
-Token:Code=303 Name=    REALIT line= 15 col=  6 Spelling="3.14159"
+#012 type->standard_type
+Token:Code=268 Name= SEMICOLON Line=  13 Col=  13 Spelling= ";"
+#011 declarations->declarations VAR identifier_list: type ;
+Token:Code=258 Name=    BEGIN Line=  14 Col=   1 Spelling= "begin"
+#015 subprogram_declarations->Empty
+#003 program_declarations->declarations subprogram_declarations
+Token:Code=260 Name=       ID Line=  15 Col=   3 Spelling= "r"
+Token:Code=265 Name=   ASSIGN Line=  15 Col=   4 Spelling= ":="
+#034 VARIABLE->ID(r)
+
+Symbol(Variable Symbol) id(r)
+  type(Real)
+    size(1) alignment(1)
+  lexicallevel(1) address(5)
+          lda       0         5         
+Token:Code=301 Name= REALIT   Line= 15  Col= 6   Spelling= "3.14159"
 #069 factor -> REALIT(3.14159)
+
           ldc       r         3.14159   
 #056 term -> factor
-Token:Code=286 Name=END        line=16  col=1   Spelling="end"
+Token:Code=259 Name= END      Line= 16  Col= 1   Spelling= "end"
+
 #048 simple_expression -> term
 #040 expression -> simple_expression
-#029 statement -> variable := expression
-#027 statement_list -> statement
-#026 optional_statements -> statement_list
-#024 compound_statement -> BEGIN optional_statement END
-Token:Code=264 Name=PERIOD     line=16  col=14  Spelling="."
-#004 program_body -> compound_statement .
-#001 program -> program_head program_declarations program_body
+#029 statement->variable := expression
+
+          lda       0         5         
+
+          ldc       r         3.14159   
+
+          sti       r                   
+#027 statement_list->statement
+
+          lda       0         5         
+
+          ldc       r         3.14159   
+
+          sti       r                   
+#026 optional_statements->statement_list
+
+          lda       0         5         
+
+          ldc       r         3.14159   
+
+          sti       r                   
+#024 compound_statement->BEGIN optional_statements END
+
+          lda       0         5         
+
+          ldc       r         3.14159   
+
+          sti       r                   
+Token:Code=266 Name= PERIOD   Line= 16  Col= 14  Spelling= "."
+#004 program_body->compound_statement .
+#001 Program->program_head program_declarations program_body
+
+prolog
+L00001    ent       sp        L00002    
+
+          ent       ep        L00003    
+
+compound_statement
+          lda       0         5         
+
+          ldc       r         3.14159   
+
+          sti       r                   
+
+          rtn       v                   
+
+
+#define   L00002    5                   
+
+
+
+#define   L00003    7                   
+
+
+epilog
+          rtn       v                   
+
+#define   L00002    5                   
+
+#define   L00003    7                   
+
+program epilog
+          mst       0                   
+
+          cup       0         L00001    
+
+          stp                           
+
 Locality: lexical level 1
 
   Symbol(Variable Symbol) id(r)
@@ -61,9 +130,12 @@ Locality: lexical level 0
   Symbol(Type Symbol) id(integer)
     type(Integer)
       size(1) alignment(1)
-  Symbol(Program Symbol) id(p069_000)
-    type(Void)
-      size(0) alignment(0)
+  Symbol(Procedure Symbol) id(p069_000)
+    type(Subprogram)
+        Return Type
+          type(Void)
+            size(0) alignment(0)
+        Parameter Types
     lexicallevel(0) elabel(L00001) splabel(L00002) eplabel(L00003)
   Symbol(Type Symbol) id(real)
     type(Real)
