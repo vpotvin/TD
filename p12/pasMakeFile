@@ -43,7 +43,8 @@ obj	=	paspar.o \
 		Exp.o \
 		simple_expression.o \
 		expression.o \
-		coercetoreal.o
+		coercetoreal.o \
+		height.o
 
 
 #----------------------------------------------------------------------
@@ -101,7 +102,7 @@ subprogram_prolog.o:	subprogram_prolog.cpp subprogram_prolog.h
 #----------------------------------------------------------------
 # Compile subprogram_epilog.cpp
 #----------------------------------------------------------------
-subprogram_epilog.o:	subprogram_epilog.cpp subprogram_epilog.h
+subprogram_epilog.o:	subprogram_epilog.cpp subprogram_epilog.h 
 			g++ -c -g subprogram_epilog.cpp			
 #---------------------------------------------------------------
 #----------------------------------------------------------------
@@ -229,3 +230,6 @@ procedure_statement.o:	procedure_statement.cpp procedure_statement.h
 expression_list.o:	expression_list.cpp expression_list.h 
 			g++ -c -g expression_list.cpp
 #-------------------------------------------------------------
+
+height.o:		Height.cpp Height.h
+			g++ -c -g Height.cpp
