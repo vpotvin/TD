@@ -39,6 +39,7 @@ using namespace std;
 #include "PCode.h"
 #include "Exp.h"
 #include "ToString.h"
+#include "Height.h"
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 List<Exp*>* subprogram_epilog(SubprogramSymbol* S,List<Exp*>* compound_statement);
