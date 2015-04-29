@@ -1,0 +1,231 @@
+#---------------------------------------------------------------------
+# Object files
+#----------------------------------------------------------------------
+obj	=	paspar.o \
+		paslex.o \
+		pas.o \
+		program.o \
+		program_head.o \
+		program_body.o \
+		subprogram_head.o \
+		subprogram_declaration.o \
+		subprogram_parameters.o \
+		subprogram_prolog.o \
+		subprogram_epilog.o \
+		program_epilog.o \
+		parameter_list.o \
+		ParameterList.o \
+		variable_declarations.o \
+		type.o \
+		standard_type.o \
+		identifier_list.o \
+		variable.o \
+		usersubprogram.o \
+		compound_statement.o \
+		optional_statements.o \
+		statement_list.o \
+		statement.o \
+		procedure_statement.o \
+		expression_list.o \
+		term.o \
+		factor.o \
+		Typ.o \
+		StandardTypes.o \
+		Sym.o \
+		Label.o \
+		Locality.o \
+		Namespace.o \
+		LocalityStack.o \
+		SymbolTable.o \
+		ToString.o \
+		String.o \
+		PCode.o \
+		Exp.o \
+		simple_expression.o \
+		expression.o \
+		coercetoreal.o
+
+
+#----------------------------------------------------------------------
+
+pas:			${obj}
+			g++ -o pas ${obj} -lm -ll
+
+#----------------------------------------------------------------------
+pas.o:			pas.cpp paspar.h paslex.h
+			g++ -c -g pas.cpp
+#----------------------------------------------------------------
+paslex.cpp:		paslex.l paslex.h
+			lex paslex.l
+			mv lex.yy.c paslex.cpp
+#---------------------------------------------------------------------
+#----------------------------------------------------------------------
+paslex.o:		paslex.cpp paslex.h
+			g++ -c -g paslex.cpp
+#----------------------------------------------------------------
+# Create files mcrpar.cpp and mcrtkn.h from file mcrpar.y
+#----------------------------------------------------------------
+pastkn.h	\
+paspar.cpp:		paspar.y
+			yacc -d -v paspar.y
+			mv y.tab.c paspar.cpp
+			cat pastkn_prolog.h y.tab.h pastkn_epilog.h > pastkn.h
+#----------------------------------------------------------------
+paspar.o:		paspar.cpp paspar.h
+			g++ -c -g paspar.cpp
+#----------------------------------------------------------------
+program.o:		program.cpp program.h
+			g++ -c -g program.cpp
+#----------------------------------------------------------------
+program_head.o:		program_head.cpp program_head.h
+			g++ -c -g program_head.cpp
+#----------------------------------------------------------------
+# Compile program_body.cpp
+#----------------------------------------------------------------
+program_body.o:	program_body.cpp program_body.h
+		g++ -c -g program_body.cpp
+#----------------------------------------------------------------
+subprogram_head.o:	subprogram_head.cpp subprogram_head.h
+			g++ -c -g subprogram_head.cpp
+#----------------------------------------------------------------
+subprogram_declaration.o:	subprogram_declaration.cpp subprogram_declaration.h
+			g++ -c -g subprogram_declaration.cpp
+#----------------------------------------------------------------
+subprogram_parameters.o:	subprogram_parameters.cpp subprogram_parameters.h
+			g++ -c -g subprogram_parameters.cpp
+#----------------------------------------------------------------
+# Compile subprogram_prolog.cpp
+#----------------------------------------------------------------
+subprogram_prolog.o:	subprogram_prolog.cpp subprogram_prolog.h
+			g++ -c -g subprogram_prolog.cpp
+#----------------------------------------------------------------
+# Compile subprogram_epilog.cpp
+#----------------------------------------------------------------
+subprogram_epilog.o:	subprogram_epilog.cpp subprogram_epilog.h
+			g++ -c -g subprogram_epilog.cpp			
+#---------------------------------------------------------------
+#----------------------------------------------------------------
+# Compile program_epilog.cpp
+#----------------------------------------------------------------
+program_epilog.o:	program_epilog.cpp program_epilog.h
+			g++ -c -g program_epilog.cpp
+#----------------------------------------------------------------
+# Compile type.cpp
+#----------------------------------------------------------------
+type.o:			type.cpp type.h
+			g++ -c -g type.cpp
+#----------------------------------------------------------------
+# Compile standard_type.cpp
+#----------------------------------------------------------------
+standard_type.o:	standard_type.cpp standard_type.h
+			g++ -c -g standard_type.cpp
+#----------------------------------------------------------------
+# Compile identifier_list.cpp
+#----------------------------------------------------------------
+identifier_list.o:	identifier_list.cpp identifier_list.h
+			g++ -c -g identifier_list.cpp
+#----------------------------------------------------------------
+# Compile parameter_list.cpp
+#----------------------------------------------------------------
+parameter_list.o:	parameter_list.cpp parameter_list.h
+			g++ -c -g parameter_list.cpp
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+# Compile parameter_list.cpp
+#----------------------------------------------------------------
+ParameterList.o:	ParameterList.cpp ParameterList.h
+			g++ -c -g ParameterList.cpp
+#----------------------------------------------------------------
+# Compile variable_declarations.cpp
+#----------------------------------------------------------------
+variable_declarations.o:	variable_declarations.cpp variable_declarations.h
+				g++ -c -g variable_declarations.cpp
+#----------------------------------------------------------------
+#Symbol Table
+#-------------------------------------------------------------
+Typ.o:		Typ.cpp Typ.h
+		g++ -c -g Typ.cpp
+#-------------------------------------------------------------
+#-------------------------------------------------------------
+StandardTypes.o:StandardTypes.cpp StandardTypes.h Typ.h
+		g++ -c -g StandardTypes.cpp
+#-------------------------------------------------------------
+Sym.o:		Sym.cpp Sym.h Typ.h Label.h
+		g++ -c -g Sym.cpp
+#-------------------------------------------------------------
+Label.o:	Label.cpp Label.h
+		g++ -c -g Label.cpp
+#-------------------------------------------------------------
+Locality.o:	Locality.cpp Locality.h Namespace.h Sym.h Typ.h
+		g++ -c -g Locality.cpp
+#-------------------------------------------------------------
+Namespace.o:	Namespace.cpp Namespace.h Sym.h Typ.h
+		g++ -c -g Namespace.cpp
+#-------------------------------------------------------------
+LocalityStack.o:	LocalityStack.cpp LocalityStack.h Locality.h Namespace.h Sym.h Typ.h
+		g++ -c -g LocalityStack.cpp
+#-------------------------------------------------------------
+SymbolTable.o:	SymbolTable.cpp SymbolTable.h LocalityStack.h Locality.h Namespace.h Sym.h Typ.h
+		g++ -c -g SymbolTable.cpp
+#-------------------------------------------------------------
+#-------------------------------------------------------------
+ToString.o:	ToString.cpp ToString.h
+		g++ -c -g ToString.cpp
+#-------------------------------------------------------------
+# Semantic functions
+#-------------------------------------------------------------
+#-------------------------------------------------------------
+String.o:	String.cpp String.h
+		g++ -c -g String.cpp
+#-------------------------------------------------------------
+#-------------------------------------------------------------
+term.o:		term.cpp term.h
+		g++ -c -g term.cpp
+#-------------------------------------------------------------
+factor.o:	factor.cpp factor.h
+		g++ -c -g factor.cpp
+#-------------------------------------------------------------
+
+Exp.o:			Exp.cpp Exp.h
+			g++ -c -g Exp.cpp
+
+PCode.o:		PCode.cpp PCode.h
+			g++ -c -g PCode.cpp
+
+simple_expression.o:	simple_expression.cpp simple_expression.h
+			g++ -c -g simple_expression.cpp
+
+coercetoreal.o:		coercetoreal.cpp coercetoreal.h
+			g++ -c -g coercetoreal.cpp
+#-------------------------------------------------------------
+expression.o:	expression.cpp expression.h 
+		g++ -c -g expression.cpp
+#-------------------------------------------------------------
+#-------------------------------------------------------------
+variable.o:	variable.cpp variable.h 
+		g++ -c -g variable.cpp
+#-------------------------------------------------------------
+#-------------------------------------------------------------
+compound_statement.o:	compound_statement.cpp compound_statement.h 
+			g++ -c -g compound_statement.cpp
+#-------------------------------------------------------------
+optional_statements.o:	optional_statements.cpp optional_statements.h 
+			g++ -c -g optional_statements.cpp
+#-------------------------------------------------------------
+usersubprogram.o:	usersubprogram.cpp usersubprogram.h 
+			g++ -c -g usersubprogram.cpp
+#-------------------------------------------------------------
+#-------------------------------------------------------------
+statement_list.o:	statement_list.cpp statement_list.h 
+			g++ -c -g statement_list.cpp
+#-------------------------------------------------------------
+statement.o:	statement.cpp statement.h 
+		g++ -c -g statement.cpp
+#-------------------------------------------------------------
+
+procedure_statement.o:	procedure_statement.cpp procedure_statement.h 
+			g++ -c -g procedure_statement.cpp
+#-------------------------------------------------------------
+expression_list.o:	expression_list.cpp expression_list.h 
+			g++ -c -g expression_list.cpp
+#-------------------------------------------------------------

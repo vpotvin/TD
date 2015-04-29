@@ -25,7 +25,6 @@ using namespace std;
 //semantic include files
 #include "program.h"
 #include "program_head.h"
-#include "program_body.h"
 #include "subprogram_head.h"
 #include "subprogram_declaration.h"
 #include "standard_type.h"
@@ -40,10 +39,6 @@ using namespace std;
 #include "expression_list.h"
 #include "procedure_statement.h"
 #include "variable.h"
-#include "compound_statement.h"
-#include "statement.h"
-#include "statement_list.h"
-#include "optional_statements.h"
 //---------------------------------------------------------------------
 //Semantic helper include files
 //---------------------------------------------------------------------
@@ -55,14 +50,12 @@ using namespace std;
 #include "simple_expression.h"
 
 
-
-
 typedef string st;
 
 
 
 //functions
-void yyerror(const char* msg); 
+void yyerror(const char* msg) {}
 int yylex(void);
 int yywrap(){
 	return 1;
@@ -80,7 +73,6 @@ SymbolTable ST;  //The SymbolTable
 
 %}
 %union {
-  SubprogramSymbol* subprog;
   string* token;
   List<string>* slist;
   Typ* typ;
@@ -88,9 +80,6 @@ SymbolTable ST;  //The SymbolTable
   Exp* exp;
   List<Exp*>* explist;
 }
-
-%type  <subprog> program_head
-%type  <subprog> subprogram_head
 %type  <varlist> parameter_list
 %type  <varlist> subprogram_parameters
 %type  <typ>     type
@@ -105,11 +94,6 @@ SymbolTable ST;  //The SymbolTable
 %type  <exp>     variable
 
 %type  <explist> expression_list
-%type  <explist> statement
-%type  <explist> compound_statement
-%type  <explist> statement_list
-%type  <explist> optional_statements
-%type  <explist> program_body
 
 %type  <token>   mulop
 %type  <token>   addop
@@ -172,7 +156,7 @@ SymbolTable ST;  //The SymbolTable
 program: program_head program_declarations program_body
 {
 	o << "#001 Program->program_head program_declarations program_body" << endl;
-	program($1, $3);
+	program(); 
 }
 
 program_head: PROGRAM ID program_parameters SEMICOLON
@@ -188,8 +172,7 @@ program_declarations: declarations subprogram_declarations
 
 program_body: compound_statement PERIOD
 {
-	o <<"#004 program_body->compound_statement ." << endl;
-    $$=Program_body($1);
+	o <<"#004 program_body->compound_statement ." << endl; 
 }
 
 program_parameters:
@@ -266,10 +249,10 @@ subprogram_declarations: subprogram_declarations subprogram_declaration SEMICOLO
 subprogram_declaration: subprogram_head declarations compound_statement
 {
 	o << "#017 subprogram_declarations->subprogram_head declarations compound_statement" << endl;
-	subprogram_declaration($1, $3);
+	subprogram_declaration();
 }
 
-subprogram_head: FUNCTION ID subprogram_parameters COLON standard_type SEMICOLON
+subprogram_head: FUNCTION ID subprogram_parameters COLON standard_type
 {
 	o << "#018 subprogram_head->FUNCTION ID(" << (*$2) <<")  subprogram_parameters : standard_type" << endl;
 	subprogram_head(*$2,$3,$5);
@@ -308,61 +291,51 @@ parameter_list: parameter_list SEMICOLON identifier_list COLON type
 compound_statement: BEGAN optional_statements END
 {
 	o << "#024 compound_statement->BEGIN optional_statements END" << endl;
-    $$=Compound_statement($2);
 }
 
 optional_statements: 
 {
 	o << "#025 optional_statements->Empty" << endl;
-    $$=Optional_statements();
 }
 
 optional_statements: statement_list
 {
 	o << "#026 optional_statements->statement_list" << endl;
-    $$=Optional_statements($1);
 }
 
 statement_list: statement
 {
 	o << "#027 statement_list->statement" << endl;
-    $$=Statement_list($1);
 }
 
 statement_list: statement_list SEMICOLON statement 
 {
 	o << "#028 statement_list->statement_list ; statement" << endl;
-    $$=Statement_list($1,$3);
 }
 
 statement: variable ASSIGN expression
 {
 	o << "#029 statement->variable := expression" << endl;
-    $$=statement($1,$3);
 }
 
 statement: procedure_statement
 {
 	o << "#030 statement->procedure_statement" << endl;
-    $$=statement($1);
 }
 
 statement: compound_statement
 {
-	o << "#031 statement->compound_statement" << endl;
-    $$=statement($1);
+	o << "#031 statement->compound_statement" << endl; 
 }
 
 statement: IF expression THEN statement ELSE statement
 {
-	o << "#032 statement->IF expression THEN statement ELSE statement" << endl;
-    $$=statement($2,$4,$6);
+	o << "#032 statement->IF expression THEN statement ELSE statement" << endl; 
 }
 
 statement: WHILE expression DO statement
 {
-	o << "#033 statement->WHILE expression DO statement" << endl;
-    $$=statement($2,$4);
+	o << "#033 statement->WHILE expression DO statement" << endl; 
 }
 
 variable: ID
@@ -573,11 +546,3 @@ factor: CHRLIT
 
 %%
 
-//-----------------------------------------------------------------------
-//User function section
-//-----------------------------------------------------------------------
-void yyerror(const char* m)
-{   cout << endl
-         << "line(" << line << ") col(" << col << ") " << m;
-    cout << endl;
-}

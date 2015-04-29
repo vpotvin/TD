@@ -7,12 +7,8 @@ obj	=	paspar.o \
 		program.o \
 		program_head.o \
 		subprogram_head.o \
-		program_body.o \
 		subprogram_declaration.o \
 		subprogram_parameters.o \
-		subprogram_prolog.o \
-		subprogram_epilog.o \
-		program_epilog.o \
 		parameter_list.o \
 		variable_declarations.o \
 		type.o \
@@ -36,13 +32,7 @@ obj	=	paspar.o \
 		Exp.o \
 		simple_expression.o \
 		expression.o \
-		coercetoreal.o \
-		StandardTypes.o \
-		compound_statement.o \
-		statement_list.o \
-		statement.o \
-		optional_statements.o \
-		Height.o
+		coercetoreal.o
 
 
 #----------------------------------------------------------------------
@@ -88,13 +78,6 @@ subprogram_declaration.o:	subprogram_declaration.cpp subprogram_declaration.h
 subprogram_parameters.o:	subprogram_parameters.cpp subprogram_parameters.h
 			g++ -c -g subprogram_parameters.cpp
 #---------------------------------------------------------------
-
-subprogram_prolog.o:		subprogram_prolog.cpp subprogram_prolog.h
-				g++ -c -g subprogram_prolog.cpp
-
-subprogram_epilog.o:		subprogram_epilog.cpp subprogram_epilog.h
-				g++ -c -g subprogram_epilog.cpp
-
 # Compile type.cpp
 #----------------------------------------------------------------
 type.o:			type.cpp type.h
@@ -185,26 +168,3 @@ procedure_statement.o:	procedure_statement.cpp procedure_statement.h
 expression_list.o:	expression_list.cpp expression_list.h 
 			g++ -c -g expression_list.cpp
 #-------------------------------------------------------------
-
-StandardTypes.o:	StandardTypes.cpp StandardTypes.h Typ.h
-			g++ -c -g StandardTypes.cpp
-
-statement.o:		statement.cpp statement.h
-			g++ -c -g statement.cpp
-
-statement_list.o:	statement_list.cpp statement_list.h
-			g++ -c -g statement_list.cpp
-
-optional_statements.o:	optional_statements.cpp optional_statements.h
-			g++ -c -g optional_statements.cpp
-
-compound_statement.o:	compound_statement.cpp compound_statement.h
-			g++ -c -g compound_statement.cpp
-
-program_body.o:		program_body.cpp program_body.h
-			g++ -c -g program_body.cpp
-
-Height.o:		Height.cpp Height.h PCode.h Exp.h
-			g++ -c -g Height.cpp
-
-
