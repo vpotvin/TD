@@ -94,6 +94,7 @@ using namespace std;
 //semantic include files
 #include "program.h"
 #include "program_head.h"
+#include "program_body.h"
 #include "subprogram_head.h"
 #include "subprogram_declaration.h"
 #include "standard_type.h"
@@ -104,10 +105,15 @@ using namespace std;
 #include "identifier_list.h"
 #include "factor.h"
 #include "term.h"
+#include "simple_expression.h"
 #include "expression.h"
 #include "expression_list.h"
 #include "procedure_statement.h"
 #include "variable.h"
+#include "statement.h"
+#include "statement_list.h"
+#include "optional_statements.h"
+#include "compound_statement.h"
 //---------------------------------------------------------------------
 //Semantic helper include files
 //---------------------------------------------------------------------
@@ -143,7 +149,7 @@ SymbolTable ST;  //The SymbolTable
 
 
 /* Line 268 of yacc.c  */
-#line 147 "y.tab.c"
+#line 153 "y.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -278,8 +284,9 @@ typedef union YYSTYPE
 {
 
 /* Line 293 of yacc.c  */
-#line 75 "paspar.y"
+#line 81 "paspar.y"
 
+  SubprogramSymbol* subprog;
   string* token;
   List<string>* slist;
   Typ* typ;
@@ -290,7 +297,7 @@ typedef union YYSTYPE
 
 
 /* Line 293 of yacc.c  */
-#line 294 "y.tab.c"
+#line 301 "y.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -302,7 +309,7 @@ typedef union YYSTYPE
 
 
 /* Line 343 of yacc.c  */
-#line 306 "y.tab.c"
+#line 313 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -620,14 +627,14 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   156,   156,   162,   168,   173,   179,   183,   188,   194,
-     202,   211,   215,   221,   227,   233,   240,   244,   249,   255,
-     261,   268,   273,   279,   285,   291,   297,   301,   306,   311,
-     316,   321,   326,   331,   336,   341,   347,   353,   359,   365,
-     371,   377,   383,   389,   394,   399,   404,   409,   414,   419,
-     425,   431,   437,   442,   447,   452,   457,   462,   468,   474,
-     479,   484,   489,   494,   499,   505,   511,   517,   523,   529,
-     535,   541
+       0,   170,   170,   176,   182,   187,   194,   198,   203,   209,
+     217,   226,   230,   236,   242,   248,   255,   259,   264,   270,
+     276,   283,   288,   294,   300,   306,   313,   318,   324,   330,
+     336,   342,   348,   354,   360,   366,   372,   378,   384,   390,
+     396,   402,   408,   414,   419,   424,   429,   434,   439,   444,
+     450,   456,   462,   467,   472,   477,   482,   487,   493,   499,
+     504,   509,   514,   519,   524,   530,   536,   542,   548,   554,
+     560,   566
 };
 #endif
 
@@ -1654,27 +1661,27 @@ yyreduce:
         case 2:
 
 /* Line 1806 of yacc.c  */
-#line 157 "paspar.y"
+#line 171 "paspar.y"
     {
 	o << "#001 Program->program_head program_declarations program_body" << endl;
-	program(); 
+	program((yyvsp[(1) - (3)].subprog),(yyvsp[(3) - (3)].explist)); 
 }
     break;
 
   case 3:
 
 /* Line 1806 of yacc.c  */
-#line 163 "paspar.y"
+#line 177 "paspar.y"
     {
 	o << "#002 program_head->PROGRAM ID program_parameters" << endl;
-	program_head(*(yyvsp[(2) - (4)].token));
+	(yyval.subprog)=program_head(*(yyvsp[(2) - (4)].token));
 }
     break;
 
   case 4:
 
 /* Line 1806 of yacc.c  */
-#line 169 "paspar.y"
+#line 183 "paspar.y"
     {
 	o << "#003 program_declarations->declarations subprogram_declarations" << endl;
 }
@@ -1683,16 +1690,17 @@ yyreduce:
   case 5:
 
 /* Line 1806 of yacc.c  */
-#line 174 "paspar.y"
+#line 188 "paspar.y"
     {
 	o <<"#004 program_body->compound_statement ." << endl; 
+	(yyval.explist)=Program_body((yyvsp[(1) - (2)].explist));
 }
     break;
 
   case 6:
 
 /* Line 1806 of yacc.c  */
-#line 179 "paspar.y"
+#line 194 "paspar.y"
     {
 	o <<"#005 program_parameters -> Empty" << endl;
 }
@@ -1701,7 +1709,7 @@ yyreduce:
   case 7:
 
 /* Line 1806 of yacc.c  */
-#line 184 "paspar.y"
+#line 199 "paspar.y"
     {
 	o << "#006 program_parameters->( program_parameter_list )" << endl;
 }
@@ -1710,7 +1718,7 @@ yyreduce:
   case 8:
 
 /* Line 1806 of yacc.c  */
-#line 189 "paspar.y"
+#line 204 "paspar.y"
     {
 	o << "#007 program_parameter_list -> identifier_list" << endl; //(" << (*$1) << ")
 }
@@ -1719,7 +1727,7 @@ yyreduce:
   case 9:
 
 /* Line 1806 of yacc.c  */
-#line 195 "paspar.y"
+#line 210 "paspar.y"
     {
 	o << "#008 identifier_list->ID(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
 	(yyval.slist)=identifier_list((yyvsp[(1) - (1)].token));
@@ -1731,7 +1739,7 @@ yyreduce:
   case 10:
 
 /* Line 1806 of yacc.c  */
-#line 203 "paspar.y"
+#line 218 "paspar.y"
     {
 	o << "#009 identifier_list -> identifier_list , ID(" << (*(yyvsp[(3) - (3)].token)) << ")" << endl;
 	(yyval.slist)=identifier_list((yyvsp[(1) - (3)].slist),(yyvsp[(3) - (3)].token));
@@ -1743,7 +1751,7 @@ yyreduce:
   case 11:
 
 /* Line 1806 of yacc.c  */
-#line 211 "paspar.y"
+#line 226 "paspar.y"
     {
 	o << "#010 declarations->Empty" << endl;
 }
@@ -1752,7 +1760,7 @@ yyreduce:
   case 12:
 
 /* Line 1806 of yacc.c  */
-#line 216 "paspar.y"
+#line 231 "paspar.y"
     {
 	o << "#011 declarations->declarations VAR identifier_list: type ;" << endl; //"<< (*$3) << "
 	variable_declarations((yyvsp[(3) - (6)].slist),(yyvsp[(5) - (6)].typ));
@@ -1762,7 +1770,7 @@ yyreduce:
   case 13:
 
 /* Line 1806 of yacc.c  */
-#line 222 "paspar.y"
+#line 237 "paspar.y"
     {
 	o << "#012 type->standard_type" << endl;
         (yyval.typ)=type((yyvsp[(1) - (1)].typ));
@@ -1772,7 +1780,7 @@ yyreduce:
   case 14:
 
 /* Line 1806 of yacc.c  */
-#line 228 "paspar.y"
+#line 243 "paspar.y"
     {
 	o << "#013 type->ARRAY[INTLIT .. INTLIT] of standard_type" << endl;
         (yyval.typ)=type(*(yyvsp[(3) - (8)].token),*(yyvsp[(5) - (8)].token),(yyvsp[(8) - (8)].typ));
@@ -1782,7 +1790,7 @@ yyreduce:
   case 15:
 
 /* Line 1806 of yacc.c  */
-#line 234 "paspar.y"
+#line 249 "paspar.y"
     {
 	o << "#014 standard_type -> ID(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
         (yyval.typ)=standard_type(*(yyvsp[(1) - (1)].token));
@@ -1792,7 +1800,7 @@ yyreduce:
   case 16:
 
 /* Line 1806 of yacc.c  */
-#line 240 "paspar.y"
+#line 255 "paspar.y"
     {
 	o << "#015 subprogram_declarations->Empty" << endl;
 }
@@ -1801,7 +1809,7 @@ yyreduce:
   case 17:
 
 /* Line 1806 of yacc.c  */
-#line 245 "paspar.y"
+#line 260 "paspar.y"
     {
 	o << "#016 subprogram_declarations->subprogram_declarations subprogram_declarations;" << endl;
 }
@@ -1810,17 +1818,17 @@ yyreduce:
   case 18:
 
 /* Line 1806 of yacc.c  */
-#line 250 "paspar.y"
+#line 265 "paspar.y"
     {
 	o << "#017 subprogram_declarations->subprogram_head declarations compound_statement" << endl;
-	subprogram_declaration();
+	subprogram_declaration((yyvsp[(1) - (3)].subprog),(yyvsp[(3) - (3)].explist));
 }
     break;
 
   case 19:
 
 /* Line 1806 of yacc.c  */
-#line 256 "paspar.y"
+#line 271 "paspar.y"
     {
 	o << "#018 subprogram_head->FUNCTION ID(" << (*(yyvsp[(2) - (5)].token)) <<")  subprogram_parameters : standard_type" << endl;
 	subprogram_head(*(yyvsp[(2) - (5)].token),(yyvsp[(3) - (5)].varlist),(yyvsp[(5) - (5)].typ));
@@ -1830,7 +1838,7 @@ yyreduce:
   case 20:
 
 /* Line 1806 of yacc.c  */
-#line 262 "paspar.y"
+#line 277 "paspar.y"
     {
 	o << "#019 subprogram_head->PROCEDURE ID(" << (*(yyvsp[(2) - (4)].token)) << ") subprogram_parameters ;" << endl;
 	subprogram_head(*(yyvsp[(2) - (4)].token),(yyvsp[(3) - (4)].varlist));
@@ -1840,7 +1848,7 @@ yyreduce:
   case 21:
 
 /* Line 1806 of yacc.c  */
-#line 268 "paspar.y"
+#line 283 "paspar.y"
     {
 	o << "#020 subprogram_parameters->Empty" << endl;
 	(yyval.varlist)=subprogram_parameters();
@@ -1850,7 +1858,7 @@ yyreduce:
   case 22:
 
 /* Line 1806 of yacc.c  */
-#line 274 "paspar.y"
+#line 289 "paspar.y"
     {
 	o << "#021 subprogram_parameters->( parameter_list )" << endl;
 	(yyval.varlist)=subprogram_parameters((yyvsp[(2) - (3)].varlist));
@@ -1860,7 +1868,7 @@ yyreduce:
   case 23:
 
 /* Line 1806 of yacc.c  */
-#line 280 "paspar.y"
+#line 295 "paspar.y"
     {
 	o << "#022 parameter_list->identifier_list: type" << endl; //" << (*$1) << " 
 	(yyval.varlist)=parameter_list((yyvsp[(1) - (3)].slist),(yyvsp[(3) - (3)].typ));
@@ -1870,7 +1878,7 @@ yyreduce:
   case 24:
 
 /* Line 1806 of yacc.c  */
-#line 286 "paspar.y"
+#line 301 "paspar.y"
     {
 	o << "#023 parameter_list-> parameter_list ; identifier_list : type" << endl; //" << (*$3) << "
 	(yyval.varlist)=parameter_list((yyvsp[(1) - (5)].varlist),(yyvsp[(3) - (5)].slist),(yyvsp[(5) - (5)].typ));
@@ -1880,97 +1888,107 @@ yyreduce:
   case 25:
 
 /* Line 1806 of yacc.c  */
-#line 292 "paspar.y"
+#line 307 "paspar.y"
     {
 	o << "#024 compound_statement->BEGIN optional_statements END" << endl;
+	(yyval.explist)=Compound_statement((yyvsp[(2) - (3)].explist));
 }
     break;
 
   case 26:
 
 /* Line 1806 of yacc.c  */
-#line 297 "paspar.y"
+#line 313 "paspar.y"
     {
 	o << "#025 optional_statements->Empty" << endl;
+	(yyval.explist)=Optional_statements();
 }
     break;
 
   case 27:
 
 /* Line 1806 of yacc.c  */
-#line 302 "paspar.y"
+#line 319 "paspar.y"
     {
 	o << "#026 optional_statements->statement_list" << endl;
+	(yyval.explist)=Optional_statements((yyvsp[(1) - (1)].explist));
 }
     break;
 
   case 28:
 
 /* Line 1806 of yacc.c  */
-#line 307 "paspar.y"
+#line 325 "paspar.y"
     {
 	o << "#027 statement_list->statement" << endl;
+	(yyval.explist)=Statement_list((yyvsp[(1) - (1)].explist));
 }
     break;
 
   case 29:
 
 /* Line 1806 of yacc.c  */
-#line 312 "paspar.y"
+#line 331 "paspar.y"
     {
 	o << "#028 statement_list->statement_list ; statement" << endl;
+	(yyval.explist)=Statement_list((yyvsp[(1) - (3)].explist),(yyvsp[(3) - (3)].explist));
 }
     break;
 
   case 30:
 
 /* Line 1806 of yacc.c  */
-#line 317 "paspar.y"
+#line 337 "paspar.y"
     {
 	o << "#029 statement->variable := expression" << endl;
+	(yyval.explist)=statement((yyvsp[(1) - (3)].exp),(yyvsp[(3) - (3)].exp));
 }
     break;
 
   case 31:
 
 /* Line 1806 of yacc.c  */
-#line 322 "paspar.y"
+#line 343 "paspar.y"
     {
 	o << "#030 statement->procedure_statement" << endl;
+	(yyval.explist)=statement((yyvsp[(1) - (1)].exp));
 }
     break;
 
   case 32:
 
 /* Line 1806 of yacc.c  */
-#line 327 "paspar.y"
+#line 349 "paspar.y"
     {
 	o << "#031 statement->compound_statement" << endl; 
+	(yyval.explist)=statement((yyvsp[(1) - (1)].explist));
 }
     break;
 
   case 33:
 
 /* Line 1806 of yacc.c  */
-#line 332 "paspar.y"
+#line 355 "paspar.y"
     {
-	o << "#032 statement->IF expression THEN statement ELSE statement" << endl; 
+	o << "#032 statement->IF expression THEN statement ELSE statement" << endl;
+    (yyval.explist)=statement((yyvsp[(2) - (6)].exp),(yyvsp[(4) - (6)].explist),(yyvsp[(6) - (6)].explist));	
 }
     break;
 
   case 34:
 
 /* Line 1806 of yacc.c  */
-#line 337 "paspar.y"
+#line 361 "paspar.y"
     {
 	o << "#033 statement->WHILE expression DO statement" << endl; 
+	(yyval.explist)=statement((yyvsp[(2) - (4)].exp),(yyvsp[(4) - (4)].explist));
 }
     break;
 
   case 35:
 
 /* Line 1806 of yacc.c  */
-#line 342 "paspar.y"
+#line 367 "paspar.y"
     {
 	o << "#034 VARIABLE->ID(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl; 
 	(yyval.exp)=variable((yyvsp[(1) - (1)].token));
@@ -1980,7 +1998,7 @@ yyreduce:
   case 36:
 
 /* Line 1806 of yacc.c  */
-#line 348 "paspar.y"
+#line 373 "paspar.y"
     {
 	o << "#035 VARIABLE->ID(" << (*(yyvsp[(1) - (4)].token)) << ")[ expression ]" << endl; 
 	(yyval.exp)=variable((yyvsp[(1) - (4)].token),(yyvsp[(3) - (4)].exp));
@@ -1990,7 +2008,7 @@ yyreduce:
   case 37:
 
 /* Line 1806 of yacc.c  */
-#line 354 "paspar.y"
+#line 379 "paspar.y"
     {
 	o << "#036 procedure_statement->ID(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
 		(yyval.exp)=procedure_statement((yyvsp[(1) - (1)].token));
@@ -2000,7 +2018,7 @@ yyreduce:
   case 38:
 
 /* Line 1806 of yacc.c  */
-#line 360 "paspar.y"
+#line 385 "paspar.y"
     {
 	o << "#037 procedure_statement->ID(" << (*(yyvsp[(1) - (4)].token)) <<")( expression_list )" << endl;
 		(yyval.exp)=procedure_statement((yyvsp[(1) - (4)].token),(yyvsp[(3) - (4)].explist));
@@ -2010,7 +2028,7 @@ yyreduce:
   case 39:
 
 /* Line 1806 of yacc.c  */
-#line 366 "paspar.y"
+#line 391 "paspar.y"
     {
 	o << "#038 expression_list->expression" << endl;
 		(yyval.explist)=expression_list((yyvsp[(1) - (1)].exp));
@@ -2020,7 +2038,7 @@ yyreduce:
   case 40:
 
 /* Line 1806 of yacc.c  */
-#line 372 "paspar.y"
+#line 397 "paspar.y"
     {
 	o << "#039 expression_list->expression_list , expression" << endl; 
 		(yyval.explist)=expression_list((yyvsp[(1) - (3)].explist),(yyvsp[(3) - (3)].exp));
@@ -2030,7 +2048,7 @@ yyreduce:
   case 41:
 
 /* Line 1806 of yacc.c  */
-#line 378 "paspar.y"
+#line 403 "paspar.y"
     {
 	o << "#040 expression -> simple_expression" << endl; 
 	(yyval.exp)=expression((yyvsp[(1) - (1)].exp));
@@ -2040,7 +2058,7 @@ yyreduce:
   case 42:
 
 /* Line 1806 of yacc.c  */
-#line 384 "paspar.y"
+#line 409 "paspar.y"
     {
 	o << "#041 expression -> simple_expression relop simple_expression" << endl; 
 	(yyval.exp)=expression((yyvsp[(1) - (3)].exp),(yyvsp[(2) - (3)].token),(yyvsp[(3) - (3)].exp));
@@ -2050,7 +2068,7 @@ yyreduce:
   case 43:
 
 /* Line 1806 of yacc.c  */
-#line 390 "paspar.y"
+#line 415 "paspar.y"
     {
 	o << "#042 relop -> =" << endl; 
 }
@@ -2059,7 +2077,7 @@ yyreduce:
   case 44:
 
 /* Line 1806 of yacc.c  */
-#line 395 "paspar.y"
+#line 420 "paspar.y"
     {
 	o << "#043 relop -> <>" << endl; 
 }
@@ -2068,7 +2086,7 @@ yyreduce:
   case 45:
 
 /* Line 1806 of yacc.c  */
-#line 400 "paspar.y"
+#line 425 "paspar.y"
     {
 	o << "#044 relop -> <" << endl; 
 }
@@ -2077,7 +2095,7 @@ yyreduce:
   case 46:
 
 /* Line 1806 of yacc.c  */
-#line 405 "paspar.y"
+#line 430 "paspar.y"
     {
 	o << "#045 relop -> <=" << endl;
 }
@@ -2086,7 +2104,7 @@ yyreduce:
   case 47:
 
 /* Line 1806 of yacc.c  */
-#line 410 "paspar.y"
+#line 435 "paspar.y"
     {
 	o << "#046 relop -> >" << endl;
 }
@@ -2095,7 +2113,7 @@ yyreduce:
   case 48:
 
 /* Line 1806 of yacc.c  */
-#line 415 "paspar.y"
+#line 440 "paspar.y"
     {
 	o << "#047 relop -> >=" << endl;
 }
@@ -2104,7 +2122,7 @@ yyreduce:
   case 49:
 
 /* Line 1806 of yacc.c  */
-#line 420 "paspar.y"
+#line 445 "paspar.y"
     {
     o << endl << "#048 simple_expression -> term" << endl;
     (yyval.exp)=simple_expression((yyvsp[(1) - (1)].exp));
@@ -2114,7 +2132,7 @@ yyreduce:
   case 50:
 
 /* Line 1806 of yacc.c  */
-#line 426 "paspar.y"
+#line 451 "paspar.y"
     {
     o << endl << "#049 simple_expression -> sign term" << endl;
     (yyval.exp)=simple_expression((yyvsp[(1) - (2)].token),(yyvsp[(2) - (2)].exp));
@@ -2124,7 +2142,7 @@ yyreduce:
   case 51:
 
 /* Line 1806 of yacc.c  */
-#line 432 "paspar.y"
+#line 457 "paspar.y"
     {
     o << endl << "#050 simple_expression -> simple_expression addop term" << endl;
     (yyval.exp)=simple_expression((yyvsp[(1) - (3)].exp),(yyvsp[(2) - (3)].token),(yyvsp[(3) - (3)].exp));
@@ -2134,7 +2152,7 @@ yyreduce:
   case 52:
 
 /* Line 1806 of yacc.c  */
-#line 438 "paspar.y"
+#line 463 "paspar.y"
     {
 	o << "#051 sign -> +" << endl;
 }
@@ -2143,7 +2161,7 @@ yyreduce:
   case 53:
 
 /* Line 1806 of yacc.c  */
-#line 443 "paspar.y"
+#line 468 "paspar.y"
     {
 	o << "#052 sign -> -" << endl;
 }
@@ -2152,7 +2170,7 @@ yyreduce:
   case 54:
 
 /* Line 1806 of yacc.c  */
-#line 448 "paspar.y"
+#line 473 "paspar.y"
     {
 	o << "#053 addop -> +" << endl;
 }
@@ -2161,7 +2179,7 @@ yyreduce:
   case 55:
 
 /* Line 1806 of yacc.c  */
-#line 453 "paspar.y"
+#line 478 "paspar.y"
     {
 	o << "#054 addop -> -" << endl;
 }
@@ -2170,7 +2188,7 @@ yyreduce:
   case 56:
 
 /* Line 1806 of yacc.c  */
-#line 458 "paspar.y"
+#line 483 "paspar.y"
     {
 	o << "#055 addop -> or" << endl;
 }
@@ -2179,7 +2197,7 @@ yyreduce:
   case 57:
 
 /* Line 1806 of yacc.c  */
-#line 463 "paspar.y"
+#line 488 "paspar.y"
     {
 	o << "#056 term -> factor" << endl;
 	(yyval.exp)=term((yyvsp[(1) - (1)].exp));
@@ -2189,7 +2207,7 @@ yyreduce:
   case 58:
 
 /* Line 1806 of yacc.c  */
-#line 469 "paspar.y"
+#line 494 "paspar.y"
     {
 	o << "#057 term -> term mulop factor" << endl;
 	(yyval.exp)=term((yyvsp[(1) - (3)].exp),(yyvsp[(2) - (3)].token),(yyvsp[(3) - (3)].exp));
@@ -2199,7 +2217,7 @@ yyreduce:
   case 59:
 
 /* Line 1806 of yacc.c  */
-#line 475 "paspar.y"
+#line 500 "paspar.y"
     {
 	o << "#058 mulup -> *" << endl;
 }
@@ -2208,7 +2226,7 @@ yyreduce:
   case 60:
 
 /* Line 1806 of yacc.c  */
-#line 480 "paspar.y"
+#line 505 "paspar.y"
     {
 	o << "#059 mulup -> /" << endl;
 }
@@ -2217,7 +2235,7 @@ yyreduce:
   case 61:
 
 /* Line 1806 of yacc.c  */
-#line 485 "paspar.y"
+#line 510 "paspar.y"
     {
 	o << "#060 mulup -> /" << endl;
 }
@@ -2226,7 +2244,7 @@ yyreduce:
   case 62:
 
 /* Line 1806 of yacc.c  */
-#line 490 "paspar.y"
+#line 515 "paspar.y"
     {
 	o << "#061 mulup -> MOD" << endl;
 }
@@ -2235,7 +2253,7 @@ yyreduce:
   case 63:
 
 /* Line 1806 of yacc.c  */
-#line 495 "paspar.y"
+#line 520 "paspar.y"
     {
 	o << "#062 mulup -> AND" << endl;
 }
@@ -2244,7 +2262,7 @@ yyreduce:
   case 64:
 
 /* Line 1806 of yacc.c  */
-#line 500 "paspar.y"
+#line 525 "paspar.y"
     {
 	o << "#063 factor -> ID(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
 	(yyval.exp)=factor_1((yyvsp[(1) - (1)].token));
@@ -2254,7 +2272,7 @@ yyreduce:
   case 65:
 
 /* Line 1806 of yacc.c  */
-#line 506 "paspar.y"
+#line 531 "paspar.y"
     {
 	o << "#064 factor -> ID(" << (*(yyvsp[(1) - (4)].token)) << ") [ expression ]" << endl;
 	(yyval.exp)=factor_2((yyvsp[(1) - (4)].token),(yyvsp[(3) - (4)].exp));
@@ -2264,7 +2282,7 @@ yyreduce:
   case 66:
 
 /* Line 1806 of yacc.c  */
-#line 512 "paspar.y"
+#line 537 "paspar.y"
     {
 	o << "#065 factor -> ID(" << (*(yyvsp[(1) - (4)].token)) << ") ( expression_list )" << endl;
 	(yyval.exp)=factor_3((yyvsp[(1) - (4)].token),(yyvsp[(3) - (4)].explist));
@@ -2274,7 +2292,7 @@ yyreduce:
   case 67:
 
 /* Line 1806 of yacc.c  */
-#line 518 "paspar.y"
+#line 543 "paspar.y"
     {
 	o << "#066 factor -> ( expression )" << endl;
 	(yyval.exp)=factor_4((yyvsp[(2) - (3)].exp));
@@ -2284,7 +2302,7 @@ yyreduce:
   case 68:
 
 /* Line 1806 of yacc.c  */
-#line 524 "paspar.y"
+#line 549 "paspar.y"
     {
 	o << "#067 factor -> NOT factor" << endl;
 	(yyval.exp)=factor_5((yyvsp[(2) - (2)].exp));
@@ -2294,7 +2312,7 @@ yyreduce:
   case 69:
 
 /* Line 1806 of yacc.c  */
-#line 530 "paspar.y"
+#line 555 "paspar.y"
     {
 	o << "#068 factor -> INTLIT(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
 	(yyval.exp)=factor_6((yyvsp[(1) - (1)].token));
@@ -2304,7 +2322,7 @@ yyreduce:
   case 70:
 
 /* Line 1806 of yacc.c  */
-#line 536 "paspar.y"
+#line 561 "paspar.y"
     {
 	o << "#069 factor -> REALIT(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
 	(yyval.exp)=factor_7((yyvsp[(1) - (1)].token));
@@ -2314,7 +2332,7 @@ yyreduce:
   case 71:
 
 /* Line 1806 of yacc.c  */
-#line 542 "paspar.y"
+#line 567 "paspar.y"
     {
 	o << "#070 factor -> CHRLIT(" << (*(yyvsp[(1) - (1)].token)) << ")" << endl;
 	(yyval.exp)=factor_8((yyvsp[(1) - (1)].token));
@@ -2324,7 +2342,7 @@ yyreduce:
 
 
 /* Line 1806 of yacc.c  */
-#line 2328 "y.tab.c"
+#line 2346 "y.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2555,7 +2573,7 @@ yyreturn:
 
 
 /* Line 2067 of yacc.c  */
-#line 547 "paspar.y"
+#line 572 "paspar.y"
 
 
 

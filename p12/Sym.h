@@ -86,8 +86,9 @@ public:
 //class StandardSubprogramSymbol
 //---------------------------------------------------------------------------
 class StandardSubprogramSymbol: public Sym {
-    string cspid;                                 //Call Standard Procedure ID
+                                //Call Standard Procedure ID
 public:
+    string cspid; 
     StandardSubprogramSymbol(symkind sk,string id,string cid);
     void Print(ostream& id,int indent);
 	string CSPID(void);

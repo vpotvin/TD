@@ -44,7 +44,7 @@ obj	=	paspar.o \
 		simple_expression.o \
 		expression.o \
 		coercetoreal.o \
-		height.o
+		Height.o
 
 
 #----------------------------------------------------------------------
@@ -231,5 +231,5 @@ expression_list.o:	expression_list.cpp expression_list.h
 			g++ -c -g expression_list.cpp
 #-------------------------------------------------------------
 
-height.o:		Height.cpp Height.h
+Height.o:		Height.cpp Height.h
 			g++ -c -g Height.cpp

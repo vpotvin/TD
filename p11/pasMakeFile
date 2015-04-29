@@ -162,7 +162,7 @@ variable.o:	variable.cpp variable.h
 usersubprogram.o:	usersubprogram.cpp usersubprogram.h 
 			g++ -c -g usersubprogram.cpp
 #-------------------------------------------------------------
-procedure_statement.o:	procedure_statement.cpp procedure_statement.h 
+procedure_statement.o:	procedure_statement.cpp procedure_statement.h Sym.h
 			g++ -c -g procedure_statement.cpp
 #-------------------------------------------------------------
 expression_list.o:	expression_list.cpp expression_list.h 

@@ -17,11 +17,12 @@ using namespace std;
 #include "Sym.h"
 
 class Exp {
-   Exp* LExp;
-   Exp* RExp;
-   Typ* T;
-   PCode* P;
+
 public:
+    Exp* LExp;
+    Exp* RExp;
+    Typ* T;
+    PCode* P;
    Exp(Typ* t,PCode* p);
    Exp(Exp* l,Exp* r,Typ* t,PCode* p);
    void PPrint(ostream& o);             //Print the P-Code of this instance
